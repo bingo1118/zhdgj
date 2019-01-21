@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:id="@+id/item_lin">
+
+    <LinearLayout
+        android:id="@+id/category_group_lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/corner"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/smoke_name_text"
+                android:layout_margin="10dp"
+                android:background="@drawable/electr_image"/>
+            <ImageView
+                android:id="@+id/right_into_image"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/right_into_selector"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"/>
+            <ImageView
+                android:id="@+id/power_button"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:src="@drawable/sblb_qddy"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+            <TextView
+                android:id="@+id/mac_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pressblue"
+                android:text="ID:"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mac_tv"
+                android:textColor="@color/pressblue"
+                android:layout_toRightOf="@id/mac_name_tv"
+                android:text="102314"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dev_name"
+                android:textSize="16sp"
+                android:textColor="@color/pressblue"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/mac_name_tv"
+                android:text="102314"/>
+
+            <TextView
+                android:id="@+id/online_state"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:text="●"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/blue"
+                android:layout_below="@id/dev_name"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/state_text"
+                android:layout_toRightOf="@id/online_state"
+                android:layout_below="@id/dev_name"
+                android:layout_alignBottom="@id/online_state"
+                android:gravity="center"
+                android:text="在线"
+                android:textColor="@color/blue"/>
+
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/manager_img"
+                android:background="@drawable/manager_img_selector"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

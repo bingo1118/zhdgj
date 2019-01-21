@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/add_fire_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/login_btn"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/add_fire_back_btn"
+            android:layout_width="65dp"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            >
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="16.5dp"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                android:src="@drawable/selector_back"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#ffffff"
+            android:text="定时设置"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/add_fire_title">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/swich"
+                android:text="是否开启"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="开启"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/edit_view_bg">
+                    <EditText
+                        android:id="@+id/ontime_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:textSize="14sp"
+                        android:background="@null"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="开启时间"
+                        android:editable="false"
+                        android:textColorHint="@color/hint_color_text"
+                        android:textColor="@color/text_view_and_kuang"
+                        android:imeOptions="actionNext"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="关闭"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/edit_view_bg">
+                    <EditText
+                        android:id="@+id/offtime_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:textSize="14sp"
+                        android:background="@null"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="关闭时间"
+                        android:editable="false"
+                        android:textColorHint="@color/hint_color_text"
+                        android:textColor="@color/text_view_and_kuang"
+                        android:imeOptions="actionNext"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/add_fire_dev_btn"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/login_button_selector">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <include layout="@layout/progress_bar"/>
+</RelativeLayout>
