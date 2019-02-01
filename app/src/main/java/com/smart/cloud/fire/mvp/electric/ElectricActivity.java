@@ -134,7 +134,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         dev_id.setText("ID:"+electricData.getMac());
         dev_areaid.setText("区域:"+electricData.getAreaName());
         dev_address.setText("地址:"+electricData.getAddress());
-        if(devType==52||devType==53){
+        if(devType==52||devType==53||devType==75){
             getYuzhi(electricMac);
         }
     }
@@ -145,7 +145,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         // menu布局
         popupMenu.getMenuInflater().inflate(R.menu.menu_electr, popupMenu.getMenu());
         // menu的item点击事件
-        if(devType!=52&&devType!=53){
+        if(devType!=52&&devType!=53&&devType!=75&&devType!=77){
             MenuItem item=popupMenu.getMenu().findItem(R.id.yuzhi_set);
             item.setVisible(false);
         }
@@ -186,25 +186,48 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                     int low=(int)Float.parseFloat(low_value.getText().toString());
                                     float value45=Float.parseFloat(overcurrentvalue.getText().toString());
                                     int value46=(int)Float.parseFloat(Leakage_value.getText().toString());
-                                    if(low<145||low>220){
-                                        T.showShort(mContext,"欠压阈值设置范围为145-220V");
-                                        return;
-                                    }
-                                    if(high<220||high>280){
-                                        T.showShort(mContext,"过压阈值设置范围为220-280V");
-                                        return;
-                                    }
-                                    if(value45<1||value45>63){
-                                        T.showShort(mContext,"过流阈值设置范围为1-63A");
-                                        return;
-                                    }
-                                    if(value46<10||value46>90){
-                                        T.showShort(mContext,"漏电流阈值设置范围为10-90mA");
-                                        return;
-                                    }
-                                    if(low>high){
-                                        T.showShort(mContext,"欠压阈值不能高于过压阈值");
-                                        return;
+                                    if(devType==75||devType==77){
+                                        if(low<100||low>200){
+                                            T.showShort(mContext,"欠压阈值设置范围为100-200V");
+                                            return;
+                                        }
+                                        if(high<230||high>320){
+                                            T.showShort(mContext,"过压阈值设置范围为230-320V");
+                                            return;
+                                        }
+                                        if(value45<4||value45>250){
+                                            T.showShort(mContext,"过流阈值设置范围为4-250A");
+                                            return;
+                                        }
+                                        if(value46<30||value46>1000){
+                                            T.showShort(mContext,"漏电流阈值设置范围为30-1000mA");
+                                            return;
+                                        }
+                                        if(low>high){
+                                            T.showShort(mContext,"欠压阈值不能高于过压阈值");
+                                            return;
+                                        }
+                                    }else{
+                                        if(low<145||low>220){
+                                            T.showShort(mContext,"欠压阈值设置范围为145-220V");
+                                            return;
+                                        }
+                                        if(high<220||high>280){
+                                            T.showShort(mContext,"过压阈值设置范围为220-280V");
+                                            return;
+                                        }
+                                        if(value45<1||value45>63){
+                                            T.showShort(mContext,"过流阈值设置范围为1-63A");
+                                            return;
+                                        }
+                                        if(value46<10||value46>90){
+                                            T.showShort(mContext,"漏电流阈值设置范围为10-90mA");
+                                            return;
+                                        }
+                                        if(low>high){
+                                            T.showShort(mContext,"欠压阈值不能高于过压阈值");
+                                            return;
+                                        }
                                     }
                                     if(devType==52){
                                         url= ConstantValues.SERVER_IP_NEW+"ackControlCvls?Overvoltage="+high_value.getText().toString()
@@ -218,6 +241,12 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                                 +"&Overcurrent="+value45
                                                 +"&Leakage="+value46
                                                 +"&appId=1&devSerial="+electricMac+"&userId="+userID;
+                                    }else if(devType==75||devType==77){
+                                        url= ConstantValues.SERVER_IP_NEW+"Telegraphy_Uool_control?Overvoltage="+high_value.getText().toString()
+                                                +"&Undervoltage="+low_value.getText().toString()
+                                                +"&Overcurrent="+value45
+                                                +"&Leakage="+value46
+                                                +"&deviceType="+devType+"&devCmd=14&imei="+electricMac+"&userid="+userID;
                                     }else{
                                         Toast.makeText(getApplicationContext(),"该设备不支持阈值设置", Toast.LENGTH_SHORT).show();
                                         return;

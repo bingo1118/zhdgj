@@ -134,6 +134,7 @@ public class MyOverlayManager extends OverlayManager {
                         case 2:
                             markMap(latLng,overlayOptionses,alarmState,giflistRQ,viewList.get(2),bundle);
                             break;
+                        case 75:
                         case 5:
                             markMap(latLng,overlayOptionses,alarmState,giflistDq,viewList.get(5),bundle);
                             break;

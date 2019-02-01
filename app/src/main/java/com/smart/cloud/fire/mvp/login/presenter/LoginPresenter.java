@@ -67,29 +67,30 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 if(errorCode.equals("0")){
                     editSharePreference(context,model,User,Pwd);//存储技威用户数据
                     //登陆内部服务器获取用户权限
-                    String userCID = SharedPreferencesManager.getInstance().getData(context,SharedPreferencesManager.SP_FILE_GWELL,"CID");//@@5.27
-                    loginServer2(User,Pwd,userCID);
+//                    String userCID = SharedPreferencesManager.getInstance().getData(context,SharedPreferencesManager.SP_FILE_GWELL,"CID");//@@5.27
+//                    loginServer2(User,Pwd,userCID);
 //                    loginServer(User);//@@6.16
-                }else{
-                    mvpView.hideLoading();
-                    switch (errorCode){
-                        case "2":
-                            T.showShort(context,"用户不存在");
-                            break;
-                        case "3":
-                            T.showShort(context,"密码错误");
-                            break;
-                        case "9":
-                            T.showShort(context,"用户名不能为空");
-                            break;
-                        default:
-                            T.showShort(context,"用户名或密码错误");//@@4.27
-                            break;
-                    }
-                    if(type==0){
-                        mvpView.autoLoginFail();
-                    }
                 }
+//                else{
+//                    mvpView.hideLoading();
+//                    switch (errorCode){
+//                        case "2":
+//                            T.showShort(context,"用户不存在");
+//                            break;
+//                        case "3":
+//                            T.showShort(context,"密码错误");
+//                            break;
+//                        case "9":
+//                            T.showShort(context,"用户名不能为空");
+//                            break;
+//                        default:
+//                            T.showShort(context,"用户名或密码错误");//@@4.27
+//                            break;
+//                    }
+//                    if(type==0){
+//                        mvpView.autoLoginFail();
+//                    }
+//                }
             }
 
             @Override
@@ -279,17 +280,17 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
     private void editSharePreference(Context mContext, LoginModel object, String userId, String userPwd){
         String userID = "0"+String.valueOf((Integer.parseInt(object.getUserID())&0x7fffffff));
-        SharedPreferencesManager.getInstance().putData(mContext,
-                SharedPreferencesManager.SP_FILE_GWELL,
-                SharedPreferencesManager.KEY_RECENTPASS,
-                userPwd);
-        SharedPreferencesManager.getInstance().putData(mContext,
-                SharedPreferencesManager.SP_FILE_GWELL,
-                SharedPreferencesManager.KEY_RECENTNAME,
-                userId);
-        SharedPreferencesManager.getInstance().putData(mContext,
-                SharedPreferencesManager.SP_FILE_GWELL,
-                SharedPreferencesManager.KEY_RECENTPASS_NUMBER, userID);
+//        SharedPreferencesManager.getInstance().putData(mContext,
+//                SharedPreferencesManager.SP_FILE_GWELL,
+//                SharedPreferencesManager.KEY_RECENTPASS,
+//                userPwd);
+//        SharedPreferencesManager.getInstance().putData(mContext,
+//                SharedPreferencesManager.SP_FILE_GWELL,
+//                SharedPreferencesManager.KEY_RECENTNAME,
+//                userId);
+//        SharedPreferencesManager.getInstance().putData(mContext,
+//                SharedPreferencesManager.SP_FILE_GWELL,
+//                SharedPreferencesManager.KEY_RECENTPASS_NUMBER, userID);
         String codeStr1 = String.valueOf(Long.parseLong(object.getP2PVerifyCode1()));
         String codeStr2 = String.valueOf(Long.parseLong(object.getP2PVerifyCode2()));
         Account account = AccountPersist.getInstance()
