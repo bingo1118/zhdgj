@@ -93,12 +93,12 @@ public class LineChartActivity extends MvpActivity<LineChartPresenter> implement
     private boolean isHasPoints = true;                 //是否显示线上的节点
     private boolean isFilled = true;                   //是否填充线下方区域
     private boolean isHasPointsLabels = false;          //是否显示节点上的标签信息
-    private boolean isCubic = false;                    //是否是立体的
+    private boolean isCubic = true;                    //是否是立体的
     private boolean isPointsHasSelected = false;        //设置节点点击后效果(消失/显示标签)
     private boolean isPointsHaveDifferentColor;         //节点是否有不同的颜色
 
     /*=========== 其他相关 ==========*/
-    private ValueShape pointsShape = ValueShape.CIRCLE; //点的形状(圆/方/菱形)
+    private ValueShape pointsShape = ValueShape.DIAMOND; //点的形状(圆/方/菱形)
     float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints]; //将线上的点放在一个数组中
     private Context context;
     private String userID;

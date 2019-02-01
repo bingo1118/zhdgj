@@ -16,11 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:id="@+id/smoke_name_text"
                 android:layout_margin="10dp"
-                android:background="@drawable/electr_image"/>
+                android:background="@drawable/electr_dev"/>
             <ImageView
                 android:id="@+id/right_into_image"
                 android:layout_width="25dp"
@@ -40,12 +40,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_margin="8dp">
             <TextView
                 android:id="@+id/mac_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/pressblue"
+                android:textSize="10sp"
                 android:text="ID:"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -53,6 +55,7 @@
                 android:id="@+id/mac_tv"
                 android:textColor="@color/pressblue"
                 android:layout_toRightOf="@id/mac_name_tv"
+                android:textSize="10sp"
                 android:text="102314"/>
 
             <TextView

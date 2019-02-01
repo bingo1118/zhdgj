@@ -1,9 +1,11 @@
 package com.smart.cloud.fire.mvp.main.presenter;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
+
+import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -58,8 +60,8 @@ public class MainPresenter extends BasePresenter<MainView> {
      * @param otherFrameLayout
      * @param mainContent
      */
-    public void initWidget(RadioGroup radioGroup, List<MyRadioButton> myRadioButton, int privilege, Activity mContext,FrameLayout otherFrameLayout,FrameLayout mainContent){
-        manager = mContext.getFragmentManager();
+    public void initWidget(RadioGroup radioGroup, List<MyRadioButton> myRadioButton, int privilege, AppCompatActivity mContext, FrameLayout otherFrameLayout, FrameLayout mainContent){
+        manager = mContext.getSupportFragmentManager();
         mainContent.setVisibility(View.VISIBLE);
         otherFrameLayout.setVisibility(View.INVISIBLE);
         //根据用户权限显示界面。。

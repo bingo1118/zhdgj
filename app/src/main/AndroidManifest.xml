@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="fire.cloud.smart.com.smartcloudfire" >
+    package="fire.cloud.smart.com.smartcloudfire">
 
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
@@ -46,12 +46,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        tools:replace="android:name" >
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:replace="android:name">
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
+            android:process=":remote">
             <intent-filter>
                 <action android:name="com.baidu.location.service_v2.2" />
             </intent-filter>
@@ -80,8 +80,7 @@
             android:name="com.smart.cloud.fire.mvp.login.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/customBackground" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -89,13 +88,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.smart.cloud.fire.mvp.register.RegisterPhoneActivity"
-            android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme" />
+            android:name="com.smart.cloud.fire.mvp.register.RegisterPhoneActivity"/>
         <activity
-            android:name="com.smart.cloud.fire.mvp.login.LoginActivity"
-            android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme" />
+            android:name="com.smart.cloud.fire.mvp.login.LoginActivity"/>
         <activity
             android:name="com.smart.cloud.fire.mvp.main.MainActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -104,7 +99,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_ap_monitor"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -146,24 +141,15 @@
         <activity
             android:name="com.smart.cloud.fire.mvp.Alarm.AlarmActivity"
             android:label="@string/title_activity_bndemo_guide"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme" />
+            android:launchMode="singleTask"/>
         <activity
-            android:name="com.smart.cloud.fire.mvp.Alarm.UserAlarmActivity"
-            android:label="@string/title_activity_bndemo_guide"
-            android:theme="@style/AppTheme" />
+            android:name="com.smart.cloud.fire.mvp.Alarm.UserAlarmActivity"/>
         <activity
-            android:name="com.smart.cloud.fire.mvp.LineChart.LineChartActivity"
-            android:label="@string/line_chart_activity"
-            android:theme="@style/AppTheme" />
+            android:name="com.smart.cloud.fire.mvp.LineChart.LineChartActivity"/>
         <activity
-            android:name="com.smart.cloud.fire.mvp.LineChart.LineChartActivityTest"
-            android:label="@string/line_chart_activity"
-            android:theme="@style/AppTheme" />
+            android:name="com.smart.cloud.fire.mvp.LineChart.LineChartActivityTest"/>
         <activity
-            android:name="com.smart.cloud.fire.mvp.electric.ElectricActivity"
-            android:label="@string/line_chart_activity"
-            android:theme="@style/AppTheme" />
+            android:name="com.smart.cloud.fire.mvp.electric.ElectricActivity" />
 
         <service
             android:name="com.smart.cloud.fire.service.DaemonService"
@@ -228,8 +214,8 @@
             android:launchMode="singleTop" />
         <activity android:name="com.smart.cloud.fire.activity.Host.HostActivity" />
         <activity android:name="com.smart.cloud.fire.mvp.main.Main4Activity" />
-        <activity android:name="com.smart.cloud.fire.mvp.electric.AutoTimeSettingActivity" >
-        </activity>
+        <activity android:name="com.smart.cloud.fire.mvp.electric.AutoTimeSettingActivity"></activity>
+        <activity android:name="com.smart.cloud.fire.mvp.main.Main6Activity"></activity>
     </application>
 
 </manifest>

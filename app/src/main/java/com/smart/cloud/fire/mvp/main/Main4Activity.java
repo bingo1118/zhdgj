@@ -165,25 +165,6 @@ public class Main4Activity extends Activity implements BottomNavigationBar.OnTab
         win.setAttributes(winParams);
     }
 
-    private void initDrawerLayout(){
-        toggle=new ActionBarDrawerToggle(this, mDrawerLayout,
-                null, R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close){
-            /** 当drawer处于完全关闭的状态时调用 */
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-            }
-            /** 当drawer处于完全打开的状态时调用 */
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
-
-        };
-        // 设置drawer触发器为DrawerListener
-        mDrawerLayout.setDrawerListener(toggle);
-    }
 
     /**
      * 设置默认导航栏
@@ -192,7 +173,7 @@ public class Main4Activity extends Activity implements BottomNavigationBar.OnTab
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         mHomeFragment = new HomeFragment();
-        transaction.replace(R.id.tb, mHomeFragment);
+//        transaction.replace(R.id.tb, mHomeFragment);
         transaction.commit();
     }
 
@@ -210,25 +191,25 @@ public class Main4Activity extends Activity implements BottomNavigationBar.OnTab
                 if (mHomeFragment == null) {
                     mHomeFragment = new HomeFragment();
                 }
-                transaction.replace(R.id.tb, mHomeFragment);
+//                transaction.replace(R.id.tb, mHomeFragment);
                 break;
             case 1:
                 if (mDevFragment == null) {
                     mDevFragment = new DevFragment();
                 }
-                transaction.replace(R.id.tb, mDevFragment);
+//                transaction.replace(R.id.tb, mDevFragment);
                 break;
             case 2:
                 if (mScanFragment == null) {
                     mScanFragment = new CollectFragment();
                 }
-                transaction.replace(R.id.tb, mScanFragment);
+//                transaction.replace(R.id.tb, mScanFragment);
                 break;
             case 3:
                 if (mMapFragment == null) {
                     mMapFragment = new MapFragment();
                 }
-                transaction.replace(R.id.tb, mMapFragment);
+//                transaction.replace(R.id.tb, mMapFragment);
                 break;
 
             default:

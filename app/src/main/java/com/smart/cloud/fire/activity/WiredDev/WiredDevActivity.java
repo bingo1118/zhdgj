@@ -1,8 +1,7 @@
 package com.smart.cloud.fire.activity.WiredDev;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -297,7 +296,7 @@ public class WiredDevActivity extends MvpActivity<WiredDevPresenter> implements 
     }
 
     private void init() {
-        fragmentManager = getFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         userID = SharedPreferencesManager.getInstance().getData(mContext,
                 SharedPreferencesManager.SP_FILE_GWELL,
                 SharedPreferencesManager.KEY_RECENTNAME);

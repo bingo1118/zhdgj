@@ -134,7 +134,9 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         dev_id.setText("ID:"+electricData.getMac());
         dev_areaid.setText("区域:"+electricData.getAreaName());
         dev_address.setText("地址:"+electricData.getAddress());
-        getYuzhi(electricMac);
+        if(devType==52||devType==53){
+            getYuzhi(electricMac);
+        }
     }
 
     private void showPopupMenu(View view) {

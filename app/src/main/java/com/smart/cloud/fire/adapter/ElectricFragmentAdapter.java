@@ -144,9 +144,9 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                 ((ItemViewHolder) holder).state_text.setTextColor(mContext.getResources().getColor(R.color.pressblue));
             } else {//设备在线。。
 //                ((ItemViewHolder) holder).smoke_name_text.setTextColor(Color.BLACK);
-                ((ItemViewHolder) holder).online_state.setTextColor(Color.GREEN);
+                ((ItemViewHolder) holder).online_state.setTextColor(Color.parseColor("#1497DB"));
                 ((ItemViewHolder) holder).state_text.setText("在线");
-                ((ItemViewHolder) holder).state_text.setTextColor(Color.GREEN);
+                ((ItemViewHolder) holder).state_text.setTextColor(Color.parseColor("#1497DB"));
             }
             final int eleState = normalSmoke.getEleState();
             //if(privilege==3){//@@8.28权限3有切换电源功能
@@ -342,6 +342,15 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                         url= ConstantValues.SERVER_IP_NEW+"EasyIot_Switch_control?devSerial="+normalSmoke.getMac()+"&eleState=2&appId=1&userId="+userID;
                     }else{
                         url=ConstantValues.SERVER_IP_NEW+"EasyIot_Switch_control?devSerial="+normalSmoke.getMac()+"&eleState=1&appId=1&userId="+userID;
+                    }
+                }else if(normalSmoke.getDeviceType()==75||normalSmoke.getDeviceType()==77){
+                    String userid= SharedPreferencesManager.getInstance().getData(mContext,
+                            SharedPreferencesManager.SP_FILE_GWELL,
+                            SharedPreferencesManager.KEY_RECENTNAME);
+                    if(eleState==1){
+                        url= ConstantValues.SERVER_IP_NEW+"Telegraphy_Uool_control?imei="+normalSmoke.getMac()+"&deviceType="+normalSmoke.getDeviceType()+"&devCmd=12&userid="+userid;
+                    }else{
+                        url=ConstantValues.SERVER_IP_NEW+"Telegraphy_Uool_control?imei="+normalSmoke.getMac()+"&deviceType="+normalSmoke.getDeviceType()+"&devCmd=13&userid"+userid;
                     }
                 }else{
                     if(eleState==1){

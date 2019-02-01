@@ -281,7 +281,6 @@
             android:id="@+id/setting_help_rela"
             android:layout_width="match_parent"
             android:background="@drawable/list_item_color_bg"
-            android:visibility="gone"
             android:layout_height="50dp">
             <ImageView
                 android:id="@+id/rela_image1"

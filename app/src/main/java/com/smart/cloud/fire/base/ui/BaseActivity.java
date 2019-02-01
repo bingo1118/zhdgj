@@ -3,6 +3,7 @@ package com.smart.cloud.fire.base.ui;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * Created by Administrator on 2016/9/19.
  */
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends AppCompatActivity {
     public Activity mActivity;
 
     @Override

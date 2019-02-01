@@ -1,11 +1,11 @@
 package com.smart.cloud.fire.activity.AddDev;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import fire.cloud.smart.com.smartcloudfire.R;
 
-public class AddDevActivity extends Activity {
+public class AddDevActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

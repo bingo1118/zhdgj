@@ -1,6 +1,6 @@
 package com.smart.cloud.fire.mvp.main;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -11,9 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.smart.cloud.fire.activity.AddDev.AddDevActivity;
+import com.smart.cloud.fire.activity.Camera.CameraDevActivity;
+import com.smart.cloud.fire.activity.Electric.ElectricDevActivity;
+import com.smart.cloud.fire.activity.Map.MapActivity;
+import com.smart.cloud.fire.mvp.electric.ElectricActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import fire.cloud.smart.com.smartcloudfire.R;
 
 /**
@@ -26,6 +31,16 @@ public class HomeFragment extends Fragment{
 
     @Bind(R.id.add_dev)
     ImageView add_dev;
+    @Bind(R.id.electr)
+    ImageView electr;
+    @Bind(R.id.camera)
+    ImageView camera;
+    @Bind(R.id.map)
+    ImageView map;
+
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,21 +48,35 @@ public class HomeFragment extends Fragment{
         View view = inflater.inflate(R.layout.home_fragment,container,false);
         ButterKnife.bind(this, view);
         more_item.setVisibility(View.VISIBLE);
-        more_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DrawerLayout drawerLayout= (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
-        add_dev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), AddDevActivity.class);
-                startActivity(intent);
-            }
-        });
         return view;
 
+    }
+
+    @OnClick({R.id.add_dev,R.id.electr,R.id.camera,R.id.map,R.id.more_item})
+    public void onClick(View v){
+        Intent intent;
+        switch (v.getId()){
+            case R.id.add_dev:
+                intent=new Intent(getActivity(), AddDevActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.electr:
+                ((Main6Activity)getActivity()).changeFragment(1);
+//                intent=new Intent(getActivity(), ElectricDevActivity.class);
+//                startActivity(intent);
+                break;
+            case R.id.camera:
+                intent=new Intent(getActivity(), CameraDevActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.map:
+                intent=new Intent(getActivity(), MapActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.more_item:
+                DrawerLayout drawerLayout= (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+        }
     }
 }

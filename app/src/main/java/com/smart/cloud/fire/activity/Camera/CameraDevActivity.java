@@ -2,9 +2,11 @@ package com.smart.cloud.fire.activity.Camera;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
 import fire.cloud.smart.com.smartcloudfire.R;
 
-public class CameraDevActivity extends Activity{
+public class CameraDevActivity extends AppCompatActivity {
 
 
     @Override

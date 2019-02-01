@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e6e6e6"
+    android:background="#fff"
     android:orientation="vertical">
 
     <!-- title bar -->
@@ -12,8 +12,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#e6e6e6">
+        android:layout_height="match_parent">
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipere_fresh_layout"
             android:layout_width="match_parent"
@@ -25,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="60dp"
-                android:background="#ACD6FF"
                 ></android.support.v7.widget.RecyclerView>
         </android.support.v4.widget.SwipeRefreshLayout>
         <include layout="@layout/progress_bar"/>

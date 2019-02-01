@@ -40,6 +40,7 @@ import com.smart.cloud.fire.mvp.login.model.LoginModel;
 import com.smart.cloud.fire.mvp.login.presenter.LoginPresenter;
 import com.smart.cloud.fire.mvp.login.view.LoginView;
 import com.smart.cloud.fire.mvp.main.Main4Activity;
+import com.smart.cloud.fire.mvp.main.Main6Activity;
 import com.smart.cloud.fire.mvp.main.MainActivity;
 import com.smart.cloud.fire.mvp.register.RegisterPhoneActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
@@ -132,7 +133,7 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
 
     @Override
     public void getDataSuccess(LoginModel model) {
-        Intent intent = new Intent(mContext, Main4Activity.class);
+        Intent intent = new Intent(mContext, Main6Activity.class);
         startActivity(intent);
         finish();
     }
