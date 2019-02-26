@@ -31,14 +31,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.igexin.sdk.PushManager;
+import com.p2p.core.P2PHandler;
 import com.p2p.core.update.UpdateManager;
 import com.smart.cloud.fire.global.ConstantValues;
+import com.smart.cloud.fire.global.MainService;
 import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.mvp.fragment.CollectFragment.CollectFragment;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.MapFragment;
 import com.smart.cloud.fire.mvp.login.SplashActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
+import com.smart.cloud.fire.yoosee.P2PListener;
+import com.smart.cloud.fire.yoosee.SettingListener;
 
 import org.json.JSONObject;
 
@@ -133,6 +137,11 @@ public class Main6Activity extends AppCompatActivity {
     }
 
     private void initView() {
+        P2PHandler.getInstance().p2pInit(this,
+                new P2PListener(),
+                new SettingListener());
+        connect();
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -157,6 +166,11 @@ public class Main6Activity extends AppCompatActivity {
             }
         });
         setupViewPager(viewPager);
+    }
+
+    private void connect() {
+        Intent service = new Intent(mContext, MainService.class);//检查更新版本服务。。
+        startService(service);
     }
 
     private void setupViewPager(ViewPager viewPager) {

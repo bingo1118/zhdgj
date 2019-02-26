@@ -33,6 +33,7 @@ import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.global.Electric;
 import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.global.MyApp;
+import com.smart.cloud.fire.mvp.LineChart.LineChart01Activity;
 import com.smart.cloud.fire.mvp.LineChart.LineChartActivity;
 import com.smart.cloud.fire.mvp.electricChangeHistory.ElectricChangeHistoryActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
@@ -351,7 +352,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         electricActivityAdapter.setOnItemClickListener(new ElectricActivityAdapterTest.OnRecyclerViewItemClickListener(){
             @Override
             public void onItemClick(View view, ElectricValue.ElectricValueBean data){
-                Intent intent = new Intent(mContext, LineChartActivity.class);
+                Intent intent = new Intent(mContext, LineChart01Activity.class);
                 intent.putExtra("electricMac",electricMac);
                 intent.putExtra("electricType",data.getElectricType());
                 intent.putExtra("electricNum",data.getId());
@@ -365,50 +366,53 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
             String value=bean.getValue();
             switch (bean.getElectricType()){
                 case 6:
-                    if(null!=value&&value.length()>0)
-                    dy_text.setText(value+"V");
-                    dy_low.setText(bean.getElectricThreshold().split("\\\\")[0]);
-                    dy_top.setText(bean.getElectricThreshold().split("\\\\")[1]);
-                    dy_rela.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(mContext, LineChartActivity.class);
-                            intent.putExtra("electricMac",electricMac);
-                            intent.putExtra("electricType",bean.getElectricType());
-                            intent.putExtra("electricNum",bean.getId());
-                            startActivity(intent);
-                        }
-                    });
+                    if(null!=value&&value.length()>0){
+                        dy_text.setText(value+"V");
+                        dy_low.setText(bean.getElectricThreshold().split("\\\\")[0]);
+                        dy_top.setText(bean.getElectricThreshold().split("\\\\")[1]);
+                        dy_rela.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(mContext, LineChart01Activity.class);
+                                intent.putExtra("electricMac",electricMac);
+                                intent.putExtra("electricType",bean.getElectricType());
+                                intent.putExtra("electricNum",bean.getId());
+                                startActivity(intent);
+                            }
+                        });
+                    }
                     break;
                 case 7:
-                    if(null!=value&&value.length()>0)
-                    dl_text.setText(bean.getValue()+"A");
-                    dl_top.setText(bean.getElectricThreshold());
-                    dl_rela.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(mContext, LineChartActivity.class);
-                            intent.putExtra("electricMac",electricMac);
-                            intent.putExtra("electricType",bean.getElectricType());
-                            intent.putExtra("electricNum",bean.getId());
-                            startActivity(intent);
-                        }
-                    });
+                    if(null!=value&&value.length()>0){
+                        dl_text.setText(bean.getValue()+"A");
+                        dl_top.setText(bean.getElectricThreshold());
+                        dl_rela.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(mContext, LineChart01Activity.class);
+                                intent.putExtra("electricMac",electricMac);
+                                intent.putExtra("electricType",bean.getElectricType());
+                                intent.putExtra("electricNum",bean.getId());
+                                startActivity(intent);
+                            }
+                        });
+                    }
                     break;
                 case 8:
-                    if(null!=value&&value.length()>0)
-                    ldl_text.setText(bean.getValue()+"mA");
-                    ldl_top.setText(bean.getElectricThreshold());
-                    ldl_rela.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(mContext, LineChartActivity.class);
-                            intent.putExtra("electricMac",electricMac);
-                            intent.putExtra("electricType",bean.getElectricType());
-                            intent.putExtra("electricNum",bean.getId());
-                            startActivity(intent);
-                        }
-                    });
+                    if(null!=value&&value.length()>0){
+                        ldl_text.setText(bean.getValue()+"mA");
+                        ldl_top.setText(bean.getElectricThreshold());
+                        ldl_rela.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(mContext, LineChart01Activity.class);
+                                intent.putExtra("electricMac",electricMac);
+                                intent.putExtra("electricType",bean.getElectricType());
+                                intent.putExtra("electricNum",bean.getId());
+                                startActivity(intent);
+                            }
+                        });
+                    }
                     break;
             }
         }

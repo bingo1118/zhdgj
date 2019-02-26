@@ -97,7 +97,7 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
                             return;
                         }
 //                        mvpPresenter.loginYooSee(userId,pwd,mContext,1);
-//                        mvpPresenter.loginYooSee("13622215085","123456",mContext,1);
+                        mvpPresenter.loginYooSee("13622215085","123456",mContext,1);
                         showLoading();
                         String userCID = SharedPreferencesManager.getInstance().getData(mContext,SharedPreferencesManager.SP_FILE_GWELL,"CID");//@@6.26获取cid
                         mvpPresenter.loginServer2(userId,pwd,userCID);//@@7.12 取消几位本地服务器登陆

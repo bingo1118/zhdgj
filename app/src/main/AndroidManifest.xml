@@ -87,10 +87,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.smart.cloud.fire.mvp.register.RegisterPhoneActivity"/>
-        <activity
-            android:name="com.smart.cloud.fire.mvp.login.LoginActivity"/>
+        <activity android:name="com.smart.cloud.fire.mvp.register.RegisterPhoneActivity" />
+        <activity android:name="com.smart.cloud.fire.mvp.login.LoginActivity" />
         <activity
             android:name="com.smart.cloud.fire.mvp.main.MainActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -141,15 +139,10 @@
         <activity
             android:name="com.smart.cloud.fire.mvp.Alarm.AlarmActivity"
             android:label="@string/title_activity_bndemo_guide"
-            android:launchMode="singleTask"/>
-        <activity
-            android:name="com.smart.cloud.fire.mvp.Alarm.UserAlarmActivity"/>
-        <activity
-            android:name="com.smart.cloud.fire.mvp.LineChart.LineChartActivity"/>
-        <activity
-            android:name="com.smart.cloud.fire.mvp.LineChart.LineChartActivityTest"/>
-        <activity
-            android:name="com.smart.cloud.fire.mvp.electric.ElectricActivity" />
+            android:launchMode="singleTask" />
+        <activity android:name="com.smart.cloud.fire.mvp.Alarm.UserAlarmActivity" />
+        <activity android:name="com.smart.cloud.fire.mvp.LineChart.LineChartActivity" />
+        <activity android:name="com.smart.cloud.fire.mvp.electric.ElectricActivity" />
 
         <service
             android:name="com.smart.cloud.fire.service.DaemonService"
@@ -214,8 +207,9 @@
             android:launchMode="singleTop" />
         <activity android:name="com.smart.cloud.fire.activity.Host.HostActivity" />
         <activity android:name="com.smart.cloud.fire.mvp.main.Main4Activity" />
-        <activity android:name="com.smart.cloud.fire.mvp.electric.AutoTimeSettingActivity"></activity>
-        <activity android:name="com.smart.cloud.fire.mvp.main.Main6Activity"></activity>
+        <activity android:name="com.smart.cloud.fire.mvp.electric.AutoTimeSettingActivity" />
+        <activity android:name="com.smart.cloud.fire.mvp.main.Main6Activity" />
+        <activity android:name="com.smart.cloud.fire.mvp.LineChart.LineChart01Activity"></activity>
     </application>
 
 </manifest>

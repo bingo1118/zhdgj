@@ -1,3 +1,397 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.mob\MobTools\2019.0213.1222\6f5c861ceeba50c8bd9814c0172f97a66248e607\MobTools-2019.0213.1222.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="6f5c861ceeba50c8bd9814c0172f97a66248e607">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\MobTools-2019.0213.1222_1b0322422fed0211d7468d295ad74d6a317a84dd.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="f4e7adebf49e683db82fb6efac2caaf3d768b8d4">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.squareup.leakcanary-leakcanary-android-1.3_15f3868eb36c5718fb1238545464230ce90e857e.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\volley.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="2b231086099f6b46ee21609e7eaba145ff58ac76">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\volley_d94db399396e3120f5e9fc8e71f50b3fc2046c92.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\baidumapapi_radar_v4_0_0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="81b00e6e2da11e12554d8cbf0acc23627fd1225b">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\baidumapapi_radar_v4_0_0_03200afac1e12074ca01abec4f716751340165d9.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.3.1_26e0a2b9d686b4743b9332dad4b4ffa3257b675d.jar" />
+    </item>
+    <item
+        jar="E:\Android_SDK\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_b9b5873a45eec83879a9fe1d9259aa5a29368cba.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.3.1_9f33345cd66e597923204b21289ceab2e8350a4c.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\baidumapapi_base_v4_0_0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="dc207932ddfb65566a157ca311a6a6dffc7fccab">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\baidumapapi_base_v4_0_0_e6e7d1512ce25bb5b82d103326212ef7b1a18a55.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.3.1_5244480cc97ff32bb8fb9c0f417bf9a411ac8ff1.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\baidumapapi_search_v4_0_0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="08f97ee0e35fb17d405d29bf62eef305faffffcc">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\baidumapapi_search_v4_0_0_0719eb61ff7cf3c30e8e3ed5d976c224c6c9fc3e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.0.0-beta4\de5935a367ba5e343e9df786ac8fc0c7d52b5f0c\converter-gson-2.0.0-beta4.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="de5935a367ba5e343e9df786ac8fc0c7d52b5f0c">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\converter-gson-2.0.0-beta4_cbdfa78f32d48af614c8966fe9eef6218450cb34.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\logging-interceptor\3.1.2\a1b4b8e4dc5f7bfa9186e79f9e267c1539a847b0\logging-interceptor-3.1.2.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="a1b4b8e4dc5f7bfa9186e79f9e267c1539a847b0">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\logging-interceptor-3.1.2_f2c1623926185a3558f871663b7577117edd236d.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.getui\sdk\2.9.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="bbba9be49557afc65f2809e0cd4aafcc547d2817">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.getui-sdk-2.9.5.0_60bc350624638cfe11ed10d651a9c1700e01d925.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\zxing.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="e88c14e6e7daa0fa65172a62b54ee6a16ff4162d">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\zxing_d6061b2602a90b1fa3b701dfdce291f2355a9621.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\io.reactivex\rxandroid\1.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="d4c4b83de2f6412072d2a29b1b7a5b03edaad5ff">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\io.reactivex-rxandroid-1.1.0_06db4ad73bfae38de569b7fea6a7d6a26a01e3d5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.squareup.leakcanary\leakcanary-watcher\1.3\632482a61ad24b7ec864072945d221369f9a606\leakcanary-watcher-1.3.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="0632482a61ad24b7ec864072945d221369f9a606">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\leakcanary-watcher-1.3_9d545918ddbd14b553e035bc276ca5dd1a2130d8.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.3.1_7ecb9593d58eead6a1b5c031cb5a8bedb9a38ca9.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\ZBarDecoder.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="491976f010e6196c0b1a0470c4657f295ed933fc">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\ZBarDecoder_4d42f3219dcae3635322c659475b8d75b89ceeba.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\hellocharts-library-1.5.8.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="700944cb3a8ce4fe543cfac1a9146a11cbf702dc">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\hellocharts-library-1.5.8_ee06848cf0b20afb8b5d00f39b781e7050daa703.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.mob\MobGUI\2019.0213.1222\18ad1b71a9d201329d80cbf3eb43b4e57d3869ef\MobGUI-2019.0213.1222.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="18ad1b71a9d201329d80cbf3eb43b4e57d3869ef">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\MobGUI-2019.0213.1222_11b63f0f550a0886b47fda8b07846a4891def99d.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\BaiduNaviSDK_3.1.1.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="1ccced686a48c6e3f9799df8c9ff258d1891922a">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\BaiduNaviSDK_3.1.1_07a66f046bdda80de3e51266164dc350baa8cfe1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.0.0-beta4\739e00dea1f0ac04fdb9b6160d667e23cc50a791\retrofit-2.0.0-beta4.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="739e00dea1f0ac04fdb9b6160d667e23cc50a791">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\retrofit-2.0.0-beta4_44340af2f86ea0b86462df26fda48dee0e4e79f2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\okio-1.6.0_140a6f4efa0eb296b62b4baa1303d6e699fbb355.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\httpmime-4.1.2.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="ed8b5ee0167cb27dea55851259eb34b609f31df0">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\httpmime-4.1.2_7198fb958692a2e24131a78fa7e6bf37c16ff214.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.3.1_c9eea94a5bb5277d68d31396408381fc87f1077b.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.3.1_8e9d956e4c535b9e3a0094341a9b57833aa3feb7.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\ZHDGJ\p2PCore\unspecified\jars\libs\javabase64.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="bcb59161ac685852569250f66f73b1d23f72a070">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\javabase64_d50b503aace8f168d54afd165dda69b3d2605c03.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\cn.smssdk\SMSSDK\3.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="ccc70c114d25162813754ed0c9fdb944a97cb0d6">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\cn.smssdk-SMSSDK-3.3.0_e643ca8e47dd51eaf89e5a0d69fa20cca13c4593.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.1.2\7052283359001bb108753cb0583a887d3bf94c82\okhttp-3.1.2.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="7052283359001bb108753cb0583a887d3bf94c82">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\okhttp-3.1.2_f3dd075dae1a82ad446b7cf71ab26d289594566c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\7.0.1\d5d13ea991eab0252e3710e5df3d6a9d4b21d461\butterknife-7.0.1.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1_06aa17625c4498d3a40d34a1719a86a7f288b7be.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.mob\MobCommons\2019.0215.1821\f0fe9a06ca31bf5ea14593c7cc03723f3c1828de\MobCommons-2019.0215.1821.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="f0fe9a06ca31bf5ea14593c7cc03723f3c1828de">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\MobCommons-2019.0215.1821_32aca4b11a84f5de869d2a32255ae30160a07295.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.mob\SDKWrapper\2018.0801.1824\b0a2b6cd26f6318a0f268efbb39ad28ff9c9165c\SDKWrapper-2018.0801.1824.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="b0a2b6cd26f6318a0f268efbb39ad28ff9c9165c">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\SDKWrapper-2018.0801.1824_494b36152919b3e42f6f0335758909ddb8d52864.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\cn.smssdk\ShortMessageSDKGUI\3.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="e25bae3bf789f6bdc88ad0ca43eb6e763d39fa82">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\cn.smssdk-ShortMessageSDKGUI-3.3.0_168eaf435da46b68147aaf9982c5b7647e5aea52.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.3.1_f635ce778b6b397afc376d07ed0f66c0f6931a7c.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\transition\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-transition-25.3.1_7be40f9eae758578352cfb50e09b837dfd7fb3c4.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\baidumapapi_map_v4_0_0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="db4a1025ee9c6f95747aab4a69baa1391534d80e">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\baidumapapi_map_v4_0_0_f565932e77e22cc77eef802ec1be0a76e9687ac4.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.3.1_2d480e9b457290191b838cf09b3877b95a1c7e00.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\baidumapapi_cloud_v4_0_0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="e2aca735ca322917c5ee5fd40d663773391cf0a6">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\baidumapapi_cloud_v4_0_0_b52932db01f27f0b576d23fa26072782df95f6b0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.squareup.leakcanary\leakcanary-analyzer\1.3\c5399b18a672f7973c8a9b9d6b731a3a36e590cc\leakcanary-analyzer-1.3.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="c5399b18a672f7973c8a9b9d6b731a3a36e590cc">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\leakcanary-analyzer-1.3_b33425ff22caa26a9d0a50503e4bca275fcc5ca3.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.jakewharton.rxbinding\rxbinding\0.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="ffc09f4e5bdebe068e5101f587dadc42b60fbfe4">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.jakewharton.rxbinding-rxbinding-0.4.0_e6c4cbd7b6b90f6e05f971ad83c00dde021b796d.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\baidumapapi_util_v4_0_0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="1e9069435803e5a4f32dc429906def33a95aaf17">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\baidumapapi_util_v4_0_0_bc5c38426f49d86842f9bc7c40351d197f774aeb.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.0\748f0546d5c3c27f1aef07270ffea0c45f0c42a4\rxjava-1.1.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="748f0546d5c3c27f1aef07270ffea0c45f0c42a4">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\rxjava-1.1.0_a6f6d31ddcdbcdf35e64687f96fc0978266765f0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.squareup.haha\haha\1.1\b7b2e61ee1ad2d1ac6ae3122de9c940fb0d0e635\haha-1.1.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="b7b2e61ee1ad2d1ac6ae3122de9c940fb0d0e635">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\haha-1.1_60b36b877f4c0c8e1c6f123ac0a9daac28350c64.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.6.2\f1bc476cc167b18e66c297df599b2377131a8947\gson-2.6.2.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\gson-2.6.2_eb3853f30589f5d0c89d58c9ea79ff495f23aba8.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.ashokvarma.android\bottom-navigation-bar\2.0.2\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="ccbe963151b20154ac7de09df749e9ed51fe92cc">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.ashokvarma.android-bottom-navigation-bar-2.0.2_5b65e19e0abd604742e9a436252167985b0c424d.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.3.1_d77e9bd33fbccc57a81f753214bd59c32b91ec1a.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\ZHDGJ\p2PCore\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="04e552e9775585a54703f23e6d2d2ce9c2812dce">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\ZHDGJ-p2PCore-unspecified_f9cbb5e67470cde8fe638e44a733a514b690710e.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.getui\sdk\2.9.5.0\jars\libs\GetuiSDK2.9.5.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="ba30d99b12b4b79e6304f06db9e4f4a57515f17f">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\GetuiSDK2.9.5.0_8b896c25109855163ed8020f737a2a42932d81da.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\design\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-design-25.3.1_9b400e6630cbddb3a13db78e7d0468f55f751ccf.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\locSDK_6.13.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="2cdb37444b41b42e1ce5a8a27e5d3c22e1c57479">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\locSDK_6.13_b3398e1128950eefbd790af3cbdd02a3b7d4ba2b.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.3.1_8c9e382ed60717d9e652f80340dbc862e51e128a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\glide-3.7.0_8bb2dd5c1ec689393bef11410b75022c0ef3aaf5.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\universal-image-loader-1.9.3.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3_b96724b4bbf6f6a251f54880a0749733ba6b2fd8.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\build\intermediates\exploded-aar\cn.smssdk\SMSSDK\3.3.0\jars\libs\SMSSDK-3.3.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="27f544c82c1390afc0e76ef1ec2fb0a3749035ec">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\SMSSDK-3.3.0_90c4b087c9466742dc82765080053b859bf317d2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rain\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\adapter-rxjava\2.0.0-beta4\bd49baf667542c7d06f71e598bdee7fe57272013\adapter-rxjava-2.0.0-beta4.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="bd49baf667542c7d06f71e598bdee7fe57272013">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\adapter-rxjava-2.0.0-beta4_203458d4ec298106ec4a2e85ce8d29131793225b.jar" />
+    </item>
+    <item
+        jar="D:\ZHDGJ\app\libs\xcl-charts.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="123db96349684a0d29a139c7d2953bba27f2d25d">
+        <dex dex="D:\ZHDGJ\app\build\intermediates\pre-dexed\debug\xcl-charts_6a6b67b5065bf3f96117de9f697e934f293519f8.jar" />
+    </item>
+
+</items>
