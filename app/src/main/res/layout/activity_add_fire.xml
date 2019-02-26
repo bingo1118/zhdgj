@@ -47,7 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:visibility="gone">
                 <TextView
                     android:id="@+id/camera_id"
                     android:layout_width="wrap_content"
@@ -91,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="*探测器"/>
+                    android:text="* ID"/>
                 <EditText
                     android:id="@+id/add_fire_mac"
                     android:layout_width="match_parent"
@@ -187,100 +188,77 @@
                 </RelativeLayout>
 
             </RelativeLayout>
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="*纬度"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:background="@drawable/edit_view_bg">
-                    <EditText
-                        android:id="@+id/add_fire_lat"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:textSize="14sp"
-                        android:background="@null"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:editable="false"
-                        android:hint="@string/add_fire_lat"
-                        android:textColorHint="@color/hint_color_text"
-                        android:textColor="@color/text_view_and_kuang"
-                        android:imeOptions="actionNext"
-                        />
-                </RelativeLayout>
-                <ImageView
-                    android:id="@+id/location_image"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/tj_dw_selector"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="*经度"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:background="@drawable/edit_view_bg">
-                    <EditText
-                        android:id="@+id/add_fire_lon"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:textSize="14sp"
-                        android:background="@null"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:editable="false"
-                        android:hint="@string/add_fire_lon"
-                        android:textColorHint="@color/hint_color_text"
-                        android:textColor="@color/text_view_and_kuang"
-                        android:imeOptions="actionNext"
-                        />
-                </RelativeLayout>
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
+                android:background="@drawable/corner_white_radius"
+                android:orientation="vertical">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="*地址"/>
+                    android:gravity="center"
+                    android:text="位置信息"
+                    android:layout_marginTop="5dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/edit_view_bg">
+                        <EditText
+                            android:id="@+id/add_fire_lat"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:textSize="14sp"
+                            android:background="@null"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:editable="false"
+                            android:hint="@string/add_fire_lat"
+                            android:textColorHint="@color/hint_color_text"
+                            android:textColor="@color/text_view_and_kuang"
+                            android:imeOptions="actionNext"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/edit_view_bg">
+                        <EditText
+                            android:id="@+id/add_fire_lon"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:textSize="14sp"
+                            android:background="@null"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:editable="false"
+                            android:hint="@string/add_fire_lon"
+                            android:textColorHint="@color/hint_color_text"
+                            android:textColor="@color/text_view_and_kuang"
+                            android:imeOptions="actionNext"
+                            />
+                    </RelativeLayout>
+                </LinearLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/edit_view_bg">
                     <EditText
                         android:id="@+id/add_fire_address"
@@ -301,7 +279,23 @@
                         android:textColor="@color/text_view_and_kuang"
                         />
                 </RelativeLayout>
-            </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/location_image"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/location_image_2"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -312,7 +306,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="*区域"/>
+                    android:text="*单位"/>
                 <com.smart.cloud.fire.view.XCDropDownListView
                     android:id="@+id/add_fire_zjq"
                     android:layout_width="match_parent"
@@ -336,74 +330,83 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp" />
             </RelativeLayout>
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/corner_white_radius">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
                     android:text="@string/add_fire_man"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:background="@drawable/edit_view_bg">
-                    <EditText
-                        android:id="@+id/add_fire_man"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:textSize="14sp"
-                        android:background="@null"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:hint="@string/add_fire_man_name"
-                        android:textColorHint="@color/hint_color_text"
-                        android:textColor="@color/text_view_and_kuang"
-                        android:imeOptions="actionNext"
-                        />
-                </RelativeLayout>
-            </RelativeLayout>
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/edit_view_bg">
+                        <EditText
+                            android:id="@+id/add_fire_man"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:textSize="14sp"
+                            android:background="@null"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="@string/add_fire_man_name"
+                            android:textColorHint="@color/hint_color_text"
+                            android:textColor="@color/text_view_and_kuang"
+                            android:imeOptions="actionNext"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edit_view_bg">
+                        <EditText
+                            android:id="@+id/add_fire_man_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:textSize="14sp"
+                            android:background="@null"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="@string/add_fire_man_phone"
+                            android:inputType="number"
+                            android:textColorHint="@color/hint_color_text"
+                            android:textColor="@color/text_view_and_kuang"
+                            android:imeOptions="actionNext"
+                            />
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:background="@drawable/edit_view_bg">
-                    <EditText
-                        android:id="@+id/add_fire_man_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:textSize="14sp"
-                        android:background="@null"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:hint="@string/add_fire_man_phone"
-                        android:inputType="number"
-                        android:textColorHint="@color/hint_color_text"
-                        android:textColor="@color/text_view_and_kuang"
-                        android:imeOptions="actionNext"
-                        />
-                </RelativeLayout>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -436,7 +439,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -460,28 +464,27 @@
                         />
                 </RelativeLayout>
             </RelativeLayout>
-            <TextView
-            android:layout_width="match_parent"
-            android:layout_height="80dp" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+                <TextView
+                    android:id="@+id/add_fire_dev_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:text="确认"
+                    android:background="@drawable/login_button_selector"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    />
+            </RelativeLayout>
         </LinearLayout>
+
     </ScrollView>
 
-    <RelativeLayout
-        android:id="@+id/add_fire_dev_btn"
-        android:layout_width="150dp"
-        android:layout_height="45dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/login_button_selector">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_fire_title"
-            android:textColor="#ffffff"
-            android:textSize="16sp"
-            android:layout_centerInParent="true"
-            />
-    </RelativeLayout>
     <include layout="@layout/progress_bar"/>
 </RelativeLayout>

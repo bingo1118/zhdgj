@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -56,7 +57,7 @@ import rx.functions.Action1;
 public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginView{
     private Context mContext;
     @Bind(R.id.login_user)
-    EditText login_user;
+    AutoCompleteTextView login_user;
     @Bind(R.id.login_pwd)
     EditText login_pwd;
     @Bind(R.id.login_rela2)
@@ -64,7 +65,7 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     @Bind(R.id.mProgressBar)
     ProgressBar mProgressBar;
     @Bind(R.id.login_new_register)
-    TextView login_new_register;
+    RelativeLayout login_new_register;
     @Bind(R.id.login_forget_pwd)
     TextView login_forget_pwd;
     private  String userId;

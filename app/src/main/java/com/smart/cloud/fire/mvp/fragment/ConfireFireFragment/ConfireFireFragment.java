@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.jakewharton.rxbinding.view.RxView;
@@ -69,7 +70,7 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
     @Bind(R.id.add_fire_type)
     XCDropDownListView addFireType;//选择类型。。
     @Bind(R.id.add_fire_dev_btn)
-    RelativeLayout addFireDevBtn;//添加设备按钮。。
+    TextView addFireDevBtn;//添加设备按钮。。
     @Bind(R.id.mProgressBar)
     ProgressBar mProgressBar;//加载进度。。
     @Bind(R.id.add_camera_name)
@@ -113,7 +114,7 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
                 }
             }
         });//@@10.18
-        addCameraRelative.setVisibility(View.VISIBLE);
+//        addCameraRelative.setVisibility(View.VISIBLE);
         addFireZjq.setEditTextHint("区域");
         addFireType.setEditTextHint("类型");
         RxView.clicks(addFireDevBtn).throttleFirst(2, TimeUnit.SECONDS).subscribe(new Action1<Void>() {

@@ -7,15 +7,42 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/alpha">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/smoke_mac_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#e9393d"
+                android:layout_marginLeft="5dp"
+                android:text="HJKDSA545FD"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/alarm_mark_image"
+                    android:layout_width="30dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/xx_huojing"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/alarm_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#666666"
             android:textSize="12sp"
-            android:layout_marginLeft="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
             android:text="2016-08-04 17:29:56"/>
     </RelativeLayout>
 
@@ -25,46 +52,37 @@
         android:background="#ffffff">
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/deal_alarm_action_tv"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:background="@drawable/querenbaojing"
+                android:visibility="visible"/>
+            <TextView
+                android:id="@+id/action_now_tv"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:background="@drawable/baojingdaohang"
+                android:visibility="visible"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:id="@+id/smoke_mac"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#e9393d"
-                    android:text="@string/smoke_name"/>
-                <TextView
-                    android:id="@+id/smoke_mac_tv"
-                    android:layout_toRightOf="@id/smoke_mac"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:textColor="#e9393d"
-                    android:layout_marginLeft="5dp"
-                    android:text="HJKDSA545FD"/>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:id="@+id/alarm_mark_image"
-                        android:layout_width="30dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="5dp"
-                        android:src="@drawable/xx_huojing"/>
-                </RelativeLayout>
 
-            </LinearLayout>
             <TextView
                 android:id="@+id/mac_tv"
                 android:layout_width="wrap_content"
@@ -72,6 +90,13 @@
                 android:layout_marginTop="3dp"
                 android:textColor="#404040"
                 android:text="ID:"/>
+            <TextView
+                android:id="@+id/smoke_mac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="#404040"
+                android:text="设备类型:"/>
             <TextView
                 android:id="@+id/repeater_address_tv"
                 android:layout_width="wrap_content"
@@ -88,7 +113,8 @@
                     android:id="@+id/zjq_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:visibility="gone">
                     <TextView
                         android:id="@+id/repeater_name"
                         android:layout_width="wrap_content"
@@ -128,7 +154,8 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -167,7 +194,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="5dp"
+                android:visibility="gone">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -206,47 +234,12 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#dadada"/>
 
-    <LinearLayout
-        android:id="@+id/action_alarm_rela"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
 
-        android:background="@drawable/list_item_color_bg">
-        <TextView
-            android:id="@+id/deal_alarm_action_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/lead_regiater"
-            android:textSize="12sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:gravity="center"
-            android:text="取消报警"
-            android:visibility="visible"/>
-        <TextView
-            android:id="@+id/action_now_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/lead_regiater"
-            android:textSize="12sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:gravity="center"
-            android:text="@string/action_tv"
-            android:visibility="visible"/>
-    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         android:background="#dadada"/>
 
 </LinearLayout>

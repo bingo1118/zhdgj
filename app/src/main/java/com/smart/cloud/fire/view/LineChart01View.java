@@ -176,7 +176,7 @@ public class LineChart01View extends DemoView {
 			float margin = DensityUtil.dip2px(getContext(), 10);
 			chart.setXTickMarksOffsetMargin(margin);//控制滑动出绘图区域后停止滑动
 
-			chart.getCategoryAxis().setLabelLineFeed(XEnum.LabelLineFeed.EVEN_ODD);//标注模式
+			chart.getCategoryAxis().setLabelLineFeed(XEnum.LabelLineFeed.EVEN_ODD);//坐标标注模式
 			//定义数据轴标签显示格式
 //			chart.getCategoryAxis().setLabelFormatter(new IFormatterTextCallBack(){
 //

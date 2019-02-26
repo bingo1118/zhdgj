@@ -20,11 +20,11 @@
 
     <RelativeLayout
         android:id="@+id/register_rela"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="135dp"
         android:layout_below="@id/register_email_tv"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
         android:background="@drawable/edit_view_bg">
         <EditText
             android:id="@+id/register_user"
@@ -83,15 +83,15 @@
 
     <RelativeLayout
         android:id="@+id/register_rela2"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_below="@id/register_rela"
-        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
         >
         <RelativeLayout
             android:id="@+id/register_rela1"
-            android:layout_width="130dp"
+            android:layout_width="180dp"
             android:layout_height="45dp"
             android:background="@drawable/edit_view_bg"
             >
@@ -127,10 +127,10 @@
 
     <Button
         android:id="@+id/register_btn_phone"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_below="@id/register_rela2"
-        android:layout_marginLeft="10dp"
+        android:layout_margin="10dp"
         android:text="@string/register"
         android:textColor="#ffffff"
         android:background="@drawable/register_btn_selector"
