@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ZHDGJ.iml" filepath="$PROJECT_DIR$/ZHDGJ.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/p2PCore/p2PCore.iml" filepath="$PROJECT_DIR$/p2PCore/p2PCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zhdgj_master.iml" filepath="$PROJECT_DIR$/zhdgj_master.iml" />
     </modules>
   </component>
 </project>

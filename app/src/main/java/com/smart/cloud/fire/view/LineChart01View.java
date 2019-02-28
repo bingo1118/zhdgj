@@ -1,18 +1,18 @@
 /**
  * Copyright 2014  XCL-Charts
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * 	
+ *
  * @Project XCL-Charts 
  * @Description Android图表基类库
  * @author XiongChuanLiang<br/>(xcl_168@aliyun.com)
@@ -52,50 +52,53 @@ import java.util.LinkedList;
  * @author XiongChuanLiang<br/>(xcl_168@aliyun.com)
  */
 public class LineChart01View extends DemoView {
-	
+
 	private String TAG = "LineChart01View";
 	private String TITLE="Title";
 	private LineChart chart = new LineChart();
-	
+	private XEnum.LabelLineFeed lineFeed=XEnum.LabelLineFeed.NORMAL;
+
 	//标签集合
 	private LinkedList<String> labels = new LinkedList<String>();
 	private LinkedList<LineData> chartData = new LinkedList<LineData>();
 
 	private Paint mPaintTooltips = new Paint(Paint.ANTI_ALIAS_FLAG);
-	
-	
+
+
 	public LineChart01View(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		initView();
 	}
-	
-	public LineChart01View(Context context, AttributeSet attrs){   
-        super(context, attrs);   
-        initView();
-	 }
-	 
-	 public LineChart01View(Context context, AttributeSet attrs, int defStyle) {
-			super(context, attrs, defStyle);
-			initView();
-	 }
-	 
-	 private void initView()
-	 {
+
+	public LineChart01View(Context context, AttributeSet attrs){
+		super(context, attrs);
+		initView();
+	}
+
+	public LineChart01View(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		initView();
+	}
+
+	private void initView()
+	{
 //		 	chartLabels();
 //			chartDataSet();
 //			chartRender();
-			
-			//綁定手势滑动事件
-//			this.bindTouch(this,chart);
-	 }
 
-	public void initView(String title,LinkedList<String> l,LinkedList<Double> c)
+		//綁定手势滑动事件
+//			this.bindTouch(this,chart);
+	}
+
+	public void initView(String title,LinkedList<String> l,LinkedList<Double> c,XEnum.LabelLineFeed lineFeed)
 	{
 		TITLE=title;
-//		chart=new LineChart();
 		labels = new LinkedList<String>();
 		chartData = new LinkedList<LineData>();
+		if(lineFeed!=null){
+			this.lineFeed=lineFeed;
+		}
 		chartLabels(l);
 		chartDataSet(c);
 		chartRender();
@@ -103,38 +106,38 @@ public class LineChart01View extends DemoView {
 		//綁定手势滑动事件
 		this.bindTouch(this,chart);
 	}
-	 
 
-	@Override  
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {  
-        super.onSizeChanged(w, h, oldw, oldh);  
-       //图所占范围大小
-        chart.setChartRange(w,h);
-    }  
-	
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		super.onSizeChanged(w, h, oldw, oldh);
+		//图所占范围大小
+		chart.setChartRange(w,h);
+	}
+
 	private void chartRender()
 	{
-		try {				
-			
-			//设置绘图区默认缩进px值,留置空间显示Axis,Axistitle....		
+		try {
+
+			//设置绘图区默认缩进px值,留置空间显示Axis,Axistitle....
 			int [] ltrb = getBarLnDefaultSpadding();
-			chart.setPadding(ltrb[0], ltrb[1], ltrb[2], ltrb[3]);	
-			
+			chart.setPadding(ltrb[0], ltrb[1], ltrb[2], ltrb[3]);
+
 			//限制Tickmarks可滑动偏移范围
 			chart.setXTickMarksOffsetMargin(ltrb[2] - 0.f);
 			chart.setYTickMarksOffsetMargin(ltrb[3] - 0.f);
-			
-			
+
+
 			//显示边框
 			chart.showRoundBorder();
 
 			chart.disableScale();//禁止缩放
-			
-			
+
+
 			//设定数据源
-			chart.setCategories(labels);								
+			chart.setCategories(labels);
 			chart.setDataSource(chartData);
-			
+
 			//数据轴最大值
 //			chart.getDataAxis().setAxisMax(100);
 
@@ -154,29 +157,29 @@ public class LineChart01View extends DemoView {
 			}else{
 				chart.getDataAxis().setAxisMin(0);
 			}
-			
+
 			//背景网格
 //			chart.getPlotGrid().showHorizontalLines();
 //			chart.getPlotGrid().showVerticalLines();
 			chart.getPlotGrid().showEvenRowBgColor();
 			chart.getPlotGrid().showOddRowBgColor();
-			
+
 			chart.getPlotGrid().getHorizontalLinePaint().setStrokeWidth(1);
 			chart.getPlotGrid().setHorizontalLineStyle(XEnum.LineStyle.DOT);
 			chart.getPlotGrid().setVerticalLineStyle(XEnum.LineStyle.DOT);
-			
+
 			chart.getPlotGrid().getHorizontalLinePaint().setColor(Color.RED);
 			chart.getPlotGrid().getVerticalLinePaint().setColor(Color.BLUE);
-			
+
 			chart.setTitle(TITLE);//标题
 //			chart.addSubtitle("(XCL-Charts Demo)");//副标题
-			
+
 			chart.getAxisTitle().setLowerTitle("(时间)");
 
 			float margin = DensityUtil.dip2px(getContext(), 10);
 			chart.setXTickMarksOffsetMargin(margin);//控制滑动出绘图区域后停止滑动
 
-			chart.getCategoryAxis().setLabelLineFeed(XEnum.LabelLineFeed.EVEN_ODD);//坐标标注模式
+			chart.getCategoryAxis().setLabelLineFeed(lineFeed);//坐标标注模式
 			//定义数据轴标签显示格式
 //			chart.getCategoryAxis().setLabelFormatter(new IFormatterTextCallBack(){
 //
@@ -196,7 +199,7 @@ public class LineChart01View extends DemoView {
 			//为了让触发更灵敏，可以扩大5px的点击监听范围
 			chart.extPointClickRange(10);
 			chart.showClikedFocus();
-												
+
 			//绘制十字交叉线
 //			chart.showDyLine();
 //			chart.getDyLine().setDyLineStyle(XEnum.DyLineStyle.Vertical);
@@ -212,24 +215,24 @@ public class LineChart01View extends DemoView {
 			chart.getCategoryAxis().getTickMarksPaint();
 			chart.getCategoryAxis().setTickLabelMargin(10);
 
-			
+
 			chart.getPlotArea().extWidth(100.f);
-			
+
 			//调整轴显示位置
 			chart.setDataAxisLocation(XEnum.AxisLocation.LEFT);
 			chart.setCategoryAxisLocation(XEnum.AxisLocation.BOTTOM);
-			
+
 			//收缩绘图区右边分割的范围，让绘图区的线不显示出来
 			chart.getClipExt().setExtRight(0.f);
-			
-			
+
+
 			//test x坐标从刻度线而不是轴开始
 			//chart.setXCoordFirstTickmarksBegin(true);
 			//chart.getCategoryAxis().showTickMarks();
 			//chart.getCategoryAxis().setVerticalTickPosition(XEnum.VerticalAlign.MIDDLE);
-			
-			
-			
+
+
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Log.e(TAG, e.toString());
@@ -246,105 +249,105 @@ public class LineChart01View extends DemoView {
 //		lineData1.setDotRadius(20);
 		lineData1.setLabelVisible(true);
 		lineData1.getDotLabelPaint().setTextAlign(Align.CENTER);
-		
+
 		lineData1.getLabelOptions().setLabelBoxStyle(XEnum.LabelBoxStyle.TEXT);
-		
+
 		//lineData1.getLabelOptions().
-		
+
 		//lineData1.setDataSet(dataSeries);
 		this.invalidate();//刷新视图
 
 		chartData.add(lineData1);
 	}
-	
+
 	private void chartLabels(LinkedList<String> list)
 	{
 		labels=list;
 	}
-	
+
 	@Override
-    public void render(Canvas canvas) {
-        try{
-            chart.render(canvas);
-        } catch (Exception e){
-        	Log.e(TAG, e.toString());
-        }
-    }
+	public void render(Canvas canvas) {
+		try{
+			chart.render(canvas);
+		} catch (Exception e){
+			Log.e(TAG, e.toString());
+		}
+	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub		
-				
-		if(event.getAction() == MotionEvent.ACTION_UP) 
-		{			
+
+		if(event.getAction() == MotionEvent.ACTION_UP)
+		{
 			triggerClick(event.getX(),event.getY());
 		}
 		super.onTouchEvent(event);
 		return true;
 	}
-	
-	
+
+
 	//触发监听
 	private void triggerClick(float x,float y)
-	{		
-		
+	{
+
 		//交叉线
-		if(chart.getDyLineVisible())chart.getDyLine().setCurrentXY(x,y);		
+		if(chart.getDyLineVisible())chart.getDyLine().setCurrentXY(x,y);
 		if(!chart.getListenItemClickStatus())
 		{
 			//交叉线
 			if(chart.getDyLineVisible())this.invalidate();
-		}else{			
-			PointPosition record = chart.getPositionRecord(x,y);			
+		}else{
+			PointPosition record = chart.getPositionRecord(x,y);
 			if( null == record)
 			{
 				if(chart.getDyLineVisible())this.invalidate();
 				return;
 			}
-	
+
 			LineData lData = chartData.get(record.getDataID());
 			Double lValue = lData.getLinePoint().get(record.getDataChildID());
-		
+
 			float r = record.getRadius();
-			chart.showFocusPointF(record.getPosition(),r + r*0.5f);		
+			chart.showFocusPointF(record.getPosition(),r + r*0.5f);
 			chart.getFocusPaint().setStyle(Style.STROKE);
-			chart.getFocusPaint().setStrokeWidth(3);		
+			chart.getFocusPaint().setStrokeWidth(3);
 			if(record.getDataID() >= 3)
 			{
 				chart.getFocusPaint().setColor(Color.BLUE);
 			}else{
 				chart.getFocusPaint().setColor(Color.RED);
-			}		
-			
+			}
+
 			//在点击处显示tooltip
-			mPaintTooltips.setColor(Color.RED);				
+			mPaintTooltips.setColor(Color.RED);
 			//chart.getToolTip().setCurrentXY(x,y);
-			chart.getToolTip().setCurrentXY(record.getPosition().x,record.getPosition().y); 
-			
+			chart.getToolTip().setCurrentXY(record.getPosition().x,record.getPosition().y);
+
 			chart.getToolTip().addToolTip(" Key:"+lData.getLineKey(),mPaintTooltips);
-			chart.getToolTip().addToolTip(" Label:"+lData.getLabel(),mPaintTooltips);		
+			chart.getToolTip().addToolTip(" Label:"+lData.getLabel(),mPaintTooltips);
 			chart.getToolTip().addToolTip(" Current Value:" +Double.toString(lValue),mPaintTooltips);
-				
-			
+
+
 			//当前标签对应的其它点的值
 			int cid = record.getDataChildID();
-			String xLabels = "";			
+			String xLabels = "";
 			for(LineData data : chartData)
 			{
 				if(cid < data.getLinePoint().size())
 				{
-					xLabels = Double.toString(data.getLinePoint().get(cid));					
-					chart.getToolTip().addToolTip("Line:"+data.getLabel()+","+ xLabels,mPaintTooltips);					
+					xLabels = Double.toString(data.getLinePoint().get(cid));
+					chart.getToolTip().addToolTip("Line:"+data.getLabel()+","+ xLabels,mPaintTooltips);
 				}
 			}
-			
-			
+
+
 			this.invalidate();
 		}
-		
-		
+
+
 	}
-	
+
 	private double getTheMaxData(){
 		double d=0;
 		for(LineData data : chartData)
