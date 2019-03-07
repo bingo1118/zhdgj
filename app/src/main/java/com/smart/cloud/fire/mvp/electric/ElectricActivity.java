@@ -33,6 +33,7 @@ import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.global.Electric;
 import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.global.MyApp;
+import com.smart.cloud.fire.mvp.LineChart.ElectricChartActivity;
 import com.smart.cloud.fire.mvp.LineChart.LineChart01Activity;
 import com.smart.cloud.fire.mvp.LineChart.LineChartActivity;
 import com.smart.cloud.fire.mvp.electricChangeHistory.ElectricChangeHistoryActivity;
@@ -373,7 +374,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                         dy_rela.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(mContext, LineChart01Activity.class);
+                                Intent intent = new Intent(mContext, ElectricChartActivity.class);
                                 intent.putExtra("electricMac",electricMac);
                                 intent.putExtra("electricType",bean.getElectricType());
                                 intent.putExtra("electricNum",bean.getId());

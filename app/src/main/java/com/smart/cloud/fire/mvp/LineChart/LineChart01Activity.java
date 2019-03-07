@@ -142,12 +142,8 @@ public class LineChart01Activity extends MvpActivity<LineChartPresenter> impleme
         int len = temperatureTimes.size();
         page_text.setText("第"+page+"页");
         if (len == 6) {
-//            btnNext.setClickable(true);
-//            btnNext.setBackgroundResource(R.drawable.next_selector);
             drawChart(temperatureTimes);
         } else if (len < 6) {
-//            btnNext.setClickable(false);
-//            btnNext.setBackgroundResource(R.mipmap.next_an);
             drawChart(temperatureTimes);
         }else if(len ==0){
             T.showShort(mActivity,"无数据");
@@ -166,9 +162,6 @@ public class LineChart01Activity extends MvpActivity<LineChartPresenter> impleme
 
     @Override
     public void getDataFail(String msg) {
-//        page= page-1;
-//        btnNext.setClickable(false);
-//        btnNext.setBackgroundResource(R.mipmap.next_an);
         T.showShort(context, msg);
     }
 
@@ -194,28 +187,16 @@ public class LineChart01Activity extends MvpActivity<LineChartPresenter> impleme
         switch (view.getId()) {
             case R.id.btn_next:
                 page = page + 1;
-//                if (page == 2) {
-//                    btnBefore.setClickable(true);
-//                    btnBefore.setBackgroundResource(R.drawable.before_selector);
-//                }
                 mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
                 break;
             case R.id.btn_before:
                 if (page > 1) {
                     page = page - 1;
-//                    if (page == 1) {
-//                        btnBefore.setClickable(false);
-//                        btnBefore.setBackgroundResource(R.mipmap.prve_an);
-//                    }
                     mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
                 }
                 break;
             case R.id.btn_new:
                 page = 1;
-//                btnBefore.setClickable(false);
-//                btnBefore.setBackgroundResource(R.mipmap.prve_an);
-//                btnNext.setClickable(true);
-//                btnNext.setBackgroundResource(R.drawable.next_selector);
                 mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
                 break;
         }
