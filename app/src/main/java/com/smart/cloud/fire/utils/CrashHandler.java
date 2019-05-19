@@ -111,7 +111,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                T.showShort(mContext, "很抱歉,程序出现异常,即将退出.");
+//                T.showShort(mContext, "很抱歉,程序出现异常,即将退出.");
                 Looper.loop();
             }
         }.start();

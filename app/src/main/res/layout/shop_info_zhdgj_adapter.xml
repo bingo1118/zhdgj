@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
+    android:elevation="4dp"
     android:id="@+id/item_lin">
 
     <LinearLayout
         android:id="@+id/category_group_lin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:orientation="vertical"
+        android:elevation="4dp"
         android:background="@drawable/corner"
         >
         <RelativeLayout

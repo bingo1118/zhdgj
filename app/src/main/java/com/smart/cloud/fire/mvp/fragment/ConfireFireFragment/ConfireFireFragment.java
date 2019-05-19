@@ -1,30 +1,43 @@
 package com.smart.cloud.fire.mvp.fragment.ConfireFireFragment;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.baidu.location.BDLocation;
 import com.jakewharton.rxbinding.view.RxView;
 import com.obsessive.zbar.CaptureActivity;
 import com.smart.cloud.fire.GetLocationActivity;
 import com.smart.cloud.fire.base.ui.MvpFragment;
 import com.smart.cloud.fire.global.Area;
+import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.global.ShopType;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.Camera;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.Smoke;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
+import com.smart.cloud.fire.utils.VolleyHelper;
 import com.smart.cloud.fire.view.XCDropDownListView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -187,7 +200,7 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
         super.onStart();
     }
 
-    @OnClick({R.id.scan_repeater_ma, R.id.scan_er_wei_ma, R.id.location_image, R.id.add_fire_zjq, R.id.add_fire_type})
+    @OnClick({R.id.scan_repeater_ma, R.id.scan_er_wei_ma, R.id.location_image, R.id.add_fire_zjq, R.id.add_fire_type,R.id.add_place})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.scan_repeater_ma:
@@ -223,9 +236,67 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
                     addFireType.showLoading();
                 }
                 break;
+            case R.id.add_place:
+                gotoAddPlace();
+                break;
             default:
                 break;
         }
+    }
+
+    private void gotoAddPlace() {
+        LayoutInflater inflater=getActivity().getLayoutInflater();
+        View view =inflater.inflate(R.layout.add_place_view,(ViewGroup) getActivity().findViewById(R.id.rela));
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(view);
+        final AlertDialog dialog =builder.create();
+        final EditText place_value=(EditText)view.findViewById(R.id.place_value);
+
+        Button commit=(Button)view.findViewById(R.id.commit);
+        commit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url="";
+                String palceName=place_value.getText().toString();
+                if(palceName.length()>0){
+                    url= ConstantValues.SERVER_IP_NEW+"addPlaceTypeId?userId="+userID+"&placeName="+palceName;
+                }else{
+                    T.showShort(mContext,"请输入内容");
+                    return;
+                }
+                final ProgressDialog dialog1 = new ProgressDialog(mContext);
+                dialog1.setTitle("提示");
+                dialog1.setMessage("设置中，请稍候");
+                dialog1.setCanceledOnTouchOutside(false);
+                dialog1.show();
+                VolleyHelper helper=VolleyHelper.getInstance(mContext);
+                RequestQueue mQueue = helper.getRequestQueue();
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    T.showShort(mContext,response.getString("error"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                dialog1.dismiss();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        T.showShort(mContext,"网络错误");
+                        dialog1.dismiss();
+                    }
+                });
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                mQueue.add(jsonObjectRequest);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     @Override

@@ -8,8 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/myback">
+        android:orientation="vertical">
 
         <include layout="@layout/title_bar"/>
 
@@ -23,14 +22,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ID:"
-                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_margin="5dp"/>
             <TextView
                 android:id="@+id/dev_areaid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
                 android:text="区域:"
                 android:textSize="16sp"
                 android:layout_margin="5dp"/>
@@ -38,7 +35,6 @@
                 android:id="@+id/dev_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
                 android:text="地址:"
                 android:textSize="16sp"
                 android:layout_margin="5dp"/>
@@ -47,187 +43,38 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1sp"
-            android:background="#fff"
+            android:background="#888888"
             android:layout_margin="5dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="180dp"
-                android:layout_weight="1">
-                <RelativeLayout
-                    android:id="@+id/dy_rela"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/rectangle">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/dy_text"
-                        android:text="--V"
-                        android:textSize="32sp"
-                        android:textColor="#fff"
-                        android:layout_centerInParent="true"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_above="@id/dy_text">
-                        <TextView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:textColor="#fff"
-                            android:gravity="center"
-                            android:textSize="14sp"
-                            android:text="电压"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/dy_text"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#fff"
-                            android:text="--V"
-                            android:id="@+id/dy_low"
-                            android:layout_marginRight="3dp"/>
-                        <TextView
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="#fff"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#fff"
-                            android:text="--℃"
-                            android:layout_marginLeft="5dp"
-                            android:id="@+id/dy_top"/>
-                    </LinearLayout>
-                </RelativeLayout>
-            </RelativeLayout>
+            <com.smart.cloud.fire.view.DialChart05View
+                android:id="@+id/DV_DY"
+                android:layout_width="200dp"
+                android:layout_height="200dp"/>
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="180dp"
-                android:layout_weight="1">
-                <RelativeLayout
-                    android:id="@+id/dl_rela"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/rectangle">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/dl_text"
-                        android:text="--A"
-                        android:textSize="32sp"
-                        android:textColor="#fff"
-                        android:layout_centerInParent="true"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_above="@id/dl_text">
-                        <TextView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:textColor="#fff"
-                            android:gravity="center"
-                            android:textSize="14sp"
-                            android:text="电流"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/dl_text"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#ff8f41"
-                            android:text="Max:"
-                            android:layout_marginLeft="3dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#fff"
-                            android:text="--A"
-                            android:id="@+id/dl_top"/>
-                    </LinearLayout>
-                </RelativeLayout>
-            </RelativeLayout>
+            <com.smart.cloud.fire.view.DialChart05View
+                android:id="@+id/DV_DL"
+                android:layout_width="200dp"
+                android:layout_height="200dp"/>
+
+
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
-            <RelativeLayout
-                android:layout_width="0dp"
+            <com.smart.cloud.fire.view.DialChart05View
+                android:id="@+id/DV_LDL"
+                android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_weight="1">
-                <RelativeLayout
-                    android:id="@+id/ldl_rela"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/rectangle">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ldl_text"
-                        android:text="--mA"
-                        android:textSize="32sp"
-                        android:textColor="#fff"
-                        android:layout_centerInParent="true"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_above="@id/ldl_text">
-                        <TextView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:textColor="#fff"
-                            android:gravity="center"
-                            android:textSize="10sp"
-                            android:text="漏电流"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/ldl_text"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#ff8f41"
-                            android:text="Max:"
-                            android:layout_marginLeft="3dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#fff"
-                            android:text="--mA"
-                            android:id="@+id/ldl_top"/>
-                    </LinearLayout>
-                </RelativeLayout>
-            </RelativeLayout>
-
+                android:layout_gravity="center"/>
 
         </LinearLayout>
 

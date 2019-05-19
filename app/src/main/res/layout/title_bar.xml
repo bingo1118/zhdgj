@@ -33,7 +33,7 @@
             android:id="@+id/more_item"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/more_item"
+            android:src="@drawable/my_center"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"

@@ -14,6 +14,7 @@ import com.smart.cloud.fire.activity.AddDev.AddDevActivity;
 import com.smart.cloud.fire.activity.Camera.CameraDevActivity;
 import com.smart.cloud.fire.activity.Electric.ElectricDevActivity;
 import com.smart.cloud.fire.activity.Map.MapActivity;
+import com.smart.cloud.fire.activity.SelectDevPlaceType.SelectDevPlaceTypeActivity;
 import com.smart.cloud.fire.mvp.electric.ElectricActivity;
 
 import butterknife.Bind;
@@ -61,9 +62,11 @@ public class HomeFragment extends Fragment{
                 startActivity(intent);
                 break;
             case R.id.electr:
-                ((Main6Activity)getActivity()).changeFragment(1);
+//                ((Main6Activity)getActivity()).changeFragment(1);
 //                intent=new Intent(getActivity(), ElectricDevActivity.class);
 //                startActivity(intent);
+                intent=new Intent(getActivity(), SelectDevPlaceTypeActivity.class);
+                startActivity(intent);
                 break;
             case R.id.camera:
                 intent=new Intent(getActivity(), CameraDevActivity.class);

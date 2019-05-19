@@ -38,18 +38,18 @@
                     android:layout_height="80dp"
                     android:id="@+id/add_dev"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/add_dev_6"
+                    android:background="@drawable/home_add"
                     android:layout_margin="10dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#e6e6e6"
+                    android:background="#3f81c1"
                     android:layout_below="@id/add_dev"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/add_dev"
-                    android:textColor="#8a8a8a"
+                    android:textColor="#3f81c1"
                     android:layout_centerHorizontal="true"
                     android:text="添加设备"
                     android:layout_margin="5dp"/>
@@ -69,18 +69,18 @@
                     android:layout_height="80dp"
                     android:id="@+id/electr"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/electr_6"
+                    android:background="@drawable/home_electr"
                     android:layout_margin="10dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#e6e6e6"
+                    android:background="#3f81c1"
                     android:layout_below="@id/electr"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/electr"
-                    android:textColor="#8a8a8a"
+                    android:textColor="#3f81c1"
                     android:layout_centerHorizontal="true"
                     android:text="电气设备"
                     android:layout_margin="5dp"/>
@@ -103,18 +103,18 @@
                     android:layout_height="80dp"
                     android:id="@+id/camera"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/camera_6"
+                    android:background="@drawable/home_camera"
                     android:layout_margin="10dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#e6e6e6"
+                    android:background="#3f81c1"
                     android:layout_below="@id/camera"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/camera"
-                    android:textColor="#8a8a8a"
+                    android:textColor="#3f81c1"
                     android:layout_centerHorizontal="true"
                     android:text="视频监控"
                     android:layout_margin="5dp"/>
@@ -133,18 +133,18 @@
                     android:layout_height="80dp"
                     android:id="@+id/map"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/map_6"
+                    android:background="@drawable/home_map"
                     android:layout_margin="10dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#e6e6e6"
+                    android:background="#3f81c1"
                     android:layout_below="@id/map"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/map"
-                    android:textColor="#8a8a8a"
+                    android:textColor="#3f81c1"
                     android:layout_centerHorizontal="true"
                     android:text="地图位置"
                     android:layout_margin="5dp"/>

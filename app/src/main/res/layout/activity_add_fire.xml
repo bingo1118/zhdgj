@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="* ID"/>
+                    android:text="*SN码"/>
                 <EditText
                     android:id="@+id/add_fire_mac"
                     android:layout_width="match_parent"
@@ -104,7 +104,7 @@
                     android:gravity="center_vertical"
                     android:padding="6dp"
                     android:layout_toLeftOf="@+id/scan_er_wei_ma"
-                    android:hint="@string/add_fire_mac"
+                    android:hint="SN码"
                     android:textColor="@color/text_view_and_kuang"
                     android:textColorHint="@color/hint_color_text"
                     android:imeOptions="actionNext"
@@ -296,40 +296,49 @@
             </LinearLayout>
 
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
                     android:text="*单位"/>
                 <com.smart.cloud.fire.view.XCDropDownListView
                     android:id="@+id/add_fire_zjq"
-                    android:layout_width="match_parent"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp" />
-            </RelativeLayout>
-            <RelativeLayout
+                    android:layout_marginLeft="10dp" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="*类型"/>
+                    android:text="*类型"
+                    android:layout_gravity="center_vertical"/>
                 <com.smart.cloud.fire.view.XCDropDownListView
                     android:id="@+id/add_fire_type"
-                    android:layout_width="match_parent"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp" />
-            </RelativeLayout>
+                    android:layout_marginLeft="10dp" />
+                <ImageButton
+                    android:id="@+id/add_place"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/add_place"/>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

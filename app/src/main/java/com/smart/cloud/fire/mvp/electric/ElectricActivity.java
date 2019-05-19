@@ -41,6 +41,7 @@ import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.TimePickerDialog;
 import com.smart.cloud.fire.utils.VolleyHelper;
+import com.smart.cloud.fire.view.DialChart05View;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,34 +68,23 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
     private String electricMac;
     private String userID;
     private int privilege;
-
-    @Bind(R.id.dy_text)
-    TextView dy_text;
-    @Bind(R.id.dl_text)
-    TextView dl_text;
-    @Bind(R.id.ldl_text)
-    TextView ldl_text;
-    @Bind(R.id.dy_low)
-    TextView dy_low;
-    @Bind(R.id.dy_top)
-    TextView dy_top;
-    @Bind(R.id.dl_top)
-    TextView dl_top;
-    @Bind(R.id.ldl_top)
-    TextView ldl_top;
     Electric electricData;
+
+
+    @Bind(R.id.DV_DY)
+    DialChart05View dv_dy;
+    @Bind(R.id.DV_DL)
+    DialChart05View dv_dl;
+    @Bind(R.id.DV_LDL)
+    DialChart05View dv_ldl;
+
     @Bind(R.id.dev_id)
     TextView dev_id;
     @Bind(R.id.dev_areaid)
     TextView dev_areaid;
     @Bind(R.id.dev_address)
     TextView dev_address;
-    @Bind(R.id.dy_rela)
-    RelativeLayout dy_rela;
-    @Bind(R.id.dl_rela)
-    RelativeLayout dl_rela;
-    @Bind(R.id.ldl_rela)
-    RelativeLayout ldl_rela;
+
     @Bind(R.id.more)
     TextView more;//@@菜单
 
@@ -365,54 +355,66 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
     private void setDataToView(List<ElectricValue.ElectricValueBean> smokeList) {
         for (final ElectricValue.ElectricValueBean bean:smokeList) {
             String value=bean.getValue();
+            int max=300;
             switch (bean.getElectricType()){
                 case 6:
                     if(null!=value&&value.length()>0){
-                        dy_text.setText(value+"V");
-                        dy_low.setText(bean.getElectricThreshold().split("\\\\")[0]);
-                        dy_top.setText(bean.getElectricThreshold().split("\\\\")[1]);
-                        dy_rela.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(mContext, ElectricChartActivity.class);
-                                intent.putExtra("electricMac",electricMac);
-                                intent.putExtra("electricType",bean.getElectricType());
-                                intent.putExtra("electricNum",bean.getId());
-                                startActivity(intent);
-                            }
-                        });
+                        try {
+                            max=Integer.parseInt(value)<300?300:560;
+                            dv_dy.setAllData(max,Integer.parseInt(value),"电压","(单位:V)",bean.getElectricThreshold());
+                            dv_dy.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(mContext, ElectricChartActivity.class);
+                                    intent.putExtra("electricMac",electricMac);
+                                    intent.putExtra("electricType",bean.getElectricType());
+                                    intent.putExtra("electricNum",bean.getId());
+                                    startActivity(intent);
+                                }
+                            });
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                     }
                     break;
                 case 7:
-                    if(null!=value&&value.length()>0){
-                        dl_text.setText(bean.getValue()+"A");
-                        dl_top.setText(bean.getElectricThreshold());
-                        dl_rela.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(mContext, LineChart01Activity.class);
-                                intent.putExtra("electricMac",electricMac);
-                                intent.putExtra("electricType",bean.getElectricType());
-                                intent.putExtra("electricNum",bean.getId());
-                                startActivity(intent);
-                            }
-                        });
+                    try {
+                        if(null!=value&&value.length()>0){
+                            max=Float.parseFloat(value)<300?300:560;
+                            dv_dl.setAllData(max,(int)Float.parseFloat(value),"电流","(单位:A)",bean.getElectricThreshold());
+                            dv_dl.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(mContext, ElectricChartActivity.class);
+                                    intent.putExtra("electricMac",electricMac);
+                                    intent.putExtra("electricType",bean.getElectricType());
+                                    intent.putExtra("electricNum",bean.getId());
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
                     break;
                 case 8:
-                    if(null!=value&&value.length()>0){
-                        ldl_text.setText(bean.getValue()+"mA");
-                        ldl_top.setText(bean.getElectricThreshold());
-                        ldl_rela.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(mContext, LineChart01Activity.class);
-                                intent.putExtra("electricMac",electricMac);
-                                intent.putExtra("electricType",bean.getElectricType());
-                                intent.putExtra("electricNum",bean.getId());
-                                startActivity(intent);
-                            }
-                        });
+                    try {
+                        if(null!=value&&value.length()>0){
+                            max=Integer.parseInt(value)<300?300:500;
+                            dv_ldl.setAllData(max,Integer.parseInt(value),"漏电流","(单位:mA)",bean.getElectricThreshold());
+                            dv_ldl.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(mContext, ElectricChartActivity.class);
+                                    intent.putExtra("electricMac",electricMac);
+                                    intent.putExtra("electricType",bean.getElectricType());
+                                    intent.putExtra("electricNum",bean.getId());
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
                     break;
             }
