@@ -1,26 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e6e6e6"
-    android:orientation="vertical">
-
-    <!-- title bar -->
-    <include android:id="@+id/title_include" layout="@layout/title_bar"/>
+    android:background="#f5f6f6">
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/home_banner"/>
+        android:src="@drawable/homefragment_banner"/>
+
+    <ImageView
+        android:id="@+id/more_item"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/my_center"
+        android:layout_margin="10dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp">
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/icon_inside"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="35dp"
+            android:textColor="#fefefe"
+            android:text="智慧用电 安全监管"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#e6e6e6">
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/login_account_and_psw_shape"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="75dp"
+        android:padding="15dp">
 
         <TableRow
             android:gravity="center_horizontal">
@@ -28,7 +57,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/corner_white_radius"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
@@ -38,28 +66,23 @@
                     android:layout_height="80dp"
                     android:id="@+id/add_dev"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/home_add"
+                    android:src="@drawable/home_add_white"
+                    android:background="@drawable/corner_green_radius"
+                    android:padding="16dp"
                     android:layout_margin="10dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#3f81c1"
-                    android:layout_below="@id/add_dev"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/add_dev"
-                    android:textColor="#3f81c1"
+                    android:textColor="#cecece"
                     android:layout_centerHorizontal="true"
-                    android:text="添加设备"
-                    android:layout_margin="5dp"/>
+                    android:text="添加设备"/>
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/corner_white_radius"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
@@ -69,21 +92,18 @@
                     android:layout_height="80dp"
                     android:id="@+id/electr"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/home_electr"
+                    android:src="@drawable/home_electr_white"
+                    android:background="@drawable/corner_green_radius"
+                    android:padding="16dp"
                     android:layout_margin="10dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#3f81c1"
-                    android:layout_below="@id/electr"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/electr"
-                    android:textColor="#3f81c1"
+                    android:textColor="#cecece"
                     android:layout_centerHorizontal="true"
-                    android:text="电气设备"
-                    android:layout_margin="5dp"/>
+                    android:text="电气设备"/>
             </RelativeLayout>
         </TableRow>
 
@@ -93,7 +113,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/corner_white_radius"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
@@ -103,27 +122,23 @@
                     android:layout_height="80dp"
                     android:id="@+id/camera"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/home_camera"
+                    android:src="@drawable/home_camera_white"
+                    android:background="@drawable/corner_green_radius"
+                    android:padding="16dp"
                     android:layout_margin="10dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#3f81c1"
-                    android:layout_below="@id/camera"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/camera"
-                    android:textColor="#3f81c1"
+                    android:textColor="#cecece"
                     android:layout_centerHorizontal="true"
-                    android:text="视频监控"
-                    android:layout_margin="5dp"/>
+                    android:text="视频监控"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/corner_white_radius"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
@@ -133,25 +148,21 @@
                     android:layout_height="80dp"
                     android:id="@+id/map"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/home_map"
+                    android:src="@drawable/home_map_white"
+                    android:background="@drawable/corner_green_radius"
+                    android:padding="16dp"
                     android:layout_margin="10dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#3f81c1"
-                    android:layout_below="@id/map"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/map"
-                    android:textColor="#3f81c1"
+                    android:textColor="#cecece"
                     android:layout_centerHorizontal="true"
-                    android:text="地图位置"
-                    android:layout_margin="5dp"/>
+                    android:text="地图位置"/>
             </RelativeLayout>
         </TableRow>
 
 
 
     </TableLayout>
-</LinearLayout>
+</RelativeLayout>

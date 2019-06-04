@@ -2,8 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ecf0f1"
-    android:orientation="vertical" >
+    android:background="#f5f6f6">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/message_banner"/>
     
     <!-- title bar -->
     <include android:id="@+id/title_include" layout="@layout/title_bar"/>
@@ -11,8 +17,13 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/demo_swiperefreshlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_account_and_psw_shape"
         android:layout_below="@id/title_include"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
         android:scrollbars="vertical"
         >
         <android.support.v7.widget.RecyclerView

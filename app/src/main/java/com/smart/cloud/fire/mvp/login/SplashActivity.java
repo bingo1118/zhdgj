@@ -27,6 +27,11 @@ public class SplashActivity extends MvpActivity<LoginPresenter> implements Login
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         mContext = this;
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         mvpPresenter.autoLogin(this);
     }
 

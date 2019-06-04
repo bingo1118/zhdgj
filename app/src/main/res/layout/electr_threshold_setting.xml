@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="参数设置"
         android:padding="10dp"
-        android:background="#f0604d"
+        android:background="@color/colorAccent"
         android:textSize="20sp"
         android:textColor="#fff"
         android:gravity="center"/>
@@ -135,7 +135,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/commit"
-        android:textColor="#f0604d"
+        android:textColor="@color/colorAccent"
         android:background="#fff"
         android:text="确定"/>
 

@@ -24,12 +24,11 @@
             <android.support.design.widget.BottomNavigationView
                 android:id="@+id/navigation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginStart="0dp"
-                android:background="?android:attr/windowBackground"
+                android:background="@drawable/bottom_back"
                 android:layout_alignParentBottom="true"
-                app:itemBackground="@color/colorPrimary"
                 app:itemIconTint="@android:color/white"
                 app:itemTextColor="@android:color/white"
                 app:menu="@menu/navigation" />

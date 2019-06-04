@@ -15,6 +15,7 @@ import com.smart.cloud.fire.activity.Camera.CameraDevActivity;
 import com.smart.cloud.fire.activity.Electric.ElectricDevActivity;
 import com.smart.cloud.fire.activity.Map.MapActivity;
 import com.smart.cloud.fire.activity.SelectDevPlaceType.SelectDevPlaceTypeActivity;
+import com.smart.cloud.fire.activity.Setting.MyZoomActivity;
 import com.smart.cloud.fire.mvp.electric.ElectricActivity;
 
 import butterknife.Bind;
@@ -48,7 +49,6 @@ public class HomeFragment extends Fragment{
         //引用创建好的xml布局
         View view = inflater.inflate(R.layout.home_fragment,container,false);
         ButterKnife.bind(this, view);
-        more_item.setVisibility(View.VISIBLE);
         return view;
 
     }
@@ -62,9 +62,6 @@ public class HomeFragment extends Fragment{
                 startActivity(intent);
                 break;
             case R.id.electr:
-//                ((Main6Activity)getActivity()).changeFragment(1);
-//                intent=new Intent(getActivity(), ElectricDevActivity.class);
-//                startActivity(intent);
                 intent=new Intent(getActivity(), SelectDevPlaceTypeActivity.class);
                 startActivity(intent);
                 break;
@@ -77,8 +74,10 @@ public class HomeFragment extends Fragment{
                 startActivity(intent);
                 break;
             case R.id.more_item:
-                DrawerLayout drawerLayout= (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
-                drawerLayout.openDrawer(GravityCompat.START);
+//                DrawerLayout drawerLayout= (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+//                drawerLayout.openDrawer(GravityCompat.START);
+                intent=new Intent(getActivity(), MyZoomActivity.class);
+                startActivity(intent);
                 break;
         }
     }

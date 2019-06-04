@@ -128,8 +128,9 @@ public class LineChart01View extends DemoView {
 			chart.setYTickMarksOffsetMargin(ltrb[3] - 0.f);
 
 
-			//显示边框
+			//边框设置
 			chart.showRoundBorder();
+			chart.getBorder().setBorderLineColor(Color.WHITE);
 
 			chart.disableScale();//禁止缩放
 
@@ -161,15 +162,15 @@ public class LineChart01View extends DemoView {
 			//背景网格
 //			chart.getPlotGrid().showHorizontalLines();
 //			chart.getPlotGrid().showVerticalLines();
-			chart.getPlotGrid().showEvenRowBgColor();
-			chart.getPlotGrid().showOddRowBgColor();
+//			chart.getPlotGrid().showEvenRowBgColor();
+//			chart.getPlotGrid().showOddRowBgColor();
 
-			chart.getPlotGrid().getHorizontalLinePaint().setStrokeWidth(1);
-			chart.getPlotGrid().setHorizontalLineStyle(XEnum.LineStyle.DOT);
-			chart.getPlotGrid().setVerticalLineStyle(XEnum.LineStyle.DOT);
-
-			chart.getPlotGrid().getHorizontalLinePaint().setColor(Color.RED);
-			chart.getPlotGrid().getVerticalLinePaint().setColor(Color.BLUE);
+//			chart.getPlotGrid().getHorizontalLinePaint().setStrokeWidth(1);
+//			chart.getPlotGrid().setHorizontalLineStyle(XEnum.LineStyle.DOT);
+//			chart.getPlotGrid().setVerticalLineStyle(XEnum.LineStyle.DOT);
+//
+//			chart.getPlotGrid().getHorizontalLinePaint().setColor(Color.RED);
+//			chart.getPlotGrid().getVerticalLinePaint().setColor(Color.BLUE);
 
 			chart.setTitle(TITLE);//标题
 //			chart.addSubtitle("(XCL-Charts Demo)");//副标题
@@ -211,9 +212,20 @@ public class LineChart01View extends DemoView {
 //			chart.getDataAxis().hide();
 //			chart.getCategoryAxis().hide();
 			//想设置刻度线属性的可用下面函数
+			chart.getDataAxis().showFirstTick();
 			chart.getDataAxis().getTickMarksPaint();
 			chart.getCategoryAxis().getTickMarksPaint();
 			chart.getCategoryAxis().setTickLabelMargin(10);
+
+			chart.getPlotTitle().getTitlePaint().setColor(Color.WHITE);//设置标题颜色
+			chart.setBackgroundColor(Color.parseColor("#77FFFFFF"));
+			chart.getAxisTitle().getLowerTitlePaint().setColor(Color.WHITE);
+			chart.getDataAxis().getAxisPaint().setColor(Color.WHITE);
+			chart.getDataAxis().getTickLabelPaint().setColor(Color.WHITE);
+			chart.getDataAxis().getTickMarksPaint().setColor(Color.WHITE);
+			chart.getCategoryAxis().getAxisPaint().setColor(Color.WHITE);
+			chart.getCategoryAxis().getTickLabelPaint().setColor(Color.WHITE);
+			chart.getCategoryAxis().getTickMarksPaint().setColor(Color.WHITE);
 
 
 			chart.getPlotArea().extWidth(100.f);
@@ -243,16 +255,13 @@ public class LineChart01View extends DemoView {
 		LineData lineData1 = new LineData("圆点",list,Color.rgb(234, 83, 71));
 		lineData1.setLabelVisible(true);
 		lineData1.setDotStyle(XEnum.DotStyle.DOT);
-		lineData1.getDotLabelPaint().setColor(Color.BLUE);
+		lineData1.getDotLabelPaint().setColor(Color.rgb(234, 83, 71));
 		lineData1.getDotLabelPaint().setTextSize(22);
 		lineData1.getDotLabelPaint().setTextAlign(Align.LEFT);
 //		lineData1.setDotRadius(20);
-		lineData1.setLabelVisible(true);
 		lineData1.getDotLabelPaint().setTextAlign(Align.CENTER);
 
 		lineData1.getLabelOptions().setLabelBoxStyle(XEnum.LabelBoxStyle.TEXT);
-
-		//lineData1.getLabelOptions().
 
 		//lineData1.setDataSet(dataSeries);
 		this.invalidate();//刷新视图

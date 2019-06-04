@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.smart.cloud.fire.activity.AddNFC.AddNFCMacActivity;
+import com.smart.cloud.fire.activity.Setting.MyZoomActivity;
 import com.smart.cloud.fire.activity.UploadNFCInfo.UploadNFCInfoActivity;
 import com.smart.cloud.fire.base.ui.MvpFragment;
 import com.smart.cloud.fire.global.MyApp;
@@ -32,8 +33,6 @@ import fire.cloud.smart.com.smartcloudfire.R;
 public class SettingFragment extends MvpFragment<SettingFragmentPresenter> implements SettingFragmentView {
     @Bind(R.id.setting_user_id)
     TextView settingUserId;
-    @Bind(R.id.setting_user_code)
-    TextView settingUserCode;
     @Bind(R.id.setting_help_rela)
     RelativeLayout settingHelpRela;
     @Bind(R.id.mProgressBar)
@@ -42,8 +41,6 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
     RelativeLayout settingCameraRelative;
     @Bind(R.id.nfc_mac_add)
     RelativeLayout nfc_mac_add;//@@11.17
-    @Bind(R.id.line_state)
-    TextView lineState;
     @Bind(R.id.nfc_radiogroup)
     RadioGroup nfc_radiogroup;
     @Bind(R.id.everymonth)
@@ -91,17 +88,9 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
                 everymonth.setChecked(true);
                 break;
         }//@@10.24
-        settingUserId.setText(userID);
-        settingUserCode.setText(username);
+        settingUserId.setText(username);
         String state = MyApp.app.getPushState();
-        if(state!=null&&state.length()>0){
-            if(state.equals("Online")){
-                lineState.setText("在线");
-            }
-            if(state.equals("Offline")){
-                lineState.setText("离线");
-            }
-        }
+
         int privilege = MyApp.app.getPrivilege();
         if (privilege == 3) {
 //            settingHelpRela.setVisibility(View.VISIBLE);//显示添加摄像机。。
@@ -155,7 +144,9 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
                 in.setAction("APP_EXIT");
                 in.setPackage("fire.cloud.smart.com.smartcloudfire_zhdgj");//@@7.13只传当前应用
                 mContext.sendBroadcast(in);
-//                getActivity().finish();//@@7.17
+                if(getActivity() instanceof MyZoomActivity){
+                    getActivity().finish();//@@7.17
+                }
                 break;
             case R.id.setting_camera_relative:
                 mvpPresenter.bindDialog(mContext);

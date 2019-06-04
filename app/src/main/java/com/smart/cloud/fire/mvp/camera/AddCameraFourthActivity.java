@@ -63,10 +63,7 @@ public class AddCameraFourthActivity extends MvpActivity<AddCameraFourthPresente
     EditText addFireMan;
     @Bind(R.id.add_fire_man_phone)
     EditText addFireManPhone;
-    @Bind(R.id.add_fire_man_two)
-    EditText addFireManTwo;
-    @Bind(R.id.add_fire_man_phone_two)
-    EditText addFireManPhoneTwo;
+
     @Bind(R.id.add_fire_dev_btn)
     RelativeLayout addFireDevBtn;
     @Bind(R.id.mProgressBar)
@@ -123,11 +120,9 @@ public class AddCameraFourthActivity extends MvpActivity<AddCameraFourthPresente
                 String smokeMac = addFireName.getText().toString().trim();
                 String address = addFireAddress.getText().toString().trim();
                 String principal1 = addFireMan.getText().toString().trim();
-                String principal2 = addFireManTwo.getText().toString().trim();
                 String principal1Phone = addFireManPhone.getText().toString().trim();
-                String principal2Phone = addFireManPhoneTwo.getText().toString().trim();
                 mvpPresenter.addCamera(contactId,smokeName,smokeMac,address,
-                        longitude,latitude,principal1,principal1Phone,principal2,principal2Phone,areaId,placeTypeId);
+                        longitude,latitude,principal1,principal1Phone,"","",areaId,placeTypeId);
             }
         });
     }

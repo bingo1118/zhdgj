@@ -2,61 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     android:elevation="4dp"
-    android:id="@+id/item_lin">
+    android:id="@+id/item_lin"
+    android:orientation="horizontal"
+    android:background="@drawable/login_btn_bg">
 
     <LinearLayout
         android:id="@+id/category_group_lin"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="vertical"
-        android:elevation="4dp"
-        android:background="@drawable/corner"
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:elevation="4dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_vertical">
             <TextView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:id="@+id/smoke_name_text"
                 android:layout_margin="10dp"
-                android:background="@drawable/electr_dev_blue"/>
-            <ImageView
-                android:id="@+id/right_into_image"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/right_into_selector"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:visibility="gone"/>
-            <ImageView
-                android:id="@+id/power_button"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:src="@drawable/sblb_qddy"
-                android:layout_alignParentRight="true"
-                android:layout_margin="10dp"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_margin="8dp">
-            <TextView
-                android:id="@+id/mac_name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/pressblue"
-                android:textSize="10sp"
-                android:text="ID:"/>
+                android:background="@drawable/electr_dev"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/mac_tv"
-                android:textColor="@color/pressblue"
-                android:layout_toRightOf="@id/mac_name_tv"
+                android:textColor="@color/white"
                 android:textSize="10sp"
                 android:text="102314"/>
 
@@ -65,45 +41,58 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/dev_name"
                 android:textSize="16sp"
-                android:textColor="@color/playback_btn_p"
+                android:textColor="@color/white"
                 android:layout_margin="5dp"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/mac_name_tv"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="102314"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp">
 
-            <TextView
-                android:id="@+id/online_state"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:text="●"
-                android:gravity="center"
-                android:textSize="16sp"
-                android:textColor="@color/blue"
-                android:layout_below="@id/dev_name"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/state_text"
-                android:layout_toRightOf="@id/online_state"
-                android:layout_below="@id/dev_name"
-                android:layout_alignBottom="@id/online_state"
-                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:text="在线"
-                android:textColor="@color/blue"/>
+                android:textSize="14sp"
+                android:layout_margin="5dp"
+                android:textColor="@color/white"/>
 
 
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/manager_img"
-                android:background="@drawable/manager_img_selector"
+                android:scaleType="fitStart"
+                android:src="@drawable/manager_img_selector"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
                 android:layout_margin="10dp"/>
 
         </RelativeLayout>
     </LinearLayout>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"/>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/power_button"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/electr_on"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"/>
+
+
+    </RelativeLayout>
 </LinearLayout>

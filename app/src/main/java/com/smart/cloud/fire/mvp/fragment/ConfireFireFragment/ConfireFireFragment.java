@@ -68,10 +68,6 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
     EditText addFireMan;//负责人姓名。。
     @Bind(R.id.add_fire_man_phone)
     EditText addFireManPhone;//负责人电话。。
-    @Bind(R.id.add_fire_man_two)
-    EditText addFireManTwo;//负责人2.。
-    @Bind(R.id.add_fire_man_phone_two)
-    EditText addFireManPhoneTwo;//负责人电话2.。
     @Bind(R.id.scan_repeater_ma)
     ImageView scanRepeaterMa;
     @Bind(R.id.scan_er_wei_ma)
@@ -155,14 +151,12 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
         String address = addFireAddress.getText().toString().trim();
         String placeAddress = "";
         String principal1 = addFireMan.getText().toString().trim();
-        String principal2 = addFireManTwo.getText().toString().trim();
         String principal1Phone = addFireManPhone.getText().toString().trim();
-        String principal2Phone = addFireManPhoneTwo.getText().toString().trim();
         String repeater = addRepeaterMac.getText().toString().trim();
         camera = addCameraName.getText().toString().trim();
         mvpPresenter.addSmoke(userID, privilege + "", smokeName, smokeMac, address, longitude,
-                latitude, placeAddress, shopTypeId, principal1, principal1Phone, principal2,
-                principal2Phone, areaId, repeater, camera);
+                latitude, placeAddress, shopTypeId, principal1, principal1Phone, "",
+                "", areaId, repeater, camera);
     }
 
     @Override
@@ -329,8 +323,6 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
         addFireName.setText(smoke.getName());
         addFireMan.setText(smoke.getPrincipal1());
         addFireManPhone.setText(smoke.getPrincipal1Phone());
-        addFireManTwo.setText(smoke.getPrincipal2());
-        addFireManPhoneTwo.setText(smoke.getPrincipal2Phone());
         addFireZjq.setEditTextData(smoke.getAreaName());
         addFireType.setEditTextData(smoke.getPlaceType());//@@10.18
         areaId=smoke.getAreaId()+"";
@@ -440,8 +432,6 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
         addFireName.setText("");
         addFireMan.setText("");
         addFireManPhone.setText("");
-        addFireManTwo.setText("");
-        addFireManPhoneTwo.setText("");
         addFireZjq.setEditTextData("");
         addFireType.setEditTextData("");
         addCameraName.setText("");

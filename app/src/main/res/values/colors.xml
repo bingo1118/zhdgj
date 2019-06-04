@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0b1b25</color>
+    <color name="colorPrimary">#2bab6d</color>
     <color name="colorPrimaryDark">#ff063590</color>
-    <color name="colorAccent">#ff1c77db</color>
+    <color name="colorAccent">#ff00a38e</color>
 
     <color name="black">#ff646464</color>
     <color name="app_bg">#eeeeee</color>
@@ -40,7 +40,7 @@
     <color name="playback_btn">#90000000</color>
     <color name="shou_ye_bg">#d4d4d4</color>
 
-    <!--login-->
+    <!--activity_login2-->
     <color name="text_view_and_kuang">#838383</color>
     <color name="login_btn">#ff646464</color>
     <color name="login_btn_press">#374e87</color>

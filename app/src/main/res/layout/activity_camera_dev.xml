@@ -11,7 +11,7 @@
         android:layout_height="45dp"
         android:text="视频监控"
         android:textColor="#ffffff"
-        android:background="@color/login_btn"
+        android:background="@color/colorAccent"
         android:gravity="center"
         android:textSize="18sp"
         />

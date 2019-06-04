@@ -1,67 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:layout_margin="10dp">
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:paddingBottom="15dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="联系人信息"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"/>
+
         <TextView
             android:id="@+id/people1_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="负责人:"/>
         <TextView
             android:id="@+id/people1_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/people1_name"
+            android:layout_alignBottom="@id/people1_name"
             android:text="test"/>
         <TextView
             android:id="@+id/people2_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/people1_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="负责人:"/>
         <TextView
             android:id="@+id/people2_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/people1_name"
             android:layout_toRightOf="@id/people2_name"
+            android:layout_alignBottom="@id/people2_name"
             android:text="test"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+
         <TextView
             android:id="@+id/phone1_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/people1_text"
+            android:layout_alignBottom="@id/people1_text"
+            android:layout_marginLeft="10dp"
             android:text="电话:"/>
         <TextView
             android:id="@+id/phone1_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/phone1_name"
+            android:layout_alignBottom="@id/phone1_name"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text="test"/>
         <TextView
             android:id="@+id/phone2_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/phone1_name"
+            android:layout_alignBottom="@id/people2_name"
+            android:layout_alignLeft="@id/phone1_name"
             android:text="电话:"/>
         <TextView
             android:id="@+id/phone2_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/phone1_name"
             android:layout_toRightOf="@id/phone2_name"
+            android:layout_alignBottom="@id/phone2_name"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text="test"/>
-    </RelativeLayout>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/call_1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@id/people1_name"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/call_manager"/>
+
+    <ImageView
+        android:id="@+id/call_2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@id/people2_name"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/call_manager"/>
+
+</RelativeLayout>

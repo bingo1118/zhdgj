@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    android:orientation="vertical">
+    android:background="#f5f6f6">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/message_banner"/>
 
     <!-- title bar -->
     <include android:id="@+id/title_include" layout="@layout/title_bar"/>
-    <!-- 数量显示 -->
-    <include android:id="@+id/search_include" layout="@layout/include_search"/>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_account_and_psw_shape"
+        android:layout_below="@id/title_include"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:padding="10dp">
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipere_fresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            >
+            android:scrollbars="vertical">
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="60dp"
-                ></android.support.v7.widget.RecyclerView>
+                android:paddingBottom="60dp"/>
         </android.support.v4.widget.SwipeRefreshLayout>
         <include layout="@layout/progress_bar"/>
     </RelativeLayout>
-
-</LinearLayout>
+    <!-- 数量显示 -->
+    <include android:id="@+id/search_include"
+        android:layout_below="@id/title_include"
+        layout="@layout/include_search"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+</RelativeLayout>

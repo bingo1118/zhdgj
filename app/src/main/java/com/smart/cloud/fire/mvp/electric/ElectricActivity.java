@@ -17,8 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,7 +61,7 @@ import fire.cloud.smart.com.smartcloudfire.R;
 public class ElectricActivity extends MvpActivity<ElectricPresenter> implements ElectricView,TimePickerDialog.TimePickerDialogInterface {
 
     @Bind(R.id.swipe_fresh_layout)
-    SwipeRefreshLayout swipeFreshLayout;
+    ImageView swipeFreshLayout;
     @Bind(R.id.mProgressBar)
     ProgressBar mProgressBar;
     private ElectricPresenter electricPresenter;
@@ -71,13 +74,6 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
     Electric electricData;
 
 
-    @Bind(R.id.DV_DY)
-    DialChart05View dv_dy;
-    @Bind(R.id.DV_DL)
-    DialChart05View dv_dl;
-    @Bind(R.id.DV_LDL)
-    DialChart05View dv_ldl;
-
     @Bind(R.id.dev_id)
     TextView dev_id;
     @Bind(R.id.dev_areaid)
@@ -87,6 +83,51 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
 
     @Bind(R.id.more)
     TextView more;//@@菜单
+
+    @Bind(R.id.dy_a)
+    TextView dy_a;
+    @Bind(R.id.dy_b)
+    TextView dy_b;
+    @Bind(R.id.dy_c)
+    TextView dy_c;
+    @Bind(R.id.dl_a)
+    TextView dl_a;
+    @Bind(R.id.dl_b)
+    TextView dl_b;
+    @Bind(R.id.dl_c)
+    TextView dl_c;
+    @Bind(R.id.ldl_a)
+    TextView ldl_a;
+    @Bind(R.id.wd_a)
+    TextView wd_a;
+    @Bind(R.id.wd_b)
+    TextView wd_b;
+    @Bind(R.id.wd_c)
+    TextView wd_c;
+    @Bind(R.id.wd_n)
+    TextView wd_n;
+    @Bind(R.id.yuzhi_gy)
+    TextView yuzhi_gy;
+    @Bind(R.id.yuzhi_qy)
+    TextView yuzhi_qy;
+    @Bind(R.id.yuzhi_dl)
+    TextView yuzhi_dl;
+    @Bind(R.id.yuzhi_ldl)
+    TextView yuzhi_ldl;
+    @Bind(R.id.yuzhi_wd)
+    TextView yuzhi_wd;
+
+    @Bind(R.id.dy_his)
+    ImageButton dy_his;
+    @Bind(R.id.dl_his)
+    ImageButton dl_his;
+    @Bind(R.id.ldl_his)
+    ImageButton ldl_his;
+    @Bind(R.id.wd_his)
+    ImageButton wd_his;
+
+
+
 
     int devType=1;
     private String yuzhi43="";
@@ -123,7 +164,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         });
         electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac,false);
         electricData= (Electric) getIntent().getExtras().getSerializable("data");
-        dev_id.setText("ID:"+electricData.getMac());
+        dev_id.setText("SN码:"+electricData.getMac());
         dev_areaid.setText("区域:"+electricData.getAreaName());
         dev_address.setText("地址:"+electricData.getAddress());
         if(devType==52||devType==53||devType==75){
@@ -307,19 +348,13 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
 
     private void refreshListView() {
         //设置刷新时动画的颜色，可以设置4个
-        swipeFreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
-        swipeFreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
-                android.R.color.holo_red_light, android.R.color.holo_orange_light,
-                android.R.color.holo_green_light);
-        swipeFreshLayout.setProgressViewOffset(false, 0, (int) TypedValue
-                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
-                        .getDisplayMetrics()));
+
         linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
 
-        swipeFreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        swipeFreshLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onRefresh() {
+            public void onClick(View v) {
                 electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac,true);
                 getYuzhi(electricMac);
             }
@@ -339,7 +374,6 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         }//@@7.7
         electricActivityAdapter = new ElectricActivityAdapterTest(mContext, smokeList, electricPresenter);
         setDataToView(smokeList);
-        swipeFreshLayout.setRefreshing(false);
         electricActivityAdapter.setOnItemClickListener(new ElectricActivityAdapterTest.OnRecyclerViewItemClickListener(){
             @Override
             public void onItemClick(View view, ElectricValue.ElectricValueBean data){
@@ -355,14 +389,27 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
     private void setDataToView(List<ElectricValue.ElectricValueBean> smokeList) {
         for (final ElectricValue.ElectricValueBean bean:smokeList) {
             String value=bean.getValue();
-            int max=300;
             switch (bean.getElectricType()){
                 case 6:
+                    if(bean.getElectricThreshold().length()>0&&bean.getElectricThreshold().contains("\\\\")){
+                        yuzhi_gy.setText(bean.getElectricThreshold().split("\\\\")[0]);
+                        yuzhi_gy.setText(bean.getElectricThreshold().split("\\\\")[1]);
+                    }
                     if(null!=value&&value.length()>0){
                         try {
-                            max=Integer.parseInt(value)<300?300:560;
-                            dv_dy.setAllData(max,Integer.parseInt(value),"电压","(单位:V)",bean.getElectricThreshold());
-                            dv_dy.setOnClickListener(new View.OnClickListener() {
+                            switch (bean.getId()){
+                                case 1:
+                                    dy_a.setText(Float.parseFloat(value)+"");
+                                    break;
+                                case 2:
+                                    dy_b.setText(Float.parseFloat(value)+"");
+                                    break;
+                                case 3:
+                                    dy_c.setText(Float.parseFloat(value)+"");
+                                    break;
+                            }
+//                            dv_dy.setAllData(max,Integer.parseInt(value),"电压","(单位:V)",bean.getElectricThreshold());
+                            dy_his.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     Intent intent = new Intent(mContext, ElectricChartActivity.class);
@@ -378,11 +425,25 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                     }
                     break;
                 case 7:
+                    if(bean.getElectricThreshold()!=null&&bean.getElectricThreshold().length()>0){
+                        yuzhi_dl.setText(bean.getElectricThreshold());
+                    }
                     try {
                         if(null!=value&&value.length()>0){
-                            max=Float.parseFloat(value)<300?300:560;
-                            dv_dl.setAllData(max,(int)Float.parseFloat(value),"电流","(单位:A)",bean.getElectricThreshold());
-                            dv_dl.setOnClickListener(new View.OnClickListener() {
+                            switch (bean.getId()){
+                                case 1:
+                                    dl_a.setText(Float.parseFloat(value)+"");
+                                    break;
+                                case 2:
+                                    dl_b.setText(Float.parseFloat(value)+"");
+                                    break;
+                                case 3:
+                                    dl_c.setText(Float.parseFloat(value)+"");
+                                    break;
+                            }
+//                            max=Float.parseFloat(value)<300?300:560;
+//                            dv_dl.setAllData(max,(int)Float.parseFloat(value),"电流","(单位:A)",bean.getElectricThreshold());
+                            dl_his.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     Intent intent = new Intent(mContext, ElectricChartActivity.class);
@@ -398,11 +459,52 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                     }
                     break;
                 case 8:
+                    if(bean.getElectricThreshold()!=null&&bean.getElectricThreshold().length()>0){
+                        yuzhi_ldl.setText(bean.getElectricThreshold());
+                    }
                     try {
                         if(null!=value&&value.length()>0){
-                            max=Integer.parseInt(value)<300?300:500;
-                            dv_ldl.setAllData(max,Integer.parseInt(value),"漏电流","(单位:mA)",bean.getElectricThreshold());
-                            dv_ldl.setOnClickListener(new View.OnClickListener() {
+                            ldl_a.setText(Float.parseFloat(value)+"");
+
+//                            dv_ldl.setAllData(max,Integer.parseInt(value),"漏电流","(单位:mA)",bean.getElectricThreshold());
+                            ldl_his.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(mContext, ElectricChartActivity.class);
+                                    intent.putExtra("electricMac",electricMac);
+                                    intent.putExtra("electricType",bean.getElectricType());
+                                    intent.putExtra("electricNum",bean.getId());
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    break;
+                case 9:
+                    if(bean.getElectricThreshold()!=null&&bean.getElectricThreshold().length()>0){
+                        yuzhi_wd.setText(bean.getElectricThreshold());
+                    }
+                    try {
+                        if(null!=value&&value.length()>0){
+                            switch (bean.getId()){
+                                case 1:
+                                    wd_a.setText(Float.parseFloat(value)+"");
+                                    break;
+                                case 2:
+                                    wd_b.setText(Float.parseFloat(value)+"");
+                                    break;
+                                case 3:
+                                    wd_c.setText(Float.parseFloat(value)+"");
+                                    break;
+                                case 4:
+                                    wd_n.setText(Float.parseFloat(value)+"");
+                                    break;
+                            }
+//                            max=Float.parseFloat(value)<300?300:560;
+//                            dv_dl.setAllData(max,(int)Float.parseFloat(value),"电流","(单位:A)",bean.getElectricThreshold());
+                            wd_his.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     Intent intent = new Intent(mContext, ElectricChartActivity.class);
@@ -423,7 +525,6 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
 
     @Override
     public void getDataFail(String msg) {
-        swipeFreshLayout.setRefreshing(false);
         T.showShort(mContext,msg);
     }
 

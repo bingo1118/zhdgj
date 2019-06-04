@@ -4,15 +4,14 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     android:animateLayoutChanges="true"
-    android:background="#e6e6e6">
+    android:background="@color/colorAccent">
 
         <LinearLayout
             android:id="@+id/lin1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:layout_marginTop="10dp"
-            android:background="#e6e6e6">
+            android:layout_margin="10dp">
             <com.smart.cloud.fire.view.AreaChooceListView
                 android:id="@+id/area_condition"
                 android:layout_width="0dp"

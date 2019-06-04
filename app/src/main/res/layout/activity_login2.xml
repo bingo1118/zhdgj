@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include layout="@layout/progress_bar"/>
+
+    <ImageView
+        android:id="@+id/login_image"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/login_banner"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp">
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/icon_inside"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:textColor="#fefefe"
+            android:text="@string/app_name"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/login_rela"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/login_account_and_psw_shape"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="75dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/user_textinput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textColorHint="#51c1b3">
+
+            <AutoCompleteTextView
+                android:id="@+id/login_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/tab_more"
+                android:textColorHint="#51c1b3"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/pwd_textinput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_textinput"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColorHint="#51c1b3">
+
+            <EditText
+                android:id="@+id/login_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/pwd"
+                android:textColorHint="#51c1b3"
+                android:imeActionId="@+id/login"
+                android:imeActionLabel="@string/pwd"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/isread_chaekbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pwd_textinput"
+            android:text="我已经同意《智能电管家服务协议》"
+            android:textColor="#51c1b3"
+            android:layout_margin="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/isread_chaekbox"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/login_rela2"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:text="@string/login"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:background="@drawable/login_button_selector" />
+            <Button
+                android:id="@+id/login_new_register"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:text="@string/register"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/login_button_selector" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/login_forget_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/login_forget_pwd"
+            android:text="@string/forget_pwd"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/linear" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

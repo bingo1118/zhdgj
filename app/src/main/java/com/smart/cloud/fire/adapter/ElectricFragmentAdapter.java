@@ -70,7 +70,6 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
         this.mInflater = LayoutInflater.from(mContext);
         this.mContext = mContext;
         this.listNormalSmoke = listNormalSmoke;
-        this.mContext = mContext;
     }
 
     public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
@@ -124,40 +123,38 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                 public void onClick(View v) {
 //                    String phoneOne = normalSmoke.getPrincipal1Phone();
 //                    mShopInfoFragmentPresenter.telPhoneAction(mContext,phoneOne);
+                if(normalSmoke.getPrincipal1().length()>0||normalSmoke.getPrincipal2().length()>0){
                     Intent intent=new Intent(mContext, CallManagerDialogActivity.class);
                     intent.putExtra("people1",normalSmoke.getPrincipal1());
                     intent.putExtra("people2",normalSmoke.getPrincipal2());
                     intent.putExtra("phone1",normalSmoke.getPrincipal1Phone());
                     intent.putExtra("phone2",normalSmoke.getPrincipal2Phone());
                     mContext.startActivity(intent);
+                }else{
+                    T.showShort(mContext,"无联系人信息");
+                }
+
                 }
             });
             final int state = normalSmoke.getNetState();
             final int privilege = MyApp.app.getPrivilege();
             ((ItemViewHolder) holder).dev_name.setText(normalSmoke.getName());
 
-//            ((ItemViewHolder) holder).smoke_name_text.setText("电气设备：");
             if (state == 0) {//设备不在线。。
-//                ((ItemViewHolder) holder).smoke_name_text.setTextColor(Color.RED);
                 ((ItemViewHolder) holder).state_text.setText("离线");
-                ((ItemViewHolder) holder).online_state.setTextColor(mContext.getResources().getColor(R.color.pressblue));
-                ((ItemViewHolder) holder).state_text.setTextColor(mContext.getResources().getColor(R.color.pressblue));
             } else {//设备在线。。
-//                ((ItemViewHolder) holder).smoke_name_text.setTextColor(Color.BLACK);
-                ((ItemViewHolder) holder).online_state.setTextColor(Color.parseColor("#1497DB"));
                 ((ItemViewHolder) holder).state_text.setText("在线");
-                ((ItemViewHolder) holder).state_text.setTextColor(Color.parseColor("#1497DB"));
             }
             final int eleState = normalSmoke.getEleState();
             //if(privilege==3){//@@8.28权限3有切换电源功能
             switch (eleState){
                 case 1:
                     ((ItemViewHolder) holder).power_button.setVisibility(View.VISIBLE);
-                    ((ItemViewHolder) holder).power_button.setImageResource(R.drawable.sblb_qddy);
+                    ((ItemViewHolder) holder).power_button.setImageResource(R.drawable.electr_on);
                     break;
                 case 2:
                     ((ItemViewHolder) holder).power_button.setVisibility(View.VISIBLE);
-                    ((ItemViewHolder) holder).power_button.setImageResource(R.drawable.sblb_yqd);
+                    ((ItemViewHolder) holder).power_button.setImageResource(R.drawable.electr_off);
                     break;
                 default:
                     ((ItemViewHolder) holder).power_button.setVisibility(View.GONE);
@@ -167,11 +164,11 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public void onClick(View v) {
                     if(state==0){
-                        Toast.makeText(mContext,"设备不在线",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyApp.app,"设备不在线",Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if(privilege!=3&&privilege!=4){
-                        Toast.makeText(mContext,"您没有该权限",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyApp.app,"您没有该权限",Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -256,8 +253,6 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
 //        TextView type_tv;
 //        @Bind(R.id.address_tv)
 //        TextView address_tv;
-        @Bind(R.id.online_state)
-        TextView online_state;
         @Bind(R.id.state_text)
         TextView state_text;
         @Bind(R.id.manager_img)

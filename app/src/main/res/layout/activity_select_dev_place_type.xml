@@ -1,24 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.smart.cloud.fire.activity.SelectDevPlaceType.SelectDevPlaceTypeActivity">
+    android:background="#f5f6f6">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/message_banner"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/titlebar_heigh"
-        android:background="@color/login_btn"
         android:gravity="center"
-        android:textSize="@dimen/titlebar_text_size"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/white"
         android:text="选择位置"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/place_items"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/login_account_and_psw_shape"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="75dp"
+        android:orientation="vertical"
+        android:padding="15dp">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/place_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
-
-</LinearLayout>
+</RelativeLayout>

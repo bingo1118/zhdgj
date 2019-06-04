@@ -22,15 +22,14 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.igexin.sdk.PushManager;
 import com.jakewharton.rxbinding.view.RxView;
 import com.p2p.core.update.UpdateManager;
 import com.smart.cloud.fire.base.ui.MvpActivity;
@@ -40,9 +39,7 @@ import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.mvp.login.model.LoginModel;
 import com.smart.cloud.fire.mvp.login.presenter.LoginPresenter;
 import com.smart.cloud.fire.mvp.login.view.LoginView;
-import com.smart.cloud.fire.mvp.main.Main4Activity;
 import com.smart.cloud.fire.mvp.main.Main6Activity;
-import com.smart.cloud.fire.mvp.main.MainActivity;
 import com.smart.cloud.fire.mvp.register.RegisterPhoneActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
@@ -61,11 +58,11 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     @Bind(R.id.login_pwd)
     EditText login_pwd;
     @Bind(R.id.login_rela2)
-    RelativeLayout login_rela2;
+    Button login_rela2;
     @Bind(R.id.mProgressBar)
     ProgressBar mProgressBar;
     @Bind(R.id.login_new_register)
-    RelativeLayout login_new_register;
+    Button login_new_register;
     @Bind(R.id.login_forget_pwd)
     TextView login_forget_pwd;
     private  String userId;
@@ -75,7 +72,7 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login2);
         mContext=this;
         initView();
         regFilter();//@@7.12

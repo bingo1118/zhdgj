@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -33,7 +34,7 @@ import java.io.File;
 
 import fire.cloud.smart.com.smartcloudfire.R;
 
-public class MyZoomActivity extends Activity {
+public class MyZoomActivity extends AppCompatActivity {
 
     Context mContext;
     private AlertDialog dialog_update;

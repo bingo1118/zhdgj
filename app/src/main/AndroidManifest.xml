@@ -173,7 +173,7 @@
         <activity
             android:name="com.smart.cloud.fire.ui.CallManagerDialogActivity"
             android:label="设备负责人信息"
-            android:theme="@android:style/Theme.Holo.Dialog" />
+            android:theme="@style/MyMiddleDialogStyle" />
         <activity android:name="com.smart.cloud.fire.activity.Map.MapActivity" />
         <activity
             android:name="com.smart.cloud.fire.activity.AddDev.AddDevActivity"

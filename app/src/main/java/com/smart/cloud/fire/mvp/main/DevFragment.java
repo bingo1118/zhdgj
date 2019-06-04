@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
@@ -94,7 +95,7 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
     private Context mContext;
     private String userID;
     private int privilege;
-    private GridLayoutManager linearLayoutManager;
+    private LinearLayoutManager linearLayoutManager;
     private int lastVisibleItem;
     private List<Electric> list;
     private int loadMoreCount;
@@ -298,7 +299,7 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
         swipereFreshLayout.setProgressViewOffset(false, 0, (int) TypedValue
                 .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
                         .getDisplayMetrics()));
-        linearLayoutManager=new GridLayoutManager(mContext,2);
+        linearLayoutManager=new LinearLayoutManager(mContext);
 //        linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 

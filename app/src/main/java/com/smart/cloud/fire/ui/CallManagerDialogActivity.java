@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.smart.cloud.fire.utils.T;
@@ -25,6 +26,10 @@ public class CallManagerDialogActivity extends Activity {
     TextView phone1_text;
     @Bind(R.id.phone2_text)
     TextView phone2_text;
+    @Bind(R.id.call_1)
+    ImageView call_1;
+    @Bind(R.id.call_2)
+    ImageView call_2;
 
     Context mContext;
 
@@ -43,7 +48,7 @@ public class CallManagerDialogActivity extends Activity {
         people2_text.setText(intent.getStringExtra("people2"));
         phone1_text.setText(intent.getStringExtra("phone1"));
         phone2_text.setText(intent.getStringExtra("phone2"));
-        phone1_text.setOnClickListener(new View.OnClickListener() {
+        call_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String phoneNum=getIntent().getStringExtra("phone1");
@@ -57,7 +62,7 @@ public class CallManagerDialogActivity extends Activity {
                 }
 
         });
-        phone2_text.setOnClickListener(new View.OnClickListener() {
+        call_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String phoneNum=getIntent().getStringExtra("phone2");

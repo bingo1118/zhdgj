@@ -2,8 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
-    <include android:id="@+id/title_include" layout="@layout/title_bar"/>
+    android:background="@drawable/message_banner">
+
+
+    <include layout="@layout/progress_bar"/>
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:layout_margin="15dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+
 
     <TextView
         android:id="@+id/register_email_tv"
@@ -11,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="@string/register_email"
         android:textColor="@color/lead_regiater"
-        android:layout_below="@id/title_include"
+        android:layout_below="@id/title_tv"
         android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
@@ -21,11 +34,14 @@
     <RelativeLayout
         android:id="@+id/register_rela"
         android:layout_width="match_parent"
-        android:layout_height="135dp"
+        android:layout_height="150dp"
         android:layout_below="@id/register_email_tv"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:background="@drawable/edit_view_bg">
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="5dp"
+        android:background="@drawable/login_account_and_psw_shape">
         <EditText
             android:id="@+id/register_user"
             android:layout_width="match_parent"
@@ -74,10 +90,16 @@
             android:gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/register_pwd"
             android:hint="@string/comfire_pwd"
             android:textColorHint="@color/hint_color_text"
             android:textColor="@color/text_view_and_kuang"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/text_view_and_kuang"
+            android:layout_below="@id/register_comfire_pwd"
             />
     </RelativeLayout>
 
@@ -93,8 +115,8 @@
             android:id="@+id/register_rela1"
             android:layout_width="180dp"
             android:layout_height="45dp"
-            android:background="@drawable/edit_view_bg"
-            >
+            android:gravity="center"
+            android:background="@drawable/edit_view_bg">
 
             <EditText
                 android:id="@+id/register_code"
@@ -106,9 +128,8 @@
                 android:layout_marginRight="10dp"
                 android:layout_alignParentBottom="true"
                 android:hint="@string/edit_code"
-                android:textColorHint="@color/hint_color_text"
-                android:textColor="@color/text_view_and_kuang"
-                />
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"/>
 
         </RelativeLayout>
 
@@ -127,7 +148,7 @@
 
     <Button
         android:id="@+id/register_btn_phone"
-        android:layout_width="match_parent"
+        android:layout_width="160dp"
         android:layout_height="45dp"
         android:layout_below="@id/register_rela2"
         android:layout_margin="10dp"
@@ -146,7 +167,5 @@
         android:text="@string/old_user_login1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:textColor="@color/lead_regiater"
-        />
-    <include layout="@layout/progress_bar"/>
+        android:textColor="@color/white" />
 </RelativeLayout>

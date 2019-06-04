@@ -169,9 +169,9 @@
     <string name="title_activity_image_see">ImageSeeActivity</string>
     <string name="confirm_delete">确定删除吗？</string>
 
-    <string name="repeater_name">类型：</string>
-    <string name="repeater_mac">区域：</string>
-    <string name="smoke_name">探测器名称：</string>
+    <string name="repeater_name">类型:</string>
+    <string name="repeater_mac">区域:</string>
+    <string name="smoke_name">探测器名称:</string>
     <string name="action_tv">查看导航&#160;&#062;&#062;</string>
     <string name="title_activity_splash">SplashActivity</string>
 

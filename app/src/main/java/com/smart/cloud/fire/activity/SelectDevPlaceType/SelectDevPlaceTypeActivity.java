@@ -93,6 +93,7 @@ public class SelectDevPlaceTypeActivity extends Activity {
                             place_items.setItemAnimator(new DefaultItemAnimator());
                             place_items.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
                         } catch (JSONException e) {
+                            T.showShort(mContext,"无位置信息");
                             e.printStackTrace();
                         }
                     }
