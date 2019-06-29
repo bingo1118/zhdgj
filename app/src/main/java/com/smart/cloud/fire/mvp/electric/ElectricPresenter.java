@@ -1,10 +1,15 @@
 package com.smart.cloud.fire.mvp.electric;
 
+import android.app.AlertDialog;
+import android.content.Context;
+
 import com.smart.cloud.fire.base.presenter.BasePresenter;
 import com.smart.cloud.fire.global.ElectricInfo;
 import com.smart.cloud.fire.global.ElectricValue;
+import com.smart.cloud.fire.mvp.fragment.MapFragment.HttpError;
 import com.smart.cloud.fire.rxjava.ApiCallback;
 import com.smart.cloud.fire.rxjava.SubscriberCallBack;
+import com.smart.cloud.fire.utils.T;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +56,27 @@ public class ElectricPresenter extends BasePresenter<ElectricView>{
                 }else{
                     mvpView.getDataSuccess(new ArrayList<ElectricValue.ElectricValueBean>());
                 }
+            }
+
+            @Override
+            public void onFailure(int code, String msg) {
+                mvpView.getDataFail("网络错误，请检查网络");
+            }
+
+            @Override
+            public void onCompleted() {
+                mvpView.hideLoading();
+            }
+        }));
+    }
+
+    public void shareDev(String userId, String mac, final Context mContext,final AlertDialog dialog){
+        Observable mObservable = apiStores1.shareDev(userId,mac);
+        addSubscription(mObservable,new SubscriberCallBack<>(new ApiCallback<HttpError>() {
+            @Override
+            public void onSuccess(HttpError model) {
+                T.showShort(mContext,model.getError());
+                dialog.dismiss();
             }
 
             @Override

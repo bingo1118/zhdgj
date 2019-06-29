@@ -3,6 +3,7 @@ package com.smart.cloud.fire.mvp.electric;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -36,6 +38,7 @@ import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.global.Electric;
 import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.global.MyApp;
+import com.smart.cloud.fire.mvp.ElectrTimerTask.ElectrTimerTaskActivity;
 import com.smart.cloud.fire.mvp.LineChart.ElectricChartActivity;
 import com.smart.cloud.fire.mvp.LineChart.LineChart01Activity;
 import com.smart.cloud.fire.mvp.LineChart.LineChartActivity;
@@ -126,6 +129,13 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
     @Bind(R.id.wd_his)
     ImageButton wd_his;
 
+    @Bind(R.id.setting_dev_img)
+    ImageView setting_dev_img;
+    @Bind(R.id.share_dev_img)
+    ImageView share_dev_img;
+    @Bind(R.id.timer_img)
+    ImageView timer_img;
+
 
 
 
@@ -162,6 +172,42 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                 showPopupMenu(v);
             }
         });
+        setting_dev_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yuzhi_set();
+            }
+        });
+        timer_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auto_time();
+            }
+        });
+        share_dev_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.share_dev,(ViewGroup) findViewById(R.id.rela));
+                final AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(layout);
+                final AlertDialog dialog =builder.create();
+                final EditText userid_edit=(EditText)layout.findViewById(R.id.userid_edit);
+
+                Button commit=(Button)(Button)layout.findViewById(R.id.commit);
+                commit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String userid=userid_edit.getText().toString();
+                        if(userid.length()==0){
+                            T.showShort(mContext,"输入不可为空");
+                        }else{
+                            electricPresenter.shareDev(userid,electricMac,mContext,dialog);
+                        }
+                    }
+                });
+                dialog.show();
+            }
+        });
         electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac,false);
         electricData= (Electric) getIntent().getExtras().getSerializable("data");
         dev_id.setText("SN码:"+electricData.getMac());
@@ -192,145 +238,10 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                         startActivity(intent);
                         break;
                     case R.id.auto_time:
-                        Intent intent6=new Intent(mContext,AutoTimeSettingActivity.class);
-                        intent6.putExtra("mac",electricMac);
-                        startActivity(intent6);
+                        auto_time();
                         break;
                     case R.id.yuzhi_set:
-                        LayoutInflater inflater = getLayoutInflater();
-                        View layout = inflater.inflate(R.layout.electr_threshold_setting,(ViewGroup) findViewById(R.id.rela));
-                        final AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(layout);
-                        final AlertDialog dialog =builder.create();
-                        final EditText high_value=(EditText)layout.findViewById(R.id.high_value);
-                        high_value.setText(yuzhi43);
-                        final EditText low_value=(EditText)layout.findViewById(R.id.low_value);
-                        low_value.setText(yuzhi44);
-                        final EditText overcurrentvalue=(EditText)layout.findViewById(R.id.overcurrentvalue);
-                        overcurrentvalue.setText(yuzhi45);
-                        final EditText Leakage_value=(EditText)layout.findViewById(R.id.Leakage_value);
-                        Leakage_value.setText(yuzhi46);
-                        Button commit=(Button)(Button)layout.findViewById(R.id.commit);
-                        commit.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                String url="";
-                                try{
-                                    int high=(int)Float.parseFloat(high_value.getText().toString());
-                                    int low=(int)Float.parseFloat(low_value.getText().toString());
-                                    float value45=Float.parseFloat(overcurrentvalue.getText().toString());
-                                    int value46=(int)Float.parseFloat(Leakage_value.getText().toString());
-                                    if(devType==75||devType==77){
-                                        if(low<100||low>200){
-                                            T.showShort(mContext,"欠压阈值设置范围为100-200V");
-                                            return;
-                                        }
-                                        if(high<230||high>320){
-                                            T.showShort(mContext,"过压阈值设置范围为230-320V");
-                                            return;
-                                        }
-                                        if(value45<4||value45>250){
-                                            T.showShort(mContext,"过流阈值设置范围为4-250A");
-                                            return;
-                                        }
-                                        if(value46<30||value46>1000){
-                                            T.showShort(mContext,"漏电流阈值设置范围为30-1000mA");
-                                            return;
-                                        }
-                                        if(low>high){
-                                            T.showShort(mContext,"欠压阈值不能高于过压阈值");
-                                            return;
-                                        }
-                                    }else{
-                                        if(low<145||low>220){
-                                            T.showShort(mContext,"欠压阈值设置范围为145-220V");
-                                            return;
-                                        }
-                                        if(high<220||high>280){
-                                            T.showShort(mContext,"过压阈值设置范围为220-280V");
-                                            return;
-                                        }
-                                        if(value45<1||value45>63){
-                                            T.showShort(mContext,"过流阈值设置范围为1-63A");
-                                            return;
-                                        }
-                                        if(value46<10||value46>90){
-                                            T.showShort(mContext,"漏电流阈值设置范围为10-90mA");
-                                            return;
-                                        }
-                                        if(low>high){
-                                            T.showShort(mContext,"欠压阈值不能高于过压阈值");
-                                            return;
-                                        }
-                                    }
-                                    if(devType==52){
-                                        url= ConstantValues.SERVER_IP_NEW+"ackControlCvls?Overvoltage="+high_value.getText().toString()
-                                                +"&Undervoltage="+low_value.getText().toString()
-                                                +"&Overcurrent="+value45
-                                                +"&Leakage="+value46
-                                                +"&repeaterMac="+repeatMac+"&smokeMac="+electricMac+"&userId="+userID;
-                                    }else if(devType==53){
-                                        url= ConstantValues.SERVER_IP_NEW+"EasyIot_Uool_control?Overvoltage="+high_value.getText().toString()
-                                                +"&Undervoltage="+low_value.getText().toString()
-                                                +"&Overcurrent="+value45
-                                                +"&Leakage="+value46
-                                                +"&appId=1&devSerial="+electricMac+"&userId="+userID;
-                                    }else if(devType==75||devType==77){
-                                        url= ConstantValues.SERVER_IP_NEW+"Telegraphy_Uool_control?Overvoltage="+high_value.getText().toString()
-                                                +"&Undervoltage="+low_value.getText().toString()
-                                                +"&Overcurrent="+value45
-                                                +"&Leakage="+value46
-                                                +"&deviceType="+devType+"&devCmd=14&imei="+electricMac+"&userid="+userID;
-                                    }else{
-                                        Toast.makeText(getApplicationContext(),"该设备不支持阈值设置", Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
-//                                            Toast.makeText(getApplicationContext(),"设置中，请稍后", Toast.LENGTH_SHORT).show();
-                                }catch(Exception e){
-                                    e.printStackTrace();
-                                    T.showShort(mContext,"输入数据不完全或有误");
-                                    return;
-                                }
-                                final ProgressDialog dialog1 = new ProgressDialog(mContext);
-                                dialog1.setTitle("提示");
-                                dialog1.setMessage("设置中，请稍候");
-                                dialog1.setCanceledOnTouchOutside(false);
-                                dialog1.show();
-                                VolleyHelper helper=VolleyHelper.getInstance(mContext);
-                                RequestQueue mQueue = helper.getRequestQueue();
-//                            RequestQueue mQueue = Volley.newRequestQueue(context);
-                                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
-                                        new Response.Listener<JSONObject>() {
-                                            @Override
-                                            public void onResponse(JSONObject response) {
-                                                try {
-                                                    int errorCode=response.getInt("errorCode");
-                                                    if(errorCode==0){
-                                                        T.showShort(mContext,"设置成功");
-                                                        electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac,false);
-                                                    }else{
-                                                        T.showShort(mContext,"设置失败");
-                                                    }
-                                                    getYuzhi(electricMac);
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-                                                dialog1.dismiss();
-                                            }
-                                        }, new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        T.showShort(mContext,"网络错误");
-                                        dialog1.dismiss();
-                                    }
-                                });
-                                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
-                                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                                mQueue.add(jsonObjectRequest);
-                                dialog.dismiss();
-                            }
-                        });
-                        dialog.show();
+                        yuzhi_set();
                         break;
                 }
                 return false;
@@ -344,6 +255,149 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         });
 
         popupMenu.show();
+    }
+
+    private void auto_time() {
+        Intent intent6=new Intent(mContext,ElectrTimerTaskActivity.class);
+        intent6.putExtra("mac",electricMac);
+        startActivity(intent6);
+    }
+
+    private void yuzhi_set() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.electr_threshold_setting,(ViewGroup) findViewById(R.id.rela));
+        final AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(layout);
+        final AlertDialog dialog =builder.create();
+        final EditText high_value=(EditText)layout.findViewById(R.id.high_value);
+        high_value.setText(yuzhi43);
+        final EditText low_value=(EditText)layout.findViewById(R.id.low_value);
+        low_value.setText(yuzhi44);
+        final EditText overcurrentvalue=(EditText)layout.findViewById(R.id.overcurrentvalue);
+        overcurrentvalue.setText(yuzhi45);
+        final EditText Leakage_value=(EditText)layout.findViewById(R.id.Leakage_value);
+        Leakage_value.setText(yuzhi46);
+        Button commit=(Button)(Button)layout.findViewById(R.id.commit);
+        commit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url="";
+                try{
+                    int high=(int)Float.parseFloat(high_value.getText().toString());
+                    int low=(int)Float.parseFloat(low_value.getText().toString());
+                    float value45=Float.parseFloat(overcurrentvalue.getText().toString());
+                    int value46=(int)Float.parseFloat(Leakage_value.getText().toString());
+                    if(devType==75||devType==77){
+                        if(low<100||low>200){
+                            T.showShort(mContext,"欠压阈值设置范围为100-200V");
+                            return;
+                        }
+                        if(high<230||high>320){
+                            T.showShort(mContext,"过压阈值设置范围为230-320V");
+                            return;
+                        }
+                        if(value45<4||value45>250){
+                            T.showShort(mContext,"过流阈值设置范围为4-250A");
+                            return;
+                        }
+                        if(value46<30||value46>1000){
+                            T.showShort(mContext,"漏电流阈值设置范围为30-1000mA");
+                            return;
+                        }
+                        if(low>high){
+                            T.showShort(mContext,"欠压阈值不能高于过压阈值");
+                            return;
+                        }
+                    }else{
+                        if(low<145||low>220){
+                            T.showShort(mContext,"欠压阈值设置范围为145-220V");
+                            return;
+                        }
+                        if(high<220||high>280){
+                            T.showShort(mContext,"过压阈值设置范围为220-280V");
+                            return;
+                        }
+                        if(value45<1||value45>63){
+                            T.showShort(mContext,"过流阈值设置范围为1-63A");
+                            return;
+                        }
+                        if(value46<10||value46>90){
+                            T.showShort(mContext,"漏电流阈值设置范围为10-90mA");
+                            return;
+                        }
+                        if(low>high){
+                            T.showShort(mContext,"欠压阈值不能高于过压阈值");
+                            return;
+                        }
+                    }
+                    if(devType==52){
+                        url= ConstantValues.SERVER_IP_NEW+"ackControlCvls?Overvoltage="+high_value.getText().toString()
+                                +"&Undervoltage="+low_value.getText().toString()
+                                +"&Overcurrent="+value45
+                                +"&Leakage="+value46
+                                +"&repeaterMac="+repeatMac+"&smokeMac="+electricMac+"&userId="+userID;
+                    }else if(devType==53){
+                        url= ConstantValues.SERVER_IP_NEW+"EasyIot_Uool_control?Overvoltage="+high_value.getText().toString()
+                                +"&Undervoltage="+low_value.getText().toString()
+                                +"&Overcurrent="+value45
+                                +"&Leakage="+value46
+                                +"&appId=1&devSerial="+electricMac+"&userId="+userID;
+                    }else if(devType==75||devType==77){
+                        url= ConstantValues.SERVER_IP_NEW+"Telegraphy_Uool_control?Overvoltage="+high_value.getText().toString()
+                                +"&Undervoltage="+low_value.getText().toString()
+                                +"&Overcurrent="+value45
+                                +"&Leakage="+value46
+                                +"&deviceType="+devType+"&devCmd=14&imei="+electricMac+"&userid="+userID;
+                    }else{
+                        Toast.makeText(getApplicationContext(),"该设备不支持阈值设置", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+//                                            Toast.makeText(getApplicationContext(),"设置中，请稍后", Toast.LENGTH_SHORT).show();
+                }catch(Exception e){
+                    e.printStackTrace();
+                    T.showShort(mContext,"输入数据不完全或有误");
+                    return;
+                }
+                final ProgressDialog dialog1 = new ProgressDialog(mContext);
+                dialog1.setTitle("提示");
+                dialog1.setMessage("设置中，请稍候");
+                dialog1.setCanceledOnTouchOutside(false);
+                dialog1.show();
+                VolleyHelper helper=VolleyHelper.getInstance(mContext);
+                RequestQueue mQueue = helper.getRequestQueue();
+//                            RequestQueue mQueue = Volley.newRequestQueue(context);
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    int errorCode=response.getInt("errorCode");
+                                    if(errorCode==0){
+                                        T.showShort(mContext,"设置成功");
+                                        electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac,false);
+                                    }else{
+                                        T.showShort(mContext,"设置失败");
+                                    }
+                                    getYuzhi(electricMac);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                dialog1.dismiss();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        T.showShort(mContext,"网络错误");
+                        dialog1.dismiss();
+                    }
+                });
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                mQueue.add(jsonObjectRequest);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     private void refreshListView() {

@@ -5,7 +5,6 @@
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
         android:orientation="vertical"
-		android:visibility="gone"
 		android:layout_marginBottom="50dp">
         <TextView
             android:layout_width="match_parent"

@@ -64,16 +64,17 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/info_linear">
+            android:layout_below="@id/info_linear"
+            android:layout_marginBottom="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/login_account_and_psw_shape">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/login_account_and_psw_shape"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_below="@id/info_linear"
-                android:padding="10dp">
+                android:layout_below="@id/info_linear">
                 <include layout="@layout/progress_bar"/>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -773,4 +774,37 @@
                 </LinearLayout>
             </RelativeLayout>
         </ScrollView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/message_banner"
+            android:layout_alignParentBottom="true">
+            <ImageView
+                android:id="@+id/setting_dev_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/setting_eletc"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="3dp"/>
+
+            <ImageView
+                android:id="@+id/share_dev_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/share_electr"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"/>
+            <ImageView
+                android:id="@+id/timer_img"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/timer_electr"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="3dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
     </RelativeLayout>

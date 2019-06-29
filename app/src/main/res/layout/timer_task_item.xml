@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:elevation="4dp"
+    android:id="@+id/item_lin"
+    android:orientation="horizontal"
+    android:background="@drawable/login_btn_bg">
+
+    <LinearLayout
+        android:id="@+id/category_group_lin"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="时间:"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/cycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重复:"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="操作:"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"/>
+    <RelativeLayout
+        android:id="@+id/power_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="取消"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"/>
+
+
+    </RelativeLayout>
+</LinearLayout>

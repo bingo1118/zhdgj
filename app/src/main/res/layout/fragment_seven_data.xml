@@ -1,29 +1,16 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.smart.cloud.fire.mvp.LineChart.All.AllDataChartFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
         <com.smart.cloud.fire.view.LineChart01View
             android:id="@+id/linechart"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_margin="10dp"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerInParent="true" />
         <include layout="@layout/progress_bar"/>
 
-        <com.smart.cloud.fire.view.BarChart03View
-            android:id="@+id/barchart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_margin="10dp"
-            android:layout_below="@id/linechart"
-            android:layout_centerHorizontal="true" />
-
-    </RelativeLayout>
-
-
-</ScrollView>
+</RelativeLayout>

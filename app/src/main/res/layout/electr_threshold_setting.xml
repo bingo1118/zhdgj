@@ -38,7 +38,7 @@
                 android:layout_weight="1.2"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
-                android:background="@drawable/edit_view_bg"/>
+                android:background="@drawable/edit_view_black"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.2"
                 android:padding="3dp"
-                android:background="@drawable/edit_view_bg"/>
+                android:background="@drawable/edit_view_black"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.2"
                 android:padding="3dp"
-                android:background="@drawable/edit_view_bg"/>
+                android:background="@drawable/edit_view_black"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:layout_weight="1.2"
-                android:background="@drawable/edit_view_bg"/>
+                android:background="@drawable/edit_view_black"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

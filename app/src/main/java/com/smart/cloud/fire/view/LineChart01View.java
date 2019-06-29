@@ -159,6 +159,7 @@ public class LineChart01View extends DemoView {
 				chart.getDataAxis().setAxisMin(0);
 			}
 
+
 			//背景网格
 //			chart.getPlotGrid().showHorizontalLines();
 //			chart.getPlotGrid().showVerticalLines();

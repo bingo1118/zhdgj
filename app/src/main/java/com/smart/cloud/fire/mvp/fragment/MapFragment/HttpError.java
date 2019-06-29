@@ -4,6 +4,7 @@ import com.smart.cloud.fire.activity.AddNFC.NFCDeviceType;
 import com.smart.cloud.fire.activity.NFCDev.NFCRecordBean;
 import com.smart.cloud.fire.global.ElectricInfo;
 import com.smart.cloud.fire.global.ShopType;
+import com.smart.cloud.fire.mvp.ElectrTimerTask.TimerTaskEntity;
 import com.smart.cloud.fire.mvp.electricChangeHistory.HistoryBean;
 import com.smart.cloud.fire.mvp.fragment.CollectFragment.AlarmMessageModel;
 import com.smart.cloud.fire.mvp.fragment.ShopInfoFragment.WiredDevFragment.WiredSmoke;
@@ -36,6 +37,7 @@ public class HttpError<T> {
 
     private ArrayList<NFCDeviceType> deviceType;//@@8.16 NFC设备类型
     private ArrayList<NFCRecordBean> nfcList;//@@8.16 NFC设备
+    private ArrayList<TimerTaskEntity> tasks;//@@定时任务
 
     public List<WiredSmokeHistory> getalarm() {
         return alarm;
@@ -141,5 +143,13 @@ public class HttpError<T> {
 
     public void setEleList(List<HistoryBean> eleList) {
         this.eleList = eleList;
+    }
+
+    public ArrayList<TimerTaskEntity> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(ArrayList<TimerTaskEntity> tasks) {
+        this.tasks = tasks;
     }
 }

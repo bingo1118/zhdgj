@@ -38,8 +38,6 @@ public class SevenDataFragment extends MvpFragment<LineChartPresenter> implement
 
     @Bind(R.id.linechart)
     LineChart01View mLineChartView;//线性图表控件
-    @Bind(R.id.barchart)
-    BarChart03View barchart;
     @Bind(R.id.mProgressBar)
     ProgressBar mProgressBar;
     private LineChartPresenter lineChartPresenter;
@@ -124,12 +122,12 @@ public class SevenDataFragment extends MvpFragment<LineChartPresenter> implement
             c.add(Double.parseDouble(temperatureTimes.get(i).getElectricValue()));
         }
         mLineChartView.initView(titleName,l,c, XEnum.LabelLineFeed.EVEN_ODD);
-        barchart.initView(l,c,"柱状图");
     }
 
     @Override
     public void getDataFail(String msg) {
         T.showShort(mContext, msg);
+        mLineChartView.setVisibility(View.GONE);
     }
 
     @Override

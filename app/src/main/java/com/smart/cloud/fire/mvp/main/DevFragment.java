@@ -259,7 +259,7 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
                     }
 
                     mvpPresenter.getNeedElectricInfo(userID, privilege + "",parentId, areaId,"", shopTypeId,"3",this);
-                    mvpPresenter.getSmokeSummary(userID,privilege+"",parentId,areaId,shopTypeId,"3",this);
+//                    mvpPresenter.getSmokeSummary(userID,privilege+"",parentId,areaId,shopTypeId,"3",this);
                     mShopType = null;
                     mArea = null;
                 } else {
@@ -287,7 +287,7 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
         list = new ArrayList<>();
         page = "1";
         mvpPresenter.getAllElectricInfo(userID, privilege + "", page,"3",list,1,false,DevFragment.this);
-        mvpPresenter.getSmokeSummary(userID,privilege+"","","","","3",DevFragment.this);//@@9.5
+//        mvpPresenter.getSmokeSummary(userID,privilege+"","","","","3",DevFragment.this);//@@9.5
     }
 
     private void refreshListView() {
@@ -346,7 +346,7 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
         page = "1";
         list.clear();
         mvpPresenter.getAllElectricInfo(userID, privilege + "", page,"3",list,1,true,DevFragment.this);
-        mvpPresenter.getSmokeSummary(userID,privilege+"","","","","3",DevFragment.this);
+//        mvpPresenter.getSmokeSummary(userID,privilege+"","","","","3",DevFragment.this);
     }
 
     @Override

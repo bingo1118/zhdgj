@@ -288,6 +288,10 @@ public interface ApiStores {
     Observable<ElectricInfo<ElectricValue>> getOneElectricInfo(@Query("userId") String userId, @Query("privilege") String privilege,
                                                                @Query("smokeMac") String smokeMac);
 
+    @GET("shareDev")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<HttpError> shareDev(@Query("userid") String userId,@Query("mac") String smokeMac);
+
 //    getElectricTypeInfo?userId=13428282520&privilege=2&smokeMac=32110533&electricType=6&electricNum=1&page=
     @GET("getWaterHistoryInfo")
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
@@ -352,4 +356,17 @@ public interface ApiStores {
     @GET("getEleNeedHis")
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
     Observable<HttpError> getEleNeedHis(@Query("smokeMac") String smokeMac,@Query("page") String page);
+
+
+
+    //获取电气设备定时任务
+    @GET("getAllTimerTask")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<HttpError> getAllTimerTask(@Query("mac") String smokeMac);
+
+
+    //删除定时任务
+    @GET("removeElectrTimer")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<HttpError> removeElectrTimer(@Query("id") String id);
 }

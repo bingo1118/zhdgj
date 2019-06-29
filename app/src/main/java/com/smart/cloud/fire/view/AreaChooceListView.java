@@ -28,6 +28,7 @@ import com.smart.cloud.fire.base.presenter.BasePresenter;
 import com.smart.cloud.fire.global.Area;
 import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.global.ShopType;
+import com.smart.cloud.fire.utils.T;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -163,6 +164,10 @@ public class AreaChooceListView extends LinearLayout {
      */
     public void showPopWindow() {
         // 加载popupWindow的布局文件
+        if(map==null){
+            T.showShort(mContext,"无区域信息");
+            return;
+        }
         String infServie = Context.LAYOUT_INFLATER_SERVICE;
         LayoutInflater layoutInflater;
         layoutInflater =  (LayoutInflater) getContext().getSystemService(infServie);

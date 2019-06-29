@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+    <include layout="@layout/progress_bar"/>
     <RelativeLayout
         android:id="@+id/add_fire_title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/login_btn"
+        android:background="@color/colorAccent"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -63,65 +64,192 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="开启"/>
+                    android:textColor="#000"
+                    android:text="时间"/>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:background="@drawable/edit_view_bg">
-                    <EditText
+                    <TextView
                         android:id="@+id/ontime_edit"
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:textSize="14sp"
-                        android:background="@null"
                         android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:hint="开启时间"
-                        android:editable="false"
-                        android:textColorHint="@color/hint_color_text"
+                        android:text=""
+                        android:gravity="center_vertical"
                         android:textColor="@color/text_view_and_kuang"
-                        android:imeOptions="actionNext"
                         />
                 </RelativeLayout>
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/ontime_edit"
+                android:background="@color/colorAccent">
+                <TextView
+                    android:id="@+id/textY"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/year"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_color_black"
+                    />
+                <TextView
+                    android:id="@+id/textM"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/month"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_color_black"
+                    />
+                <TextView
+                    android:id="@+id/textD"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/day"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_color_black"
+                    />
+                <TextView
+                    android:id="@+id/textH"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/hour"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_color_black"
+                    />
+                <TextView
+                    android:id="@+id/textMi"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/minutes"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_color_black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <com.smart.cloud.fire.view.WheelView
+                    android:id="@+id/date_year"
+                    android:layout_height="wrap_content"
+                    android:layout_width="70dp"
+                    />
+                <com.smart.cloud.fire.view.WheelView
+                    android:id="@+id/date_month"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    />
+                <com.smart.cloud.fire.view.WheelView
+                    android:id="@+id/date_day"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    />
+                <com.smart.cloud.fire.view.WheelView
+                    android:id="@+id/date_hour"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    />
+                <com.smart.cloud.fire.view.WheelView
+                    android:id="@+id/date_minute"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
+
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/swich_cycle"
+                android:text="重复"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/cycle_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="20dp"
+                android:background="@color/shou_ye_bg"
+                android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="关闭"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:background="@drawable/edit_view_bg">
-                    <EditText
-                        android:id="@+id/offtime_edit"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:textSize="14sp"
-                        android:background="@null"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:hint="关闭时间"
-                        android:editable="false"
-                        android:textColorHint="@color/hint_color_text"
-                        android:textColor="@color/text_view_and_kuang"
-                        android:imeOptions="actionNext"
-                        />
-                </RelativeLayout>
-            </RelativeLayout>
+                    android:layout_marginBottom="10dp"
+                    android:text="自定义周期"/>
+
+                    <CheckBox
+                        android:id="@+id/week1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="每周一"/>
+                    <CheckBox
+                        android:id="@+id/week2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="每周二"/>
+                    <CheckBox
+                        android:id="@+id/week3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="每周三"/>
+                    <CheckBox
+                        android:id="@+id/week4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="每周四"/>
+                    <CheckBox
+                        android:id="@+id/week5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="每周五"/>
+                    <CheckBox
+                        android:id="@+id/week6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="每周六"/>
+                    <CheckBox
+                        android:id="@+id/week7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="每周日"/>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -145,6 +273,10 @@
             android:textSize="16sp"
             android:layout_centerInParent="true"
             />
+
+
     </RelativeLayout>
-    <include layout="@layout/progress_bar"/>
+
+
+
 </RelativeLayout>

@@ -212,7 +212,8 @@
         <activity android:name="com.smart.cloud.fire.mvp.LineChart.LineChart01Activity" />
         <activity android:name="com.smart.cloud.fire.mvp.LineChart.ElectricChartActivity" />
         <activity android:name="com.smart.cloud.fire.activity.SelectDevPlaceType.SelectDevPlaceTypeActivity" />
-        <activity android:name="com.smart.cloud.fire.mvp.main.DevByPlaceIdActivity"></activity>
+        <activity android:name="com.smart.cloud.fire.mvp.main.DevByPlaceIdActivity" />
+        <activity android:name="com.smart.cloud.fire.mvp.ElectrTimerTask.ElectrTimerTaskActivity"></activity>
     </application>
 
 </manifest>
