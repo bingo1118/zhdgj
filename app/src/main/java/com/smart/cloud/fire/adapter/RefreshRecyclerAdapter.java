@@ -200,6 +200,8 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                             break;
                     }
                     break;
+                case 77:
+                case 75:
                 case 5:
                     ((ItemViewHolder) holder).smokeMac.setText("设备类型:电气火灾探测器");
                     int alarmFamily = mNormalAlarmMessage.getAlarmFamily();

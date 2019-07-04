@@ -338,6 +338,8 @@ public class DemoIntentService extends GTIntentService {
                         context.startActivity(intent1);
                     }
                     break;
+                case 77:
+                case 75:
                 case 59:
                 case 53:
                 case 52:

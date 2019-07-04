@@ -9,6 +9,7 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -34,6 +35,8 @@ public class ElectrTimerTaskActivity extends MvpActivity<ElectrTimerTaskPresente
     SwipeRefreshLayout swipereFreshLayout;
     @Bind(R.id.add)
     TextView add;
+    @Bind(R.id.null_data_iv)
+    ImageView null_data_iv;
 
 
 
@@ -41,6 +44,7 @@ public class ElectrTimerTaskActivity extends MvpActivity<ElectrTimerTaskPresente
     ElectrTimerTaskPresenter mPresenter;
     private Context mContext;
     private String mac;
+    private String devType;
     private List<TimerTaskEntity> list;
     private LinearLayoutManager linearLayoutManager;
 
@@ -52,17 +56,24 @@ public class ElectrTimerTaskActivity extends MvpActivity<ElectrTimerTaskPresente
         ButterKnife.bind(this);
         mContext=this;
         mac=getIntent().getStringExtra("mac");
+        devType=getIntent().getStringExtra("devType");
         list = new ArrayList<>();
         refreshListView();
-        mPresenter.getAllTimerTask(mac);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(mContext, AutoTimeSettingActivity.class);
                 i.putExtra("mac",mac);
+                i.putExtra("devType",devType);
                 startActivity(i);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.getAllTimerTask(mac);
     }
 
     private void refreshListView() {
@@ -99,16 +110,23 @@ public class ElectrTimerTaskActivity extends MvpActivity<ElectrTimerTaskPresente
             list.clear();
         }
         list.addAll((List<TimerTaskEntity>)smokeList);
+        null_data_iv.setVisibility(View.GONE);
         linearLayoutManager=new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new ElectrTimerTaskAdapter(mContext, list,mPresenter);
         recyclerView.setAdapter(mAdapter);
         swipereFreshLayout.setRefreshing(false);
+        if(list.size()>0){
+            null_data_iv.setVisibility(View.GONE);
+        }else{
+            null_data_iv.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void getDataFail(String msg) {
+        swipereFreshLayout.setRefreshing(false);
         T.showShort(mContext, msg);
     }
 
@@ -121,4 +139,17 @@ public class ElectrTimerTaskActivity extends MvpActivity<ElectrTimerTaskPresente
     public void hideLoading() {
         mProgressBar.setVisibility(View.GONE);
     }
+
+    @Override
+    public void deleteItemSuccess(String msg, int position) {
+        list.remove(position);
+        mAdapter.setTaskList(list);
+        T.showShort(mContext, msg);
+        if(list.size()>0){
+            null_data_iv.setVisibility(View.GONE);
+        }else{
+            null_data_iv.setVisibility(View.VISIBLE);
+        }
+    }
+
 }

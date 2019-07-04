@@ -27,12 +27,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="10dp"
         android:textSize="16sp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_alignParentRight="true"
-        android:text="添加"/>
+        android:text="添加定时"/>
 
 
     <RelativeLayout
@@ -44,6 +44,13 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:padding="3dp">
+        <ImageView
+            android:id="@+id/null_data_iv"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@drawable/null_data"
+            android:visibility="gone"
+            android:layout_centerInParent="true"/>
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipere_fresh_layout"
             android:layout_width="match_parent"
@@ -53,8 +60,9 @@
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="60dp"/>
+                android:paddingBottom="5dp"/>
         </android.support.v4.widget.SwipeRefreshLayout>
+
         <include layout="@layout/progress_bar"/>
     </RelativeLayout>
 

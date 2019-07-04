@@ -3,15 +3,11 @@ package com.smart.cloud.fire.mvp.electric;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,10 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,13 +34,11 @@ import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.mvp.ElectrTimerTask.ElectrTimerTaskActivity;
 import com.smart.cloud.fire.mvp.LineChart.ElectricChartActivity;
 import com.smart.cloud.fire.mvp.LineChart.LineChart01Activity;
-import com.smart.cloud.fire.mvp.LineChart.LineChartActivity;
 import com.smart.cloud.fire.mvp.electricChangeHistory.ElectricChangeHistoryActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.TimePickerDialog;
 import com.smart.cloud.fire.utils.VolleyHelper;
-import com.smart.cloud.fire.view.DialChart05View;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -208,12 +199,12 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                 dialog.show();
             }
         });
-        electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac,false);
+        electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac,devType,false);
         electricData= (Electric) getIntent().getExtras().getSerializable("data");
         dev_id.setText("SN码:"+electricData.getMac());
         dev_areaid.setText("区域:"+electricData.getAreaName());
         dev_address.setText("地址:"+electricData.getAddress());
-        if(devType==52||devType==53||devType==75){
+        if(devType==52||devType==53||devType==75||devType==77){
             getYuzhi(electricMac);
         }
     }
@@ -260,6 +251,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
     private void auto_time() {
         Intent intent6=new Intent(mContext,ElectrTimerTaskActivity.class);
         intent6.putExtra("mac",electricMac);
+        intent6.putExtra("devType",devType+"");
         startActivity(intent6);
     }
 
@@ -373,7 +365,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                     int errorCode=response.getInt("errorCode");
                                     if(errorCode==0){
                                         T.showShort(mContext,"设置成功");
-                                        electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac,false);
+                                        electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac, devType, false);
                                     }else{
                                         T.showShort(mContext,"设置失败");
                                     }
@@ -409,7 +401,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         swipeFreshLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac,true);
+                electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac, devType, true);
                 getYuzhi(electricMac);
             }
         });
@@ -445,9 +437,10 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
             String value=bean.getValue();
             switch (bean.getElectricType()){
                 case 6:
-                    if(bean.getElectricThreshold().length()>0&&bean.getElectricThreshold().contains("\\\\")){
-                        yuzhi_gy.setText(bean.getElectricThreshold().split("\\\\")[0]);
-                        yuzhi_gy.setText(bean.getElectricThreshold().split("\\\\")[1]);
+                    if(bean.getElectricThreshold().length()>0&&bean.getElectricThreshold().contains("\\")){
+                        String[] s=bean.getElectricThreshold().split("\\\\");
+                        yuzhi_qy.setText(s[0]);
+                        yuzhi_gy.setText(s[1]);
                     }
                     if(null!=value&&value.length()>0){
                         try {
@@ -470,6 +463,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                     intent.putExtra("electricMac",electricMac);
                                     intent.putExtra("electricType",bean.getElectricType());
                                     intent.putExtra("electricNum",bean.getId());
+                                    intent.putExtra("devType",devType+"");
                                     startActivity(intent);
                                 }
                             });
@@ -504,6 +498,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                     intent.putExtra("electricMac",electricMac);
                                     intent.putExtra("electricType",bean.getElectricType());
                                     intent.putExtra("electricNum",bean.getId());
+                                    intent.putExtra("devType",devType+"");
                                     startActivity(intent);
                                 }
                             });
@@ -528,6 +523,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                     intent.putExtra("electricMac",electricMac);
                                     intent.putExtra("electricType",bean.getElectricType());
                                     intent.putExtra("electricNum",bean.getId());
+                                    intent.putExtra("devType",devType+"");
                                     startActivity(intent);
                                 }
                             });
@@ -565,6 +561,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                     intent.putExtra("electricMac",electricMac);
                                     intent.putExtra("electricType",bean.getElectricType());
                                     intent.putExtra("electricNum",bean.getId());
+                                    intent.putExtra("devType",devType+"");
                                     startActivity(intent);
                                 }
                             });
@@ -640,7 +637,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                             int errorCode=response.getInt("errorCode");
                             if(errorCode==0){
                                 T.showShort(mContext,"设置成功");
-                                electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac,false);
+                                electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac, devType, false);
                             }else{
                                 T.showShort(mContext,"设置失败");
                             }

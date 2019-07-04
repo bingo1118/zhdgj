@@ -60,6 +60,8 @@ public class AllDataChartFragment extends MvpFragment<LineChartPresenter> implem
     private String titleName="";
     private String axisYName="";
 
+    private String devType;
+
 
 
     @Override
@@ -78,10 +80,11 @@ public class AllDataChartFragment extends MvpFragment<LineChartPresenter> implem
                 SharedPreferencesManager.SP_FILE_GWELL,
                 SharedPreferencesManager.KEY_RECENTNAME);
         privilege = MyApp.app.getPrivilege();
+        devType=getActivity().getIntent().getExtras().getString("devType");
         electricMac = getActivity().getIntent().getExtras().getString("electricMac");
         electricType = getActivity().getIntent().getExtras().getInt("electricType") + "";
         electricNum = getActivity().getIntent().getExtras().getInt("electricNum") + "";
-        lineChartPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+        lineChartPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "",devType, false);
         switch (electricType) {
             case "6":
                 axisYName="电压值(V)";
@@ -158,17 +161,17 @@ public class AllDataChartFragment extends MvpFragment<LineChartPresenter> implem
         switch (view.getId()) {
             case R.id.btn_next:
                 page = page + 1;
-                mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+                mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "",devType, false);
                 break;
             case R.id.btn_before:
                 if (page > 1) {
                     page = page - 1;
-                    mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+                    mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "",devType, false);
                 }
                 break;
             case R.id.btn_new:
                 page = 1;
-                mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+                mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "",devType, false);
                 break;
         }
     }

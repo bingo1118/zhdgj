@@ -105,7 +105,7 @@ public class LineChart01Activity extends MvpActivity<LineChartPresenter> impleme
         electricMac = getIntent().getExtras().getString("electricMac");
         electricType = getIntent().getExtras().getInt("electricType") + "";
         electricNum = getIntent().getExtras().getInt("electricNum") + "";
-        mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+        mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "","", false);
         switch (electricType) {
             case "6":
                 axisYName="电压值(V)";
@@ -187,17 +187,17 @@ public class LineChart01Activity extends MvpActivity<LineChartPresenter> impleme
         switch (view.getId()) {
             case R.id.btn_next:
                 page = page + 1;
-                mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+                mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "","", false);
                 break;
             case R.id.btn_before:
                 if (page > 1) {
                     page = page - 1;
-                    mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+                    mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "","", false);
                 }
                 break;
             case R.id.btn_new:
                 page = 1;
-                mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+                mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "","", false);
                 break;
         }
     }

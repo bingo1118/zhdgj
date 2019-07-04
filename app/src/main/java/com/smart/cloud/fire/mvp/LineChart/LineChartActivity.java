@@ -129,7 +129,7 @@ public class LineChartActivity extends MvpActivity<LineChartPresenter> implement
         isWater=getIntent().getExtras().getString("isWater");//@@12.15
         electricBeen = new ArrayList<>();
         if(isWater==null){
-            mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+            mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "","", false);
         }else{
             if(isWater.equals("2")){
                 water_threshold.setVisibility(View.VISIBLE);//@@2018.01.03
@@ -438,7 +438,7 @@ public class LineChartActivity extends MvpActivity<LineChartPresenter> implement
                     btnBefore.setBackgroundResource(R.drawable.before_selector);
                 }
                 if(isWater==null){
-                    mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+                    mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "","", false);
                 }else{
                     mvpPresenter.getWaterHistoryInfo(userID, privilege + "", electricMac, page + "", false);
                 }
@@ -451,7 +451,7 @@ public class LineChartActivity extends MvpActivity<LineChartPresenter> implement
                         btnBefore.setBackgroundResource(R.mipmap.prve_an);
                     }
                     if(isWater==null){
-                        mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+                        mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "","", false);
                     }else{
                         mvpPresenter.getWaterHistoryInfo(userID, privilege + "", electricMac, page + "", false);
                     }
@@ -464,7 +464,7 @@ public class LineChartActivity extends MvpActivity<LineChartPresenter> implement
                 btnNext.setClickable(true);
                 btnNext.setBackgroundResource(R.drawable.next_selector);
                 if(isWater==null){
-                    mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "", false);
+                    mvpPresenter.getElectricTypeInfo(userID, privilege + "", electricMac, electricType, electricNum, page + "","", false);
                 }else{
                     mvpPresenter.getWaterHistoryInfo(userID, privilege + "", electricMac, page + "", false);
                 }

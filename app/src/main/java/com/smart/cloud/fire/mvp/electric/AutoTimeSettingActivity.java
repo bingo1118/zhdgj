@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.smart.cloud.fire.adapter.DateNumericAdapter;
 import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.utils.T;
@@ -36,8 +39,12 @@ import com.smart.cloud.fire.view.XCDropDownListView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -71,7 +78,9 @@ public class AutoTimeSettingActivity extends Activity{
     @Bind(R.id.week7)
     CheckBox week7;
     @Bind(R.id.cycle_line)
-    LinearLayout cycle_line;
+    RelativeLayout cycle_line;
+    @Bind(R.id.timer_cycle_rg)
+    RadioGroup timer_cycle_rg;
 
     @Bind(R.id.date_year)
     WheelView dateYear;
@@ -84,13 +93,17 @@ public class AutoTimeSettingActivity extends Activity{
     @Bind(R.id.date_minute)
     WheelView dateMinute;
 
+    @Bind(R.id.everyday_rb)
+    RadioButton everyday_rb;
+    @Bind(R.id.custom_rb)
+    RadioButton custom_rb;
+
     private Context mContext;
 
-    TimePickerDialog mTimePickerDialog;
-    int type=1;
-    int state=1;
-    String cycle;
+    int state=2;
+    String cycle="0";
     private String mac;
+    private String devType;
 
     private static final int DATE_DIALOG_ID = 1;
     private static final int SHOW_DATAPICK = 0;
@@ -111,7 +124,23 @@ public class AutoTimeSettingActivity extends Activity{
         mContext=this;
 
         mac=getIntent().getStringExtra("mac");
+        devType=getIntent().getStringExtra("devType");
+        initView();
+    }
+
+    private void initView() {
         initWheel();
+
+        timer_cycle_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.everyday){
+                    cycle_line.setVisibility(View.GONE);
+                }else{
+                    cycle_line.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         swich.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -134,9 +163,9 @@ public class AutoTimeSettingActivity extends Activity{
                                          boolean isChecked) {
                 // TODO Auto-generated method stub
                 if (isChecked) {
-                    cycle_line.setVisibility(View.VISIBLE);
+                    timer_cycle_rg.setVisibility(View.VISIBLE);
                 } else {
-                    cycle_line.setVisibility(View.GONE);
+                    timer_cycle_rg.setVisibility(View.GONE);
                 }
             }
         });
@@ -147,9 +176,11 @@ public class AutoTimeSettingActivity extends Activity{
                     T.showShort(mContext,"请输入时间");
                     return;
                 }
-                if(swich_cycle.isChecked()){
-                    cycle="0";
-                }else{
+                if(!swich_cycle.isChecked()){
+                    cycle="0";//single
+                }else if(everyday_rb.isChecked()){
+                    cycle="8";//every day
+                }else{//custom
                     if(week1.isChecked()){
                         cycle+="1";
                     }
@@ -172,13 +203,17 @@ public class AutoTimeSettingActivity extends Activity{
                         cycle+="7";
                     }
                 }
-                String url= ConstantValues.SERVER_IP_NEW+"addElectrTimer?mac="+mac
-                        +"&state="+state
-                        +"&time="+ontime_edit.getText()+":00"
-                        +"&cycle="+cycle;
-                VolleyHelper helper=VolleyHelper.getInstance(mContext);
-                RequestQueue mQueue = helper.getRequestQueue();
-//                            RequestQueue mQueue = Volley.newRequestQueue(context);
+                String url= null;
+                try {
+                    url = ConstantValues.SERVER_IP_NEW+"addElectrTimer?mac="+mac
+                            +"&state="+state
+                            +"&time="+ URLEncoder.encode(ontime_edit.getText()+":00","GBK")
+                            +"&cycle="+cycle+"&devType="+devType;
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                RequestQueue mQueue = Volley.newRequestQueue(mContext);
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
                         new Response.Listener<JSONObject>() {
                             @Override
@@ -200,13 +235,9 @@ public class AutoTimeSettingActivity extends Activity{
                         T.showShort(mContext,"网络错误");
                     }
                 });
-                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
-                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 mQueue.add(jsonObjectRequest);
             }
         });
-
     }
 
     private void initWheel() {
@@ -226,6 +257,14 @@ public class AutoTimeSettingActivity extends Activity{
 
         int curMinute = calendar.get(Calendar.MINUTE);
         initWheelView(dateMinute, new DateNumericAdapter(mContext, 0, 59), curMinute);
+
+        ontime_edit.setText(getStringOfday(calendar.getTime()));
+    }
+
+    public static String getStringOfday(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String dateString = formatter.format(date);
+        return dateString;
     }
 
     private void initWheelView(WheelView wv, DateNumericAdapter dateNumericAdapter, int type) {

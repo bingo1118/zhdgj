@@ -1,6 +1,9 @@
 package com.smart.cloud.fire.mvp.ElectrTimerTask;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +42,11 @@ public class ElectrTimerTaskAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         void onItemClick(View view , TimerTaskEntity data);
     }
 
+    public void setTaskList(List<TimerTaskEntity> list){
+        this.taskList=list;
+        notifyDataSetChanged();
+    }
+
     public ElectrTimerTaskAdapter(Context mContext, List<TimerTaskEntity> list,ElectrTimerTaskPresenter presenter) {
         this.mInflater = LayoutInflater.from(mContext);
         this.mContext = mContext;
@@ -74,7 +82,7 @@ public class ElectrTimerTaskAdapter extends RecyclerView.Adapter<RecyclerView.Vi
      * @param position
      */
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         final TimerTaskEntity timerTask = taskList.get(position);
         String cycle=timerTask.getIsCycle();
@@ -112,12 +120,22 @@ public class ElectrTimerTaskAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             }
         }
         ((ItemViewHolder) holder).time_tv.setText(timerTask.getDate());
-        ((ItemViewHolder) holder).cycle_tv.setText("重复:"+cycle_text);
-        ((ItemViewHolder) holder).state_tv.setText("操作:"+(timerTask.getState()==1?"开启":"关闭"));
+        ((ItemViewHolder) holder).cycle_tv.setText(cycle_text);
+        ((ItemViewHolder) holder).state_tv.setText(timerTask.getState()==1?"合闸":"切断");
         ((ItemViewHolder) holder).power_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.removeElectrTimer(timerTask.getId());
+                AlertDialog.Builder builder  = new AlertDialog.Builder(mContext);
+                builder.setTitle("提示" ) ;
+                builder.setMessage("是否确认删除该定时任务？" ) ;
+                builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPresenter.removeElectrTimer(timerTask.getId(),position);
+                    }
+                });
+                builder.setNegativeButton("否", null);
+                builder.show();
             }
         });
         holder.itemView.setTag(timerTask.getId());

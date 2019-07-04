@@ -13,4 +13,6 @@ public interface ElectrTimerTaskView {
     void showLoading();
 
     void hideLoading();
+
+    void deleteItemSuccess(String msg,int id);
 }

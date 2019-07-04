@@ -307,12 +307,16 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                         electrState=0;
                         deviceType="59";
                     }//@@NB北秦电气设备
+                    if((smokeMac.charAt(smokeMac.length()-1)+"").equals("Y")){
+                        electrState=1;
+                        deviceType="77";
+                    }//@@NB北秦电气设备
                     smokeMac = smokeMac.replace("Q","");//电气火灾
                     smokeMac = smokeMac.replace("S","");//电气火灾
                     smokeMac = smokeMac.replace("L","");//电气火灾
                     smokeMac = smokeMac.replace("N","");//电气火灾
                     smokeMac = smokeMac.replace("G","");//电气火灾
-
+                    smokeMac = smokeMac.replace("Y","");//电气火灾
                     break;
                 case "T":
                     smokeMac = smokeMac.replace("T","");//温湿度设备

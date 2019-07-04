@@ -8,8 +8,8 @@
     android:orientation="horizontal"
     android:background="@drawable/login_btn_bg">
 
-    <LinearLayout
-        android:id="@+id/category_group_lin"
+    <RelativeLayout
+        android:id="@+id/category_group_rela"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_weight="3"
@@ -18,30 +18,55 @@
         android:elevation="4dp">
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="时间:"
             android:textSize="16sp"
             android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/time_tv"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
 
+        <TextView
+            android:id="@+id/cycle_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重复:"
+            android:layout_below="@id/time_tv"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
         <TextView
             android:id="@+id/cycle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="重复:"
+            android:layout_below="@id/time_tv"
+            android:layout_toRightOf="@id/cycle_tv"
             android:textSize="16sp"
             android:textColor="@color/white"/>
 
         <TextView
-            android:id="@+id/state"
+            android:id="@+id/state_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="操作:"
+            android:layout_below="@id/cycle"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cycle"
+            android:layout_toRightOf="@id/state_tv"
             android:textSize="16sp"
             android:textColor="@color/white"/>
 
-    </LinearLayout>
+    </RelativeLayout>
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
