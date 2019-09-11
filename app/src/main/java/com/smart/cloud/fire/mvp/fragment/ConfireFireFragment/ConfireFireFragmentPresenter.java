@@ -295,6 +295,9 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                     if((smokeMac.charAt(smokeMac.length()-1)+"").equals("S")){
                         electrState=3;
                     }//@@2018.01.18 三相设备
+                    if((smokeMac.charAt(smokeMac.length()-1)+"").equals("K")){
+                        electrState=4;
+                    }//@@2018.01.18 三相设备
                     if((smokeMac.charAt(smokeMac.length()-1)+"").equals("L")){
                         electrState=1;
                         deviceType="52";
@@ -317,6 +320,7 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                     smokeMac = smokeMac.replace("N","");//电气火灾
                     smokeMac = smokeMac.replace("G","");//电气火灾
                     smokeMac = smokeMac.replace("Y","");//电气火灾
+                    smokeMac = smokeMac.replace("K","");//电气火灾
                     break;
                 case "T":
                     smokeMac = smokeMac.replace("T","");//温湿度设备

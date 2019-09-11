@@ -339,6 +339,12 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                 +"&Overcurrent="+value45
                                 +"&Leakage="+value46
                                 +"&deviceType="+devType+"&devCmd=14&imei="+electricMac+"&userid="+userID;
+                    }else if(devType==5){
+                        url= ConstantValues.SERVER_IP_NEW+"ackSwitchThreshold?threshold44="+high_value.getText().toString()
+                                +"&threshold43="+low_value.getText().toString()
+                                +"&threshold45="+value45
+                                +"&Leakage="+value46
+                                +"&deviceType="+devType+"&smokeMac="+electricMac+"&userId="+userID;
                     }else{
                         Toast.makeText(getApplicationContext(),"该设备不支持阈值设置", Toast.LENGTH_SHORT).show();
                         return;

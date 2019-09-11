@@ -12,6 +12,16 @@
         android:scaleType="centerCrop"
         android:src="@drawable/homefragment_banner"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:text="CNLYLE"/>
+
     <ImageView
         android:id="@+id/more_item"
         android:layout_width="45dp"

@@ -54,14 +54,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:visibility="gone">
+                android:layout_marginRight="20dp">
                 <TextView
                     android:id="@+id/camera_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="集中器"/>
+                    android:textColor="@color/white"
+                    android:text="网关"/>
                 <EditText
                     android:id="@+id/add_repeater_mac"
                     android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                     android:layout_toLeftOf="@+id/scan_repeater_ma"
                     android:hint="@string/add_fire_mac"
                     android:textColor="@color/text_view_and_kuang"
-                    android:textColorHint="@color/hint_color_text"
+                    android:textColorHint="@color/white"
                     android:imeOptions="actionNext"
                     android:background="@drawable/edit_view_bg"
                     />
