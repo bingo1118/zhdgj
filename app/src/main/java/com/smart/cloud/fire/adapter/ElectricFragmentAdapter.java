@@ -1,5 +1,6 @@
 package com.smart.cloud.fire.adapter;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ import com.smart.cloud.fire.mvp.fragment.ShopInfoFragment.ShopInfoFragmentPresen
 import com.smart.cloud.fire.ui.CallManagerDialogActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
+import com.smart.cloud.fire.utils.VolleyHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -109,11 +112,17 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
      * @param position
      */
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof ItemViewHolder) {
 
             final Electric normalSmoke = listNormalSmoke.get(position);
-//            ((ItemViewHolder) holder).address_tv.setText(normalSmoke.getAddress());
+            ((ItemViewHolder) holder).category_group_lin.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    showNormalDialog(normalSmoke.getMac(),normalSmoke.getDeviceType(),position);
+                    return false;
+                }
+            });
             ((ItemViewHolder) holder).mac_tv.setText(normalSmoke.getMac());//@@
 //            ((ItemViewHolder) holder).repeater_tv.setText(normalSmoke.getRepeater());
 //            ((ItemViewHolder) holder).type_tv.setText(normalSmoke.getPlaceType());
@@ -173,23 +182,7 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                     }
 
                     if(eleState!=1){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                        builder.setMessage("如未排除故障，合闸将造成严重事故!");
-                        builder.setTitle("警告");
-                        builder.setPositiveButton("我已知晓", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                changepower(2,normalSmoke);
-                                dialog.dismiss();
-                            }
-                        });
-                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                        builder.create().show();
+                        changepower(2,normalSmoke);
                     }else{
                         changepower(1,normalSmoke);
                     }
@@ -318,9 +311,9 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
     public void  changepower(final int eleState, final Electric normalSmoke){
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         if(eleState==1){
-            builder.setMessage("确认切断电源吗？");
+            builder.setMessage("确认关闭？");
         }else{
-            builder.setMessage("隐患已解决，确定合闸？");
+            builder.setMessage("确认打开？");
         }
         builder.setTitle("提示");
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
@@ -411,6 +404,68 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
             }
         });
         builder.create().show();
+    }
+
+    private void showNormalDialog(final String mac, final int deviceType, final int position){
+        final android.app.AlertDialog.Builder normalDialog =
+                new android.app.AlertDialog.Builder(mContext);
+        normalDialog.setTitle("提示");
+        normalDialog.setMessage("确认删除该设备?");
+        normalDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String url="";
+                        String userid= SharedPreferencesManager.getInstance().getData(mContext,
+                                SharedPreferencesManager.SP_FILE_GWELL,
+                                SharedPreferencesManager.KEY_RECENTNAME);
+                        switch (deviceType){
+                            case 58:
+                                url= ConstantValues.SERVER_IP_NEW+"deleteOneNetDevice?imei="+mac+"&userid="+userid;
+                                break;
+                            default:
+                                url= ConstantValues.SERVER_IP_NEW+"deleteDeviceById?imei="+mac+"&userid="+userid;
+                                break;
+                        }
+                        VolleyHelper.getInstance(mContext).getStringResponse(url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        try {
+                                            JSONObject jsonObject=new JSONObject(response);
+                                            int errorCode=jsonObject.getInt("errorCode");
+                                            if(errorCode==0){
+                                                listNormalSmoke.remove(position);
+                                                notifyDataSetChanged();
+                                                T.showShort(mContext,"删除成功");
+                                            }else{
+                                                T.showShort(mContext,"删除失败");
+                                            }
+                                            T.showShort(mContext,jsonObject.getString("error"));
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                            T.showShort(mContext,"删除失败");
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Log.e("TAG", error.getMessage(), error);
+                                        T.showShort(mContext,"删除失败");
+                                    }
+                                });
+                    }
+                });
+        normalDialog.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        // 显示
+        Dialog dialog=normalDialog.create();
+        dialog.show();
     }
 
 }

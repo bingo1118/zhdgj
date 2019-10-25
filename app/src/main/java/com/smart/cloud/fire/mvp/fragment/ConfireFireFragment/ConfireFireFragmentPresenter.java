@@ -64,6 +64,9 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
     };
 
     public void getOneSmoke(String userId,String privilege,String smokeMac){
+        if(smokeMac==null||smokeMac.length()==0){
+            return;
+        }
         mvpView.showLoading();
         String macStr = (String) smokeMac.subSequence(0, 1);
         switch (macStr){
@@ -294,7 +297,7 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                     }//@@8.26
                     if((smokeMac.charAt(smokeMac.length()-1)+"").equals("S")){
                         electrState=3;
-                    }//@@2018.01.18 三相设备
+                    }//@@光伏自动重合闸
                     if((smokeMac.charAt(smokeMac.length()-1)+"").equals("K")){
                         electrState=4;
                     }//@@2018.01.18 三相设备

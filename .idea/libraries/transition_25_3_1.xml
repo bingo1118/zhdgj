@@ -7,7 +7,6 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/transition/25.3.1/aae4221db6ff34469295e72aa44d7ef0928961ba/transition-25.3.1-sources.jar!/" />
-      <root url="jar://E:/Android_SDK/sdk/extras/android/m2repository/com/android/support/transition/25.3.1/transition-25.3.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

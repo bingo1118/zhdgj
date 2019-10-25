@@ -21,10 +21,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/login_account_and_psw_shape"
         android:layout_below="@id/title_include"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:padding="10dp">
+        android:padding="5dp">
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipere_fresh_layout"
             android:layout_width="match_parent"

@@ -62,7 +62,7 @@
                     android:layout_centerVertical="true"
                     android:textColor="@color/white"
                     android:text="网关"/>
-                <EditText
+                <com.smart.cloud.fire.view.WithRecordEdittext
                     android:id="@+id/add_repeater_mac"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -74,7 +74,7 @@
                     android:padding="6dp"
                     android:layout_toLeftOf="@+id/scan_repeater_ma"
                     android:hint="@string/add_fire_mac"
-                    android:textColor="@color/text_view_and_kuang"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:imeOptions="actionNext"
                     android:background="@drawable/edit_view_bg"
@@ -332,7 +332,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="*类型"
+                    android:text="*分组"
                     android:textColor="@color/white"
                     android:layout_gravity="center_vertical"/>
                 <com.smart.cloud.fire.view.XCDropDownListView

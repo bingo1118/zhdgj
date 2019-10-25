@@ -10,7 +10,6 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/design/25.3.1/54ddb2b52aae1149a90dddf282d9e74e88d79c79/design-25.3.1-sources.jar!/" />
-      <root url="jar://E:/Android_SDK/sdk/extras/android/m2repository/com/android/support/design/25.3.1/design-25.3.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

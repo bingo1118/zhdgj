@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorAccent">
+    android:layout_marginTop="5dp"
+    android:background="@null">
     <TextView
         android:id="@+id/textview"
         android:layout_width="match_parent"
@@ -12,5 +13,6 @@
         android:textSize="18sp"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:background="@drawable/place_item_shape"/>
 </LinearLayout>

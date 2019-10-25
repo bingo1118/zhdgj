@@ -253,7 +253,7 @@ public class LineChart01View extends DemoView {
 	}
 	private void chartDataSet(LinkedList<Double> list)
 	{
-		LineData lineData1 = new LineData("圆点",list,Color.rgb(234, 83, 71));
+		LineData lineData1 = new LineData("数值",list,Color.rgb(234, 83, 71));
 		lineData1.setLabelVisible(true);
 		lineData1.setDotStyle(XEnum.DotStyle.DOT);
 		lineData1.getDotLabelPaint().setColor(Color.rgb(234, 83, 71));
@@ -334,9 +334,9 @@ public class LineChart01View extends DemoView {
 			//chart.getToolTip().setCurrentXY(x,y);
 			chart.getToolTip().setCurrentXY(record.getPosition().x,record.getPosition().y);
 
-			chart.getToolTip().addToolTip(" Key:"+lData.getLineKey(),mPaintTooltips);
-			chart.getToolTip().addToolTip(" Label:"+lData.getLabel(),mPaintTooltips);
-			chart.getToolTip().addToolTip(" Current Value:" +Double.toString(lValue),mPaintTooltips);
+//			chart.getToolTip().addToolTip(" Key:"+lData.getLineKey(),mPaintTooltips);
+//			chart.getToolTip().addToolTip(" Label:"+lData.getLabel(),mPaintTooltips);
+			chart.getToolTip().addToolTip("数值:" +Double.toString(lValue),mPaintTooltips);
 
 
 			//当前标签对应的其它点的值
@@ -347,7 +347,7 @@ public class LineChart01View extends DemoView {
 				if(cid < data.getLinePoint().size())
 				{
 					xLabels = Double.toString(data.getLinePoint().get(cid));
-					chart.getToolTip().addToolTip("Line:"+data.getLabel()+","+ xLabels,mPaintTooltips);
+//					chart.getToolTip().addToolTip("Line:"+data.getLabel()+","+ xLabels,mPaintTooltips);
 				}
 			}
 

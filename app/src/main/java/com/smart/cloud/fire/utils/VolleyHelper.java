@@ -3,6 +3,8 @@ package com.smart.cloud.fire.utils;
 import android.content.Context;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 /**
@@ -16,6 +18,11 @@ public class VolleyHelper {
     private VolleyHelper(Context context) {
         this.context = context;
         mRequestQueue = getRequestQueue();
+    }
+
+    public void getStringResponse(String url, Response.Listener<String> listener, Response.ErrorListener errorListener){
+        StringRequest jsonObjectRequest = new StringRequest(url,listener,errorListener);
+        mRequestQueue.add(jsonObjectRequest);
     }
 
     public static synchronized VolleyHelper getInstance(Context context) {

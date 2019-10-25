@@ -31,15 +31,18 @@ import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.global.ShopType;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.Camera;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.Smoke;
+import com.smart.cloud.fire.utils.ListDataSave;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.VolleyHelper;
+import com.smart.cloud.fire.view.WithRecordEdittext;
 import com.smart.cloud.fire.view.XCDropDownListView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
@@ -53,7 +56,7 @@ import rx.functions.Action1;
  */
 public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresenter> implements ConfireFireFragmentView {
     @Bind(R.id.add_repeater_mac)
-    EditText addRepeaterMac;//集中器。。
+    WithRecordEdittext addRepeaterMac;//集中器。。
     @Bind(R.id.add_fire_mac)
     EditText addFireMac;//探测器。。
     @Bind(R.id.add_fire_name)
@@ -124,8 +127,8 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
             }
         });//@@10.18
 //        addCameraRelative.setVisibility(View.VISIBLE);
-        addFireZjq.setEditTextHint("区域");
-        addFireType.setEditTextHint("类型");
+        addFireZjq.setEditTextHint("单位");
+        addFireType.setEditTextHint("分组");
         RxView.clicks(addFireDevBtn).throttleFirst(2, TimeUnit.SECONDS).subscribe(new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
@@ -368,6 +371,7 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
     public void addSmokeResult(String msg, int errorCode) {
         T.showShort(mContext, msg);
         if (errorCode == 0) {
+            ListDataSave.getInstance(mContext).setDataList(addRepeaterMac.getText().toString());
             mShopType = null;
             mArea = null;
             clearText();

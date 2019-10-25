@@ -91,7 +91,6 @@ public class SelectDevPlaceTypeActivity extends Activity {
                             //创建并设置Adapter
                             place_items.setAdapter(adapter);
                             place_items.setItemAnimator(new DefaultItemAnimator());
-                            place_items.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
                         } catch (JSONException e) {
                             T.showShort(mContext,"无位置信息");
                             e.printStackTrace();
