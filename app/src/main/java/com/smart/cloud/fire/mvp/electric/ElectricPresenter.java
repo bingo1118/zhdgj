@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 
 import com.smart.cloud.fire.base.presenter.BasePresenter;
+import com.smart.cloud.fire.global.ElectricDetailEntity;
 import com.smart.cloud.fire.global.ElectricInfo;
 import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.HttpError;
@@ -55,6 +56,35 @@ public class ElectricPresenter extends BasePresenter<ElectricView>{
                     mvpView.getDataSuccess(electricValueBeen);
                 }else{
                     mvpView.getDataSuccess(new ArrayList<ElectricValue.ElectricValueBean>());
+                }
+            }
+
+            @Override
+            public void onFailure(int code, String msg) {
+                mvpView.getDataFail("网络错误，请检查网络");
+            }
+
+            @Override
+            public void onCompleted() {
+                mvpView.hideLoading();
+            }
+        }));
+    }
+
+    //获取第三方单相数据
+    public void getOneElectricDXInfo(String userId, String privilege, String mac, int devType, boolean refresh){
+        if(!refresh){
+            mvpView.showLoading();
+        }
+        Observable mObservable = apiStores1.getOneElectricDXInfo(userId,privilege,mac,devType+"");
+        addSubscription(mObservable,new SubscriberCallBack<>(new ApiCallback<ElectricDetailEntity>() {
+            @Override
+            public void onSuccess(ElectricDetailEntity model) {
+                int resultCode = model.getErrorCode();
+                if(resultCode==0){
+                    mvpView.getDataDXSuccess(model);
+                }else{
+                    mvpView.getDataDXSuccess(new ElectricDetailEntity());
                 }
             }
 

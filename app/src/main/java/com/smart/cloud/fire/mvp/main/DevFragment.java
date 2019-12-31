@@ -40,6 +40,7 @@ import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.global.ShopType;
 import com.smart.cloud.fire.global.SmokeSummary;
 import com.smart.cloud.fire.mvp.electric.ElectricActivity;
+import com.smart.cloud.fire.mvp.electric.ElectricDXActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.Utils;
@@ -366,7 +367,12 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
         electricFragmentAdapter.setOnItemClickListener(new ElectricFragmentAdapter.OnRecyclerViewItemClickListener(){
             @Override
             public void onItemClick(View view, Electric data){
-                Intent intent = new Intent(mContext, ElectricActivity.class);
+                Intent intent ;
+                if(data.getDeviceType()==6){
+                    intent = new Intent(mContext, ElectricDXActivity.class);
+                }else{
+                    intent = new Intent(mContext, ElectricActivity.class);
+                }
                 intent.putExtra("ElectricMac",data.getMac());
                 intent.putExtra("data",data);
                 intent.putExtra("devType",data.getDeviceType());

@@ -1,0 +1,543 @@
+package com.smart.cloud.fire.mvp.electric;
+
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.PopupMenu;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.smart.cloud.fire.adapter.ElectricActivityAdapterTest;
+import com.smart.cloud.fire.base.ui.MvpActivity;
+import com.smart.cloud.fire.global.ConstantValues;
+import com.smart.cloud.fire.global.Electric;
+import com.smart.cloud.fire.global.ElectricDetailEntity;
+import com.smart.cloud.fire.global.ElectricValue;
+import com.smart.cloud.fire.global.MyApp;
+import com.smart.cloud.fire.mvp.ElectrTimerTask.ElectrTimerTaskActivity;
+import com.smart.cloud.fire.mvp.LineChart.ElectricChartActivity;
+import com.smart.cloud.fire.mvp.LineChart.LineChart01Activity;
+import com.smart.cloud.fire.mvp.electricChangeHistory.ElectricChangeHistoryActivity;
+import com.smart.cloud.fire.utils.SharedPreferencesManager;
+import com.smart.cloud.fire.utils.T;
+import com.smart.cloud.fire.utils.TimePickerDialog;
+import com.smart.cloud.fire.utils.VolleyHelper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import fire.cloud.smart.com.smartcloudfire.R;
+
+/**
+ * Created by Administrator on 2016/11/2.
+ */
+public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implements ElectricView,TimePickerDialog.TimePickerDialogInterface {
+
+    @Bind(R.id.swipe_fresh_layout)
+    ImageView swipeFreshLayout;
+    @Bind(R.id.mProgressBar)
+    ProgressBar mProgressBar;
+    private ElectricPresenter electricPresenter;
+    private ElectricActivityAdapterTest electricActivityAdapter;
+    private Context mContext;
+    private LinearLayoutManager linearLayoutManager;
+    private String electricMac;
+    private String userID;
+    private int privilege;
+    Electric electricData;
+
+
+    @Bind(R.id.dev_id)
+    TextView dev_id;
+    @Bind(R.id.dev_areaid)
+    TextView dev_areaid;
+    @Bind(R.id.dev_address)
+    TextView dev_address;
+
+    @Bind(R.id.more)
+    TextView more;//@@菜单
+
+    @Bind(R.id.dy_a)
+    TextView dy_a;
+    @Bind(R.id.dl_a)
+    TextView dl_a;
+    @Bind(R.id.ldl_a)
+    TextView ldl_a;
+    @Bind(R.id.wd_a)
+    TextView wd_a;
+    @Bind(R.id.dianliang_a)
+    TextView dianliang_a;
+    @Bind(R.id.gl_a)
+    TextView gl_a;
+    @Bind(R.id.yuzhi_gy)
+    TextView yuzhi_gy;
+    @Bind(R.id.yuzhi_qy)
+    TextView yuzhi_qy;
+    @Bind(R.id.yuzhi_dl)
+    TextView yuzhi_dl;
+    @Bind(R.id.yuzhi_ldl)
+    TextView yuzhi_ldl;
+    @Bind(R.id.yuzhi_wd)
+    TextView yuzhi_wd;
+
+    @Bind(R.id.dy_his)
+    ImageButton dy_his;
+    @Bind(R.id.dl_his)
+    ImageButton dl_his;
+    @Bind(R.id.ldl_his)
+    ImageButton ldl_his;
+    @Bind(R.id.wd_his)
+    ImageButton wd_his;
+
+    @Bind(R.id.setting_dev_img)
+    ImageView setting_dev_img;
+    @Bind(R.id.share_dev_img)
+    ImageView share_dev_img;
+    @Bind(R.id.timer_img)
+    ImageView timer_img;
+
+    @Bind(R.id.line_wendu)
+    LinearLayout line_wendu;
+
+
+
+
+    int devType=1;
+    private String yuzhi43="";//过压阈值
+    private String yuzhi44="";//欠压阈值
+    private String yuzhi45="";//过流阈值
+    private String yuzhi46="";//漏电流阈值
+    private String yuzhi47="";//温度阈值
+
+
+    private String repeatMac;
+    private int timetype=1;
+    private String time;
+    TimePickerDialog mTimePickerDialog;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_electric_dx);
+        mContext=this;
+        electricMac = getIntent().getExtras().getString("ElectricMac");
+        userID = SharedPreferencesManager.getInstance().getData(mContext,
+                SharedPreferencesManager.SP_FILE_GWELL,
+                SharedPreferencesManager.KEY_RECENTNAME);
+        privilege = MyApp.app.getPrivilege();
+        devType = getIntent().getExtras().getInt("devType");
+        repeatMac = getIntent().getExtras().getString("repeatMac");
+        ButterKnife.bind(this);
+        refreshListView();
+        more.setVisibility(View.VISIBLE);
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu(v);
+            }
+        });
+        setting_dev_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yuzhi_set_dx();
+            }
+        });
+        timer_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auto_time();
+            }
+        });
+        share_dev_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.share_dev,(ViewGroup) findViewById(R.id.rela));
+                final AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(layout);
+                final AlertDialog dialog =builder.create();
+                final EditText userid_edit=(EditText)layout.findViewById(R.id.userid_edit);
+
+                Button commit=(Button)(Button)layout.findViewById(R.id.commit);
+                commit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String userid=userid_edit.getText().toString();
+                        if(userid.length()==0){
+                            T.showShort(mContext,"输入不可为空");
+                        }else{
+                            electricPresenter.shareDev(userid,electricMac,mContext,dialog);
+                        }
+                    }
+                });
+                dialog.show();
+            }
+        });
+        electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac,devType,false);
+        electricData= (Electric) getIntent().getExtras().getSerializable("data");
+        dev_id.setText("SN码:"+electricData.getMac());
+        dev_areaid.setText("区域:"+electricData.getAreaName());
+        dev_address.setText("地址:"+electricData.getAddress());
+        getYuzhi(electricMac);
+
+    }
+
+    private void showPopupMenu(View view) {
+        // View当前PopupMenu显示的相对View的位置
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        // menu布局
+        popupMenu.getMenuInflater().inflate(R.menu.menu_electr, popupMenu.getMenu());
+        // menu的item点击事件
+        if(devType!=52&&devType!=53&&devType!=75&&devType!=77){
+            MenuItem item=popupMenu.getMenu().findItem(R.id.yuzhi_set);
+            item.setVisible(false);
+        }
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.change_history:
+                        Intent intent=new Intent(mContext, ElectricChangeHistoryActivity.class);
+                        intent.putExtra("mac",electricMac);
+                        startActivity(intent);
+                        break;
+                    case R.id.auto_time:
+                        auto_time();
+                        break;
+                    case R.id.yuzhi_set:
+                        yuzhi_set_dx();
+                        break;
+                }
+                return false;
+            }
+        });
+        // PopupMenu关闭事件
+        popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+            @Override
+            public void onDismiss(PopupMenu menu) {
+            }
+        });
+
+        popupMenu.show();
+    }
+
+    private void auto_time() {
+        Intent intent6=new Intent(mContext,ElectrTimerTaskActivity.class);
+        intent6.putExtra("mac",electricMac);
+        intent6.putExtra("devType",devType+"");
+        startActivity(intent6);
+    }
+
+
+    //莱源第三方单相阈值设置
+    private void yuzhi_set_dx() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.eletr_threshold_setting_dx,(ViewGroup) findViewById(R.id.rela));
+        final AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(layout);
+        final AlertDialog dialog =builder.create();
+        final EditText high_value=(EditText)layout.findViewById(R.id.high_value);
+        high_value.setText(yuzhi43);
+        final EditText low_value=(EditText)layout.findViewById(R.id.low_value);
+        low_value.setText(yuzhi44);
+        final EditText overcurrentvalue=(EditText)layout.findViewById(R.id.overcurrentvalue);
+        overcurrentvalue.setText(yuzhi45);
+        final EditText Leakage_value=(EditText)layout.findViewById(R.id.Leakage_value);
+        Leakage_value.setText(yuzhi46);
+        final EditText temp_value=(EditText)layout.findViewById(R.id.temp_value);
+        temp_value.setText(yuzhi47);
+        Button commit=(Button)(Button)layout.findViewById(R.id.commit);
+        commit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url="";
+                try{
+                    int high=(int)Float.parseFloat(high_value.getText().toString());
+                    int low=(int)Float.parseFloat(low_value.getText().toString());
+                    float value45=Float.parseFloat(overcurrentvalue.getText().toString());
+                    int value46=(int)Float.parseFloat(Leakage_value.getText().toString());
+                    int value47=(int)Float.parseFloat(temp_value.getText().toString());
+
+                    if(low<130||low>220){
+                        T.showShort(mContext,"欠压阈值设置范围为130-220V");
+                        return;
+                    }
+                    if(high<220||high>280){
+                        T.showShort(mContext,"过压阈值设置范围为220-280V");
+                        return;
+                    }
+                    if(value45<1||value45>100){
+                        T.showShort(mContext,"过流阈值设置范围为1-100A");
+                        return;
+                    }
+                    if(value46<10||value46>99){
+                        T.showShort(mContext,"漏电流阈值设置范围为10-99mA");
+                        return;
+                    }
+                    if(value47<20||value47>200){
+                        T.showShort(mContext,"漏电流阈值设置范围为20-200mA");
+                        return;
+                    }
+                    if(low>high){
+                        T.showShort(mContext,"欠压阈值不能高于过压阈值");
+                        return;
+                    }
+
+                    url= ConstantValues.SERVER_IP_NEW+"ackThresholdDX?threshold43="+high_value.getText().toString()
+                            +"&threshold44="+low_value.getText().toString()
+                            +"&threshold45="+value45
+                            +"&threshold46="+value46
+                            +"&threshold47="+value47
+                            +"&mac="+electricMac+"&userId="+userID;
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                    T.showShort(mContext,"输入数据不完全或有误");
+                    return;
+                }
+                final ProgressDialog dialog1 = new ProgressDialog(mContext);
+                dialog1.setTitle("提示");
+                dialog1.setMessage("设置中，请稍候");
+                dialog1.setCanceledOnTouchOutside(false);
+                dialog1.show();
+                VolleyHelper helper=VolleyHelper.getInstance(mContext);
+                RequestQueue mQueue = helper.getRequestQueue();
+//                            RequestQueue mQueue = Volley.newRequestQueue(context);
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    int errorCode=response.getInt("errorCode");
+                                    if(errorCode==0){
+                                        T.showShort(mContext,"设置成功");
+                                        electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac, devType, false);
+                                    }else{
+                                        T.showShort(mContext,"设置失败");
+                                    }
+                                    getYuzhi(electricMac);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                dialog1.dismiss();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        T.showShort(mContext,"网络错误");
+                        dialog1.dismiss();
+                    }
+                });
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                mQueue.add(jsonObjectRequest);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    private void refreshListView() {
+        //设置刷新时动画的颜色，可以设置4个
+
+        linearLayoutManager = new LinearLayoutManager(mContext);
+        linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+
+        swipeFreshLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac, devType, true);
+                getYuzhi(electricMac);
+            }
+        });
+    }
+
+    @Override
+    protected ElectricPresenter createPresenter() {
+        electricPresenter = new ElectricPresenter(this);
+        return electricPresenter;
+    }
+
+    @Override
+    public void getDataSuccess(List<ElectricValue.ElectricValueBean> smokeList) {
+
+    }
+
+    @Override
+    public void getDataDXSuccess(ElectricDetailEntity entity) {
+        setDataToView(entity);
+    }
+
+    private void setDataToView(ElectricDetailEntity entity) {
+        dy_a.setText(Float.parseFloat(entity.getVoltage())+"");
+        dy_his.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ElectricChartActivity.class);
+                intent.putExtra("electricMac",electricMac);
+                intent.putExtra("electricType",6);
+                intent.putExtra("electricNum",1);
+                intent.putExtra("devType",devType+"");
+                startActivity(intent);
+            }
+        });
+
+        dl_a.setText(Float.parseFloat(entity.getCurrent())+"");
+        dl_his.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ElectricChartActivity.class);
+                intent.putExtra("electricMac",electricMac);
+                intent.putExtra("electricType",7);
+                intent.putExtra("electricNum",1);
+                intent.putExtra("devType",devType+"");
+                startActivity(intent);
+            }
+        });
+
+        ldl_a.setText(Float.parseFloat(entity.getLeakage())+"");
+        ldl_his.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ElectricChartActivity.class);
+                intent.putExtra("electricMac",electricMac);
+                intent.putExtra("electricType",8);
+                intent.putExtra("electricNum",1);
+                intent.putExtra("devType",devType+"");
+                startActivity(intent);
+            }
+        });
+
+        wd_a.setText(Float.parseFloat(entity.getTempFire())+"");
+        wd_his.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ElectricChartActivity.class);
+                intent.putExtra("electricMac",electricMac);
+                intent.putExtra("electricType",9);
+                intent.putExtra("electricNum",1);
+                intent.putExtra("devType",devType+"");
+                startActivity(intent);
+            }
+        });
+        dianliang_a.setText(entity.getRemainingBattery());
+        gl_a.setText(entity.getPower());
+    }
+
+    @Override
+    public void getDataFail(String msg) {
+        T.showShort(mContext,msg);
+    }
+
+    @Override
+    public void showLoading() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        mProgressBar.setVisibility(View.GONE);
+    }
+
+    public void getYuzhi(String mac){
+        VolleyHelper helper=VolleyHelper.getInstance(mContext);
+        String url=ConstantValues.SERVER_IP_NEW+"getElectrDXThreshold?mac="+mac;
+        RequestQueue mQueue = helper.getRequestQueue();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            int errorCode=response.getInt("errorCode");
+                            if(errorCode==0){
+                                yuzhi43=response.getString("value43");
+                                yuzhi44=response.getString("value44");
+                                yuzhi45=response.getString("value45");
+                                yuzhi46=response.getString("value46");
+                                yuzhi47=response.getString("value47");
+                                yuzhi_qy.setText(yuzhi44);
+                                yuzhi_gy.setText(yuzhi43);
+                                yuzhi_dl.setText(yuzhi45);
+                                yuzhi_ldl.setText(yuzhi46);
+                                yuzhi_wd.setText(yuzhi47);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                T.showShort(mContext,"网络错误");
+            }
+        });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mQueue.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void positiveListener() {
+        String url=ConstantValues.SERVER_IP_NEW+"setElectrAutoTime?mac="+electricMac
+                +"&type="+timetype
+                +"&time="+mTimePickerDialog.getHour()+":"+mTimePickerDialog.getMinute();
+        VolleyHelper helper=VolleyHelper.getInstance(mContext);
+        RequestQueue mQueue = helper.getRequestQueue();
+//                            RequestQueue mQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            int errorCode=response.getInt("errorCode");
+                            if(errorCode==0){
+                                T.showShort(mContext,"设置成功");
+                                electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac, devType, false);
+                            }else{
+                                T.showShort(mContext,"设置失败");
+                            }
+                            getYuzhi(electricMac);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                T.showShort(mContext,"网络错误");
+            }
+        });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mQueue.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void negativeListener() {
+
+    }
+}

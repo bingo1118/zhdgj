@@ -87,5 +87,17 @@
             android:text="更多"
             android:visibility="gone"
             />
+
+        <TextView
+            android:id="@+id/quick_change_all_tv"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="一键操作"
+            android:visibility="gone"/>
     </RelativeLayout>
 </RelativeLayout>

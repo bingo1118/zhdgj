@@ -244,7 +244,8 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
             }
             smokeMac = smokeMac.substring(1, smokeMac.length());
         }else if (smokeMac.length()==12){
-            deviceType="51";//创安
+            deviceType="6";//来源第三方单相
+            electrState=1;
         }else if(smokeMac.length()==16||smokeMac.length()==18){
             switch(macStr){
                 case "A":
@@ -292,6 +293,10 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                     break;
                 case "Q":
                     deviceType="5";
+                    if((smokeMac.charAt(smokeMac.length()-1)+"").equals("Z")){
+                        electrState=1;
+                        deviceType="6";
+                    }//@@8.26
                     if((smokeMac.charAt(smokeMac.length()-1)+"").equals("Q")){
                         electrState=1;
                     }//@@8.26
@@ -324,6 +329,7 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                     smokeMac = smokeMac.replace("G","");//电气火灾
                     smokeMac = smokeMac.replace("Y","");//电气火灾
                     smokeMac = smokeMac.replace("K","");//电气火灾
+                    smokeMac = smokeMac.replace("Z","");//电气火灾
                     break;
                 case "T":
                     smokeMac = smokeMac.replace("T","");//温湿度设备

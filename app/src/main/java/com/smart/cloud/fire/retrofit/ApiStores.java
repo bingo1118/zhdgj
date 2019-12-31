@@ -1,6 +1,7 @@
 package com.smart.cloud.fire.retrofit;
 
 import com.smart.cloud.fire.global.Electric;
+import com.smart.cloud.fire.global.ElectricDetailEntity;
 import com.smart.cloud.fire.global.ElectricInfo;
 import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.global.SmokeSummary;
@@ -287,6 +288,11 @@ public interface ApiStores {
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
     Observable<ElectricInfo<ElectricValue>> getOneElectricInfo(@Query("userId") String userId, @Query("privilege") String privilege,
                                                                @Query("smokeMac") String smokeMac,@Query("devType") String devType);
+
+    @GET("getOneElectricInfo")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<ElectricDetailEntity> getOneElectricDXInfo(@Query("userId") String userId, @Query("privilege") String privilege,
+                                                          @Query("smokeMac") String smokeMac, @Query("devType") String devType);
 
     @GET("shareDev")
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")

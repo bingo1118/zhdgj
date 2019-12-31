@@ -116,6 +116,14 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
         if (holder instanceof ItemViewHolder) {
 
             final Electric normalSmoke = listNormalSmoke.get(position);
+            ((ItemViewHolder) holder).category_group_lin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mOnItemClickListener!=null){
+                        mOnItemClickListener.onItemClick(v,normalSmoke);
+                    }
+                }
+            });
             ((ItemViewHolder) holder).category_group_lin.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -311,9 +319,9 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
     public void  changepower(final int eleState, final Electric normalSmoke){
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         if(eleState==1){
-            builder.setMessage("确认关闭？");
+            builder.setMessage("是否执行分闸命令？");
         }else{
-            builder.setMessage("确认打开？");
+            builder.setMessage("是否执行合闸命令？");
         }
         builder.setTitle("提示");
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
@@ -339,6 +347,15 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                         url= ConstantValues.SERVER_IP_NEW+"Telegraphy_Uool_control?imei="+normalSmoke.getMac()+"&deviceType="+normalSmoke.getDeviceType()+"&devCmd=12&userid="+userid;
                     }else{
                         url= ConstantValues.SERVER_IP_NEW+"Telegraphy_Uool_control?imei="+normalSmoke.getMac()+"&deviceType="+normalSmoke.getDeviceType()+"&devCmd=13&userid="+userid;
+                    }
+                }else if(normalSmoke.getDeviceType()==6){
+                    String userid= SharedPreferencesManager.getInstance().getData(mContext,
+                            SharedPreferencesManager.SP_FILE_GWELL,
+                            SharedPreferencesManager.KEY_RECENTNAME);
+                    if(eleState==1){
+                        url= ConstantValues.SERVER_IP_NEW+"ackControlSwitchDX?mac="+normalSmoke.getMac()+"&eleState=2&userId="+userid;
+                    }else{
+                        url= ConstantValues.SERVER_IP_NEW+"ackControlSwitchDX?mac="+normalSmoke.getMac()+"&eleState=1&userId="+userid;
                     }
                 }else{
                     if(eleState==1){

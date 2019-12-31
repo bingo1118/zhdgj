@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ import com.smart.cloud.fire.adapter.ElectricActivityAdapterTest;
 import com.smart.cloud.fire.base.ui.MvpActivity;
 import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.global.Electric;
+import com.smart.cloud.fire.global.ElectricDetailEntity;
 import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.mvp.ElectrTimerTask.ElectrTimerTaskActivity;
@@ -126,6 +128,17 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
     ImageView share_dev_img;
     @Bind(R.id.timer_img)
     ImageView timer_img;
+
+    @Bind(R.id.line_dy_b)
+    LinearLayout line_dy_b;
+    @Bind(R.id.line_dy_c)
+    LinearLayout line_dy_c;
+    @Bind(R.id.line_dl_b)
+    LinearLayout line_dl_b;
+    @Bind(R.id.line_dl_c)
+    LinearLayout line_dl_c;
+    @Bind(R.id.line_wendu)
+    LinearLayout line_wendu;
 
 
 
@@ -232,7 +245,11 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                         auto_time();
                         break;
                     case R.id.yuzhi_set:
-                        yuzhi_set();
+                        if(devType==6){
+                            yuzhi_set_dx();
+                        }else{
+                            yuzhi_set();
+                        }
                         break;
                 }
                 return false;
@@ -254,6 +271,8 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         intent6.putExtra("devType",devType+"");
         startActivity(intent6);
     }
+
+
 
     private void yuzhi_set() {
         LayoutInflater inflater = getLayoutInflater();
@@ -398,6 +417,114 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         dialog.show();
     }
 
+    //莱源第三方单相阈值设置
+    private void yuzhi_set_dx() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.eletr_threshold_setting_dx,(ViewGroup) findViewById(R.id.rela));
+        final AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(layout);
+        final AlertDialog dialog =builder.create();
+        final EditText high_value=(EditText)layout.findViewById(R.id.high_value);
+        high_value.setText(yuzhi43);
+        final EditText low_value=(EditText)layout.findViewById(R.id.low_value);
+        low_value.setText(yuzhi44);
+        final EditText overcurrentvalue=(EditText)layout.findViewById(R.id.overcurrentvalue);
+        overcurrentvalue.setText(yuzhi45);
+        final EditText Leakage_value=(EditText)layout.findViewById(R.id.Leakage_value);
+        Leakage_value.setText(yuzhi46);
+        final EditText temp_value=(EditText)layout.findViewById(R.id.temp_value);
+//        temp_value.setText(yuzhi46);
+        Button commit=(Button)(Button)layout.findViewById(R.id.commit);
+        commit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url="";
+                try{
+                    int high=(int)Float.parseFloat(high_value.getText().toString());
+                    int low=(int)Float.parseFloat(low_value.getText().toString());
+                    float value45=Float.parseFloat(overcurrentvalue.getText().toString());
+                    int value46=(int)Float.parseFloat(Leakage_value.getText().toString());
+                    int value47=(int)Float.parseFloat(temp_value.getText().toString());
+
+                    if(low<130||low>220){
+                        T.showShort(mContext,"欠压阈值设置范围为130-220V");
+                        return;
+                    }
+                    if(high<220||high>280){
+                        T.showShort(mContext,"过压阈值设置范围为220-280V");
+                        return;
+                    }
+                    if(value45<1||value45>100){
+                        T.showShort(mContext,"过流阈值设置范围为1-100A");
+                        return;
+                    }
+                    if(value46<10||value46>99){
+                        T.showShort(mContext,"漏电流阈值设置范围为10-99mA");
+                        return;
+                    }
+                    if(value47<20||value47>200){
+                        T.showShort(mContext,"漏电流阈值设置范围为20-200mA");
+                        return;
+                    }
+                    if(low>high){
+                        T.showShort(mContext,"欠压阈值不能高于过压阈值");
+                        return;
+                    }
+
+                    url= ConstantValues.SERVER_IP_NEW+"ackThresholdDX?threshold43="+high_value.getText().toString()
+                                +"&threshold44="+low_value.getText().toString()
+                                +"&threshold45="+value45
+                                +"&threshold46="+value46
+                                +"&threshold47="+value47
+                                +"&mac="+electricMac+"&userId="+userID;
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                    T.showShort(mContext,"输入数据不完全或有误");
+                    return;
+                }
+                final ProgressDialog dialog1 = new ProgressDialog(mContext);
+                dialog1.setTitle("提示");
+                dialog1.setMessage("设置中，请稍候");
+                dialog1.setCanceledOnTouchOutside(false);
+                dialog1.show();
+                VolleyHelper helper=VolleyHelper.getInstance(mContext);
+                RequestQueue mQueue = helper.getRequestQueue();
+//                            RequestQueue mQueue = Volley.newRequestQueue(context);
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    int errorCode=response.getInt("errorCode");
+                                    if(errorCode==0){
+                                        T.showShort(mContext,"设置成功");
+                                        electricPresenter.getOneElectricInfo(userID,privilege+"",electricMac, devType, false);
+                                    }else{
+                                        T.showShort(mContext,"设置失败");
+                                    }
+                                    getYuzhi(electricMac);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                dialog1.dismiss();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        T.showShort(mContext,"网络错误");
+                        dialog1.dismiss();
+                    }
+                });
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                mQueue.add(jsonObjectRequest);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
     private void refreshListView() {
         //设置刷新时动画的颜色，可以设置4个
 
@@ -438,6 +565,11 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         });
     }
 
+    @Override
+    public void getDataDXSuccess(ElectricDetailEntity entity) {
+
+    }
+
     private void setDataToView(List<ElectricValue.ElectricValueBean> smokeList) {
         for (final ElectricValue.ElectricValueBean bean:smokeList) {
             String value=bean.getValue();
@@ -455,10 +587,20 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                     dy_a.setText(Float.parseFloat(value)+"");
                                     break;
                                 case 2:
-                                    dy_b.setText(Float.parseFloat(value)+"");
+                                    if(Float.parseFloat(value)==0||devType==6){
+                                        line_dy_b.setVisibility(View.GONE);
+                                    }else{
+                                        line_dy_b.setVisibility(View.VISIBLE);
+                                        dy_b.setText(Float.parseFloat(value)+"");
+                                    }
                                     break;
                                 case 3:
-                                    dy_c.setText(Float.parseFloat(value)+"");
+                                    if(Float.parseFloat(value)==0||devType==6){
+                                        line_dy_c.setVisibility(View.GONE);
+                                    }else{
+                                        line_dy_c.setVisibility(View.VISIBLE);
+                                        dy_c.setText(Float.parseFloat(value)+"");
+                                    }
                                     break;
                             }
 //                            dv_dy.setAllData(max,Integer.parseInt(value),"电压","(单位:V)",bean.getElectricThreshold());
@@ -476,6 +618,9 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                         }catch (Exception e){
                             e.printStackTrace();
                         }
+                    }else{
+                        line_dy_b.setVisibility(View.GONE);
+                        line_dy_c.setVisibility(View.GONE);
                     }
                     break;
                 case 7:
@@ -489,10 +634,20 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                     dl_a.setText(Float.parseFloat(value)+"");
                                     break;
                                 case 2:
-                                    dl_b.setText(Float.parseFloat(value)+"");
+                                    if(Float.parseFloat(value)==0||devType==6){
+                                        line_dl_b.setVisibility(View.GONE);
+                                    }else{
+                                        line_dl_b.setVisibility(View.VISIBLE);
+                                        dl_b.setText(Float.parseFloat(value)+"");
+                                    }
                                     break;
                                 case 3:
-                                    dl_c.setText(Float.parseFloat(value)+"");
+                                    if(Float.parseFloat(value)==0||devType==6){
+                                        line_dl_c.setVisibility(View.GONE);
+                                    }else{
+                                        line_dl_c.setVisibility(View.VISIBLE);
+                                        dl_c.setText(Float.parseFloat(value)+"");
+                                    }
                                     break;
                             }
 //                            max=Float.parseFloat(value)<300?300:560;
@@ -508,6 +663,9 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                                     startActivity(intent);
                                 }
                             });
+                        }else{
+                            line_dl_b.setVisibility(View.GONE);
+                            line_dl_c.setVisibility(View.GONE);
                         }
                     }catch (Exception e){
                         e.printStackTrace();
@@ -544,6 +702,9 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
                     }
                     try {
                         if(null!=value&&value.length()>0){
+                            if(Float.parseFloat(value)>0){
+                                line_wendu.setVisibility(View.VISIBLE);
+                            }
                             switch (bean.getId()){
                                 case 1:
                                     wd_a.setText(Float.parseFloat(value)+"");

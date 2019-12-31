@@ -1,7 +1,10 @@
 package com.smart.cloud.fire.mvp.main;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,7 +18,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -35,6 +40,7 @@ import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.global.ShopType;
 import com.smart.cloud.fire.global.SmokeSummary;
 import com.smart.cloud.fire.mvp.electric.ElectricActivity;
+import com.smart.cloud.fire.mvp.electric.ElectricDXActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.Utils;
@@ -76,6 +82,8 @@ public class DevByPlaceIdActivity extends MvpActivity<ElectricDevPresenter> impl
     ImageView searchFire;//搜索按钮。。
     @Bind(R.id.title_tv)
     TextView title_tv;
+    @Bind(R.id.quick_change_all_tv)
+    TextView quick_change_all_tv;
     private ElectricFragmentAdapter electricFragmentAdapter;
     private ElectricDevPresenter electricDevPresenter;
     private Context mContext;
@@ -118,10 +126,106 @@ public class DevByPlaceIdActivity extends MvpActivity<ElectricDevPresenter> impl
         title_tv.setText(place_name);
         list = new ArrayList<>();
         page = "1";
+        quick_change_all_tv.setVisibility(View.VISIBLE);
+        quick_change_all_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showQuickChangeAllDialog();
+            }
+        });
 //        mvpPresenter.getAllElectricInfo(userID, privilege + "", page,"3",list,1,false,this);
         mvpPresenter.getNeedElectricInfo(userID, privilege + "",parentId, areaId,"", place_id,"3",this);
         mvpPresenter.getSmokeSummary(userID,privilege+"","","","","3",this);//@@9.5
 
+    }
+
+    int changeAllChoice;
+    private void showQuickChangeAllDialog(){
+        final String[] items = { "全部合闸","全部分闸" };
+        changeAllChoice = 0;
+        AlertDialog.Builder singleChoiceDialog =
+                new AlertDialog.Builder(this);
+        singleChoiceDialog.setTitle("一键操作");
+        // 第二个参数是默认选项，此处设置为0
+        singleChoiceDialog.setSingleChoiceItems(items, 0,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        changeAllChoice = which;
+                    }
+                });
+        singleChoiceDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        changepower(changeAllChoice);
+                    }
+                });
+        singleChoiceDialog.show();
+    }
+
+    public void  changepower(final int eleState){
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(mContext);
+        if(eleState==1){
+            builder.setMessage("是否执行分闸命令？");
+        }else{
+            builder.setMessage("是否执行合闸命令？");
+        }
+        builder.setTitle("提示");
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String userID = SharedPreferencesManager.getInstance().getData(mContext,
+                        SharedPreferencesManager.SP_FILE_GWELL,
+                        SharedPreferencesManager.KEY_RECENTNAME);
+                RequestQueue mQueue = Volley.newRequestQueue(mContext);
+                String url="";
+                if(eleState==0){
+                    url= ConstantValues.SERVER_IP_NEW+"Telegraphy_Uool_control_dealAll?placeId="+place_id+"&devCmd=12&userid="+userID;
+                }else{
+                    url= ConstantValues.SERVER_IP_NEW+"Telegraphy_Uool_control_dealAll?placeId="+place_id+"&devCmd=13&userid="+userID;
+                }
+                final ProgressDialog dialog1 = new ProgressDialog(mContext);
+                dialog1.setTitle("提示");
+                dialog1.setMessage("设置中，请稍候");
+                dialog1.setCanceledOnTouchOutside(false);
+                dialog1.show();
+//                Toast.makeText(mContext,"设置中，请稍候",Toast.LENGTH_SHORT).show();
+                StringRequest stringRequest = new StringRequest(url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject=new JSONObject(response);
+                                    Toast.makeText(mContext,jsonObject.getString("error"),Toast.LENGTH_SHORT).show();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                dialog1.dismiss();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        dialog1.dismiss();
+                        Toast.makeText(mContext,"设置超时",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                stringRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                mQueue.add(stringRequest);
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
 
     @Override
@@ -343,7 +447,12 @@ public class DevByPlaceIdActivity extends MvpActivity<ElectricDevPresenter> impl
         electricFragmentAdapter.setOnItemClickListener(new ElectricFragmentAdapter.OnRecyclerViewItemClickListener(){
             @Override
             public void onItemClick(View view, Electric data){
-                Intent intent = new Intent(mContext, ElectricActivity.class);
+                Intent intent ;
+                if(data.getDeviceType()==6){
+                    intent = new Intent(mContext, ElectricDXActivity.class);
+                }else{
+                    intent = new Intent(mContext, ElectricActivity.class);
+                }
                 intent.putExtra("ElectricMac",data.getMac());
                 intent.putExtra("data",data);
                 intent.putExtra("devType",data.getDeviceType());

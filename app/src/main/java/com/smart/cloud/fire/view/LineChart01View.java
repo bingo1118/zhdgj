@@ -145,7 +145,7 @@ public class LineChart01View extends DemoView {
 			if(getTheMaxData()>100){
 //				BigDecimal deSource = new BigDecimal(getTheMaxData());
 //				double d=deSource.setScale(0, BigDecimal.ROUND_HALF_UP).doubleValue();
-				chart.getDataAxis().setAxisMax(Math.round(getTheMaxData()/10) * 10+50);
+				chart.getDataAxis().setAxisMax((int)Math.round(getTheMaxData())+50);
 			}else{
 				chart.getDataAxis().setAxisMax(100);
 			}
@@ -154,7 +154,7 @@ public class LineChart01View extends DemoView {
 			chart.getDataAxis().setAxisSteps(20);
 
 			if(getTheMinData()>20){
-				chart.getDataAxis().setAxisMin(getTheMinData()-20);
+				chart.getDataAxis().setAxisMin((int)getTheMinData()-20);
 			}else{
 				chart.getDataAxis().setAxisMin(0);
 			}
