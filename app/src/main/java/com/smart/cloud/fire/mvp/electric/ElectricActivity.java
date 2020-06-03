@@ -30,6 +30,7 @@ import com.smart.cloud.fire.adapter.ElectricActivityAdapterTest;
 import com.smart.cloud.fire.base.ui.MvpActivity;
 import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.global.Electric;
+import com.smart.cloud.fire.global.ElectricDXDetailEntity;
 import com.smart.cloud.fire.global.ElectricDetailEntity;
 import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.global.MyApp;
@@ -566,7 +567,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
     }
 
     @Override
-    public void getDataDXSuccess(ElectricDetailEntity entity) {
+    public void getDataDXSuccess(ElectricDXDetailEntity entity) {
 
     }
 
@@ -754,6 +755,11 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
     @Override
     public void hideLoading() {
         mProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void getDataDXyuzhiSuccess(ElectricDXDetailEntity model) {
+
     }
 
     public void getYuzhi(String mac){

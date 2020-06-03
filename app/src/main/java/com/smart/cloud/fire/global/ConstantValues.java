@@ -47,7 +47,7 @@ public class ConstantValues {
     public static final String FORGET_PASSWORD_URL = "http://cloudlinks.cn/pw/";
 
     //更新接口
-    public static final String UPDATE_URL="http://193.112.59.214:51091/download/update_zhdgj.xml";
+    public static final String UPDATE_URL="http://47.111.254.147:51091/download/update_zhdgj.xml";
     //    public static final String UPDATE_URL="http://119.29.155.148/download/update_liaocheng.xml";
 //    public static final String UPDATE_URL="http://119.29.223.106:51091/download/update_bqyl.xml";
     public static final String ERROR_URL = "http://182.254.234.243:8080/UploadError/UploadServlet";

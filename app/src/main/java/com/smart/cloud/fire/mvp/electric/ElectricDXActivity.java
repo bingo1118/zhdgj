@@ -18,6 +18,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +33,7 @@ import com.smart.cloud.fire.adapter.ElectricActivityAdapterTest;
 import com.smart.cloud.fire.base.ui.MvpActivity;
 import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.global.Electric;
+import com.smart.cloud.fire.global.ElectricDXDetailEntity;
 import com.smart.cloud.fire.global.ElectricDetailEntity;
 import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.global.MyApp;
@@ -69,6 +73,8 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
     private int privilege;
     Electric electricData;
 
+    private ElectricDXDetailEntity mModel;
+
 
     @Bind(R.id.dev_id)
     TextView dev_id;
@@ -88,20 +94,32 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
     TextView ldl_a;
     @Bind(R.id.wd_a)
     TextView wd_a;
+    @Bind(R.id.wd_n)
+    TextView wd_n;
     @Bind(R.id.dianliang_a)
     TextView dianliang_a;
+    @Bind(R.id.sydl_a)
+    TextView sydl_a;
+    @Bind(R.id.tzdl_a)
+    TextView tzdl_a;
     @Bind(R.id.gl_a)
     TextView gl_a;
+    @Bind(R.id.glys_a)
+    TextView glys_a;
+    @Bind(R.id.pl_a)
+    TextView pl_a;
     @Bind(R.id.yuzhi_gy)
     TextView yuzhi_gy;
-    @Bind(R.id.yuzhi_qy)
-    TextView yuzhi_qy;
     @Bind(R.id.yuzhi_dl)
     TextView yuzhi_dl;
     @Bind(R.id.yuzhi_ldl)
     TextView yuzhi_ldl;
     @Bind(R.id.yuzhi_wd)
     TextView yuzhi_wd;
+    @Bind(R.id.yuzhi_wd_n)
+    TextView yuzhi_wd_n;
+    @Bind(R.id.price_value)
+    TextView price_value;
 
     @Bind(R.id.dy_his)
     ImageButton dy_his;
@@ -111,6 +129,8 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
     ImageButton ldl_his;
     @Bind(R.id.wd_his)
     ImageButton wd_his;
+    @Bind(R.id.wd_his_n)
+    ImageButton wd_his_n;
 
     @Bind(R.id.setting_dev_img)
     ImageView setting_dev_img;
@@ -122,16 +142,7 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
     @Bind(R.id.line_wendu)
     LinearLayout line_wendu;
 
-
-
-
     int devType=1;
-    private String yuzhi43="";//过压阈值
-    private String yuzhi44="";//欠压阈值
-    private String yuzhi45="";//过流阈值
-    private String yuzhi46="";//漏电流阈值
-    private String yuzhi47="";//温度阈值
-
 
     private String repeatMac;
     private int timetype=1;
@@ -200,8 +211,9 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
         dev_id.setText("SN码:"+electricData.getMac());
         dev_areaid.setText("区域:"+electricData.getAreaName());
         dev_address.setText("地址:"+electricData.getAddress());
-        getYuzhi(electricMac);
+//        getYuzhi(electricMac);
 
+        electricPresenter.getOneElectricDXyuzhi(electricMac);
     }
 
     private void showPopupMenu(View view) {
@@ -228,6 +240,13 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
                         break;
                     case R.id.yuzhi_set:
                         yuzhi_set_dx();
+                        break;
+                    case R.id.add_battery:
+                        if(mModel.getPayMode().equals("0")){
+                            addBattery();
+                        }else{
+                            T.showShort(mContext,"仅预付费模式支持");
+                        }
                         break;
                 }
                 return false;
@@ -258,15 +277,51 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
         final AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(layout);
         final AlertDialog dialog =builder.create();
         final EditText high_value=(EditText)layout.findViewById(R.id.high_value);
-        high_value.setText(yuzhi43);
+        high_value.setText(mModel.getThreshold33());
         final EditText low_value=(EditText)layout.findViewById(R.id.low_value);
-        low_value.setText(yuzhi44);
+        low_value.setText(mModel.getThreshold34());
         final EditText overcurrentvalue=(EditText)layout.findViewById(R.id.overcurrentvalue);
-        overcurrentvalue.setText(yuzhi45);
+        overcurrentvalue.setText(mModel.getThreshold35());
         final EditText Leakage_value=(EditText)layout.findViewById(R.id.Leakage_value);
-        Leakage_value.setText(yuzhi46);
+        Leakage_value.setText(mModel.getThreshold36());
         final EditText temp_value=(EditText)layout.findViewById(R.id.temp_value);
-        temp_value.setText(yuzhi47);
+        temp_value.setText(mModel.getThreshold37());
+
+        final Switch high_value_enable=(Switch) layout.findViewById(R.id.high_value_enable);
+        high_value_enable.setChecked(mModel.getThreshold33enable().equals("1"));
+        final Switch low_value_enable=(Switch) layout.findViewById(R.id.low_value_enable);
+        low_value_enable.setChecked(mModel.getThreshold34enable().equals("1"));
+        final Switch overcurrentvalue_enable=(Switch) layout.findViewById(R.id.overcurrentvalue_enable);
+        overcurrentvalue_enable.setChecked(mModel.getThreshold35enable().equals("1"));
+        final Switch Leakage_value_enable=(Switch) layout.findViewById(R.id.Leakage_value_enable);
+        Leakage_value_enable.setChecked(mModel.getThreshold36enable().equals("1"));
+        final Switch temp_value_name=(Switch) layout.findViewById(R.id.temp_value_enable);
+        temp_value_name.setChecked(mModel.getThreshold37enable().equals("1"));
+
+        final EditText action_delay_value=(EditText)layout.findViewById(R.id.action_delay_value);
+        action_delay_value.setText(mModel.getActionDelay());
+        final EditText open_sum_value=(EditText)layout.findViewById(R.id.open_sum_value);
+        open_sum_value.setText(mModel.getOpenSum());
+        final EditText price_value=(EditText)layout.findViewById(R.id.price_value);
+        price_value.setText(mModel.getPrice());
+
+        final RadioGroup auto_mode_value=(RadioGroup)layout.findViewById(R.id.auto_mode_value);
+        final RadioButton shoudong=(RadioButton)layout.findViewById(R.id.shoudong);
+        final RadioButton zidong=(RadioButton)layout.findViewById(R.id.zidong);
+        if(mModel.getAutoMode().equals("0")){
+            shoudong.setChecked(true);
+        }else{
+            zidong.setChecked(true);
+        }
+
+        final RadioButton xian=(RadioButton)layout.findViewById(R.id.xian);
+        final RadioButton hou=(RadioButton)layout.findViewById(R.id.hou);
+        if(mModel.getPayMode().equals("0")){
+            xian.setChecked(true);
+        }else{
+            hou.setChecked(true);
+        }
+
         Button commit=(Button)(Button)layout.findViewById(R.id.commit);
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -291,8 +346,8 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
                         T.showShort(mContext,"过流阈值设置范围为1-100A");
                         return;
                     }
-                    if(value46<10||value46>99){
-                        T.showShort(mContext,"漏电流阈值设置范围为10-99mA");
+                    if(value46<5||value46>500){
+                        T.showShort(mContext,"漏电流阈值设置范围为5-500mA");
                         return;
                     }
                     if(value47<20||value47>200){
@@ -304,11 +359,21 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
                         return;
                     }
 
-                    url= ConstantValues.SERVER_IP_NEW+"ackThresholdDX?threshold43="+high_value.getText().toString()
-                            +"&threshold44="+low_value.getText().toString()
+                    url= ConstantValues.SERVER_IP_NEW+"ackThresholdDX?threshold43="+high
+                            +"&threshold44="+low
                             +"&threshold45="+value45
                             +"&threshold46="+value46
                             +"&threshold47="+value47
+                            +"&threshold43enable="+(high_value_enable.isChecked()?"1":"0")
+                            +"&threshold44enable="+(low_value_enable.isChecked()?"1":"0")
+                            +"&threshold45enable="+(overcurrentvalue_enable.isChecked()?"1":"0")
+                            +"&threshold46enable="+(Leakage_value_enable.isChecked()?"1":"0")
+                            +"&threshold47enable="+(temp_value_name.isChecked()?"1":"0")
+                            +"&actionDelay="+action_delay_value.getText().toString()
+                            +"&openSum="+open_sum_value.getText().toString()
+                            +"&autoMode="+(zidong.isChecked()?"1":"0")
+                            +"&payMode="+(hou.isChecked()?"1":"0")
+                            +"&price="+price_value.getText().toString()
                             +"&mac="+electricMac+"&userId="+userID;
 
                 }catch(Exception e){
@@ -334,9 +399,76 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
                                         T.showShort(mContext,"设置成功");
                                         electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac, devType, false);
                                     }else{
-                                        T.showShort(mContext,"设置失败");
+                                        T.showShort(mContext,response.getString("error"));
                                     }
-                                    getYuzhi(electricMac);
+                                    electricPresenter.getOneElectricDXyuzhi(electricMac);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                dialog1.dismiss();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        T.showShort(mContext,"网络错误");
+                        dialog1.dismiss();
+                    }
+                });
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                mQueue.add(jsonObjectRequest);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+    //莱源电量充值
+    private void addBattery() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.add_battery_setting,(ViewGroup) findViewById(R.id.rela));
+        final AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(layout);
+        final AlertDialog dialog =builder.create();
+        final EditText value_et=(EditText)layout.findViewById(R.id.value_et);
+
+
+        Button commit=(Button)(Button)layout.findViewById(R.id.commit);
+        commit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url="";
+                try{
+                    int value=(int)Float.parseFloat(value_et.getText().toString());
+                    url= ConstantValues.SERVER_IP_NEW+"ackBattery?battery="+value
+                            +"&mac="+electricMac+"&userId="+userID;
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                    T.showShort(mContext,"输入数据不完全或有误");
+                    return;
+                }
+                final ProgressDialog dialog1 = new ProgressDialog(mContext);
+                dialog1.setTitle("提示");
+                dialog1.setMessage("设置中，请稍候");
+                dialog1.setCanceledOnTouchOutside(false);
+                dialog1.show();
+                VolleyHelper helper=VolleyHelper.getInstance(mContext);
+                RequestQueue mQueue = helper.getRequestQueue();
+//                            RequestQueue mQueue = Volley.newRequestQueue(context);
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    int errorCode=response.getInt("errorCode");
+                                    if(errorCode==0){
+                                        T.showShort(mContext,"设置成功");
+                                    }else{
+                                        T.showShort(mContext,response.getString("error"));
+                                    }
+                                    electricPresenter.getOneElectricDXyuzhi(electricMac);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -369,7 +501,8 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
             @Override
             public void onClick(View v) {
                 electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac, devType, true);
-                getYuzhi(electricMac);
+//                getYuzhi(electricMac);
+                electricPresenter.getOneElectricDXyuzhi(electricMac);
             }
         });
     }
@@ -386,11 +519,11 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
     }
 
     @Override
-    public void getDataDXSuccess(ElectricDetailEntity entity) {
+    public void getDataDXSuccess(ElectricDXDetailEntity entity) {
         setDataToView(entity);
     }
 
-    private void setDataToView(ElectricDetailEntity entity) {
+    private void setDataToView(ElectricDXDetailEntity entity) {
         dy_a.setText(Float.parseFloat(entity.getVoltage())+"");
         dy_his.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -442,8 +575,34 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
                 startActivity(intent);
             }
         });
-        dianliang_a.setText(entity.getRemainingBattery());
+
+        wd_n.setText(Float.parseFloat(entity.getTempZero())+"");
+        wd_his_n.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ElectricChartActivity.class);
+                intent.putExtra("electricMac",electricMac);
+                intent.putExtra("electricType",9);
+                intent.putExtra("electricNum",4);
+                intent.putExtra("devType",devType+"");
+                startActivity(intent);
+            }
+        });
+
+        dianliang_a.setText(entity.getTotalBattery());
+        sydl_a.setText(entity.getRemainingBattery());
+        tzdl_a.setText(entity.getOverdraft());
+        float price=0;
+        try {
+            price=Float.parseFloat(entity.getTotalBattery()) * Float.parseFloat(entity.getPrice());
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            price_value.setText(price+"");
+        }
         gl_a.setText(entity.getPower());
+        glys_a.setText(entity.getPowerFactor());
+        pl_a.setText(entity.getFrequency());
     }
 
     @Override
@@ -461,7 +620,18 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
         mProgressBar.setVisibility(View.GONE);
     }
 
-    public void getYuzhi(String mac){
+
+    @Override
+    public void getDataDXyuzhiSuccess(ElectricDXDetailEntity model) {
+        mModel=model;
+        yuzhi_gy.setText("阈值:"+mModel.getThreshold33()+"—"+mModel.getThreshold34());
+        yuzhi_dl.setText("阈值:"+mModel.getThreshold35());
+        yuzhi_ldl.setText("阈值:"+mModel.getThreshold36());
+        yuzhi_wd.setText("阈值:"+mModel.getThreshold37());
+        yuzhi_wd_n.setText("阈值:"+mModel.getThreshold37());
+    }
+
+    public void getYuzhi1(String mac){
         VolleyHelper helper=VolleyHelper.getInstance(mContext);
         String url=ConstantValues.SERVER_IP_NEW+"getElectrDXThreshold?mac="+mac;
         RequestQueue mQueue = helper.getRequestQueue();
@@ -472,16 +642,16 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
                         try {
                             int errorCode=response.getInt("errorCode");
                             if(errorCode==0){
-                                yuzhi43=response.getString("value43");
-                                yuzhi44=response.getString("value44");
-                                yuzhi45=response.getString("value45");
-                                yuzhi46=response.getString("value46");
-                                yuzhi47=response.getString("value47");
-                                yuzhi_qy.setText(yuzhi44);
-                                yuzhi_gy.setText(yuzhi43);
-                                yuzhi_dl.setText(yuzhi45);
-                                yuzhi_ldl.setText(yuzhi46);
-                                yuzhi_wd.setText(yuzhi47);
+//                                yuzhi43=response.getString("value43");
+//                                yuzhi44=response.getString("value44");
+//                                yuzhi45=response.getString("value45");
+//                                yuzhi46=response.getString("value46");
+//                                yuzhi47=response.getString("value47");
+//                                yuzhi_qy.setText(yuzhi44);
+//                                yuzhi_gy.setText(yuzhi43);
+//                                yuzhi_dl.setText(yuzhi45);
+//                                yuzhi_ldl.setText(yuzhi46);
+//                                yuzhi_wd.setText(yuzhi47);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -519,7 +689,8 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
                             }else{
                                 T.showShort(mContext,"设置失败");
                             }
-                            getYuzhi(electricMac);
+//                            getYuzhi(electricMac);
+                            electricPresenter.getOneElectricDXyuzhi(electricMac);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

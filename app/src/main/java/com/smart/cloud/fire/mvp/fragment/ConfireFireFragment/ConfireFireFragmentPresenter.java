@@ -78,6 +78,8 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                 smokeMac = smokeMac.replace("N","");
                 break;
             case "Q":
+                smokeMac = smokeMac.replace("X","");
+                smokeMac = smokeMac.replace("Z","");
                 smokeMac = smokeMac.replace("Q","");
                 smokeMac = smokeMac.replace("S","");
                 smokeMac = smokeMac.replace("L","");
@@ -293,6 +295,10 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                     break;
                 case "Q":
                     deviceType="5";
+                    if((smokeMac.charAt(smokeMac.length()-1)+"").equals("X")){
+                        electrState=1;
+                        deviceType="7";
+                    }//@@8.26
                     if((smokeMac.charAt(smokeMac.length()-1)+"").equals("Z")){
                         electrState=1;
                         deviceType="6";
@@ -330,6 +336,7 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                     smokeMac = smokeMac.replace("Y","");//电气火灾
                     smokeMac = smokeMac.replace("K","");//电气火灾
                     smokeMac = smokeMac.replace("Z","");//电气火灾
+                    smokeMac = smokeMac.replace("X","");//电气火灾
                     break;
                 case "T":
                     smokeMac = smokeMac.replace("T","");//温湿度设备
@@ -403,6 +410,7 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                     smokeMac = smokeMac.replace("H","");
                     smokeMac = smokeMac.replace("I","");
                     smokeMac = smokeMac.replace("Q","");
+                    smokeMac = smokeMac.replace("L","");
                     break;
                 case "H":
                     smokeMac = smokeMac.replace("H","");//空气探测器

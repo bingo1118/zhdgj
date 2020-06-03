@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/login_btn_bg">
+
+    <TextView
+        android:id="@+id/attr_name_tv"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:text="电流"
+        android:layout_centerVertical="true"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:textSize="8sp"
+        android:text="单位(A)"
+        android:layout_below="@id/attr_name_tv"
+        android:textColor="@color/white"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_toRightOf="@id/attr_name_tv"/>
+
+    <TextView
+        android:id="@+id/attr_value_tv"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:textColor="@color/white"
+        android:text="--"
+        android:layout_toRightOf="@id/attr_name_tv"
+        android:textStyle="bold|italic"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/yuzhi_tv"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/attr_name_tv"
+        android:text="阈值:--A"
+        android:textSize="8sp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:textColor="@color/colorAccent"/>
+
+    <ImageButton
+        android:id="@+id/history_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/search_w" />
+</RelativeLayout>

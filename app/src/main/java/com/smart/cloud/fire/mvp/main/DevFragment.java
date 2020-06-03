@@ -41,6 +41,7 @@ import com.smart.cloud.fire.global.ShopType;
 import com.smart.cloud.fire.global.SmokeSummary;
 import com.smart.cloud.fire.mvp.electric.ElectricActivity;
 import com.smart.cloud.fire.mvp.electric.ElectricDXActivity;
+import com.smart.cloud.fire.mvp.electric.ElectricSXActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.Utils;
@@ -370,6 +371,8 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
                 Intent intent ;
                 if(data.getDeviceType()==6){
                     intent = new Intent(mContext, ElectricDXActivity.class);
+                }else if(data.getDeviceType()==7){
+                    intent = new Intent(mContext, ElectricSXActivity.class);
                 }else{
                     intent = new Intent(mContext, ElectricActivity.class);
                 }

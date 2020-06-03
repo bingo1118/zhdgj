@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 8
@@ -18,6 +18,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.+'
-    compile files('libs/javabase64.jar')
+    implementation 'com.android.support:support-v4:19.+'
+    implementation files('libs/javabase64.jar')
 }

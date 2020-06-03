@@ -613,7 +613,7 @@ public class CollectFragment extends MvpFragment<CollectFragmentPresenter> imple
         if(adapter!=null){
             adapter.changeMoreStatus(RefreshRecyclerAdapter.NO_DATA);
         }
-        T.showShort(mContext, msg);
+//        T.showShort(mContext, msg);
     }
 
     @Override

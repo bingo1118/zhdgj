@@ -215,7 +215,9 @@
         <activity android:name="com.smart.cloud.fire.activity.SelectDevPlaceType.SelectDevPlaceTypeActivity" />
         <activity android:name="com.smart.cloud.fire.mvp.main.DevByPlaceIdActivity" />
         <activity android:name="com.smart.cloud.fire.mvp.ElectrTimerTask.ElectrTimerTaskActivity" />
-        <activity android:name="com.smart.cloud.fire.mvp.electric.ElectricDXActivity"></activity>
+        <activity android:name="com.smart.cloud.fire.mvp.electric.ElectricDXActivity" />
+        <activity android:name="com.smart.cloud.fire.mvp.electric.ElectricSXActivity" />
+        <activity android:name="com.smart.cloud.fire.mvp.electric.ElectricLYActivity"></activity>
     </application>
 
 </manifest>
