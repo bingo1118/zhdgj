@@ -32,6 +32,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -215,9 +217,14 @@
         <activity android:name="com.smart.cloud.fire.activity.SelectDevPlaceType.SelectDevPlaceTypeActivity" />
         <activity android:name="com.smart.cloud.fire.mvp.main.DevByPlaceIdActivity" />
         <activity android:name="com.smart.cloud.fire.mvp.ElectrTimerTask.ElectrTimerTaskActivity" />
-        <activity android:name="com.smart.cloud.fire.mvp.electric.ElectricDXActivity" />
-        <activity android:name="com.smart.cloud.fire.mvp.electric.ElectricSXActivity" />
-        <activity android:name="com.smart.cloud.fire.mvp.electric.ElectricLYActivity"></activity>
+        <activity
+            android:name="com.smart.cloud.fire.mvp.electric.ElectricDXActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.smart.cloud.fire.mvp.electric.ElectricSXActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="com.smart.cloud.fire.mvp.electric.ElectricLYActivity" />
+        <activity android:name="com.smart.cloud.fire.mvp.LineChart.PowerChartActivity"></activity>
     </application>
 
 </manifest>

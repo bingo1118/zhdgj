@@ -168,6 +168,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 if(errorCode==0){
                     //获取到内部服务器的用户权限，并配置到MyAPP
                     MyApp.app.setPrivilege(model.getPrivilege());
+                    MyApp.app.setCut_electr(model.getCut_electr());
+                    MyApp.app.setAdd_electr(model.getAdd_electr());
                     SharedPreferencesManager.getInstance().putData(MyApp.app,
                             SharedPreferencesManager.SP_FILE_GWELL,
                             SharedPreferencesManager.KEY_RECENTPASS,

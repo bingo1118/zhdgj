@@ -34,6 +34,8 @@ public class LoginModel {
     private String SessionID;
     private String DomainList;
     private String UserLevel;
+    private int cut_electr;
+    private int add_electr;
 
     public String getError_code() {
         return error_code;
@@ -161,5 +163,21 @@ public class LoginModel {
 
     public void setPrivilege(int privilege) {
         this.privilege = privilege;
+    }
+
+    public int getCut_electr() {
+        return cut_electr;
+    }
+
+    public void setCut_electr(int cut_electr) {
+        this.cut_electr = cut_electr;
+    }
+
+    public int getAdd_electr() {
+        return add_electr;
+    }
+
+    public void setAdd_electr(int add_electr) {
+        this.add_electr = add_electr;
     }
 }

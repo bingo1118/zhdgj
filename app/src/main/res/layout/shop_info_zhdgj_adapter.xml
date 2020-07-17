@@ -61,7 +61,18 @@
                 android:layout_alignParentBottom="true"
                 android:text="在线"
                 android:textSize="14sp"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/alarm_state_text"
+                android:layout_alignParentRight="true"
+                android:layout_above="@id/state_text"
+                android:text="正常"
+                android:textSize="14sp"
+                android:layout_marginLeft="5dp"
                 android:textColor="@color/white"/>
 
 

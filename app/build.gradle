@@ -25,14 +25,14 @@ android {
         applicationId "fire.cloud.smart.com.smartcloudfire_zhdgj"
         minSdkVersion 16
         targetSdkVersion 19
-        versionCode 28
-        versionName "4.3.21"
+        versionCode 31
+        versionName "4.3.24"
         multiDexEnabled true
 
         manifestPlaceholders = [
                 GETUI_APP_ID    : "4jEx8zHxXy5UzfpbAzlhp2",
                 GETUI_APP_KEY   : "80x456MD887eBLCu3ZaKw4",
-                GETUI_APP_SECRET: "80x456MD887eBLCu3ZaKw4",
+                GETUI_APP_SECRET: "4fjfvhneby7ASi4vVi0qb3",
                 PACKAGE_NAME    : applicationId
         ]
 

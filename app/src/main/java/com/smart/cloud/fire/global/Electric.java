@@ -45,6 +45,7 @@ public class Electric implements Serializable{
     private String principal2Phone;
     private String repeater;
     private int eleState;//@@11.01
+    private int alarmState;
 
     public String getAddSmokeTime() {
         return addSmokeTime;
@@ -189,5 +190,13 @@ public class Electric implements Serializable{
 
     public void setEleState(int eleState) {
         this.eleState = eleState;
+    }
+
+    public int getAlarmState() {
+        return alarmState;
+    }
+
+    public void setAlarmState(int alarmState) {
+        this.alarmState = alarmState;
     }
 }

@@ -10,6 +10,7 @@ public class TimerTaskEntity {
     private String isCycle;
     private int state;
     private int devType;
+    private String lastdealtime;
 
     public String getId() {
         return id;
@@ -57,5 +58,13 @@ public class TimerTaskEntity {
 
     public void setDevType(int devType) {
         this.devType = devType;
+    }
+
+    public String getLastdealtime() {
+        return lastdealtime;
+    }
+
+    public void setLastdealtime(String lastdealtime) {
+        this.lastdealtime = lastdealtime;
     }
 }

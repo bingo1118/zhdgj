@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/message_banner">
+    <RelativeLayout
+        android:id="@+id/title_rela"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="#ffffff"
+            android:layout_centerInParent="true"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+
+    <com.smart.cloud.fire.view.LineChart01View
+        android:id="@+id/linechart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true" />
+    <include layout="@layout/progress_bar"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linechart"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/page_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:textSize="18sp"
+            android:text="第1页"/>
+        <ImageView
+            android:id="@+id/btn_next"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/right2_circle"
+            android:layout_toRightOf="@+id/btn_new"
+            android:layout_below="@id/page_text"
+            android:layout_marginLeft="20dp"
+            android:textColor="#ffffff" />
+        <ImageView
+            android:id="@+id/btn_new"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/page_text"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/new_circle"
+            />
+        <ImageView
+            android:id="@+id/btn_before"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_toLeftOf="@id/btn_new"
+            android:layout_below="@id/page_text"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/left2_circle"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

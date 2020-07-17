@@ -39,6 +39,7 @@ import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.mvp.ElectrTimerTask.ElectrTimerTaskActivity;
 import com.smart.cloud.fire.mvp.LineChart.ElectricChartActivity;
+import com.smart.cloud.fire.mvp.LineChart.PowerChartActivity;
 import com.smart.cloud.fire.mvp.electricChangeHistory.ElectricChangeHistoryActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
@@ -178,6 +179,8 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
     ImageButton wd_his_c;
     @Bind(R.id.wd_his_n)
     ImageButton wd_his_n;
+    @Bind(R.id.dianliang_his)
+    ImageButton dianliang_his;
 
     @Bind(R.id.setting_dev_img)
     ImageView setting_dev_img;
@@ -396,8 +399,8 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
                         T.showShort(mContext,"过流阈值设置范围为1-100A");
                         return;
                     }
-                    if(value46<5||value46>500){
-                        T.showShort(mContext,"漏电流阈值设置范围为5-500mA");
+                    if(value46<5||value46>1000){
+                        T.showShort(mContext,"漏电流阈值设置范围为5-1000mA");
                         return;
                     }
                     if(value47<20||value47>200){
@@ -644,6 +647,16 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
             }
         });
         dianliang_a.setText(entity.getTotalBattery());
+        dianliang_his.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PowerChartActivity.class);
+                intent.putExtra("electricMac",electricMac);
+                intent.putExtra("electricType",9);
+                intent.putExtra("devType",devType+"");
+                startActivity(intent);
+            }
+        });
         sydl_a.setText(entity.getRemainingBattery());
         tzdl_a.setText(entity.getOverdraft());
         float price=0;

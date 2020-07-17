@@ -159,8 +159,16 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
 
             if (state == 0) {//设备不在线。。
                 ((ItemViewHolder) holder).state_text.setText("离线");
+                ((ItemViewHolder) holder).alarm_state_text.setVisibility(View.GONE);
             } else {//设备在线。。
                 ((ItemViewHolder) holder).state_text.setText("在线");
+                ((ItemViewHolder) holder).alarm_state_text.setVisibility(View.VISIBLE);
+            }
+            final int alarmState = normalSmoke.getAlarmState();
+            if (alarmState == 2) {//设备报警
+                ((ItemViewHolder) holder).alarm_state_text.setText("报警");
+            } else {//设备正常
+                ((ItemViewHolder) holder).alarm_state_text.setText("正常");
             }
             final int eleState = normalSmoke.getEleState();
             //if(privilege==3){//@@8.28权限3有切换电源功能
@@ -180,12 +188,13 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
             ((ItemViewHolder) holder).power_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(state==0){
-                        Toast.makeText(MyApp.app,"设备不在线",Toast.LENGTH_SHORT).show();
+                    if(MyApp.app.getCut_electr()!=1){
+                        Toast.makeText(MyApp.app,"您没有该权限",Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if(privilege!=3&&privilege!=4){
-                        Toast.makeText(MyApp.app,"您没有该权限",Toast.LENGTH_SHORT).show();
+
+                    if(state==0){
+                        Toast.makeText(MyApp.app,"设备不在线",Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -256,6 +265,8 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
 //        TextView address_tv;
         @Bind(R.id.state_text)
         TextView state_text;
+        @Bind(R.id.alarm_state_text)
+        TextView alarm_state_text;
         @Bind(R.id.manager_img)
         ImageView manager_img;
         @Bind(R.id.dev_name)

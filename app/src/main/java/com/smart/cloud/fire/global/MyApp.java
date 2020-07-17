@@ -11,6 +11,7 @@ import android.os.Vibrator;
 import android.widget.RemoteViews;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.igexin.sdk.PushManager;
 import com.mob.MobSDK;
 import com.p2p.core.update.UpdateManager;
 import com.smart.cloud.fire.service.LocationService;
@@ -34,6 +35,8 @@ public class MyApp extends Application {
     private int privilege=-1;
     public LocationService locationService;
     public Vibrator mVibrator;
+    private int cut_electr;
+    private int add_electr;
 
     @Override
     public void onCreate() {
@@ -49,6 +52,10 @@ public class MyApp extends Application {
         //检查内存是否泄漏初始化，正式版应该关闭
         LeakCanary.install(this);
         MobSDK.init(this);
+        //启动个推接收推送信息。。
+        PushManager.getInstance().initialize(this.getApplicationContext(), com.smart.cloud.fire.geTuiPush.DemoPushService.class);
+        PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), com.smart.cloud.fire.geTuiPush.DemoIntentService.class);
+
     }
 
     public NotificationManager getNotificationManager() {
@@ -141,5 +148,21 @@ public class MyApp extends Application {
         mNotificationManager = getNotificationManager();
         mNotificationManager.cancel(NOTIFICATION_DOWN_ID);
 
+    }
+
+    public int getAdd_electr() {
+        return add_electr;
+    }
+
+    public void setAdd_electr(int add_electr) {
+        this.add_electr = add_electr;
+    }
+
+    public int getCut_electr() {
+        return cut_electr;
+    }
+
+    public void setCut_electr(int cut_electr) {
+        this.cut_electr = cut_electr;
     }
 }

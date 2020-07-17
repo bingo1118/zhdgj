@@ -119,6 +119,19 @@ public class ElectrTimerTaskAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 }
             }
         }
+        String lasttime=timerTask.getLastdealtime();
+        if(lasttime.equals("0")){
+            ((ItemViewHolder) holder).lastdealtime.setText("未开始");
+        }else if(lasttime.equals("1")){
+            ((ItemViewHolder) holder).lastdealtime.setText("操作失败");
+        }else{
+            if(cycle.equals("0")){
+                ((ItemViewHolder) holder).lastdealtime.setText("操作成功");
+            }else{
+                ((ItemViewHolder) holder).lastdealtime.setText("操作成功(上次操作时间:"+lasttime+")");
+            }
+
+        }
         ((ItemViewHolder) holder).time_tv.setText(timerTask.getDate());
         ((ItemViewHolder) holder).cycle_tv.setText(cycle_text);
         ((ItemViewHolder) holder).state_tv.setText(timerTask.getState()==1?"合闸":"切断");
@@ -155,6 +168,9 @@ public class ElectrTimerTaskAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         TextView cycle_tv;
         @Bind(R.id.state)
         TextView state_tv;
+        @Bind(R.id.lastdealtime)
+        TextView lastdealtime;
+
 
         @Bind(R.id.power_button)
         RelativeLayout power_button;

@@ -71,7 +71,6 @@ public class DemoIntentService extends GTIntentService {
         boolean showDateChange=false;
         try {
             JSONObject dataJson = new JSONObject(msg);
-            String alarmTime=dataJson.getString("alarmTime");
 
             int deviceType = dataJson.getInt("deviceType");
             switch (deviceType){
@@ -91,7 +90,6 @@ public class DemoIntentService extends GTIntentService {
                     break;
                 case 1://烟感
                 case 2://燃气
-                case 7://声光
                 case 8://手报
                 case 10://水压@@4.28
                 case 11://红外
@@ -344,11 +342,21 @@ public class DemoIntentService extends GTIntentService {
                 case 59:
                 case 53:
                 case 52:
+                case 7://三相
+                case 6://单相
                 case 5://电气
                     PushAlarmMsg pushAlarmMsg1 = jsJson(dataJson);
                     int alarmFamily = pushAlarmMsg1.getAlarmFamily();
                     String alarmMsg = null;
                     switch (alarmFamily){
+                        case 60://电量低
+                            int alarmType18 = pushAlarmMsg1.getAlarmType();
+                            if(alarmType18!=0){
+                                alarmMsg = "电气探测器电量即将耗尽";
+                            }else{
+                                alarmMsg = "电气探测器电量即将耗尽（测试）";
+                            }
+                            break;
                         case 43://电气报警
                             int alarmType1 = pushAlarmMsg1.getAlarmType();
                             if(alarmType1!=0){
@@ -497,36 +505,6 @@ public class DemoIntentService extends GTIntentService {
                     intent2.putExtra("mPushAlarmMsg",pushAlarmMsg1);
                     intent2.putExtra("alarmMsg",alarmMsg);
                     context.startActivity(intent2);
-                    break;
-                case 6://一键报警和报警回复
-                    int alarmType1 = dataJson.getInt("alarmType");
-                    if(alarmType1==3){
-                        GetUserAlarm getUserAlarm = new GetUserAlarm();
-                        getUserAlarm.setAddress(dataJson.getString("address"));
-                        getUserAlarm.setAlarmSerialNumber(dataJson.getString("alarmSerialNumber"));
-                        getUserAlarm.setAlarmTime(dataJson.getString("alarmTime"));
-                        getUserAlarm.setAreaName(dataJson.getString("areaName"));
-                        getUserAlarm.setCallerId(dataJson.getString("callerId"));
-                        getUserAlarm.setInfo(dataJson.getString("info"));
-                        getUserAlarm.setLatitude(dataJson.getString("latitude"));
-                        getUserAlarm.setLongitude(dataJson.getString("longitude"));
-                        getUserAlarm.setSmoke(dataJson.getString("smoke"));
-                        getUserAlarm.setCallerName(dataJson.getString("callerName"));
-                        Random random3 = new Random();
-                        showDownNotification(context,"您收到一条紧急报警消息",getUserAlarm,random3.nextInt(),UserAlarmActivity.class);
-                        Intent intent3 = new Intent(context, UserAlarmActivity.class);
-                        intent3.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent3.putExtra("mPushAlarmMsg",getUserAlarm);
-                        context.startActivity(intent3);
-                    }else{
-                        DisposeAlarm disposeAlarm = new DisposeAlarm();
-                        disposeAlarm.setAlarmType(alarmType1);
-                        disposeAlarm.setPolice(dataJson.getString("police"));
-                        disposeAlarm.setTime(dataJson.getString("time"));
-                        disposeAlarm.setPoliceName(dataJson.getString("policeName"));
-                        Random random4 = new Random();
-                        showDownNotification(context,disposeAlarm.getPoliceName()+"警员已处理您的消息",null,random4.nextInt(),null);
-                    }
                     break;
             }
 
