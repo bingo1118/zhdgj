@@ -9,7 +9,7 @@ public class ConstantValues {
     //测试图片路径
 //    public static final String NFC_IMAGES = "http://139.159.209.212:51091/";
     //正式图片路径
-    public static final String NFC_IMAGES = "http://47.97.164.8:51091/";
+    public static final String NFC_IMAGES = "http://app.cnlydq.com/";
     //聊城图片路径
 //    public static final String NFC_IMAGES = "http://61.133.116.241:51091/";
     //华为云新正式图片路径
@@ -20,8 +20,8 @@ public class ConstantValues {
 //    public static final String SERVER_IP_NEW ="http://139.159.209.212:51091/fireSystem/";
     //测试IP:
 //    public static final String SERVER_IP_NEW ="http://139.159.220.138:51091/fireSystem/";
-//    public static final String SERVER_IP_NEW ="http://193.112.59.214:51091/fireSystem/";
-    public static final String SERVER_IP_NEW ="http://47.111.254.147:51091/fireSystem/";
+    public static final String SERVER_IP_NEW ="http://app.cnlydq.com/fireSystem/";
+//    public static final String SERVER_IP_NEW ="http://47.111.254.147:51091/fireSystem/";
     //维科安广IP:
 //    public static final String SERVER_IP_NEW ="http://47.97.164.8:51091/fireSystem/";
 
@@ -47,7 +47,7 @@ public class ConstantValues {
     public static final String FORGET_PASSWORD_URL = "http://cloudlinks.cn/pw/";
 
     //更新接口
-    public static final String UPDATE_URL="http://47.111.254.147:51091/download/update_zhdgj.xml";
+    public static final String UPDATE_URL="http://app.cnlydq.com/download/update_zhdgj.xml";
     //    public static final String UPDATE_URL="http://119.29.155.148/download/update_liaocheng.xml";
 //    public static final String UPDATE_URL="http://119.29.223.106:51091/download/update_bqyl.xml";
     public static final String ERROR_URL = "http://182.254.234.243:8080/UploadError/UploadServlet";

@@ -79,6 +79,8 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
 
     @Bind(R.id.dev_id)
     TextView dev_id;
+    @Bind(R.id.dev_ccid)
+    TextView dev_ccid;
     @Bind(R.id.dev_areaid)
     TextView dev_areaid;
     @Bind(R.id.dev_address)
@@ -507,11 +509,50 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
         swipeFreshLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac, devType, true);
+                getLastestData();
+//                electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac, devType, true);
 //                getYuzhi(electricMac);
                 electricPresenter.getOneElectricDXyuzhi(electricMac);
             }
         });
+    }
+
+    private void getLastestData() {
+        showLoading();
+        String url=ConstantValues.SERVER_IP_NEW+"ackDataRefreshDX?mac="+electricMac+"&userId="+userID;
+        VolleyHelper helper=VolleyHelper.getInstance(mContext);
+        RequestQueue mQueue = helper.getRequestQueue();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            int errorCode=response.getInt("errorCode");
+                            if(errorCode==0){
+                                T.showShort(mContext,"刷新成功");
+                                electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac, devType, false);
+                            }else{
+                                T.showShort(mContext,"刷新失败");
+                            }
+                            hideLoading();
+//                            getYuzhi(electricMac);
+                            electricPresenter.getOneElectricDXyuzhi(electricMac);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            hideLoading();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                T.showShort(mContext,"网络错误");
+                hideLoading();
+            }
+        });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mQueue.add(jsonObjectRequest);
     }
 
     @Override
@@ -531,6 +572,8 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
     }
 
     private void setDataToView(ElectricDXDetailEntity entity) {
+        dev_ccid.setText("CCID:"+entity.getCcid());
+
         dy_a.setText(Float.parseFloat(entity.getVoltage())+"");
         dy_his.setOnClickListener(new View.OnClickListener() {
             @Override

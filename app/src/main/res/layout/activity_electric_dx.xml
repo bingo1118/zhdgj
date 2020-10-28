@@ -44,6 +44,13 @@
             android:textSize="16sp"
             android:layout_margin="5dp"/>
         <TextView
+            android:id="@+id/dev_ccid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CCID:"
+            android:textSize="16sp"
+            android:layout_margin="5dp"/>
+        <TextView
             android:id="@+id/dev_areaid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
