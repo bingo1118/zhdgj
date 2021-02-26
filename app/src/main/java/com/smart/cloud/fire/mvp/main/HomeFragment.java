@@ -35,8 +35,6 @@ public class HomeFragment extends Fragment{
     ImageView add_dev;
     @Bind(R.id.electr)
     ImageView electr;
-    @Bind(R.id.camera)
-    ImageView camera;
     @Bind(R.id.map)
     ImageView map;
 
@@ -50,10 +48,9 @@ public class HomeFragment extends Fragment{
         View view = inflater.inflate(R.layout.home_fragment,container,false);
         ButterKnife.bind(this, view);
         return view;
-
     }
 
-    @OnClick({R.id.add_dev,R.id.electr,R.id.camera,R.id.map,R.id.more_item})
+    @OnClick({R.id.add_dev,R.id.electr,R.id.map,R.id.more_item})
     public void onClick(View v){
         Intent intent;
         switch (v.getId()){
@@ -65,10 +62,10 @@ public class HomeFragment extends Fragment{
                 intent=new Intent(getActivity(), SelectDevPlaceTypeActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.camera:
-                intent=new Intent(getActivity(), CameraDevActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.camera:
+//                intent=new Intent(getActivity(), CameraDevActivity.class);
+//                startActivity(intent);
+//                break;
             case R.id.map:
                 intent=new Intent(getActivity(), MapActivity.class);
                 startActivity(intent);

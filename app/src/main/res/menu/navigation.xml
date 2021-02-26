@@ -12,9 +12,9 @@
         android:title="设备" />
 
     <item
-        android:id="@+id/navigation_alarm"
-        android:icon="@drawable/tab_alarm2"
-        android:title="告警" />
+        android:id="@+id/navigation_me"
+        android:icon="@drawable/tab_me"
+        android:title="个人中心" />
 
     <!--<item-->
         <!--android:id="@+id/navigation_map"-->

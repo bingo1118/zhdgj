@@ -1,65 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f6f6">
+    android:background="#f5f6f6"
+    android:orientation="vertical">
 
 
     <ImageView
+        android:id="@+id/title_iv"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/homefragment_banner"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_margin="10dp"
-        android:text="CNLYLE"
-        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/more_item"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:background="@drawable/my_center"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:visibility="gone"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp">
-        <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/icon_inside"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="35dp"
-            android:textColor="#fefefe"
-            android:text="智慧用电 安全监管"
-            android:textStyle="bold"/>
-    </LinearLayout>
 
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/login_account_and_psw_shape"
-        android:layout_marginTop="220dp"
-        android:layout_marginLeft="75dp"
         android:padding="15dp">
 
         <TableRow
@@ -71,7 +40,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp">
+                android:layout_marginRight="5dp"
+                android:padding="5dp"
+                android:background="@drawable/nfc_devinfo_shape">
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
@@ -97,7 +68,39 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:background="@drawable/nfc_devinfo_shape">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/alarm_msg"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/home_alarm_msg"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/alarm_msg"
+                    android:textColor="#cecece"
+                    android:layout_centerHorizontal="true"
+                    android:text="报警信息"/>
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow
+            android:gravity="center_horizontal">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:background="@drawable/nfc_devinfo_shape">
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
@@ -116,36 +119,6 @@
                     android:layout_centerHorizontal="true"
                     android:text="电气设备"/>
             </RelativeLayout>
-        </TableRow>
-
-        <TableRow
-            android:gravity="center_horizontal">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="5dp">
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:id="@+id/camera"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/home_camera_white"
-                    android:background="@drawable/corner_green_radius"
-                    android:padding="16dp"
-                    android:layout_margin="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/camera"
-                    android:textColor="#cecece"
-                    android:layout_centerHorizontal="true"
-                    android:text="视频监控"/>
-            </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,15 +126,15 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:background="@drawable/nfc_devinfo_shape">
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/map"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/home_map_white"
-                    android:background="@drawable/corner_green_radius"
-                    android:padding="16dp"
                     android:layout_margin="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -169,11 +142,11 @@
                     android:layout_below="@id/map"
                     android:textColor="#cecece"
                     android:layout_centerHorizontal="true"
-                    android:text="地图位置"/>
+                    android:text="地图信息"/>
             </RelativeLayout>
         </TableRow>
 
 
 
     </TableLayout>
-</RelativeLayout>
+</LinearLayout>

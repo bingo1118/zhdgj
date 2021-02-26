@@ -38,6 +38,7 @@ import com.smart.cloud.fire.global.MainService;
 import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.mvp.fragment.CollectFragment.CollectFragment;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.MapFragment;
+import com.smart.cloud.fire.mvp.fragment.SettingFragment.SettingFragment;
 import com.smart.cloud.fire.mvp.login.SplashActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
@@ -78,7 +79,7 @@ public class Main6Activity extends AppCompatActivity {
                 case R.id.navigation_dev:
                     changeFragment(1);
                     return true;
-                case R.id.navigation_alarm:
+                case R.id.navigation_me:
                     changeFragment(2);
                     return true;
             }
@@ -178,7 +179,8 @@ public class Main6Activity extends AppCompatActivity {
 
         adapter.addFragment(new HomeFragment());
         adapter.addFragment(new DevFragment());
-        adapter.addFragment(new CollectFragment());
+//        adapter.addFragment(new CollectFragment());
+        adapter.addFragment(new SettingFragment());
         viewPager.setAdapter(adapter);
     }
 

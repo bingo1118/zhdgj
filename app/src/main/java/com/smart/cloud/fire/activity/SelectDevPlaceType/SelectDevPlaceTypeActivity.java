@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -84,7 +85,7 @@ public class SelectDevPlaceTypeActivity extends Activity {
                                 }
                             }
                             adapter=new SelectDevPlaceTypeAdapter(mContext,placeTypeList);
-                            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+                            GridLayoutManager layoutManager = new GridLayoutManager(mContext,2);
                             place_items.setLayoutManager(layoutManager);
                             //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
                             place_items.setHasFixedSize(true);
