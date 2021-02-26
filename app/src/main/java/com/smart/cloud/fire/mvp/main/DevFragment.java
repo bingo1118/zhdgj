@@ -380,6 +380,7 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
                 intent.putExtra("data",data);
                 intent.putExtra("devType",data.getDeviceType());
                 intent.putExtra("repeatMac",data.getRepeater());
+                intent.putExtra("place",data.getPlaceType());
                 startActivity(intent);
             }
         });

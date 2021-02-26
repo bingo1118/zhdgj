@@ -8,17 +8,34 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.widget.RemoteViews;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.baidu.mapapi.SDKInitializer;
 import com.igexin.sdk.PushManager;
 import com.mob.MobSDK;
 import com.p2p.core.update.UpdateManager;
+import com.smart.cloud.fire.adapter.SelectDevPlaceTypeAdapter;
 import com.smart.cloud.fire.service.LocationService;
 import com.smart.cloud.fire.ui.ForwardDownActivity;
 import com.smart.cloud.fire.utils.CrashHandler;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
+import com.smart.cloud.fire.utils.T;
+import com.smart.cloud.fire.utils.VolleyHelper;
 import com.squareup.leakcanary.LeakCanary;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import fire.cloud.smart.com.smartcloudfire.R;
 
@@ -32,11 +49,13 @@ public class MyApp extends Application {
     private Notification mNotification;
     public static final int NOTIFICATION_DOWN_ID = 0x53256562;
     private RemoteViews cur_down_view;
-    private int privilege=-1;
+    private static int privilege=-1;
+    public static String userid;
     public LocationService locationService;
     public Vibrator mVibrator;
     private int cut_electr;
     private int add_electr;
+
 
     @Override
     public void onCreate() {
@@ -55,7 +74,6 @@ public class MyApp extends Application {
         //启动个推接收推送信息。。
         PushManager.getInstance().initialize(this.getApplicationContext(), com.smart.cloud.fire.geTuiPush.DemoPushService.class);
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), com.smart.cloud.fire.geTuiPush.DemoIntentService.class);
-
     }
 
     public NotificationManager getNotificationManager() {
@@ -66,18 +84,32 @@ public class MyApp extends Application {
 
     public  void setPrivilege(int privilege){
         this.privilege = privilege;
+        userid=SharedPreferencesManager.getInstance().getData(MyApp.app,
+                SharedPreferencesManager.SP_FILE_GWELL,
+                SharedPreferencesManager.KEY_RECENTNAME);
     }
 
-    public int getPrivilege(){
+    public static int getPrivilege(){
         //return privilege;
         if(privilege==-1){
-            return SharedPreferencesManager.getInstance().getIntData(this,
+            return SharedPreferencesManager.getInstance().getIntData(MyApp.app,
                     SharedPreferencesManager.SP_FILE_GWELL,
                     SharedPreferencesManager.KEY_RECENT_PRIVILEGE);
         }else{
             return privilege;
         }//@@5.5防止突然网络错误问题
     }
+
+    public static String getUserID(){
+        if(userid==""){
+            return SharedPreferencesManager.getInstance().getData(MyApp.app,
+                    SharedPreferencesManager.SP_FILE_GWELL,
+                    SharedPreferencesManager.KEY_RECENTNAME);
+        }else{
+            return userid;
+        }//@@5.5防止突然网络错误问题
+    }
+
 
     public String getPushState() {
         return pushState;

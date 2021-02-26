@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
-    android:background="@null">
+    android:background="@drawable/place_item_shape">
     <TextView
         android:id="@+id/textview"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="50dp"
         android:text="123"
         android:textSize="18sp"
-        android:gravity="center"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:background="@drawable/place_item_shape"/>
+        />
+    <ImageView
+        android:id="@+id/more_iv"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/tab_more"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"/>
 </LinearLayout>

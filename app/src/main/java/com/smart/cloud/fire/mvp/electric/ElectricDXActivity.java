@@ -3,8 +3,11 @@ package com.smart.cloud.fire.mvp.electric;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PopupMenu;
@@ -12,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -20,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +43,7 @@ import com.smart.cloud.fire.global.ElectricDXDetailEntity;
 import com.smart.cloud.fire.global.ElectricDetailEntity;
 import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.global.MyApp;
+import com.smart.cloud.fire.global.ShopType;
 import com.smart.cloud.fire.mvp.ElectrTimerTask.ElectrTimerTaskActivity;
 import com.smart.cloud.fire.mvp.LineChart.ElectricChartActivity;
 import com.smart.cloud.fire.mvp.LineChart.LineChart01Activity;
@@ -47,9 +54,11 @@ import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.TimePickerDialog;
 import com.smart.cloud.fire.utils.VolleyHelper;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -85,6 +94,8 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
     TextView dev_areaid;
     @Bind(R.id.dev_address)
     TextView dev_address;
+    @Bind(R.id.dev_place)
+    TextView dev_place;
 
     @Bind(R.id.more)
     TextView more;//@@菜单
@@ -216,6 +227,7 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
         dev_id.setText("SN码:"+electricData.getMac());
         dev_areaid.setText("区域:"+electricData.getAreaName());
         dev_address.setText("地址:"+electricData.getAddress());
+        dev_place.setText("分组:"+electricData.getPlaceType());
 //        getYuzhi(electricMac);
 
         electricPresenter.getOneElectricDXyuzhi(electricMac);
@@ -235,6 +247,9 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.move:
+                        getPlaces();
+                        break;
                     case R.id.change_history:
                         Intent intent=new Intent(mContext, ElectricChangeHistoryActivity.class);
                         intent.putExtra("mac",electricMac);
@@ -269,6 +284,102 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
         });
 
         popupMenu.show();
+    }
+
+    private void getPlaces() {
+        // 建立数据
+        String url= ConstantValues.SERVER_IP_NEW+"getPlaceTypeId?userId="+userID+"&privilege="+privilege;
+
+        VolleyHelper helper=VolleyHelper.getInstance(MyApp.app);
+        final RequestQueue mQueue = helper.getRequestQueue();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if(response.getInt("errorCode")==0){
+                                List<ShopType>  placeTypeList=new ArrayList<>();
+                                JSONArray array=response.getJSONArray("placeType");
+                                for(int i=0;i<array.length();i++){
+                                    JSONObject o= array.getJSONObject(i);
+                                    ShopType temp=new ShopType();
+                                    temp.setPlaceTypeId(o.getString("placeTypeId"));
+                                    temp.setPlaceTypeName(o.getString("placeTypeName"));
+                                    placeTypeList.add(temp);
+                                }
+                                String[] mItems =new String[placeTypeList.size()];
+                                for (int i=0;i<placeTypeList.size();i++) {
+                                    mItems[i]=placeTypeList.get(i).getPlaceTypeName();
+                                };
+                                final List<ShopType>  placeTypeListTemp=placeTypeList;
+                                AlertDialog.Builder customizeDialog =
+                                        new AlertDialog.Builder(mContext);
+                                final View dialogView = LayoutInflater.from(mContext)
+                                        .inflate(R.layout.dialog_moveplace,null);
+                                final Spinner spinner =(Spinner) dialogView.findViewById(R.id.place_spinner);
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item ,mItems);
+                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spinner.setAdapter(adapter);
+
+                                customizeDialog.setTitle("移动分组至:");
+                                customizeDialog.setView(dialogView);
+                                customizeDialog.setPositiveButton("确定",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                movePlace(electricMac,placeTypeListTemp.get(spinner.getSelectedItemPosition()).getPlaceTypeId()+"",placeTypeListTemp.get(spinner.getSelectedItemPosition()).getPlaceTypeName()+"");
+                                            }
+                                        });
+                                customizeDialog.show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mQueue.add(jsonObjectRequest);
+    }
+
+    private void movePlace(String mac,String placeId, final String placeName) {
+        String url= ConstantValues.SERVER_IP_NEW+"movePlace?userId="+userID
+                +"&privilege="+privilege
+                +"&mac="+mac
+                +"&placeId="+placeId;
+
+        VolleyHelper helper=VolleyHelper.getInstance(mContext);
+        final RequestQueue mQueue = helper.getRequestQueue();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if(response.getInt("errorCode")==0){
+                                T.showShort(mContext,"移动成功");
+                                dev_place.setText("分组:"+placeName);
+                            }
+                        } catch (JSONException e) {
+                            T.showShort(mContext,"移动失败");
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                T.showShort(mContext,"网络错误");
+            }
+        });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mQueue.add(jsonObjectRequest);
     }
 
     private void auto_time() {

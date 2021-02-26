@@ -38,7 +38,7 @@ public class AlarmMessageModel {
     private String principal1Phone;
     private String principal2;
     private String principal2Phone;
-    private int alarmFamily;
+    private String alarmFamily;
     private int deviceType;
 
     public String getAddress() {
@@ -169,11 +169,11 @@ public class AlarmMessageModel {
         this.deviceType = deviceType;
     }
 
-    public int getAlarmFamily() {
+    public String getAlarmFamily() {
         return alarmFamily;
     }
 
-    public void setAlarmFamily(int alarmFamily) {
+    public void setAlarmFamily(String alarmFamily) {
         this.alarmFamily = alarmFamily;
     }
 }

@@ -117,6 +117,7 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             } else {
                 ((ItemViewHolder) holder).dealAlarmActionTv.setVisibility(View.GONE);
             }
+            ((ItemViewHolder) holder).alarm_family_tv.setVisibility(View.GONE);
             int devType= mNormalAlarmMessage.getDeviceType();
             switch (devType){
                 case 41:
@@ -171,7 +172,7 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 case 125:
                 case 42:
                 case 10://@@4.28
-                    int alarmFamily10 = mNormalAlarmMessage.getAlarmFamily();//@@水压值8.31
+                    String alarmFamily10 = mNormalAlarmMessage.getAlarmFamily();//@@水压值8.31
                     ((ItemViewHolder) holder).smokeMac.setText("设备类型:水压探测器");
                     switch(alarmType){
                         case 193://低电压@@
@@ -205,8 +206,11 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 case 7:
                 case 6:
                 case 5:
-                    ((ItemViewHolder) holder).smokeMac.setText("设备类型:电气火灾探测器");
-                    int alarmFamily = mNormalAlarmMessage.getAlarmFamily();
+                    ((ItemViewHolder) holder).smokeMac.setText("设备类型:智慧用电保护装置");
+                    String alarmFamily = mNormalAlarmMessage.getAlarmFamily();
+                    ((ItemViewHolder) holder).alarm_family_tv.setVisibility(View.VISIBLE);
+                    ((ItemViewHolder) holder).alarm_family_tv.setText("报警值:"+alarmFamily);
+
                     ((ItemViewHolder) holder).smokeMacTv.setTextColor(mContext.getResources().getColor(R.color.hj_color_text));
                     switch (alarmType){
                         case 60:
@@ -420,6 +424,8 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         TextView actionNowTv;
         @Bind(R.id.mac_tv)
         TextView mac_tv;
+        @Bind(R.id.alarm_family_tv)
+        TextView alarm_family_tv;
 
         public ItemViewHolder(View view) {
             super(view);

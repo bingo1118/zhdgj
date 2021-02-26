@@ -9,13 +9,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -45,6 +49,7 @@ import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
 
 import java.io.File;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
@@ -284,6 +289,17 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
                     }
                     break;
                 case UpdateManager.HANDLE_MSG_DOWN_SUCCESS:
+//                    MyApp.app.hideDownNotification();
+//                    Intent intent = new Intent(Intent.ACTION_VIEW);
+//                    File file = new File(Environment.getExternalStorageDirectory()
+//                            + "/" + ConstantValues.Update.SAVE_PATH + "/"
+//                            + ConstantValues.Update.FILE_NAME);
+//                    if (!file.exists()) {
+//                        return;
+//                    }
+//                    intent.setDataAndType(Uri.fromFile(file),
+//                            ConstantValues.Update.INSTALL_APK);
+//                    mContext.startActivity(intent);
                     MyApp.app.hideDownNotification();
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     File file = new File(Environment.getExternalStorageDirectory()
@@ -292,9 +308,22 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
                     if (!file.exists()) {
                         return;
                     }
-                    intent.setDataAndType(Uri.fromFile(file),
-                            ConstantValues.Update.INSTALL_APK);
-                    mContext.startActivity(intent);
+                    if(Build.VERSION.SDK_INT>24){
+                        Uri uri= FileProvider.getUriForFile(mContext,mContext.getApplicationContext().getPackageName()+".fileprovider",file);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                        intent.setDataAndType(uri,
+                                ConstantValues.Update.INSTALL_APK);
+                        List<ResolveInfo> resInfoList = mContext.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                        for (ResolveInfo resolveInfo : resInfoList) {
+                            mContext.grantUriPermission(resolveInfo.activityInfo.packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        }
+                    }else{
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setDataAndType(Uri.fromFile(file),
+                                ConstantValues.Update.INSTALL_APK);
+                    }
+                    startActivity(intent);
                     break;
                 case UpdateManager.HANDLE_MSG_DOWN_FAULT:
                     break;

@@ -20,14 +20,14 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
                 android:layout_marginLeft="5dp"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:layout_gravity="center_vertical"
                 android:text="HJKDSA545FD"/>
 
             <ImageView
                 android:id="@+id/alarm_mark_image"
-                android:layout_width="20dp"
-                android:layout_height="15dp"
+                android:layout_width="35dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="2dp"
                 android:src="@drawable/xx_huojing"/>
@@ -90,6 +90,13 @@
                 android:layout_marginTop="3dp"
                 android:textColor="#404040"
                 android:text="ID:"/>
+            <TextView
+                android:id="@+id/alarm_family_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="#404040"
+                android:text="报警值:--"/>
             <TextView
                 android:id="@+id/smoke_mac"
                 android:layout_width="wrap_content"

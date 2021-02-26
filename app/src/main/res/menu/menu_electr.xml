@@ -4,4 +4,5 @@
     <item  android:id="@+id/change_history"  android:title="电源切断记录"/>
     <item  android:id="@+id/yuzhi_set"  android:title="参数设置"/>
     <item  android:id="@+id/auto_time"  android:title="自动时间设置"/>
+    <item  android:id="@+id/move"  android:title="移动分组"/>
 </menu>
