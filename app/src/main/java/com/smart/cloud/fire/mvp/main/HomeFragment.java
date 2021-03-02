@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.smart.cloud.fire.activity.AddDev.AddDevActivity;
+import com.smart.cloud.fire.activity.AlarmHistory.AlarmHistoryActivity;
 import com.smart.cloud.fire.activity.Camera.CameraDevActivity;
 import com.smart.cloud.fire.activity.Electric.ElectricDevActivity;
 import com.smart.cloud.fire.activity.Map.MapActivity;
@@ -50,7 +51,7 @@ public class HomeFragment extends Fragment{
         return view;
     }
 
-    @OnClick({R.id.add_dev,R.id.electr,R.id.map,R.id.more_item})
+    @OnClick({R.id.add_dev,R.id.electr,R.id.map,R.id.more_item,R.id.alarm_msg})
     public void onClick(View v){
         Intent intent;
         switch (v.getId()){
@@ -68,6 +69,10 @@ public class HomeFragment extends Fragment{
 //                break;
             case R.id.map:
                 intent=new Intent(getActivity(), MapActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.alarm_msg:
+                intent=new Intent(getActivity(), AlarmHistoryActivity.class);
                 startActivity(intent);
                 break;
             case R.id.more_item:

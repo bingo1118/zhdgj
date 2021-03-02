@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2bcf7a</color>
+    <color name="colorPrimary">#19c58b</color>
     <color name="colorPrimaryDark">#19c48b</color>
     <color name="colorAccent">#ff00a38e</color>
 
     <color name="black">#ff646464</color>
-    <color name="Black">#000</color>
+    <color name="Black">#121212</color>
+    <color name="gray">#aeaeae</color>
+    <color name="gray_back">#ededed</color>
     <color name="app_bg">#eeeeee</color>
     <color name="white">#ffffffff</color>
     <color name="tab_item_default">#fafafa</color>

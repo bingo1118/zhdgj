@@ -39,16 +39,6 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
     ProgressBar mProgressBar;
     @Bind(R.id.setting_camera_relative)
     RelativeLayout settingCameraRelative;
-    @Bind(R.id.nfc_mac_add)
-    RelativeLayout nfc_mac_add;//@@11.17
-    @Bind(R.id.nfc_radiogroup)
-    RadioGroup nfc_radiogroup;
-    @Bind(R.id.everymonth)
-    RadioButton everymonth;
-    @Bind(R.id.everyweek)
-    RadioButton everyweek;
-    @Bind(R.id.everyday)
-    RadioButton everyday;
     private Context mContext;
 
     @Override
@@ -74,20 +64,6 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
                 SharedPreferencesManager.SP_FILE_GWELL,
                 SharedPreferencesManager.KEY_RECENTNAME);
         int peroid=SharedPreferencesManager.getInstance().getIntData(mContext,"NFC_period");//@@10.24
-        switch (peroid){
-            case 0:
-                everymonth.setChecked(true);
-                break;
-            case 1:
-                everyweek.setChecked(true);
-                break;
-            case 2:
-                everyday.setChecked(true);
-                break;
-            default:
-                everymonth.setChecked(true);
-                break;
-        }//@@10.24
         settingUserId.setText(username);
         String state = MyApp.app.getPushState();
 
@@ -96,35 +72,10 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
 //            settingHelpRela.setVisibility(View.VISIBLE);//显示添加摄像机。。
 //            settingCameraRelative.setVisibility(View.VISIBLE);//显示绑定摄像机。。
         }
-        if (privilege == 4) {
-//            nfc_mac_add .setVisibility(View.VISIBLE);
-        }
-        nfc_radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int period=0;
-                switch (checkedId){
-                    case R.id.everymonth:
-                        period=0;
-                        break;
-                    case R.id.everyweek:
-                        period=1;
-                        break;
-                    case R.id.everyday:
-                        period=2;
-                        break;
-                    default:
-                        period=0;
-                        break;
-                }
-                SharedPreferencesManager.getInstance().putData(mContext,"NFC_period",period);
-                T.showShort(mContext,"设置成功");
-            }
-        });
     }
 
     @OnClick({R.id.app_update, R.id.setting_help_about, R.id.setting_help_rela, R.id.setting_help_exit,
-            R.id.setting_camera_relative,R.id.setting_nfc,R.id.nfc_mac_add})
+            R.id.setting_camera_relative})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.app_update:
@@ -150,14 +101,6 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
                 break;
             case R.id.setting_camera_relative:
                 mvpPresenter.bindDialog(mContext);
-                break;
-            case R.id.setting_nfc:
-                Intent intent3 = new Intent(mContext, UploadNFCInfoActivity.class);
-                startActivity(intent3);
-                break;
-            case R.id.nfc_mac_add:
-                Intent intent6 = new Intent(mContext, AddNFCMacActivity.class);
-                startActivity(intent6);
                 break;
             default:
                 break;

@@ -136,7 +136,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:id="@+id/manager_img"
-                android:background="@drawable/manager_img_selector"
+                android:background="@drawable/manager"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="10dp"/>

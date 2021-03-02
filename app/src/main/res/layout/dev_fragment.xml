@@ -22,25 +22,21 @@
 
         <ImageView
             android:id="@+id/add_dev_fire"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/erweima"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:visibility="gone"
-            />
+            android:layout_marginLeft="5dp"/>
 
         <ImageView
             android:id="@+id/add_fire"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/erweima"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/search"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:visibility="gone"
-            />
+            android:layout_marginRight="5dp"/>
 
         <ImageView
             android:id="@+id/search_fire"
@@ -55,6 +51,12 @@
 
     </RelativeLayout>
 
+    <!-- 数量显示 -->
+    <include android:id="@+id/search_include"
+        android:layout_below="@id/title_include"
+        layout="@layout/include_search"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -75,10 +77,5 @@
         </android.support.v4.widget.SwipeRefreshLayout>
         <include layout="@layout/progress_bar"/>
     </RelativeLayout>
-    <!-- 数量显示 -->
-    <include android:id="@+id/search_include"
-        android:layout_below="@id/title_include"
-        layout="@layout/include_search"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content" />
+
 </LinearLayout>

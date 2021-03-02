@@ -132,9 +132,6 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dev_fragment, container, false);
         ButterKnife.bind(this, view);
-        add_dev_fire.setVisibility(View.VISIBLE);
-        add_fire.setVisibility(View.VISIBLE);
-        add_fire.setImageResource(R.drawable.search);
         return view;
     }
 

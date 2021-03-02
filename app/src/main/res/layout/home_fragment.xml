@@ -37,10 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_margin="10dp"
                 android:padding="5dp"
                 android:background="@drawable/nfc_devinfo_shape">
                 <ImageView
@@ -48,8 +45,7 @@
                     android:layout_height="80dp"
                     android:id="@+id/add_dev"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/home_add_white"
-                    android:background="@drawable/corner_green_radius"
+                    android:background="@drawable/home_add"
                     android:padding="16dp"
                     android:layout_margin="10dp"/>
                 <TextView
@@ -65,10 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="10dp"
+                android:layout_margin="10dp"
                 android:padding="5dp"
                 android:background="@drawable/nfc_devinfo_shape">
                 <ImageView
@@ -95,10 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="10dp"
+                android:layout_margin="10dp"
                 android:padding="5dp"
                 android:background="@drawable/nfc_devinfo_shape">
                 <ImageView
@@ -106,9 +96,7 @@
                     android:layout_height="80dp"
                     android:id="@+id/electr"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/home_electr_white"
-                    android:background="@drawable/corner_green_radius"
-                    android:padding="16dp"
+                    android:src="@drawable/home_team"
                     android:layout_margin="10dp"/>
 
                 <TextView
@@ -123,10 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_margin="10dp"
                 android:padding="5dp"
                 android:background="@drawable/nfc_devinfo_shape">
                 <ImageView

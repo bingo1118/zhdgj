@@ -2,30 +2,41 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f6f6">
+    android:background="@color/gray_back">
 
-    <ImageView
+
+    <RelativeLayout
+        android:id="@+id/title_rela"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/message_banner"/>
-    
-    <!-- title bar -->
-    <include android:id="@+id/title_include" layout="@layout/title_bar"/>
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="报警中心"
+            android:layout_centerInParent="true"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/add_fire"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/search"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp" />
+    </RelativeLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/demo_swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/login_account_and_psw_shape"
-        android:layout_below="@id/title_include"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:padding="10dp"
-        android:scrollbars="vertical"
-        >
+        android:layout_below="@id/title_rela"
+        android:padding="5dp"
+        android:scrollbars="vertical">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/demo_recycler"
             android:layout_width="match_parent"

@@ -59,7 +59,7 @@ import rx.functions.Action1;
 public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginView{
     private Context mContext;
     @Bind(R.id.login_user)
-    AutoCompleteTextView login_user;
+    EditText login_user;
     @Bind(R.id.login_pwd)
     EditText login_pwd;
     @Bind(R.id.login_rela2)
