@@ -3,90 +3,81 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f6f6">
+    android:background="@color/gray_back">
 
 
 
-    <ImageView
+    <RelativeLayout
+        android:id="@+id/title_rela"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/message_banner"/>
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/swipe_fresh_layout"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_margin="15dp"
-        android:layout_alignTop="@id/title_include"
-        android:background="@drawable/refrash"/>
+        <ImageView
+            android:id="@+id/swipe_fresh_layout"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@id/title_include"
+            android:layout_margin="5dp"
+            android:background="@drawable/refrash" />
 
-    <!-- title bar -->
-    <include android:id="@+id/title_include" layout="@layout/title_bar"/>
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="智慧用电保护装置"
+            android:textStyle="bold"
+            android:textColor="@color/Black"
+            android:textSize="22sp" />
+
+
+        <TextView
+            android:id="@+id/more"
+            android:layout_width="75dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="更多"
+            android:textColor="@color/Black" />
+
+    </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/info_linear"
+        android:id="@+id/title_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:layout_below="@id/title_include"
+        android:background="@drawable/corner_white_radius"
+        android:layout_below="@id/title_rela"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/login_account_and_psw_shape"
-        android:orientation="vertical">
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/watch"/>
         <TextView
-            android:id="@+id/dev_id"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SN码:"
-            android:textSize="14sp"
-            android:layout_margin="3dp"/>
-        <TextView
-            android:id="@+id/dev_ccid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CCID:"
-            android:textSize="14sp"
-            android:layout_margin="3dp"/>
-        <TextView
-            android:id="@+id/dev_areaid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="区域:"
-            android:textSize="14sp"
-            android:layout_margin="3dp"/>
-        <TextView
-            android:id="@+id/dev_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="地址:"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textSize="14sp"
-            android:layout_margin="3dp"/>
-        <TextView
-            android:id="@+id/dev_place"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="分組:"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textSize="14sp"
-            android:layout_margin="3dp"/>
+            android:text="实时参数"
+            android:textColor="@color/Black"
+            android:layout_marginLeft="5dp"/>
+
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/info_linear"
+        android:layout_below="@id/title_line"
         android:layout_marginBottom="60dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:padding="5dp"
-        android:background="@drawable/login_account_and_psw_shape">
+        android:layout_marginTop="10dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -100,15 +91,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -135,14 +124,12 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
+
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_right"
                         android:layout_weight="1.5">
                         <ImageButton
                             android:id="@+id/dy_his_a"
@@ -157,8 +144,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -168,15 +155,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -203,14 +189,12 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
+
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_right"
                         android:layout_weight="1.5">
                         <ImageButton
                             android:id="@+id/dy_his_b"
@@ -225,8 +209,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -236,15 +220,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -271,14 +254,11 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_right"
                         android:layout_weight="1.5">
                         <ImageButton
                             android:id="@+id/dy_his_c"
@@ -293,8 +273,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -304,15 +284,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -339,14 +318,11 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_right"
                         android:layout_weight="1.5">
                         <ImageButton
                             android:id="@+id/dl_his_a"
@@ -361,8 +337,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -372,15 +348,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -407,14 +382,11 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_right"
                         android:layout_weight="1.5">
                         <ImageButton
                             android:id="@+id/dl_his_b"
@@ -429,8 +401,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -440,15 +412,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -475,14 +446,11 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_right"
                         android:layout_weight="1.5">
                         <ImageButton
                             android:id="@+id/dl_his_c"
@@ -497,8 +465,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -508,15 +476,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -543,13 +510,10 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:padding="5dp">
                         <ImageButton
                             android:id="@+id/ldl_his"
@@ -565,8 +529,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -575,18 +539,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_wendu"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -613,14 +575,11 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_right"
                         android:layout_weight="1.5">
                         <ImageButton
                             android:id="@+id/wd_his_a"
@@ -635,8 +594,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -645,16 +604,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -681,14 +639,11 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_right"
                         android:layout_weight="1.5">
                         <ImageButton
                             android:id="@+id/wd_his_b"
@@ -703,8 +658,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -713,16 +668,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -749,14 +703,11 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_right"
                         android:layout_weight="1.5">
                         <ImageButton
                             android:id="@+id/wd_his_c"
@@ -771,8 +722,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -781,16 +732,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -817,14 +767,11 @@
                             android:gravity="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_right"
                         android:layout_weight="1.5">
                         <ImageButton
                             android:id="@+id/wd_his_n"
@@ -839,8 +786,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -850,15 +797,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -877,18 +823,15 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/sydl_a"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:gravity="center"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/white"
+                        android:textColor="@color/Black"
                         android:text="--"
                         android:textStyle="bold|italic"
                         android:textSize="32sp" />
@@ -898,15 +841,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -925,14 +867,11 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:padding="5dp">
                         <ImageButton
                             android:id="@+id/dianliang_his"
@@ -948,8 +887,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/Black"
                             android:text="--"
                             android:textStyle="bold|italic"
                             android:textSize="32sp" />
@@ -961,15 +900,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -988,18 +926,15 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/tzdl_a"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:gravity="center"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/white"
+                        android:textColor="@color/Black"
                         android:text="--"
                         android:textStyle="bold|italic"
                         android:textSize="32sp" />
@@ -1007,18 +942,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_price"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -1037,18 +970,15 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/price_value"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:gravity="center"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/white"
+                        android:textColor="@color/Black"
                         android:text="--"
                         android:textStyle="bold|italic"
                         android:textSize="32sp" />
@@ -1056,18 +986,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_gl"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -1086,18 +1014,15 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/gl_a"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:gravity="center"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/white"
+                        android:textColor="@color/Black"
                         android:text="--"
                         android:textStyle="bold|italic"
                         android:textSize="32sp" />
@@ -1105,18 +1030,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_gl_b"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -1135,18 +1058,15 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/gl_b"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:gravity="center"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/white"
+                        android:textColor="@color/Black"
                         android:text="--"
                         android:textStyle="bold|italic"
                         android:textSize="32sp" />
@@ -1154,18 +1074,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_gl_c"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -1184,18 +1102,15 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/gl_c"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:gravity="center"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/white"
+                        android:textColor="@color/Black"
                         android:text="--"
                         android:textStyle="bold|italic"
                         android:textSize="32sp" />
@@ -1203,18 +1118,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_glys"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -1233,18 +1146,15 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/glys_a"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:gravity="center"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/white"
+                        android:textColor="@color/Black"
                         android:text="--"
                         android:textStyle="bold|italic"
                         android:textSize="32sp" />
@@ -1252,18 +1162,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_glys_b"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -1282,18 +1190,15 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/glys_b"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:gravity="center"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/white"
+                        android:textColor="@color/Black"
                         android:text="--"
                         android:textStyle="bold|italic"
                         android:textSize="32sp" />
@@ -1301,18 +1206,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_glys_c"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -1331,18 +1234,15 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/glys_c"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:gravity="center"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/white"
+                        android:textColor="@color/Black"
                         android:text="--"
                         android:textStyle="bold|italic"
                         android:textSize="32sp" />
@@ -1350,18 +1250,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_pl"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/login_btn_bg">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:gravity="center_vertical"
+                        android:background="@drawable/device_item_bg_left"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="75dp"
@@ -1380,18 +1278,15 @@
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/pl_a"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/device_item_bg_right"
                         android:gravity="center"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/white"
+                        android:textColor="@color/Black"
                         android:text="--"
                         android:textStyle="bold|italic"
                         android:textSize="32sp" />

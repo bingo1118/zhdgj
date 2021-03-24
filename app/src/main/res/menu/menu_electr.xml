@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item  android:id="@+id/devive_info"  android:title="设备详情"/>
     <item  android:id="@+id/add_battery"  android:title="电量充值"/>
     <item  android:id="@+id/change_history"  android:title="电源切断记录"/>
     <item  android:id="@+id/yuzhi_set"  android:title="参数设置"/>

@@ -79,16 +79,6 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
     private ElectricDXDetailEntity mModel;
 
 
-    @Bind(R.id.dev_id)
-    TextView dev_id;
-    @Bind(R.id.dev_ccid)
-    TextView dev_ccid;
-    @Bind(R.id.dev_areaid)
-    TextView dev_areaid;
-    @Bind(R.id.dev_address)
-    TextView dev_address;
-    @Bind(R.id.dev_place)
-    TextView dev_place;
 
     @Bind(R.id.more)
     TextView more;//@@菜单
@@ -199,10 +189,6 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
     @Bind(R.id.timer_img)
     ImageView timer_img;
 
-    @Bind(R.id.line_wendu)
-    LinearLayout line_wendu;
-
-
 
 
     int devType=1;
@@ -212,6 +198,7 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
     private int timetype=1;
     private String time;
     TimePickerDialog mTimePickerDialog;
+    private String ccid="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -272,10 +259,6 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
         });
         electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac,devType,false);
         electricData= (Electric) getIntent().getExtras().getSerializable("data");
-        dev_id.setText("SN码:"+electricData.getMac());
-        dev_areaid.setText("区域:"+electricData.getAreaName());
-        dev_address.setText("地址:"+electricData.getAddress());
-        dev_place.setText("分组:"+electricData.getPlaceType());
 //        getYuzhi(electricMac);
 
         electricPresenter.getOneElectricDXyuzhi(electricMac);
@@ -295,6 +278,23 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.devive_info:
+                        AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
+                        View v=LayoutInflater.from(mContext).inflate(R.layout.device_info,null);
+                        TextView dev_id=v.findViewById(R.id.dev_id);
+                        TextView dev_ccid=v.findViewById(R.id.dev_ccid);
+                        TextView dev_areaid=v.findViewById(R.id.dev_areaid);
+                        TextView dev_address=v.findViewById(R.id.dev_address);
+                        TextView dev_place=v.findViewById(R.id.dev_place);
+
+                        dev_id.setText("SN码:"+electricData.getMac());
+                        dev_areaid.setText("区域:"+electricData.getAreaName());
+                        dev_address.setText("地址:"+electricData.getAddress());
+                        dev_place.setText("分组:"+electricData.getPlaceType());
+                        dev_ccid.setText("CCID:"+ccid);
+                        builder.setView(v);
+                        builder.show();
+                        break;
                     case R.id.move:
                         getPlaces();
                         break;
@@ -564,7 +564,7 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
     }
 
     private void setDataToView(ElectricDXDetailEntity entity) {
-        dev_ccid.setText("CCID:"+entity.getCcid());
+        ccid=entity.getCcid();
 
         dy_a.setText(Float.parseFloat(entity.getVoltage())+"");
         dy_b.setText(Float.parseFloat(entity.getVoltageB())+"");
@@ -987,7 +987,6 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
                         try {
                             if(response.getInt("errorCode")==0){
                                 T.showShort(mContext,"移动成功");
-                                dev_place.setText("分组:"+placeName);
                             }
                         } catch (JSONException e) {
                             T.showShort(mContext,"移动失败");
