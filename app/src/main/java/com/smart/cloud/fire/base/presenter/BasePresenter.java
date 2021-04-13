@@ -24,27 +24,27 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 public class BasePresenter<V> implements Presenter<V> {
-        public V mvpView;
-        public ApiStores[] apiStores = {AppClient.retrofit(ConstantValues.SERVER_YOOSEE_IP_ONE).create(ApiStores.class),
-                AppClient.retrofit(ConstantValues.SERVER_YOOSEE_IP_TWO).create(ApiStores.class),
-                AppClient.retrofit(ConstantValues.SERVER_YOOSEE_IP_TWO).create(ApiStores.class),
-                AppClient.retrofit(ConstantValues.SERVER_YOOSEE_IP_FOUR).create(ApiStores.class)};
-        public ApiStores apiStores1 = AppClient.retrofit(ConstantValues.SERVER_IP_NEW).create(ApiStores.class);
-        public ApiStores apiStores3 = AppClient.retrofit(ConstantValues.SERVER_IP_NEW_TEST).create(ApiStores.class);
-        public ApiStores apiStores2 = AppClient.retrofit(ConstantValues.SERVER_PUSH).create(ApiStores.class);
+    public V mvpView;
+    public ApiStores[] apiStores = {AppClient.retrofit(ConstantValues.SERVER_YOOSEE_IP_ONE).create(ApiStores.class),
+            AppClient.retrofit(ConstantValues.SERVER_YOOSEE_IP_TWO).create(ApiStores.class),
+            AppClient.retrofit(ConstantValues.SERVER_YOOSEE_IP_TWO).create(ApiStores.class),
+            AppClient.retrofit(ConstantValues.SERVER_YOOSEE_IP_FOUR).create(ApiStores.class)};
+    public static ApiStores apiStores1 = AppClient.retrofit(ConstantValues.SERVER_IP_NEW).create(ApiStores.class);
+    public ApiStores apiStores3 = AppClient.retrofit(ConstantValues.SERVER_IP_NEW_TEST).create(ApiStores.class);
+    public ApiStores apiStores2 = AppClient.retrofit(ConstantValues.SERVER_PUSH).create(ApiStores.class);
 
-        private CompositeSubscription mCompositeSubscription;//管理subseription
+    private static CompositeSubscription mCompositeSubscription;//管理subseription
 
-        @Override
-        public void attachView(V mvpView) {
-            this.mvpView = mvpView;
-        }
+    @Override
+    public void attachView(V mvpView) {
+        this.mvpView = mvpView;
+    }
 
-        @Override
-        public void detachView() {
-            this.mvpView = null;
-            onUnsubscribe();
-        }
+    @Override
+    public void detachView() {
+        this.mvpView = null;
+        onUnsubscribe();
+    }
 
     @Override
     public void getArea(Area area) {
@@ -62,53 +62,55 @@ public class BasePresenter<V> implements Presenter<V> {
     }
 
     //RXjava取消注册，以避免内存泄露
-        public void onUnsubscribe() {
-            if (mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
-                mCompositeSubscription.unsubscribe();
-                mCompositeSubscription=null;
-            }
+    public void onUnsubscribe() {
+        if (mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
+            mCompositeSubscription.unsubscribe();
+            mCompositeSubscription = null;
         }
+    }
 
     /**
      * 确定拨号提示框显示
+     *
      * @param mContext
      * @param phoneNum
      */
-        public void telPhoneAction(Context mContext, String phoneNum){
-            if(Utils.isPhoneNumber(phoneNum)){
-                NormalDialog mNormalDialog = new NormalDialog(mContext, "是否需要拨打电话：", phoneNum,
-                        "是", "否");
-                mNormalDialog.showNormalDialog();//拨号过程封装在NormalDialog中。。
-            }else{
-                T.showShort(mContext, "电话号码不合法");
-            }
+    public void telPhoneAction(Context mContext, String phoneNum) {
+        if (Utils.isPhoneNumber(phoneNum)) {
+            NormalDialog mNormalDialog = new NormalDialog(mContext, "是否需要拨打电话：", phoneNum,
+                    "是", "否");
+            mNormalDialog.showNormalDialog();//拨号过程封装在NormalDialog中。。
+        } else {
+            T.showShort(mContext, "电话号码不合法");
         }
+    }
 
     /**
      * 添加到compositionSubscription。。
+     *
      * @param observable
      * @param subscriber
      */
-    public void addSubscription(Observable observable, Subscriber subscriber) {
-            if (mCompositeSubscription == null) {
-                mCompositeSubscription = new CompositeSubscription();
-            }
-            mCompositeSubscription.add(observable
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(subscriber));
+    public static void addSubscription(Observable observable, Subscriber subscriber) {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
         }
-
-        public void twoSubscription(Observable observable, Func1 func1,Subscriber subscriber) {
-            if (mCompositeSubscription == null) {
-                mCompositeSubscription = new CompositeSubscription();
-            }
-            mCompositeSubscription.add(observable
-                    .flatMap(func1)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(subscriber));
-        }
-
+        mCompositeSubscription.add(observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber));
     }
+
+    public static void twoSubscription(Observable observable, Func1 func1, Subscriber subscriber) {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
+        }
+        mCompositeSubscription.add(observable
+                .flatMap(func1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber));
+    }
+
+}
 

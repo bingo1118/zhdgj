@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.smart.cloud.fire.activity.AccountManage.AccountManageActivity;
 import com.smart.cloud.fire.activity.AddNFC.AddNFCMacActivity;
 import com.smart.cloud.fire.activity.Setting.MyZoomActivity;
 import com.smart.cloud.fire.activity.UploadNFCInfo.UploadNFCInfoActivity;
@@ -75,20 +76,25 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
     }
 
     @OnClick({R.id.app_update, R.id.setting_help_about, R.id.setting_help_rela, R.id.setting_help_exit,
-            R.id.setting_camera_relative})
+            R.id.setting_camera_relative,R.id.setting_account_manage})
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
+            case R.id.setting_account_manage:
+                intent = new Intent(mContext, AccountManageActivity.class);
+                startActivity(intent);
+                break;
             case R.id.app_update:
                 mvpPresenter.checkUpdate(mContext);
 //                getActivity().finish();//@@7.13
                 break;
             case R.id.setting_help_about:
-                Intent intent = new Intent(mContext, AboutActivity.class);
+                intent = new Intent(mContext, AboutActivity.class);
                 startActivity(intent);
                 break;
             case R.id.setting_help_rela:
-                Intent intent2 = new Intent(mContext, AddCameraFirstActivity.class);
-                startActivity(intent2);
+                intent = new Intent(mContext, AddCameraFirstActivity.class);
+                startActivity(intent);
                 break;
             case R.id.setting_help_exit:
                 Intent in = new Intent();

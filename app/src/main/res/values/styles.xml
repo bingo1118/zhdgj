@@ -92,6 +92,11 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="popwin_anim_style">
+        <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit_anim</item>
+    </style>
+
     <style name="MyMiddleDialogStyle" parent="@android:style/Theme.Holo.Light.Dialog">
         <!-- 窗口背景色 -->
         <item name="android:windowBackground">@android:color/white</item>
@@ -110,5 +115,6 @@
         <!--进出动画-->
         <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
     </style>
+
 
 </resources>

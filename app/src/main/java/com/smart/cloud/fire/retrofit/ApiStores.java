@@ -1,5 +1,6 @@
 package com.smart.cloud.fire.retrofit;
 
+import com.smart.cloud.fire.activity.AccountManage.AllAccountEntity;
 import com.smart.cloud.fire.global.Electric;
 import com.smart.cloud.fire.global.ElectricDXDetailEntity;
 import com.smart.cloud.fire.global.ElectricDetailEntity;
@@ -129,12 +130,23 @@ public interface ApiStores {
                                        @Query("areaId") String areaId,@Query("page") String page,
                                        @Query("placeTypeId") String placeTypeId);
 
+    //设置用户信息
+    @GET("resetSubAccount")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<HttpError> resetSubAccount(@Query("userId") String userId, @Query("name") String name,
+                                       @Query("grade") String grade,@Query("cut") String cut,
+                                       @Query("add") String add,@Query("txt") String txt);
+
     //根据条件查询用户设备
     @GET("getNeedDev")
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
     Observable<HttpError> getNeedDev(@Query("userId") String userId, @Query("privilege") String privilege,
                                      @Query("areaId") String areaId,@Query("page") String page,
                                      @Query("placeTypeId") String placeTypeId,@Query("devType") String devType);
+
+    @GET("getSubAccount")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<AllAccountEntity> getSubAccountList(@Query("userId") String userId);
 
     //根据条件查询用户设备@@9.1 添加区域分级查询
     @GET("getNeedDev")

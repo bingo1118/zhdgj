@@ -4,9 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/gray_back">
 
-
-    <include layout="@layout/progress_bar" />
-
     <ImageView
         android:id="@+id/login_image"
         android:layout_width="match_parent"
@@ -134,5 +131,6 @@
 
     </RelativeLayout>
 
+    <include layout="@layout/progress_bar" />
 
 </RelativeLayout>

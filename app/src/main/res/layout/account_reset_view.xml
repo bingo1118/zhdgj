@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rela">
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="参数设置"
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:textSize="20sp"
+        android:textColor="#fff"
+        android:gravity="center"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="名称" />
+
+                <EditText
+                    android:id="@+id/name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="名称"
+                    android:singleLine="true"
+                    android:textColor="@color/text_view_and_kuang"
+                    android:textColorHint="@color/hint_color_text"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/phone_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="账号" />
+
+                <EditText
+                    android:id="@+id/phone_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="账号"
+                    android:enabled="false"
+                    android:singleLine="true"
+                    android:textColor="@color/text_view_and_kuang"
+                    android:textColorHint="@color/hint_color_text"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/grade_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="等级" />
+
+                <EditText
+                    android:id="@+id/grade_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:singleLine="true"
+                    android:hint="等级"
+                    android:enabled="false"
+                    android:textColor="@color/text_view_and_kuang"
+                    android:textColorHint="@color/hint_color_text"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/add_enable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="充电"
+                android:padding="10dp"/>
+
+            <Switch
+                android:id="@+id/cut_enable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="切电"
+                android:padding="10dp"/>
+
+            <Switch
+                android:id="@+id/txt_enable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="短信"
+                android:padding="10dp"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/commit"
+        android:textColor="@color/colorAccent"
+        android:background="#fff"
+        android:text="确定"/>
+
+</LinearLayout>
