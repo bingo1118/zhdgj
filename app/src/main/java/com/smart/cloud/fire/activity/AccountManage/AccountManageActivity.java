@@ -18,18 +18,23 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.zxing.common.StringUtils;
+import com.mob.tools.utils.Strings;
 import com.smart.cloud.fire.base.presenter.BasePresenter;
+import com.smart.cloud.fire.global.Account;
 import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.rxjava.ApiCallback;
 import com.smart.cloud.fire.rxjava.SubscriberCallBack;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
+import com.smart.cloud.fire.utils.Utils;
 import com.smart.cloud.fire.utils.VolleyHelper;
 
 import org.json.JSONException;
@@ -41,6 +46,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import fire.cloud.smart.com.smartcloudfire.R;
+import okhttp3.internal.Util;
 import rx.Observable;
 
 public class AccountManageActivity extends AppCompatActivity {
@@ -54,14 +60,21 @@ public class AccountManageActivity extends AppCompatActivity {
     @Bind(R.id.add_user_btn)
     ImageView add_user_btn;
 
+    @Bind(R.id.userid_tv)
+    TextView userid_tv;
+    @Bind(R.id.name_tv)
+    TextView name_tv;
+    @Bind(R.id.grade_tv)
+    TextView grade_tv;
+    @Bind(R.id.tip_tv)
+    TextView tip_tv;
+
 
     private LinearLayoutManager linearLayoutManager;
     private AccountListAdapter mAdapter;
     private Context mContext;
     private List<AccountEntity> list;
-    private int loadMoreCount;
-    private boolean research = false;
-    private String userID;
+    private AccountEntity mAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +83,13 @@ public class AccountManageActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         mContext = this;
-        userID = SharedPreferencesManager.getInstance().getData(mContext,
-                SharedPreferencesManager.SP_FILE_GWELL,
-                SharedPreferencesManager.KEY_RECENTNAME);
+        mAccount=(AccountEntity) getIntent().getSerializableExtra("account");
+        userid_tv.setText("账号:"+mAccount.getUserId());
+        name_tv.setText("名称:"+mAccount.getUserName());
+        grade_tv.setText("等级:"+mAccount.getGrade()+"级");
         list = new ArrayList<>();
         refreshListView();
-        getSubAccount(userID);
+        getSubAccount(mAccount.getUserId());
         add_user_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +117,7 @@ public class AccountManageActivity extends AppCompatActivity {
         swipereFreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getSubAccount(userID);
+                getSubAccount(mAccount.getUserId());
             }
         });
     }
@@ -117,11 +131,17 @@ public class AccountManageActivity extends AppCompatActivity {
                 int result = model.getErrorCode();
                 if (result == 0) {
                     list = model.getList();
-                    mAdapter = new AccountListAdapter(mContext, list);
-                    recyclerView.setAdapter(mAdapter);
+                    if(list.size()>0){
+                        mAdapter = new AccountListAdapter(mContext, list);
+                        recyclerView.setAdapter(mAdapter);
+                        tip_tv.setVisibility(View.GONE);
+                    }else{
+                        tip_tv.setVisibility(View.VISIBLE);
+                    }
                     swipereFreshLayout.setRefreshing(false);
                 } else {
                     T.showShort(mContext, "无数据");
+                    tip_tv.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -146,8 +166,9 @@ public class AccountManageActivity extends AppCompatActivity {
         final EditText pwd_et = (EditText) view.findViewById(R.id.pwd_et);
         final EditText grade_et = (EditText) view.findViewById(R.id.grade_et);
         final EditText p_userid_et = (EditText) view.findViewById(R.id.p_userid_et);
+        p_userid_et.setText(mAccount.getUserId());
         Button commit_btn = (Button) view.findViewById(R.id.commit);
-        final int grade = 1;
+        final int grade = mAccount.getGrade()+1;
         String gradeString = "个人账号";
         switch (grade) {
             case 0:
@@ -182,9 +203,21 @@ public class AccountManageActivity extends AppCompatActivity {
                 final int add = add_enable.isChecked() ? 1 : 0;
                 final int txt = txt_enable.isChecked() ? 1 : 0;
 
-                String url = ConstantValues.SERVER_IP_NEW + "addSubAccount?userId=" + phone_et.getText().toString()
-                        + "&name=" + name_et.getText().toString()
-                        + "&pwd="+pwd_et.getText().toString()
+                String name=name_et.getText().toString();
+                String pwd=pwd_et.getText().toString();
+                String userid=phone_et.getText().toString();
+                if(Utils.isNullString(name)||Utils.isNullString(pwd)||Utils.isNullString(userid)){
+                    T.showShort(mContext,"请先完善信息");
+                    return;
+                }
+                if(!Utils.isPhoneNumber(userid)){
+                    T.showShort(mContext,"账号需使用手机号");
+                    return;
+                }
+
+                String url = ConstantValues.SERVER_IP_NEW + "addSubAccount?userId=" + userid
+                        + "&name=" + name
+                        + "&pwd="+pwd
                         + "&grade="+grade
                         + "&p_userid="+p_userid_et.getText().toString()
                         + "&cut=" + cut

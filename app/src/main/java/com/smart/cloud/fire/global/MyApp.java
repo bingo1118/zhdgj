@@ -21,6 +21,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.igexin.sdk.PushManager;
 import com.mob.MobSDK;
 import com.p2p.core.update.UpdateManager;
+import com.smart.cloud.fire.activity.AccountManage.AccountEntity;
 import com.smart.cloud.fire.adapter.SelectDevPlaceTypeAdapter;
 import com.smart.cloud.fire.service.LocationService;
 import com.smart.cloud.fire.ui.ForwardDownActivity;
@@ -53,14 +54,15 @@ public class MyApp extends Application {
     public static String userid;
     public LocationService locationService;
     public Vibrator mVibrator;
-    private int cut_electr;
-    private int add_electr;
+    public static AccountEntity entity;
+
 
 
     @Override
     public void onCreate() {
         super.onCreate();
         app = this;
+        entity=new AccountEntity();
         locationService = new LocationService(getApplicationContext());
         mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
         SDKInitializer.initialize(this);
@@ -182,19 +184,4 @@ public class MyApp extends Application {
 
     }
 
-    public int getAdd_electr() {
-        return add_electr;
-    }
-
-    public void setAdd_electr(int add_electr) {
-        this.add_electr = add_electr;
-    }
-
-    public int getCut_electr() {
-        return cut_electr;
-    }
-
-    public void setCut_electr(int cut_electr) {
-        this.cut_electr = cut_electr;
-    }
 }

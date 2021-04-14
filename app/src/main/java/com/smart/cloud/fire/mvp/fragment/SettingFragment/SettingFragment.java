@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.smart.cloud.fire.activity.AccountManage.AccountEntity;
 import com.smart.cloud.fire.activity.AccountManage.AccountManageActivity;
 import com.smart.cloud.fire.activity.AddNFC.AddNFCMacActivity;
 import com.smart.cloud.fire.activity.Setting.MyZoomActivity;
@@ -82,6 +83,7 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
         switch (view.getId()) {
             case R.id.setting_account_manage:
                 intent = new Intent(mContext, AccountManageActivity.class);
+                intent.putExtra("account",MyApp.entity);
                 startActivity(intent);
                 break;
             case R.id.app_update:

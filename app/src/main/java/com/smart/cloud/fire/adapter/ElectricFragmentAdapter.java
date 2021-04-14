@@ -188,7 +188,7 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
             ((ItemViewHolder) holder).power_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(MyApp.app.getCut_electr()!=1){
+                    if(MyApp.app.entity.getCut_electr()!=1){
                         Toast.makeText(MyApp.app,"您没有该权限",Toast.LENGTH_SHORT).show();
                         return;
                     }

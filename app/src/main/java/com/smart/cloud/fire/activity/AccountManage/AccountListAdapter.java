@@ -125,6 +125,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ((ItemViewHolder) holder).add_tv.setText("充电:" + (normalSmoke.getAdd_electr() == 0 ? "关闭" : "开启"));
             ((ItemViewHolder) holder).txt_tv.setText("短信:" + (normalSmoke.getIstxt() == 0 ? "关闭" : "开启"));
 
+
             ((ItemViewHolder) holder).more_iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -243,6 +244,16 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 switch (item.getItemId()) {
                     case R.id.reset:
                         resetAccount(entity);
+                        break;
+                    case R.id.info:
+                        intent=new Intent(mContext,AccountManageActivity.class);
+                        intent.putExtra("account",entity);
+                        mContext.startActivity(intent);
+                        break;
+                    case R.id.area:
+                        intent=new Intent(mContext,AreaListActivity.class);
+                        intent.putExtra("account",entity);
+                        mContext.startActivity(intent);
                         break;
                 }
                 return false;

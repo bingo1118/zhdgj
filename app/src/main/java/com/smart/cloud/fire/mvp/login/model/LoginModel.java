@@ -23,7 +23,7 @@ public class LoginModel {
     private String name;
     private int privilege;
     private String error_code;
-    private String UserID;
+    private String userId;
     private String P2PVerifyCode1;
     private String P2PVerifyCode2;
     private String Email;
@@ -36,6 +36,9 @@ public class LoginModel {
     private String UserLevel;
     private int cut_electr;
     private int add_electr;
+    private int txt;
+    private int grade;
+    private String p_userid;
 
     public String getError_code() {
         return error_code;
@@ -43,14 +46,6 @@ public class LoginModel {
 
     public void setError_code(String error_code) {
         this.error_code = error_code;
-    }
-
-    public String getUserID() {
-        return UserID;
-    }
-
-    public void setUserID(String UserID) {
-        this.UserID = UserID;
     }
 
     public String getP2PVerifyCode1() {
@@ -179,5 +174,37 @@ public class LoginModel {
 
     public void setAdd_electr(int add_electr) {
         this.add_electr = add_electr;
+    }
+
+    public int getTxt() {
+        return txt;
+    }
+
+    public void setTxt(int txt) {
+        this.txt = txt;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public String getP_userid() {
+        return p_userid;
+    }
+
+    public void setP_userid(String p_userid) {
+        this.p_userid = p_userid;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

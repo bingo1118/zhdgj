@@ -168,8 +168,14 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 if(errorCode==0){
                     //获取到内部服务器的用户权限，并配置到MyAPP
                     MyApp.app.setPrivilege(model.getPrivilege());
-                    MyApp.app.setCut_electr(model.getCut_electr());
-                    MyApp.app.setAdd_electr(model.getAdd_electr());
+                    MyApp.app.entity.setUserId(model.getUserId());
+                    MyApp.app.entity.setUserName(model.getName());
+                    MyApp.app.entity.setPrivilege(model.getPrivilege());
+                    MyApp.app.entity.setGrade(model.getGrade());
+                    MyApp.app.entity.setCut_electr(model.getCut_electr());
+                    MyApp.app.entity.setAdd_electr(model.getAdd_electr());
+                    MyApp.app.entity.setIstxt(model.getTxt());
+                    MyApp.app.entity.setP_userId(model.getP_userid());
                     SharedPreferencesManager.getInstance().putData(MyApp.app,
                             SharedPreferencesManager.SP_FILE_GWELL,
                             SharedPreferencesManager.KEY_RECENTPASS,
@@ -281,7 +287,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     }
 
     private void editSharePreference(Context mContext, LoginModel object, String userId, String userPwd){
-        String userID = "0"+String.valueOf((Integer.parseInt(object.getUserID())&0x7fffffff));
+        String userID = "0"+String.valueOf((Integer.parseInt(object.getUserId())&0x7fffffff));
 //        SharedPreferencesManager.getInstance().putData(mContext,
 //                SharedPreferencesManager.SP_FILE_GWELL,
 //                SharedPreferencesManager.KEY_RECENTPASS,

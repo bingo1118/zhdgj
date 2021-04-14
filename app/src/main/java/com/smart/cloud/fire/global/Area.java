@@ -10,6 +10,8 @@ import java.io.Serializable;
 public class Area implements Serializable,BingoViewModel{
     private String areaId;
     private String areaName;
+    private String p_areaId;
+    private String p_areaName;
     private int isParent;//@@9.1
 
     public String getAreaId() {
@@ -44,5 +46,21 @@ public class Area implements Serializable,BingoViewModel{
     @Override
     public String getModelName() {
         return areaName;
+    }
+
+    public String getP_areaId() {
+        return p_areaId;
+    }
+
+    public void setP_areaId(String p_areaId) {
+        this.p_areaId = p_areaId;
+    }
+
+    public String getP_areaName() {
+        return p_areaName;
+    }
+
+    public void setP_areaName(String p_areaName) {
+        this.p_areaName = p_areaName;
     }
 }

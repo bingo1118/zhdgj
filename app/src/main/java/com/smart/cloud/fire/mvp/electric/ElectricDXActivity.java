@@ -265,7 +265,7 @@ public class ElectricDXActivity extends MvpActivity<ElectricPresenter> implement
                         yuzhi_set_dx();
                         break;
                     case R.id.add_battery:
-                        if(MyApp.app.getAdd_electr()!=1){
+                        if(MyApp.app.entity.getAdd_electr()!=1){
                             T.showShort(mContext,"您没有该权限");
                         }else{
                             if(mModel.getPayMode().equals("0")){

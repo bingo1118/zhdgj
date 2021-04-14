@@ -1,6 +1,8 @@
 package com.smart.cloud.fire.activity.AccountManage;
 
-public class AccountEntity {
+import java.io.Serializable;
+
+public class AccountEntity implements Serializable{
 	
 	private String userName;
 	private String userId;

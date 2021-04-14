@@ -997,5 +997,13 @@ public class Utils {
         }
         return out;
     }
+
+    public static boolean isNullString(String s){
+        if(s==null&&s.length()==0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 

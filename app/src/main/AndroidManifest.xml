@@ -239,7 +239,8 @@
             android:launchMode="singleTask" />
         <activity android:name="com.smart.cloud.fire.mvp.electric.ElectricLYActivity" />
         <activity android:name="com.smart.cloud.fire.mvp.LineChart.PowerChartActivity" />
-        <activity android:name="com.smart.cloud.fire.activity.AccountManage.AccountManageActivity"></activity>
+        <activity android:name="com.smart.cloud.fire.activity.AccountManage.AccountManageActivity" />
+        <activity android:name="com.smart.cloud.fire.activity.AccountManage.AreaListActivity"></activity>
     </application>
 
 </manifest>

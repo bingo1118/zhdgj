@@ -1,6 +1,7 @@
 package com.smart.cloud.fire.retrofit;
 
 import com.smart.cloud.fire.activity.AccountManage.AllAccountEntity;
+import com.smart.cloud.fire.activity.AccountManage.AllAreaEntity;
 import com.smart.cloud.fire.global.Electric;
 import com.smart.cloud.fire.global.ElectricDXDetailEntity;
 import com.smart.cloud.fire.global.ElectricDetailEntity;
@@ -147,6 +148,10 @@ public interface ApiStores {
     @GET("getSubAccount")
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
     Observable<AllAccountEntity> getSubAccountList(@Query("userId") String userId);
+
+    @GET("getOwnAreaList")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<AllAreaEntity> getOwnAreaList(@Query("userId") String userId,@Query("privilege") String privilege);
 
     //根据条件查询用户设备@@9.1 添加区域分级查询
     @GET("getNeedDev")
