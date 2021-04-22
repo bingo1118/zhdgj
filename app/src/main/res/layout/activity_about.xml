@@ -34,7 +34,7 @@
             android:id="@+id/about_title"
             android:layout_height="100dp"
             android:layout_width="100dp"
-            android:src="@drawable/ic_launcher"
+            android:src="@mipmap/ic_launcher"
             android:layout_centerHorizontal="true"
             />
         <RelativeLayout
@@ -61,46 +61,7 @@
                 android:layout_toRightOf="@id/about_vension_tv"
                 />
         </RelativeLayout>
-        <ImageView
-            android:id="@+id/about_image2"
-            android:layout_height="120dp"
-            android:layout_width="120dp"
-            android:src="@drawable/about_image3"
-            android:layout_below="@id/about_version_rela"
-            android:layout_marginTop="40dp"
-            android:layout_centerHorizontal="true"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/about_image2"
-            android:text="维科安广微信公众号"
-            android:textColor="#9b9b9b"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            >
-            <TextView
-                android:id="@+id/about_gw_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="官网:http://www.hnwksn.com"
-                android:textColor="#9b9b9b"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/about_gw_tv"
-                android:text="河南维科安广实业有限公司"
-                android:textColor="#9b9b9b"
-                />
-        </RelativeLayout>
+
     </RelativeLayout>
 
 </RelativeLayout>

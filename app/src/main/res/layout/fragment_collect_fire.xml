@@ -25,9 +25,9 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/search"
+            android:padding="10dp"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp" />
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout

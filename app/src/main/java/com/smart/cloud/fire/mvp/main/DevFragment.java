@@ -320,6 +320,9 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
                     }
                     return;
                 }
+                if(electricFragmentAdapter==null){
+                    return;
+                }
                 int count = electricFragmentAdapter.getItemCount();
                 int itemCount = lastVisibleItem+1;
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && itemCount == count) {
@@ -373,11 +376,7 @@ public class DevFragment extends MvpFragment<ElectricDevPresenter> implements El
                 }else{
                     intent = new Intent(mContext, ElectricActivity.class);
                 }
-                intent.putExtra("ElectricMac",data.getMac());
                 intent.putExtra("data",data);
-                intent.putExtra("devType",data.getDeviceType());
-                intent.putExtra("repeatMac",data.getRepeater());
-                intent.putExtra("place",data.getPlaceType());
                 startActivity(intent);
             }
         });

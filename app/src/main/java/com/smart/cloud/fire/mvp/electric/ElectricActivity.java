@@ -161,13 +161,14 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_electric);
         mContext=this;
-        electricMac = getIntent().getExtras().getString("ElectricMac");
         userID = SharedPreferencesManager.getInstance().getData(mContext,
                 SharedPreferencesManager.SP_FILE_GWELL,
                 SharedPreferencesManager.KEY_RECENTNAME);
         privilege = MyApp.app.getPrivilege();
-        devType = getIntent().getExtras().getInt("devType");
-        repeatMac = getIntent().getExtras().getString("repeatMac");
+        Electric data=(Electric) getIntent().getSerializableExtra("data");
+        electricMac = data.getMac();
+        devType = data.getDeviceType();
+        repeatMac = data.getRepeater();
         ButterKnife.bind(this);
         refreshListView();
         more.setVisibility(View.VISIBLE);

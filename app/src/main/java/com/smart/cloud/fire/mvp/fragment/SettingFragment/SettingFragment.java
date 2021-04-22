@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.smart.cloud.fire.activity.AccountManage.AccountEntity;
 import com.smart.cloud.fire.activity.AccountManage.AccountManageActivity;
+import com.smart.cloud.fire.activity.AccountManage.OwnParentAreaListActivity;
 import com.smart.cloud.fire.activity.AddNFC.AddNFCMacActivity;
 import com.smart.cloud.fire.activity.Setting.MyZoomActivity;
 import com.smart.cloud.fire.activity.UploadNFCInfo.UploadNFCInfoActivity;
@@ -77,7 +78,7 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
     }
 
     @OnClick({R.id.app_update, R.id.setting_help_about, R.id.setting_help_rela, R.id.setting_help_exit,
-            R.id.setting_camera_relative,R.id.setting_account_manage})
+            R.id.setting_camera_relative,R.id.setting_account_manage,R.id.setting_area_manage})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -86,9 +87,13 @@ public class SettingFragment extends MvpFragment<SettingFragmentPresenter> imple
                 intent.putExtra("account",MyApp.entity);
                 startActivity(intent);
                 break;
+            case R.id.setting_area_manage:
+                intent = new Intent(mContext, OwnParentAreaListActivity.class);
+                intent.putExtra("account",MyApp.entity);
+                startActivity(intent);
+                break;
             case R.id.app_update:
                 mvpPresenter.checkUpdate(mContext);
-//                getActivity().finish();//@@7.13
                 break;
             case R.id.setting_help_about:
                 intent = new Intent(mContext, AboutActivity.class);

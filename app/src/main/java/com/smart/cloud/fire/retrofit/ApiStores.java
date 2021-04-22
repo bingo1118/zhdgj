@@ -151,7 +151,11 @@ public interface ApiStores {
 
     @GET("getOwnAreaList")
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
-    Observable<AllAreaEntity> getOwnAreaList(@Query("userId") String userId,@Query("privilege") String privilege);
+    Observable<AllAreaEntity> getOwnAreaList(@Query("userId") String userId,@Query("privilege") String privilege,@Query("p_areaid") String p_areaid );
+
+    @GET("getOwnParentAreaList")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<AllAreaEntity> getOwnParentAreaList(@Query("userId") String userId,@Query("privilege") String privilege);
 
     //根据条件查询用户设备@@9.1 添加区域分级查询
     @GET("getNeedDev")

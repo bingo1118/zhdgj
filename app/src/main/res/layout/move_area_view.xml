@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rela"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="移动区域至:"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一级区域:"
+            android:textColor="#000" />
+
+        <com.smart.cloud.fire.view.dataSelector.GetParentTeamDataSelectorView
+            android:id="@+id/selector"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/selector_shape"
+            android:gravity="center_vertical|right"
+            android:hint="请填写新区域名称"
+            android:singleLine="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/text_view_and_kuang"
+            android:textColorHint="@color/hint_color_text"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:text="确定"
+        android:textColor="@color/colorAccent" />
+
+</LinearLayout>

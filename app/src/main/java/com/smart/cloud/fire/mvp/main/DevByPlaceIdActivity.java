@@ -456,11 +456,7 @@ public class DevByPlaceIdActivity extends MvpActivity<ElectricDevPresenter> impl
                 }else{
                     intent = new Intent(mContext, ElectricActivity.class);
                 }
-                intent.putExtra("ElectricMac",data.getMac());
                 intent.putExtra("data",data);
-                intent.putExtra("devType",data.getDeviceType());
-                intent.putExtra("repeatMac",data.getRepeater());
-                intent.putExtra("place",data.getPlaceType());
                 startActivity(intent);
             }
         });

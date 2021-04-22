@@ -79,6 +79,6 @@ public class GetTeamDataSelectorView extends DataSelectorView {
     @Override
     public void initView(Context context) {
         super.initView(context);
-        editText.setHint("分组");
+        editText.setHint("请选择需要添加的区域");
     }
 }

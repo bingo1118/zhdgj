@@ -27,6 +27,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
@@ -70,7 +71,10 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     Button login_new_register;
     @Bind(R.id.login_forget_pwd)
     TextView login_forget_pwd;
+    @Bind(R.id.isread_chaekbox)
+    CheckBox isread_chaekbox;
     private  String userId;
+    private String pwd;
 
     private AlertDialog dialog_update;
 
@@ -84,13 +88,25 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     }
 
     private void initView() {
+        String remenber_account=SharedPreferencesManager.getInstance().getData(mContext,
+                SharedPreferencesManager.SP_FILE_GWELL,
+                SharedPreferencesManager.LOGIN_REMENBER_ACCOUNT);
+        String remenber_pwd=SharedPreferencesManager.getInstance().getData(mContext,
+                SharedPreferencesManager.SP_FILE_GWELL,
+                SharedPreferencesManager.LOGIN_REMENBER_PWD);
+        if(remenber_account!=null&&remenber_account.length()>0){
+            login_user.setText(remenber_account);
+            login_pwd.setText(remenber_pwd);
+            isread_chaekbox.setChecked(true);
+        }
+
         //登陆按钮事件。。
         RxView.clicks(login_rela2).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
                         userId = login_user.getText().toString().trim();
-                        String pwd = login_pwd.getText().toString().trim();
+                        pwd = login_pwd.getText().toString().trim();
                         if(userId.length()==0){
                             T.show(mContext,"账号不能为空",Toast.LENGTH_SHORT);
                             return;
@@ -139,6 +155,21 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     public void getDataSuccess(LoginModel model) {
         Intent intent = new Intent(mContext, Main6Activity.class);
         startActivity(intent);
+        if(isread_chaekbox.isChecked()){
+            SharedPreferencesManager.getInstance().putData(mContext,
+                    SharedPreferencesManager.SP_FILE_GWELL,
+                    SharedPreferencesManager.LOGIN_REMENBER_ACCOUNT, userId);
+            SharedPreferencesManager.getInstance().putData(mContext,
+                    SharedPreferencesManager.SP_FILE_GWELL,
+                    SharedPreferencesManager.LOGIN_REMENBER_PWD, pwd);
+        }else{
+            SharedPreferencesManager.getInstance().putData(mContext,
+                    SharedPreferencesManager.SP_FILE_GWELL,
+                    SharedPreferencesManager.LOGIN_REMENBER_ACCOUNT, "");
+            SharedPreferencesManager.getInstance().putData(mContext,
+                    SharedPreferencesManager.SP_FILE_GWELL,
+                    SharedPreferencesManager.LOGIN_REMENBER_PWD, "");
+        }
         finish();
     }
 

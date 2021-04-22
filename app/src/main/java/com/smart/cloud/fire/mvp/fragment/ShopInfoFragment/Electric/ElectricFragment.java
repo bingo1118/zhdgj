@@ -192,10 +192,7 @@ public class ElectricFragment extends MvpFragment<ElectricDevPresenter> implemen
                 }else{
                     intent = new Intent(mContext, ElectricActivity.class);
                 }
-                intent.putExtra("ElectricMac",data.getMac());
-                intent.putExtra("devType",data.getDeviceType());
-                intent.putExtra("repeatMac",data.getRepeater());
-                intent.putExtra("place",data.getPlaceType());
+                intent.putExtra("data",data);
                 startActivity(intent);
             }
         });

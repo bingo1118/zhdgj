@@ -36,6 +36,7 @@ import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.Utils;
 import com.smart.cloud.fire.utils.VolleyHelper;
+import com.smart.cloud.fire.view.dataSelector.GetTeamDataSelectorView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,6 +89,8 @@ public class AccountManageActivity extends AppCompatActivity {
         name_tv.setText("名称:"+mAccount.getUserName());
         grade_tv.setText("等级:"+mAccount.getGrade()+"级");
         list = new ArrayList<>();
+        mAdapter = new AccountListAdapter(mContext, list);
+        recyclerView.setAdapter(mAdapter);
         refreshListView();
         getSubAccount(mAccount.getUserId());
         add_user_btn.setOnClickListener(new View.OnClickListener() {
@@ -132,14 +135,14 @@ public class AccountManageActivity extends AppCompatActivity {
                 if (result == 0) {
                     list = model.getList();
                     if(list.size()>0){
-                        mAdapter = new AccountListAdapter(mContext, list);
-                        recyclerView.setAdapter(mAdapter);
+                        mAdapter.changeDatas(list);
                         tip_tv.setVisibility(View.GONE);
                     }else{
                         tip_tv.setVisibility(View.VISIBLE);
                     }
-                    swipereFreshLayout.setRefreshing(false);
                 } else {
+                    list.clear();
+                    mAdapter.changeDatas(list);
                     T.showShort(mContext, "无数据");
                     tip_tv.setVisibility(View.VISIBLE);
                 }
@@ -153,14 +156,21 @@ public class AccountManageActivity extends AppCompatActivity {
             @Override
             public void onCompleted() {
                 mProgressBar.setVisibility(View.GONE);
+                swipereFreshLayout.setRefreshing(false);
             }
         }));
     }
 
 
     private void addUser() {
+        if(mAccount.getGrade()>2){
+            T.showShort(mContext,"您没有添加用户权限");
+            return;
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.add_account_view, null);
+
         final EditText name_et = (EditText) view.findViewById(R.id.name_et);
         final EditText phone_et = (EditText) view.findViewById(R.id.phone_et);
         final EditText pwd_et = (EditText) view.findViewById(R.id.pwd_et);
@@ -170,7 +180,7 @@ public class AccountManageActivity extends AppCompatActivity {
         Button commit_btn = (Button) view.findViewById(R.id.commit);
         final int grade = mAccount.getGrade()+1;
         String gradeString = "个人账号";
-        switch (grade) {
+        switch (grade){
             case 0:
                 gradeString = "超级账号";
                 break;
@@ -234,13 +244,14 @@ public class AccountManageActivity extends AppCompatActivity {
                                     int code = response.getInt("errorCode");
                                     if (code == 0) {
                                         T.showShort(mContext, "添加成功");
+                                        getSubAccount(mAccount.getUserId());
+                                        dialog.dismiss();
                                     } else {
                                         T.showShort(mContext, response.getString("error"));
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                dialog.dismiss();
                             }
                         }, new Response.ErrorListener() {
                     @Override

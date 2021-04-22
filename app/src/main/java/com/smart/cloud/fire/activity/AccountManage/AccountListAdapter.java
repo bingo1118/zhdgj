@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.smart.cloud.fire.base.presenter.BasePresenter;
 import com.smart.cloud.fire.global.ConstantValues;
+import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.HttpAreaResult;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.HttpError;
 import com.smart.cloud.fire.rxjava.ApiCallback;
@@ -61,6 +62,11 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.mInflater = LayoutInflater.from(mContext);
         this.mContext = mContext;
         this.listNormalSmoke = listNormalSmoke;
+    }
+
+    public void changeDatas(List<AccountEntity> listNormalSmoke){
+        this.listNormalSmoke = listNormalSmoke;
+        notifyDataSetChanged();
     }
 
     /**
@@ -242,10 +248,17 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             public boolean onMenuItemClick(MenuItem item) {
                 Intent intent = null;
                 switch (item.getItemId()) {
+                    case R.id.delete:
+                        deleteAccount(entity);
+                        break;
                     case R.id.reset:
                         resetAccount(entity);
                         break;
                     case R.id.info:
+                        if(entity.getGrade()>2){
+                            T.showShort(mContext,"该账号没有下级账号信息");
+                            return false;
+                        }
                         intent=new Intent(mContext,AccountManageActivity.class);
                         intent.putExtra("account",entity);
                         mContext.startActivity(intent);
@@ -266,6 +279,67 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             }
         });
         popupMenu.show();
+    }
+
+    private void deleteAccount(final AccountEntity entity) {
+        if(MyApp.getPrivilege()!=4){
+            T.showShort(mContext,"您没有该权限");
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.account_delete_view, null);
+        Button commit_btn = (Button) view.findViewById(R.id.commit);
+        Button cancel_btn = (Button) view.findViewById(R.id.cancel);
+
+
+        final Dialog dialog = builder.setView(view).create();
+        dialog.show();
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        commit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String url = ConstantValues.SERVER_IP_NEW + "deleteUser?userId=" + MyApp.getUserID()
+                        + "&deleteUserId=" + entity.getUserId();
+
+                VolleyHelper helper = VolleyHelper.getInstance(mContext);
+                RequestQueue mQueue = helper.getRequestQueue();
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    int code = response.getInt("errorCode");
+                                    if (code == 0) {
+                                        T.showShort(mContext, "删除成功");
+                                        listNormalSmoke.remove(entity);
+                                        notifyDataSetChanged();
+                                    } else {
+                                        T.showShort(mContext, response.getString("error"));
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                dialog.dismiss();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        T.showShort(mContext, "网络错误");
+                        dialog.dismiss();
+                    }
+                });
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(300000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                mQueue.add(jsonObjectRequest);
+            }
+        });
     }
 
     private void resetAccount(final AccountEntity entity) {

@@ -34,6 +34,12 @@ public abstract class DataSelectorView extends LinearLayout {
     ProgressBar loading_prg_monitor;
     private ImageView clear_choice;
 
+    private View rootView;//根布局
+
+    public void setRootView(View rootView) {
+        this.rootView = rootView;
+    }
+
     enum Status{
         INIT,
         LOADDATA,
@@ -133,20 +139,33 @@ public abstract class DataSelectorView extends LinearLayout {
         backgroundAlpha(0.5f);
         // 加载popupWindow的布局文件
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.data_selector_popwin, null, false);
-        TextView info_tv = contentView.findViewById(R.id.info_tv);
+        TextView title_tv = contentView.findViewById(R.id.title_tv);
         ListAdapter mAdapter = new ListAdapter(getContext(), dataList);
         ListView listView = (ListView) contentView.findViewById(R.id.listView);
 
         listView.setAdapter(mAdapter);
-        popupWindow = new PopupWindow(contentView, LayoutParams.MATCH_PARENT, 1000);
+        if(rootView!=null){
+            popupWindow = new PopupWindow(contentView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            title_tv.setVisibility(GONE);
+        }else{
+            popupWindow = new PopupWindow(contentView, LayoutParams.MATCH_PARENT, 1000);
+            title_tv.setVisibility(VISIBLE);
+        }
+
 
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
         popupWindow.setTouchable(true);
         popupWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
         popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        popupWindow.setAnimationStyle(R.style.popwin_anim_style);
-        popupWindow.showAtLocation(contentView, Gravity.BOTTOM, 0, 0);
+
+        if(rootView!=null){
+            popupWindow.showAsDropDown(this);
+        }else{
+            popupWindow.setAnimationStyle(R.style.popwin_anim_style);
+            popupWindow.showAtLocation(contentView, Gravity.BOTTOM, 0, 0);
+        }
+
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {

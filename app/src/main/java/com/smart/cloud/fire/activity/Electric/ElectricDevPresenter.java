@@ -132,6 +132,7 @@ public class ElectricDevPresenter extends BasePresenter<ElectricDevView> {
 
             @Override
             public void onCompleted() {
+
                 electricFragment.hideLoading();
             }
         }));

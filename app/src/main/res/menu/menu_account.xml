@@ -12,4 +12,8 @@
     <item
         android:id="@+id/area"
         android:title="区域设置"/>
+
+    <item
+        android:id="@+id/delete"
+        android:title="删除账号"/>
 </menu>

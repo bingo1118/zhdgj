@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -39,9 +41,11 @@ import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.mvp.fragment.CollectFragment.CollectFragment;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.MapFragment;
 import com.smart.cloud.fire.mvp.fragment.SettingFragment.SettingFragment;
+import com.smart.cloud.fire.mvp.fragment.SettingFragment.SettingFragmentPresenter;
 import com.smart.cloud.fire.mvp.login.SplashActivity;
 import com.smart.cloud.fire.utils.SharedPreferencesManager;
 import com.smart.cloud.fire.utils.T;
+import com.smart.cloud.fire.utils.UpdateTask;
 import com.smart.cloud.fire.yoosee.P2PListener;
 import com.smart.cloud.fire.yoosee.SettingListener;
 
@@ -132,6 +136,7 @@ public class Main6Activity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         mContext = this;
+        new UpdateTask().execute(mContext);
 
         initView();
         regFilter();
@@ -190,6 +195,8 @@ public class Main6Activity extends AppCompatActivity {
     private void regFilter() {
         IntentFilter filter = new IntentFilter();
         filter.addAction("APP_EXIT");
+        filter.addAction("Constants.Action.ACTION_UPDATE");
+        filter.addAction("Constants.Action.ACTION_UPDATE_NO");
         mContext.registerReceiver(mReceiver, filter);
     }
 
@@ -200,6 +207,42 @@ public class Main6Activity extends AppCompatActivity {
             //退出。。
             if (intent.getAction().equals("APP_EXIT")) {
                 showDialog();
+            }
+            if (intent.getAction().equals("Constants.Action.ACTION_UPDATE_NO")) {
+                View view = LayoutInflater.from(mContext).inflate(
+                        R.layout.dialog_update, null);
+                TextView title = (TextView) view.findViewById(R.id.title_text);
+                WebView content = (WebView) view
+                        .findViewById(R.id.content_text);
+                TextView button2 = (TextView) view
+                        .findViewById(R.id.button2_text);
+                ImageView minddle_image = (ImageView) view
+                        .findViewById(R.id.minddle_image);
+                RelativeLayout cancel_rela_dialog = (RelativeLayout) view
+                        .findViewById(R.id.cancel_rela_dialog);
+                title.setText("更新消息");
+                content.setBackgroundColor(getResources().getColor(R.color.update_message)); // 设置背景色
+                content.getBackground().setAlpha(255); // 设置填充透明度 范围：0-255
+                content.loadDataWithBaseURL(null, "已是最新版本！", "text/html", "utf-8",
+                        null);
+                minddle_image.setVisibility(View.GONE);
+                cancel_rela_dialog.setVisibility(View.GONE);
+                button2.setText("确定");
+                button2.setTextColor(Color.BLACK);
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                dialog_update = builder.create();
+                dialog_update.show();
+                dialog_update.setContentView(view);
+                button2.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View arg0) {
+                        // TODO Auto-generated method stub
+                        if (null != dialog_update) {
+                            dialog_update.cancel();
+                        }
+                    }
+                });
             }
             if (intent.getAction().equals("Constants.Action.ACTION_UPDATE")) {
                 if (null != dialog_update && dialog_update.isShowing()) {

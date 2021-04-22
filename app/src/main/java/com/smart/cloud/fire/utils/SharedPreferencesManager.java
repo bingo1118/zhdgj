@@ -22,6 +22,9 @@ public class SharedPreferencesManager {
     public static final String KEY_RECENTPASS_NUMBER = "recentPass_number";
     public static final String KEY_RECENT_PRIVILEGE = "recentPrivilege";//@@5.5用户权限
 
+    public static final String LOGIN_REMENBER_ACCOUNT = "login_remenber_account";
+    public static final String LOGIN_REMENBER_PWD = "login_remenber_pwd";
+
     public static final String KEY_NAMES = "names";
     public static final String KEY_UPDATE_CHECKTIME = "update_checktime";
 

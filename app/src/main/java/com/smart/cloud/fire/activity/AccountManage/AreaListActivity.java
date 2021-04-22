@@ -112,7 +112,7 @@ public class AreaListActivity extends AppCompatActivity {
     }
 
     private void getOwnAreaList(String userID) {
-        Observable mObservable = BasePresenter.apiStores1.getOwnAreaList(mAccount.getUserId(),mAccount.getPrivilege()+"");
+        Observable mObservable = BasePresenter.apiStores1.getOwnAreaList(mAccount.getUserId(),mAccount.getPrivilege()+"","");
 
         BasePresenter.addSubscription(mObservable, new SubscriberCallBack<>(new ApiCallback<AllAreaEntity>() {
             @Override
@@ -123,7 +123,6 @@ public class AreaListActivity extends AppCompatActivity {
                     if(list.size()>0){
                         mAdapter = new AreaListAdapter(mContext, list,mAccount);
                         recyclerView.setAdapter(mAdapter);
-                    }else{
                     }
                     swipereFreshLayout.setRefreshing(false);
                 } else {

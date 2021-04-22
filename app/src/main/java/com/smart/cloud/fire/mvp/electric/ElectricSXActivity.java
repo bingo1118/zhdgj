@@ -82,6 +82,8 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
 
     @Bind(R.id.more)
     TextView more;//@@菜单
+    @Bind(R.id.title_tv)
+    TextView title_tv;
 
     @Bind(R.id.dy_a)
     TextView dy_a;
@@ -205,15 +207,17 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_electric_sx);
         mContext=this;
-        electricMac = getIntent().getExtras().getString("ElectricMac");
         userID = SharedPreferencesManager.getInstance().getData(mContext,
                 SharedPreferencesManager.SP_FILE_GWELL,
                 SharedPreferencesManager.KEY_RECENTNAME);
         privilege = MyApp.app.getPrivilege();
-        devType = getIntent().getExtras().getInt("devType");
-        repeatMac = getIntent().getExtras().getString("repeatMac");
+        Electric data=(Electric) getIntent().getSerializableExtra("data");
+        electricMac = data.getMac();
+        devType = data.getDeviceType();
+        repeatMac = data.getRepeater();
         ButterKnife.bind(this);
         refreshListView();
+        title_tv.setText(data.getName());
         more.setVisibility(View.VISIBLE);
         more.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="45dp"
     android:background="@color/white"
-    android:padding="5dp"
-    android:layout_marginBottom="3dp"
-    android:gravity="center_vertical">
+    android:paddingLeft="10dp"
+    android:layout_marginBottom="1dp"
+    android:gravity="center_vertical"
+    android:id="@+id/rela">
 
     <RadioButton
         android:id="@+id/rb"

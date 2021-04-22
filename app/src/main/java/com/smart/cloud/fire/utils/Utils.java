@@ -999,7 +999,7 @@ public class Utils {
     }
 
     public static boolean isNullString(String s){
-        if(s==null&&s.length()==0){
+        if(s==null||s.length()==0){
             return true;
         }else{
             return false;
