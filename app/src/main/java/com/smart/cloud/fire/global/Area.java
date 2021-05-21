@@ -3,6 +3,7 @@ package com.smart.cloud.fire.global;
 import com.smart.cloud.fire.view.dataSelector.BingoViewModel;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/8/22.
@@ -13,6 +14,7 @@ public class Area implements Serializable,BingoViewModel{
     private String p_areaId;
     private String p_areaName;
     private int isParent;//@@9.1
+    private List<Area> areas=null;//@@8.31 二级区域列表
 
     public String getAreaId() {
         return areaId;
@@ -62,5 +64,13 @@ public class Area implements Serializable,BingoViewModel{
 
     public void setP_areaName(String p_areaName) {
         this.p_areaName = p_areaName;
+    }
+
+    public List<Area> getAreas() {
+        return areas;
+    }
+
+    public void setAreas(List<Area> areas) {
+        this.areas = areas;
     }
 }

@@ -214,6 +214,11 @@ public class OwnParentAreaListAdapter extends RecyclerView.Adapter<RecyclerView.
             public boolean onMenuItemClick(MenuItem item) {
                 Intent intent = null;
                 switch (item.getItemId()) {
+                    case R.id.user:
+                        intent=new Intent(mContext,UserOfParentAreaActivity.class);
+                        intent.putExtra("area",entity);
+                        mContext.startActivity(intent);
+                        break;
                     case R.id.delete:
                         deleteArea(entity);
                         break;

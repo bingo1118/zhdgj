@@ -242,7 +242,9 @@
         <activity android:name="com.smart.cloud.fire.activity.AccountManage.AccountManageActivity" />
         <activity android:name="com.smart.cloud.fire.activity.AccountManage.AreaListActivity" />
         <activity android:name="com.smart.cloud.fire.activity.AccountManage.OwnAreaListActivity" />
-        <activity android:name="com.smart.cloud.fire.activity.AccountManage.OwnParentAreaListActivity"></activity>
+        <activity android:name="com.smart.cloud.fire.activity.AccountManage.OwnParentAreaListActivity" />
+        <activity android:name="com.smart.cloud.fire.activity.AccountManage.UserOfAreaActivity" />
+        <activity android:name="com.smart.cloud.fire.activity.AccountManage.UserOfParentAreaActivity"></activity>
     </application>
 
 </manifest>

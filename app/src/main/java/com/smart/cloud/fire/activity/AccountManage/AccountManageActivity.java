@@ -28,6 +28,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.zxing.common.StringUtils;
 import com.mob.tools.utils.Strings;
 import com.smart.cloud.fire.base.presenter.BasePresenter;
+import com.smart.cloud.fire.base.ui.BaseActivity;
 import com.smart.cloud.fire.global.Account;
 import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.rxjava.ApiCallback;
@@ -50,7 +51,7 @@ import fire.cloud.smart.com.smartcloudfire.R;
 import okhttp3.internal.Util;
 import rx.Observable;
 
-public class AccountManageActivity extends AppCompatActivity {
+public class AccountManageActivity extends BaseActivity {
 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;

@@ -12,6 +12,8 @@ public class AccountEntity implements Serializable{
 	private int istxt;
 	private int cut_electr;
 	private int add_electr;
+
+	private int gradeOfArea;//区域里的等级  1管理员 2普通用户
 	
 	public int getIstxt() {
 		return istxt;
@@ -61,5 +63,13 @@ public class AccountEntity implements Serializable{
 	}
 	public void setP_userId(String p_userId) {
 		this.p_userId = p_userId;
+	}
+
+	public int getGradeOfArea() {
+		return gradeOfArea;
+	}
+
+	public void setGradeOfArea(int gradeOfArea) {
+		this.gradeOfArea = gradeOfArea;
 	}
 }

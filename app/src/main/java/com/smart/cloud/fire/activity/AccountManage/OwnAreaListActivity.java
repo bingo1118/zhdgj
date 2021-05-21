@@ -25,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.smart.cloud.fire.base.presenter.BasePresenter;
+import com.smart.cloud.fire.base.ui.BaseActivity;
 import com.smart.cloud.fire.global.Area;
 import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.rxjava.ApiCallback;
@@ -45,7 +46,7 @@ import butterknife.ButterKnife;
 import fire.cloud.smart.com.smartcloudfire.R;
 import rx.Observable;
 
-public class OwnAreaListActivity extends AppCompatActivity {
+public class OwnAreaListActivity extends BaseActivity {
 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -149,6 +150,8 @@ public class OwnAreaListActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.add_area_view, null);
         final EditText name_et = (EditText) view.findViewById(R.id.name_et);
+        TextView title_text=(TextView) view.findViewById(R.id.title_text);
+        title_text.setText("添加二级区域");
         Button commit_btn = (Button) view.findViewById(R.id.commit);
 
         final Dialog dialog = builder.setView(view).create();

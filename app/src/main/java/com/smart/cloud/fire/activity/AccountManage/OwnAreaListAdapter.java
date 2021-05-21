@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -74,12 +75,12 @@ public class OwnAreaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (viewType == TYPE_ITEM) {
             final View view = mInflater.inflate(R.layout.arealist_adapter_item, parent, false);
             //这边可以做一些属性设置，甚至事件监听绑定
-            AreaListAdapter.ItemViewHolder viewHolder = new AreaListAdapter.ItemViewHolder(view);
+            ItemViewHolder viewHolder = new ItemViewHolder(view);
             return viewHolder;
         } else if (viewType == TYPE_FOOTER) {
             View foot_view = mInflater.inflate(R.layout.recycler_load_more_layout, parent, false);
             //这边可以做一些属性设置，甚至事件监听绑定
-            AreaListAdapter.FootViewHolder footViewHolder = new AreaListAdapter.FootViewHolder(foot_view);
+            FootViewHolder footViewHolder = new FootViewHolder(foot_view);
             return footViewHolder;
         }
         return null;
@@ -93,18 +94,26 @@ public class OwnAreaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      */
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof AreaListAdapter.ItemViewHolder) {
+        if (holder instanceof ItemViewHolder) {
             final Area mArea = listNormalSmoke.get(position);
-            ((AreaListAdapter.ItemViewHolder) holder).name_tv.setText(mArea.getAreaName());
-            ((AreaListAdapter.ItemViewHolder) holder).more_iv.setOnClickListener(new View.OnClickListener() {
+            ((ItemViewHolder) holder).name_tv.setText(mArea.getAreaName());
+            ((ItemViewHolder) holder).more_iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     showPopupMenu(v, mArea);
                 }
             });
+            ((ItemViewHolder) holder).rela.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(mContext,UserOfAreaActivity.class);
+                    intent.putExtra("area",mArea);
+                    mContext.startActivity(intent);
+                }
+            });
             holder.itemView.setTag(position);
-        } else if (holder instanceof AreaListAdapter.FootViewHolder) {
-            AreaListAdapter.FootViewHolder footViewHolder = (AreaListAdapter.FootViewHolder) holder;
+        } else if (holder instanceof FootViewHolder) {
+            FootViewHolder footViewHolder = (FootViewHolder) holder;
             switch (load_more_status) {
                 case PULLUP_LOAD_MORE:
                     footViewHolder.footViewItemTv.setText("上拉加载更多...");
@@ -153,6 +162,8 @@ public class OwnAreaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         RadioButton rb;
         @Bind(R.id.more_iv)
         ImageView more_iv;
+        @Bind(R.id.rela)
+        RelativeLayout rela;
 
         public ItemViewHolder(View view) {
             super(view);
@@ -202,6 +213,11 @@ public class OwnAreaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             public boolean onMenuItemClick(MenuItem item) {
                 Intent intent = null;
                 switch (item.getItemId()) {
+                    case R.id.user:
+                        intent=new Intent(mContext,UserOfAreaActivity.class);
+                        intent.putExtra("area",entity);
+                        mContext.startActivity(intent);
+                        break;
                     case R.id.delete:
                         deleteArea(entity);
                         break;

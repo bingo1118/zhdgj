@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rela">
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="角色设置"
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:textSize="20sp"
+        android:textColor="#fff"
+        android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/rg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+                <RadioButton
+                    android:id="@+id/manager_rb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="区域管理员"/>
+                <RadioButton
+                    android:id="@+id/normol_rb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="普通用户"/>
+            </RadioGroup>
+
+        </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/commit"
+        android:textColor="@color/colorAccent"
+        android:background="#fff"
+        android:text="确定"/>
+
+</LinearLayout>

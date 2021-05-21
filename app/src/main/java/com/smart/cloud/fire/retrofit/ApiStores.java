@@ -124,6 +124,11 @@ public interface ApiStores {
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
     Observable<HttpAreaResult> getAreaId(@Query("userId") String userId, @Query("privilege") String privilege, @Query("page") String page);
 
+    //获取所有的区域类型(二级列表)
+    @GET("getAreaInfo")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<HttpAreaResult> getAreaInfo(@Query("userId") String userId, @Query("privilege") String privilege, @Query("page") String page);
+
     //根据条件查询用户烟感
     @GET("getNeedSmoke")
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
@@ -148,6 +153,14 @@ public interface ApiStores {
     @GET("getSubAccount")
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
     Observable<AllAccountEntity> getSubAccountList(@Query("userId") String userId);
+
+    @GET("getAccountOfArea")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<AllAccountEntity> getAccountOfArea(@Query("areaId") String areaId);
+
+    @GET("getAccountOfParentArea")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<AllAccountEntity> getAccountOfParentArea(@Query("areaId") String areaId);
 
     @GET("getOwnAreaList")
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
