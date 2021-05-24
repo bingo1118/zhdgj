@@ -37,6 +37,7 @@ import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.VolleyHelper;
 import com.smart.cloud.fire.view.WithRecordEdittext;
 import com.smart.cloud.fire.view.XCDropDownListView;
+import com.smart.cloud.fire.view.dataSelector.expandableListView.AreaDataExpandableSelectorView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -77,8 +78,10 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
     ImageView scanErWeiMa;
     @Bind(R.id.location_image)
     ImageView locationImage;
-    @Bind(R.id.add_fire_zjq)
-    XCDropDownListView addFireZjq;//选择区域。。
+//    @Bind(R.id.add_fire_zjq)
+//    XCDropDownListView addFireZjq;//选择区域。。
+    @Bind(R.id.add_area_selector)
+    AreaDataExpandableSelectorView add_area_selector;
     @Bind(R.id.add_fire_type)
     XCDropDownListView addFireType;//选择类型。。
     @Bind(R.id.add_fire_dev_btn)
@@ -127,7 +130,7 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
             }
         });//@@10.18
 //        addCameraRelative.setVisibility(View.VISIBLE);
-        addFireZjq.setEditTextHint("单位");
+//        addFireZjq.setEditTextHint("单位");
         addFireType.setEditTextHint("分组");
         RxView.clicks(addFireDevBtn).throttleFirst(2, TimeUnit.SECONDS).subscribe(new Action1<Void>() {
             @Override
@@ -144,6 +147,7 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
         if (mShopType != null) {
             shopTypeId = mShopType.getPlaceTypeId();
         }
+        mArea=(Area) add_area_selector.getCheckedModel();
         if (mArea != null) {
             areaId = mArea.getAreaId();
         }
@@ -176,9 +180,9 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (addFireZjq.ifShow()) {
-            addFireZjq.closePopWindow();
-        }
+//        if (addFireZjq.ifShow()) {
+//            addFireZjq.closePopWindow();
+//        }
         if (addFireType.ifShow()) {
             addFireType.closePopWindow();
         }
@@ -216,13 +220,13 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
                 startActivityForResult(intent,1);//@@6.20
                 break;
             case R.id.add_fire_zjq:
-                if (addFireZjq.ifShow()) {
-                    addFireZjq.closePopWindow();
-                } else {
-                    mvpPresenter.getPlaceTypeId(userID, privilege + "", 2);
-                    addFireZjq.setClickable(false);
-                    addFireZjq.showLoading();
-                }
+//                if (addFireZjq.ifShow()) {
+//                    addFireZjq.closePopWindow();
+//                } else {
+//                    mvpPresenter.getPlaceTypeId(userID, privilege + "", 2);
+//                    addFireZjq.setClickable(false);
+//                    addFireZjq.showLoading();
+//                }
                 break;
             case R.id.add_fire_type:
                 if (addFireType.ifShow()) {
@@ -326,7 +330,11 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
         addFireName.setText(smoke.getName());
         addFireMan.setText(smoke.getPrincipal1());
         addFireManPhone.setText(smoke.getPrincipal1Phone());
-        addFireZjq.setEditTextData(smoke.getAreaName());
+//        addFireZjq.setEditTextData(smoke.getAreaName());
+        Area area=new Area();
+        area.setAreaName(smoke.getAreaName());
+        area.setAreaId(smoke.getAreaId()+"");
+        add_area_selector.setCheckedModel(area);
         addFireType.setEditTextData(smoke.getPlaceType());//@@10.18
         areaId=smoke.getAreaId()+"";
         shopTypeId=smoke.getPlaceTypeId();//@@10.18
@@ -354,17 +362,17 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
 
     @Override
     public void getAreaType(ArrayList<Object> shopTypes) {
-        addFireZjq.setItemsData(shopTypes,mvpPresenter);
-        addFireZjq.showPopWindow();
-        addFireZjq.setClickable(true);
-        addFireZjq.closeLoading();
+//        addFireZjq.setItemsData(shopTypes,mvpPresenter);
+//        addFireZjq.showPopWindow();
+//        addFireZjq.setClickable(true);
+//        addFireZjq.closeLoading();
     }
 
     @Override
     public void getAreaTypeFail(String msg) {
         T.showShort(mContext, msg);
-        addFireZjq.setClickable(true);
-        addFireZjq.closeLoading();
+//        addFireZjq.setClickable(true);
+//        addFireZjq.closeLoading();
     }
 
     @Override
@@ -379,7 +387,7 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
             shopTypeId = "";
             camera = "";
             addFireMac.setText("");
-            addFireZjq.addFinish();
+//            addFireZjq.addFinish();
             addFireType.addFinish();
         }
     }
@@ -436,7 +444,7 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
         addFireName.setText("");
         addFireMan.setText("");
         addFireManPhone.setText("");
-        addFireZjq.setEditTextData("");
+//        addFireZjq.setEditTextData("");
         addFireType.setEditTextData("");
         addCameraName.setText("");
     }

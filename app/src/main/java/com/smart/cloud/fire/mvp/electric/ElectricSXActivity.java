@@ -32,6 +32,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.smart.cloud.fire.activity.AlarmHistory.OneDeviceAlarmHistoryActivity;
 import com.smart.cloud.fire.adapter.ElectricActivityAdapterTest;
 import com.smart.cloud.fire.base.ui.MvpActivity;
 import com.smart.cloud.fire.global.ConstantValues;
@@ -281,7 +282,13 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()) {
+                    case R.id.devive_alarm_hostory:
+                        intent=new Intent(mContext, OneDeviceAlarmHistoryActivity.class);
+                        intent.putExtra("mac",electricMac);
+                        startActivity(intent);
+                        break;
                     case R.id.devive_info:
                         AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
                         View v=LayoutInflater.from(mContext).inflate(R.layout.device_info,null);
@@ -303,7 +310,7 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
                         getPlaces();
                         break;
                     case R.id.change_history:
-                        Intent intent=new Intent(mContext, ElectricChangeHistoryActivity.class);
+                        intent=new Intent(mContext, ElectricChangeHistoryActivity.class);
                         intent.putExtra("mac",electricMac);
                         startActivity(intent);
                         break;

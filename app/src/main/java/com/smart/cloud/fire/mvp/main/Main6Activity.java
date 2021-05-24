@@ -399,4 +399,9 @@ public class Main6Activity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mReceiver);
+    }
 }

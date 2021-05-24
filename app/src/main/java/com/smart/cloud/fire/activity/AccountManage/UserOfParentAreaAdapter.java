@@ -257,6 +257,11 @@ public class UserOfParentAreaAdapter extends RecyclerView.Adapter<RecyclerView.V
                     case R.id.set_role:
                         setRole(entity);
                         break;
+                    case R.id.area:
+                        intent=new Intent(mContext,AreaListActivity.class);
+                        intent.putExtra("account",entity);
+                        mContext.startActivity(intent);
+                        break;
                 }
                 return false;
             }

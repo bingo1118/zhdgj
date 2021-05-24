@@ -215,6 +215,10 @@ public class OwnParentAreaListAdapter extends RecyclerView.Adapter<RecyclerView.
                 Intent intent = null;
                 switch (item.getItemId()) {
                     case R.id.user:
+                        if(MyApp.entity.getGrade()>1){
+                            T.showShort(mContext,"您没有该权限");
+                            break;
+                        }
                         intent=new Intent(mContext,UserOfParentAreaActivity.class);
                         intent.putExtra("area",entity);
                         mContext.startActivity(intent);
@@ -239,6 +243,10 @@ public class OwnParentAreaListAdapter extends RecyclerView.Adapter<RecyclerView.
     }
 
     private void renameArea(final Area entity) {
+        if(MyApp.entity.getGrade()>1){
+            T.showShort(mContext,"您没有该权限");
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.rename_area_view, null);
         final EditText name_et = (EditText) view.findViewById(R.id.name_et);
@@ -294,6 +302,10 @@ public class OwnParentAreaListAdapter extends RecyclerView.Adapter<RecyclerView.
     }
 
     private void deleteArea(final Area entity) {
+        if(MyApp.entity.getGrade()>1){
+            T.showShort(mContext,"您没有该权限");
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle("提示");
         builder.setMessage("确定删除该区域?");

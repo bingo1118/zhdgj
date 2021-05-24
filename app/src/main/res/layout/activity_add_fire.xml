@@ -122,9 +122,10 @@
                     android:id="@+id/scan_er_wei_ma"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:padding="5dp"
                     android:src="@drawable/saoma_selector"/>
             </RelativeLayout>
             <RelativeLayout
@@ -316,6 +317,14 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="gone"/>
+                <com.smart.cloud.fire.view.dataSelector.expandableListView.AreaDataExpandableSelectorView
+                    android:id="@+id/add_area_selector"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_view_bg"
                     android:layout_marginLeft="10dp" />
                 <View
                     android:layout_width="35dp"
@@ -344,9 +353,10 @@
                     android:layout_marginLeft="10dp" />
                 <ImageButton
                     android:id="@+id/add_place"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/add_white"/>
             </LinearLayout>
             <RelativeLayout
@@ -429,13 +439,12 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:gravity="center"
-                android:layout_margin="10dp"
+                android:layout_marginTop="25dp"
                 android:layout_gravity="center_horizontal"
                 android:text="确认"
                 android:background="@drawable/add_dev_btn_selector"
                 android:textColor="#0ba794"
-                android:textSize="22sp"
-                />
+                android:textSize="18sp" />
         </LinearLayout>
 
     </ScrollView>

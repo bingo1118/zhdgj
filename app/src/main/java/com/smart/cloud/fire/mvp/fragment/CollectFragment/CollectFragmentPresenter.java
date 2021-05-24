@@ -165,4 +165,34 @@ public class CollectFragmentPresenter extends BasePresenter<CollectFragmentView>
         super.getArea(area);
         mvpView.getChoiceArea(area);
     }
+
+    public void getOneDeviceAlarm(String userId, String privilege,String mac, String page, String startTime, String endTime){
+        mvpView.showLoading();
+        Observable observable = apiStores1.getOneDevNeedAlarm(userId,privilege,mac,page,startTime,endTime);
+
+        addSubscription(observable,new SubscriberCallBack<>(new ApiCallback<HttpError>() {
+            @Override
+            public void onSuccess(HttpError model) {
+                int errorCode = model.getErrorCode();
+                if(errorCode==0){
+                    List<AlarmMessageModel> alarmMessageModels = model.getAlarm();
+                    mvpView.getDataSuccess(alarmMessageModels);
+                }else{
+                    List<AlarmMessageModel> alarmMessageModels = new ArrayList<AlarmMessageModel>();//@@5.3
+                    mvpView.getDataSuccess(alarmMessageModels);//@@5.3
+                    mvpView.getDataFail("无数据");
+                }
+            }
+
+            @Override
+            public void onFailure(int code, String msg) {
+                mvpView.getDataFail("网络错误");
+            }
+
+            @Override
+            public void onCompleted() {
+                mvpView.hideLoading();
+            }
+        }));
+    }
 }

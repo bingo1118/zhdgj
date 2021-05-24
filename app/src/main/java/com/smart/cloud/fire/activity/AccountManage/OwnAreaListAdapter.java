@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.smart.cloud.fire.global.Area;
 import com.smart.cloud.fire.global.ConstantValues;
+import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.Utils;
 import com.smart.cloud.fire.utils.VolleyHelper;
@@ -214,6 +215,10 @@ public class OwnAreaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 Intent intent = null;
                 switch (item.getItemId()) {
                     case R.id.user:
+                        if(MyApp.entity.getGrade()>1){
+                            T.showShort(mContext,"您没有该权限");
+                            break;
+                        }
                         intent=new Intent(mContext,UserOfAreaActivity.class);
                         intent.putExtra("area",entity);
                         mContext.startActivity(intent);
@@ -241,6 +246,10 @@ public class OwnAreaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private void moveArea(final Area entity) {
+        if(MyApp.entity.getGrade()>1){
+            T.showShort(mContext,"您没有该权限");
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.move_area_view, null);
         final GetParentTeamDataSelectorView selectorView = (GetParentTeamDataSelectorView) view.findViewById(R.id.selector);
@@ -300,6 +309,10 @@ public class OwnAreaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private void renameArea(final Area entity) {
+        if(MyApp.entity.getGrade()>1){
+            T.showShort(mContext,"您没有该权限");
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.rename_area_view, null);
         final EditText name_et = (EditText) view.findViewById(R.id.name_et);
@@ -357,6 +370,10 @@ public class OwnAreaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private void deleteArea(final Area entity) {
+        if(MyApp.entity.getGrade()>1){
+            T.showShort(mContext,"您没有该权限");
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle("提示");
         builder.setMessage("确定删除该区域?");

@@ -260,6 +260,13 @@ public interface ApiStores {
             ,@Query("areaId") String areaId,@Query("placeTypeId") String placeTypeId
             ,@Query("page") String page,@Query("parentId") String parentId);
 
+    //条件查询获取单个设备报警消息
+    @GET("getOneDevNeedAlarm")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<HttpError> getOneDevNeedAlarm(@Query("userId") String userId, @Query("privilege") String privilege
+            ,@Query("mac") String mac,@Query("page") String page
+            ,@Query("startTime") String startTime,@Query("endTime") String endTime);
+
     //添加摄像头
     @GET("addCamera")
     Observable<HttpError> addCamera(@Query("cameraId") String cameraId, @Query("cameraName") String cameraName,

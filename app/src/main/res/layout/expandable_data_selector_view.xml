@@ -47,8 +47,9 @@
 
     <ImageView
         android:id="@+id/clear_choice"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="5dp"
         android:layout_gravity="center"
         android:layout_marginRight="5dp"
         android:clickable="true"

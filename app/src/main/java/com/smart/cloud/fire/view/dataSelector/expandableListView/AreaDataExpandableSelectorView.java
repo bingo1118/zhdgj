@@ -46,7 +46,7 @@ public class AreaDataExpandableSelectorView extends DataExpandableSelectorView {
         Observable mObservable = BasePresenter.apiStores1.getAreaInfo(MyApp.getUserID(),MyApp.getPrivilege()+"","").map(new Func1<HttpAreaResult,ArrayList<Area>>() {
             @Override
             public ArrayList<Area> call(HttpAreaResult o) {
-                return o.getSmoke();
+                return o.getAreas();
             }
         });
 
@@ -77,6 +77,6 @@ public class AreaDataExpandableSelectorView extends DataExpandableSelectorView {
     @Override
     public void initView(Context context) {
         super.initView(context);
-        editText.setHint("请选择需要添加的区域");
+        editText.setHint("单位");
     }
 }

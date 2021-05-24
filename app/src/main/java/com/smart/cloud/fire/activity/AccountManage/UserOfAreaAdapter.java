@@ -243,6 +243,11 @@ public class UserOfAreaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     case R.id.set_role:
                         setRole(entity);
                         break;
+                    case R.id.area:
+                        intent=new Intent(mContext,AreaListActivity.class);
+                        intent.putExtra("account",entity);
+                        mContext.startActivity(intent);
+                        break;
                 }
                 return false;
             }

@@ -64,7 +64,7 @@
         android:gravity="center"
         android:padding="10dp"
         android:background="@color/white">
-        <com.smart.cloud.fire.view.dataSelector.GetTeamDataSelectorView
+        <com.smart.cloud.fire.view.dataSelector.expandableListView.AreaDataExpandableSelectorView
             android:id="@+id/gts"
             android:layout_width="0dp"
             android:layout_weight="1"

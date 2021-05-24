@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_back">
+
+
+    <RelativeLayout
+        android:id="@+id/title_rela"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备报警历史记录"
+            android:layout_centerInParent="true"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/add_fire"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/search"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/demo_swiperefreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_rela"
+        android:padding="5dp"
+        android:scrollbars="vertical">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/demo_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <include layout="@layout/progress_bar"/>
+</RelativeLayout>

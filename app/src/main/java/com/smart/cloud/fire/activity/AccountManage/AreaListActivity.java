@@ -25,15 +25,18 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.zxing.common.StringUtils;
 import com.smart.cloud.fire.base.presenter.BasePresenter;
 import com.smart.cloud.fire.global.Area;
 import com.smart.cloud.fire.global.ConstantValues;
+import com.smart.cloud.fire.global.MyApp;
 import com.smart.cloud.fire.rxjava.ApiCallback;
 import com.smart.cloud.fire.rxjava.SubscriberCallBack;
 import com.smart.cloud.fire.utils.T;
 import com.smart.cloud.fire.utils.Utils;
 import com.smart.cloud.fire.utils.VolleyHelper;
 import com.smart.cloud.fire.view.dataSelector.GetTeamDataSelectorView;
+import com.smart.cloud.fire.view.dataSelector.expandableListView.AreaDataExpandableSelectorView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,7 +63,7 @@ public class AreaListActivity extends AppCompatActivity {
     @Bind(R.id.userid_tv)
     TextView userid_tv;
     @Bind(R.id.gts)
-    GetTeamDataSelectorView gts;
+    AreaDataExpandableSelectorView gts;
 
     private LinearLayoutManager linearLayoutManager;
     private AreaListAdapter mAdapter;
@@ -79,10 +82,15 @@ public class AreaListActivity extends AppCompatActivity {
         userid_tv.setText("账号:"+mAccount.getUserId());
         list = new ArrayList<>();
         refreshListView();
+        gts.setHint("请选择需要绑定的区域");
         getOwnAreaList(mAccount.getUserId());
         add_user_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(gts.getCheckedModel()==null){
+                    T.showShort(mContext,"请先选择需要添加的区域");
+                    return;
+                }
                 bindArea(gts.getCheckedModel().getModelId());
             }
         });
@@ -144,6 +152,14 @@ public class AreaListActivity extends AppCompatActivity {
 
 
     private void bindArea(final String areaid) {
+        if(Utils.isNullString(areaid)){
+            T.showShort(mContext,"您未选择需要绑定的区域");
+            return;
+        }
+        if(MyApp.entity.getGrade()>1){
+            T.showShort(mContext,"您没有该权限");
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle("提示");
         builder.setMessage("确定绑定该区域?");
