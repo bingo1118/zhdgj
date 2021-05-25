@@ -1,9 +1,11 @@
 package com.smart.cloud.fire.mvp.fragment.CollectFragment;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/9/23.
  */
-public class AlarmMessageModel {
+public class AlarmMessageModel implements Serializable{
 
     /**
      * address : 中国广东省广州市天河区黄埔大道西568号
@@ -40,6 +42,7 @@ public class AlarmMessageModel {
     private String principal2Phone;
     private String alarmFamily;
     private int deviceType;
+    private String alarmDetailID;
 
     public String getAddress() {
         return address;
@@ -175,5 +178,13 @@ public class AlarmMessageModel {
 
     public void setAlarmFamily(String alarmFamily) {
         this.alarmFamily = alarmFamily;
+    }
+
+    public String getAlarmDetailID() {
+        return alarmDetailID;
+    }
+
+    public void setAlarmDetailID(String alarmDetailID) {
+        this.alarmDetailID = alarmDetailID;
     }
 }

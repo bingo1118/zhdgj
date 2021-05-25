@@ -336,6 +336,10 @@ public interface ApiStores {
     Observable<ElectricDXDetailEntity> getOneElectricDXInfo(@Query("userId") String userId, @Query("privilege") String privilege,
                                                           @Query("smokeMac") String smokeMac, @Query("devType") String devType);
 
+    @GET("getOneElectricAlarmInfo")
+    @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")
+    Observable<ElectricDXDetailEntity> getOneElectricAlarmInfo(@Query("id") String id);
+
 
     @GET("getElectrDXThreshold")
     @Headers("Content-Type: application/x-www-form-urlencoded;charset=utf-8")

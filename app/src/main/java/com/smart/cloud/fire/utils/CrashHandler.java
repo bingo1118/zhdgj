@@ -163,7 +163,6 @@ public class CrashHandler implements UncaughtExceptionHandler {
      * @return 返回文件名称,便于将文件传送到服务器
      */
     private String saveCrashInfoile(Throwable ex) {
-
         StringBuffer sb = new StringBuffer();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         SimpleDateFormat logFt = new SimpleDateFormat("yyyyMMdd");

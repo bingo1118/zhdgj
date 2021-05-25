@@ -245,7 +245,8 @@
         <activity android:name="com.smart.cloud.fire.activity.AccountManage.OwnParentAreaListActivity" />
         <activity android:name="com.smart.cloud.fire.activity.AccountManage.UserOfAreaActivity" />
         <activity android:name="com.smart.cloud.fire.activity.AccountManage.UserOfParentAreaActivity" />
-        <activity android:name="com.smart.cloud.fire.activity.AlarmHistory.OneDeviceAlarmHistoryActivity"></activity>
+        <activity android:name="com.smart.cloud.fire.activity.AlarmHistory.OneDeviceAlarmHistoryActivity" />
+        <activity android:name="com.smart.cloud.fire.mvp.electric.AlarmValueInfoActivity"></activity>
     </application>
 
 </manifest>

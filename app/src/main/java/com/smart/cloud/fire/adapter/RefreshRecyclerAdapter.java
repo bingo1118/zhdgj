@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.global.InitBaiduNavi;
 import com.smart.cloud.fire.global.MyApp;
+import com.smart.cloud.fire.mvp.electric.AlarmValueInfoActivity;
 import com.smart.cloud.fire.mvp.fragment.CollectFragment.AlarmMessageModel;
 import com.smart.cloud.fire.mvp.fragment.CollectFragment.CollectFragmentPresenter;
 import com.smart.cloud.fire.mvp.fragment.MapFragment.Smoke;
@@ -296,6 +298,19 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     ((ItemViewHolder) holder).alarmMarkImage.setImageResource(R.drawable.baojing);//@@8.10
                     break;
             }
+            ((ItemViewHolder) holder).alarm_value_line.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!mNormalAlarmMessage.getAlarmDetailID().equals("0")){
+                        Intent intent=new Intent(mContext, AlarmValueInfoActivity.class);
+                        intent.putExtra("data",mNormalAlarmMessage);
+                        mContext.startActivity(intent);
+                    }else{
+                        T.showShort(mContext,"无更多详情");
+                    }
+
+                }
+            });
             RxView.clicks(((ItemViewHolder) holder).actionNowTv).throttleFirst(2, TimeUnit.SECONDS).subscribe(new Action1<Void>() {
                 @Override
                 public void call(Void aVoid) {
@@ -325,6 +340,7 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     collectFragmentPresenter.telPhoneAction(mContext, mNormalAlarmMessage.getPrincipal2Phone());
                 }
             });
+
             holder.itemView.setTag(position);
         } else if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
@@ -402,6 +418,8 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         TextView mac_tv;
         @Bind(R.id.alarm_family_tv)
         TextView alarm_family_tv;
+        @Bind(R.id.alarm_value_line)
+        LinearLayout alarm_value_line;
 
         public ItemViewHolder(View view) {
             super(view);
