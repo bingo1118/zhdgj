@@ -299,7 +299,6 @@ public class UserOfParentAreaAdapter extends RecyclerView.Adapter<RecyclerView.V
         commit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String url = ConstantValues.SERVER_IP_NEW + "setAccountParentRole?userId=" + entity.getUserId()
                         + "&areaId=" + mArea.getAreaId()
                         + "&grade=" + (manager_rb.isChecked()?"1":"2");

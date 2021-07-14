@@ -191,6 +191,7 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     break;
                 case 77:
                 case 75:
+                case 8:
                 case 7:
                 case 6:
                 case 5:
@@ -265,10 +266,10 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                             break;
                     }
                     break;
-                case 8:
-                    ((ItemViewHolder) holder).smokeMac.setText("设备类型:手报探测器");
-                    ((ItemViewHolder) holder).alarmMarkImage.setImageResource(R.drawable.shoubao);
-                    break;
+//                case 8:
+//                    ((ItemViewHolder) holder).smokeMac.setText("设备类型:手报探测器");
+//                    ((ItemViewHolder) holder).alarmMarkImage.setImageResource(R.drawable.shoubao);
+//                    break;
                 case 11://@@8.3
                     ((ItemViewHolder) holder).smokeMac.setText("红外探测器:");
                     if (alarmType == 202||alarmType == 206) {

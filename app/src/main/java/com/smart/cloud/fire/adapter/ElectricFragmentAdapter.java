@@ -377,6 +377,15 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                     }else{
                         url= ConstantValues.SERVER_IP_NEW+"ackControlSwitchSX?mac="+normalSmoke.getMac()+"&eleState=1&userId="+userid;
                     }
+                }else if(normalSmoke.getDeviceType()==8){
+                    String userid= SharedPreferencesManager.getInstance().getData(mContext,
+                            SharedPreferencesManager.SP_FILE_GWELL,
+                            SharedPreferencesManager.KEY_RECENTNAME);
+                    if(eleState==1){
+                        url= ConstantValues.SERVER_IP_NEW+"ackControlSwitchBig?mac="+normalSmoke.getMac()+"&eleState=2&userId="+userid;
+                    }else{
+                        url= ConstantValues.SERVER_IP_NEW+"ackControlSwitchBig?mac="+normalSmoke.getMac()+"&eleState=1&userId="+userid;
+                    }
                 }else{
                     if(eleState==1){
                         url= ConstantValues.SERVER_IP_NEW+"ackControl?smokeMac="+normalSmoke.getMac()+"&eleState=2&userId="+userID;

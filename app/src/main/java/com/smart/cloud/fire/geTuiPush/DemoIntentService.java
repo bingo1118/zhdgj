@@ -91,7 +91,7 @@ public class DemoIntentService extends GTIntentService {
                     break;
                 case 1://烟感
                 case 2://燃气
-                case 8://手报
+//                case 8://手报
                 case 10://水压@@4.28
                 case 11://红外
                 case 12://门磁
@@ -347,6 +347,7 @@ public class DemoIntentService extends GTIntentService {
                 case 59:
                 case 53:
                 case 52:
+                case 8:
                 case 7://三相
                 case 6://单相
                 case 5://电气

@@ -69,7 +69,6 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
     @Bind(R.id.mProgressBar)
     ProgressBar mProgressBar;
     private ElectricPresenter electricPresenter;
-    private ElectricActivityAdapterTest electricActivityAdapter;
     private Context mContext;
     private LinearLayoutManager linearLayoutManager;
     private String electricMac;
@@ -436,23 +435,32 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
                         T.showShort(mContext,"欠压阈值不能高于过压阈值");
                         return;
                     }
+                    if(devType==7){
+                        url= ConstantValues.SERVER_IP_NEW+"ackThresholdSX?threshold43="+high
+                                +"&threshold44="+low
+                                +"&threshold45="+value45
+                                +"&threshold46="+value46
+                                +"&threshold47="+value47
+                                +"&threshold43enable="+(high_value_enable.isChecked()?"1":"0")
+                                +"&threshold44enable="+(low_value_enable.isChecked()?"1":"0")
+                                +"&threshold45enable="+(overcurrentvalue_enable.isChecked()?"1":"0")
+                                +"&threshold46enable="+(Leakage_value_enable.isChecked()?"1":"0")
+                                +"&threshold47enable="+(temp_value_name.isChecked()?"1":"0")
+                                +"&actionDelay="+action_delay_value.getText().toString()
+                                +"&openSum="+open_sum_value.getText().toString()
+                                +"&autoMode="+(zidong.isChecked()?"1":"0")
+                                +"&payMode="+(hou.isChecked()?"1":"0")
+                                +"&price="+price_value.getText().toString()
+                                +"&mac="+electricMac+"&userId="+userID;
+                    }else{
+                        url= ConstantValues.SERVER_IP_NEW+"ackThresholdBig?threshold43="+high
+                                +"&threshold44="+low
+                                +"&threshold45="+value45
+                                +"&threshold46="+value46
+                                +"&threshold47="+value47
+                                +"&mac="+electricMac+"&userId="+userID;
+                    }
 
-                    url= ConstantValues.SERVER_IP_NEW+"ackThresholdSX?threshold43="+high
-                            +"&threshold44="+low
-                            +"&threshold45="+value45
-                            +"&threshold46="+value46
-                            +"&threshold47="+value47
-                            +"&threshold43enable="+(high_value_enable.isChecked()?"1":"0")
-                            +"&threshold44enable="+(low_value_enable.isChecked()?"1":"0")
-                            +"&threshold45enable="+(overcurrentvalue_enable.isChecked()?"1":"0")
-                            +"&threshold46enable="+(Leakage_value_enable.isChecked()?"1":"0")
-                            +"&threshold47enable="+(temp_value_name.isChecked()?"1":"0")
-                            +"&actionDelay="+action_delay_value.getText().toString()
-                            +"&openSum="+open_sum_value.getText().toString()
-                            +"&autoMode="+(zidong.isChecked()?"1":"0")
-                            +"&payMode="+(hou.isChecked()?"1":"0")
-                            +"&price="+price_value.getText().toString()
-                            +"&mac="+electricMac+"&userId="+userID;
 
                 }catch(Exception e){
                     e.printStackTrace();
@@ -767,7 +775,7 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
         yuzhi_dl_a.setText("阈值:"+mModel.getThreshold35());
         yuzhi_dl_b.setText("阈值:"+mModel.getThreshold35());
         yuzhi_dl_c.setText("阈值:"+mModel.getThreshold35());
-        yuzhi_ldl.setText("阈值:"+mModel.getThreshold36());
+        yuzhi_ldl.setText("阈值:" +mModel.getThreshold36());
         yuzhi_wd_a.setText("阈值:"+mModel.getThreshold37());
         yuzhi_wd_b.setText("阈值:"+mModel.getThreshold37());
         yuzhi_wd_c.setText("阈值:"+mModel.getThreshold37());

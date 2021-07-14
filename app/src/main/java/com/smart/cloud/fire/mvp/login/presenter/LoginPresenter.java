@@ -287,7 +287,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     }
 
     private void editSharePreference(Context mContext, LoginModel object, String userId, String userPwd){
-        String userID = "0"+String.valueOf((Integer.parseInt(object.getUserId())&0x7fffffff));
+//        String userID = "0"+String.valueOf((Integer.parseInt(object.getUserId())&0x7fffffff));
+        String userID = "013322080406";
 //        SharedPreferencesManager.getInstance().putData(mContext,
 //                SharedPreferencesManager.SP_FILE_GWELL,
 //                SharedPreferencesManager.KEY_RECENTPASS,

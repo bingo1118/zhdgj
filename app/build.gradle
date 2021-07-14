@@ -25,8 +25,8 @@ android {
         applicationId "fire.cloud.smart.com.smartcloudfire_zhdgj"
         minSdkVersion 16
         targetSdkVersion 19
-        versionCode 37
-        versionName "4.3.30"
+        versionCode 39
+        versionName "4.3.32"
         multiDexEnabled true
 
         manifestPlaceholders = [
@@ -61,8 +61,8 @@ android {
 }
 
 MobSDK {
-    appKey "2692a3f8656d0"
-    appSecret "98414a5dad6e1cb5384de524a3b4543c"
+    appKey "33c5a961b6716"
+    appSecret "537f155ee4908458eb3e3ac6d0b759e7"
 
     SMSSDK {}
 }

@@ -61,6 +61,34 @@ public class ElectricDXDetailEntity implements Serializable {
     private String payMode="";//付费模式
     private String price="";//电价
 
+    public String getDirection_a() {
+        return direction_a;
+    }
+
+    public void setDirection_a(String direction_a) {
+        this.direction_a = direction_a;
+    }
+
+    public String getDirection_b() {
+        return direction_b;
+    }
+
+    public void setDirection_b(String direction_b) {
+        this.direction_b = direction_b;
+    }
+
+    public String getDirection_c() {
+        return direction_c;
+    }
+
+    public void setDirection_c(String direction_c) {
+        this.direction_c = direction_c;
+    }
+
+    private String direction_a;//电流方向A
+    private String direction_b;//电流方向B
+    private String direction_c;//电流方向C
+
     private String error="获取失败";
     private int errorCode=2;
 
