@@ -2,449 +2,495 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/message_banner">
-    <include layout="@layout/progress_bar"/>
+    android:background="@color/back">
+
+    <include layout="@layout/progress_bar" />
 
 
-    <RelativeLayout
+    <TextView
         android:id="@+id/add_fire_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fefefe"
+        android:layout_height="45dp"
         android:layout_marginTop="20dp"
-        android:orientation="vertical" >
-
-        <RelativeLayout
-            android:id="@+id/add_fire_back_btn"
-            android:layout_width="65dp"
-            android:layout_height="45dp"
-            android:layout_alignParentLeft="true"
-            >
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="16.5dp"
-                android:layout_centerInParent="true"
-                android:visibility="gone"
-                android:src="@drawable/selector_back"/>
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="#0ba794"
-            android:text="@string/add_fire_title"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_margin="5dp"/>
-    </RelativeLayout>
+        android:gravity="center"
+        android:text="@string/add_fire_title"
+        android:textColor="@color/Black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
-        android:layout_below="@id/add_fire_title">
+        android:layout_below="@id/add_fire_title"
+        android:layout_marginTop="15dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:visibility="gone">
+
                 <TextView
                     android:id="@+id/camera_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:textColor="@color/white"
-                    android:text="网关"/>
+                    android:text="网关"
+                    android:textColor="@color/black" />
+
                 <com.smart.cloud.fire.view.WithRecordEdittext
                     android:id="@+id/add_repeater_mac"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:textSize="14sp"
-                    android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:layout_marginLeft="50dp"
-                    android:gravity="center_vertical"
-                    android:padding="6dp"
+                    android:layout_marginTop="3dp"
                     android:layout_toLeftOf="@+id/scan_repeater_ma"
-                    android:hint="@string/add_fire_mac"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:imeOptions="actionNext"
                     android:background="@drawable/edit_view_bg"
-                    />
+                    android:gravity="center_vertical"
+                    android:hint="@string/add_fire_mac"
+                    android:imeOptions="actionNext"
+                    android:padding="6dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="14sp" />
+
                 <ImageView
                     android:id="@+id/scan_repeater_ma"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/saoma_selector"/>
+                    android:src="@drawable/saoma_selector" />
             </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:id="@+id/camera_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/white"
-                    android:text="*SN码"/>
-                <EditText
-                    android:id="@+id/add_fire_mac"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:textSize="14sp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginLeft="50dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:layout_toLeftOf="@+id/scan_er_wei_ma"
-                    android:hint="SN码"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:imeOptions="actionNext"
-                    android:background="@drawable/edit_view_bg"/>
-                <ImageView
-                    android:id="@+id/scan_er_wei_ma"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:src="@drawable/saoma_selector"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/add_camera_relative"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:visibility="gone"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/white"
-                    android:text="@string/add_camera_name"/>
 
-                <EditText
-                    android:id="@+id/add_camera_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:textSize="14sp"
-                    android:background="@drawable/edit_view_bg"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="50dp"
-                    android:hint="摄像机"
-                    android:textColorHint="@color/white"
-                    android:textColor="@color/white"
-                    android:paddingLeft="10dp"/>/>
-
-            </RelativeLayout>
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:id="@+id/camera_pwd"
-                    android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/corner_white_radius"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/white"
-                    android:text="*名称"/>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/camera_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="SN码"
+                        android:textColor="@color/Black" />
+
+                    <EditText
+                        android:id="@+id/add_fire_mac"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_toLeftOf="@+id/scan_er_wei_ma"
+                        android:background="@drawable/login_edit_back"
+                        android:gravity="center_vertical"
+                        android:hint="SN码"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/scan_er_wei_ma"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:padding="5dp"
+                        android:src="@drawable/add_erweima" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/add_camera_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/add_camera_name"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/add_camera_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/edit_view_bg"
+                        android:hint="摄像机"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="14sp" />/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/camera_pwd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="名称"
+                        android:textColor="@color/Black" />
 
                     <EditText
                         android:id="@+id/add_fire_name"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:textSize="14sp"
-                        android:background="@drawable/edit_view_bg"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginLeft="50dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/login_edit_back"
                         android:hint="名称"
-                        android:textColorHint="@color/white"
-                        android:textColor="@color/white"
-                        android:paddingLeft="10dp"/>
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textSize="14sp" />
 
-            </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/corner_white_radius"
                 android:orientation="vertical">
-                <TextView
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="位置信息"
-                    android:textColor="#979697"
-                    android:textSize="18sp"
-                    android:layout_marginTop="5dp"/>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/add_location_logo" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text="位置信息"
+                        android:textColor="@color/Black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <RelativeLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_height="35dp"
                         android:layout_margin="10dp"
-                        android:background="@drawable/edit_view_bg_gray">
+                        android:layout_weight="1"
+                        android:background="@drawable/login_edit_back">
+
                         <EditText
                             android:id="@+id/add_fire_lat"
                             android:layout_width="match_parent"
                             android:layout_height="25dp"
-                            android:textSize="14sp"
-                            android:background="@null"
-                            android:layout_marginTop="3dp"
                             android:layout_marginBottom="3dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
+                            android:layout_marginTop="3dp"
+                            android:background="@null"
                             android:editable="false"
                             android:hint="@string/add_fire_lat"
-                            android:textColorHint="@color/hint_color_text"
-                            android:textColor="@color/text_view_and_kuang"
                             android:imeOptions="actionNext"
-                            />
+                            android:textColor="@color/text_view_and_kuang"
+                            android:textColorHint="@color/hint_color_text"
+                            android:textSize="14sp" />
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_height="35dp"
                         android:layout_margin="10dp"
-                        android:background="@drawable/edit_view_bg_gray">
+                        android:layout_weight="1"
+                        android:background="@drawable/login_edit_back">
+
                         <EditText
                             android:id="@+id/add_fire_lon"
                             android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:textSize="14sp"
-                            android:background="@null"
-                            android:layout_marginTop="3dp"
+                            android:layout_height="35dp"
                             android:layout_marginBottom="3dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
+                            android:layout_marginTop="3dp"
+                            android:background="@null"
                             android:editable="false"
                             android:hint="@string/add_fire_lon"
-                            android:textColorHint="@color/hint_color_text"
-                            android:textColor="@color/text_view_and_kuang"
                             android:imeOptions="actionNext"
-                            />
+                            android:textColor="@color/text_view_and_kuang"
+                            android:textColorHint="@color/hint_color_text"
+                            android:textSize="14sp" />
                     </RelativeLayout>
                 </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_margin="10dp"
-                    android:background="@drawable/edit_view_bg_gray">
+                    android:background="@drawable/login_edit_back">
+
                     <EditText
                         android:id="@+id/add_fire_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:background="@null"
-                        android:layout_marginTop="5dp"
+                        android:layout_centerVertical="true"
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:paddingTop="3dp"
-                        android:paddingBottom="3dp"
-                        android:layout_centerVertical="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@null"
                         android:hint="@string/add_fire_address"
-                        android:textColorHint="@color/hint_color_text"
+                        android:paddingBottom="3dp"
+                        android:paddingTop="3dp"
                         android:singleLine="false"
                         android:textColor="@color/text_view_and_kuang"
-                        />
-                </RelativeLayout>
+                        android:textColorHint="@color/hint_color_text"
+                        android:textSize="14sp" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
                     <ImageView
                         android:id="@+id/location_image"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
                         android:layout_centerHorizontal="true"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/add_get_location" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:background="@drawable/corner_white_radius"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="单位"
+                        android:textColor="@color/Black" />
+
+                    <com.smart.cloud.fire.view.XCDropDownListView
+                        android:id="@+id/add_fire_zjq"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:visibility="gone" />
+
+                    <com.smart.cloud.fire.view.dataSelector.expandableListView.AreaDataExpandableSelectorView
+                        android:id="@+id/add_area_selector"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/login_edit_back"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/location_image_2"/>
+                        android:text="分组"
+                        android:textColor="@color/Black" />
+
+                    <com.smart.cloud.fire.view.XCDropDownListView
+                        android:id="@+id/add_fire_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/login_edit_back"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1" />
+
+                    <ImageButton
+                        android:id="@+id/add_place"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/add_white" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/corner_white_radius"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:id="@+id/manager_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/add_manager_logo" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text="负责人"
+                        android:textColor="@color/Black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+
+                    android:gravity="center"
+                    android:background="@drawable/login_edit_back">
+
+                    <EditText
+                        android:id="@+id/add_fire_man"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@null"
+                        android:hint="@string/add_fire_man_name"
+                        android:imeOptions="actionNext"
+                        android:textColor="@color/text_view_and_kuang"
+                        android:textColorHint="@color/hint_color_text"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:background="@drawable/login_edit_back">
+
+                    <EditText
+                        android:id="@+id/add_fire_man_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@null"
+                        android:hint="@string/add_fire_man_phone"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:textColor="@color/text_view_and_kuang"
+                        android:textColorHint="@color/hint_color_text"
+                        android:textSize="14sp" />
                 </RelativeLayout>
 
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="*单位"
-                    android:textColor="@color/white"/>
-                <com.smart.cloud.fire.view.XCDropDownListView
-                    android:id="@+id/add_fire_zjq"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:visibility="gone"/>
-                <com.smart.cloud.fire.view.dataSelector.expandableListView.AreaDataExpandableSelectorView
-                    android:id="@+id/add_area_selector"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_view_bg"
-                    android:layout_marginLeft="10dp" />
-                <View
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="*分组"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center_vertical"/>
-                <com.smart.cloud.fire.view.XCDropDownListView
-                    android:id="@+id/add_fire_type"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp" />
-                <ImageButton
-                    android:id="@+id/add_place"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/add_white"/>
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:padding="5dp"
-                android:background="@drawable/corner_white_radius">
-                <TextView
-                    android:id="@+id/manager_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#979697"
-                    android:textSize="18sp"
-                    android:text="@string/add_fire_man"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/manager_text"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp">
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="5dp"
-                        android:background="@drawable/edit_view_bg_gray">
-                        <EditText
-                            android:id="@+id/add_fire_man"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:textSize="14sp"
-                            android:background="@null"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginBottom="3dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:hint="@string/add_fire_man_name"
-                            android:textColorHint="@color/hint_color_text"
-                            android:textColor="@color/text_view_and_kuang"
-                            android:imeOptions="actionNext"
-                            />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/edit_view_bg_gray">
-                        <EditText
-                            android:id="@+id/add_fire_man_phone"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:textSize="14sp"
-                            android:background="@null"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginBottom="3dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:hint="@string/add_fire_man_phone"
-                            android:inputType="number"
-                            android:textColorHint="@color/hint_color_text"
-                            android:textColor="@color/text_view_and_kuang"
-                            android:imeOptions="actionNext"
-                            />
-                    </RelativeLayout>
-                </LinearLayout>
-
-            </RelativeLayout>
-
-
             <TextView
                 android:id="@+id/add_fire_dev_btn"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:gravity="center"
+                android:layout_width="340dp"
+                android:layout_height="45dp"
                 android:layout_marginTop="25dp"
                 android:layout_gravity="center_horizontal"
-                android:text="确认"
-                android:background="@drawable/add_dev_btn_selector"
-                android:textColor="#0ba794"
-                android:textSize="18sp" />
+                android:background="@drawable/commit_back" />
         </LinearLayout>
 
     </ScrollView>

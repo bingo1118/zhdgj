@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rela">
+    android:id="@+id/rela"
+    android:background="@drawable/login_account_and_psw_shape">
 
     <TextView
         android:id="@+id/title_text"
@@ -11,9 +12,8 @@
         android:layout_height="wrap_content"
         android:text="区域添加"
         android:padding="10dp"
-        android:background="@color/colorAccent"
         android:textSize="20sp"
-        android:textColor="#fff"
+        android:textColor="@color/Black"
         android:gravity="center"/>
     <ScrollView
         android:layout_width="match_parent"
@@ -29,13 +29,19 @@
                 android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:background="@drawable/login_edit_back">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:src="@drawable/electr_info_point"/>
                 <TextView
                     android:id="@+id/name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
+                    android:layout_marginLeft="2dp"
                     android:text="名称" />
 
                 <EditText
@@ -63,10 +69,11 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/commit"
-        android:textColor="@color/colorAccent"
-        android:background="#fff"
+        android:textColor="@color/white"
+        android:layout_margin="15dp"
+        android:background="@drawable/blue_redius_shape2"
         android:text="确定"/>
 
 </LinearLayout>

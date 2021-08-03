@@ -1,18 +1,22 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/login_account_and_psw_shape"
+    android:layout_margin="15dp"
+    android:padding="15dp"
     tools:context="com.smart.cloud.fire.mvp.LineChart.All.AllDataChartFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <com.smart.cloud.fire.view.LineChart01View
             android:id="@+id/linechart"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_centerInParent="true" />
-        <include layout="@layout/progress_bar"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,40 +28,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/white"
+                android:textColor="@color/Black"
                 android:layout_margin="5dp"
                 android:textSize="18sp"
                 android:text="第1页"/>
-            <ImageView
-                android:id="@+id/btn_next"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/right2_circle"
-                android:layout_toRightOf="@+id/btn_new"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_below="@id/page_text"
-                android:layout_marginLeft="20dp"
-                android:textColor="#ffffff" />
-            <ImageView
-                android:id="@+id/btn_new"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/page_text"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/new_circle"
-                />
-            <ImageView
-                android:id="@+id/btn_before"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toLeftOf="@id/btn_new"
-                android:layout_below="@id/page_text"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/left2_circle"/>
+                android:layout_marginTop="15dp"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/btn_before"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/last_page_btn"/>
+                <ImageView
+                    android:id="@+id/btn_new"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/new_circle"
+                    android:visibility="gone"/>
+                <ImageView
+                    android:id="@+id/btn_next"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/next_page_btn"
+                    android:layout_marginLeft="20dp"/>
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 
+        <ProgressBar
+            android:id="@+id/mProgressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:indeterminateDrawable="@drawable/progress_monitor_waite"
+            android:indeterminateDuration="560000"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </FrameLayout>

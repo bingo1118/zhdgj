@@ -163,7 +163,7 @@ public class OwnParentAreaListAdapter extends RecyclerView.Adapter<RecyclerView.
         @Bind(R.id.more_iv)
         ImageView more_iv;
         @Bind(R.id.rela)
-        RelativeLayout rela;
+        LinearLayout rela;
 
 
         public ItemViewHolder(View view) {

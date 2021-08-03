@@ -6,13 +6,13 @@
     <item>
         <shape>
             <!--    边框颜色    -->
-            <solid android:color="@color/action_now_color"/>
+            <solid android:color="@color/action_now_color" />
         </shape>
     </item>
     <!--    想保留哪一边就设置哪一边边框就好了，列如只有上边框：top="1dp"    -->
     <item  android:bottom="3dp">
         <shape>
-            <solid android:color="@color/colorAccent"/>
+            <solid android:color="@color/back"/>
         </shape>
     </item>
 </layer-list>

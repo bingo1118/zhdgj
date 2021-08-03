@@ -2,55 +2,69 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_back"
+    android:background="@color/back"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/colorPrimary">
+        android:layout_height="45dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="二级区域人员"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textColor="@color/Black"
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/add_user_btn"
-            android:layout_width="30dp"
+            android:layout_width="45dp"
             android:layout_height="30dp"
             android:layout_margin="5dp"
-            android:padding="5dp"
+            android:layout_marginRight="5dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/home_add_white"/>
+            android:src="@drawable/add_blue"/>
     </RelativeLayout>
 
 
     <TextView
         android:id="@+id/name_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:textColor="@color/Black"
         android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="16sp"
         android:text="AreaName"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
             android:id="@+id/tip_tv"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:gravity="center"
-            android:visibility="gone"
-            android:background="@color/white"
-            android:text="无所属账号"/>
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/no_account"
+                android:padding="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:text="无所属账号"/>
+        </LinearLayout>
+
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipere_fresh_layout"

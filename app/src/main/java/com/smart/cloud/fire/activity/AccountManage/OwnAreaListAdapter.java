@@ -164,7 +164,7 @@ public class OwnAreaListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         @Bind(R.id.more_iv)
         ImageView more_iv;
         @Bind(R.id.rela)
-        RelativeLayout rela;
+        LinearLayout rela;
 
         public ItemViewHolder(View view) {
             super(view);

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.Switch;
@@ -66,7 +67,7 @@ public class UserOfAreaActivity extends BaseActivity {
     @Bind(R.id.name_tv)
     TextView name_tv;
     @Bind(R.id.tip_tv)
-    TextView tip_tv;
+    LinearLayout tip_tv;
 
 
     private LinearLayoutManager linearLayoutManager;

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_back">
+    android:background="@color/back">
+
 
 
     <RelativeLayout
@@ -10,64 +12,138 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/swipe_fresh_layout"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignTop="@id/title_include"
-            android:layout_margin="5dp"
-            android:background="@drawable/refrash" />
-
 
         <TextView
             android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="智慧用电保护装置"
+            android:text="设备详情"
             android:textStyle="bold"
             android:textColor="@color/Black"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
+        <ImageView
+            android:id="@+id/swipe_fresh_layout"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:layout_toLeftOf="@id/more"
+            android:src="@drawable/refrash" />
 
         <TextView
             android:id="@+id/more"
-            android:layout_width="75dp"
+            android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:text="更多"
-            android:textColor="@color/Black" />
+            android:padding="5dp"
+            android:textColor="@color/blue" />
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/title_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/corner_white_radius"
         android:layout_below="@id/title_rela"
-        android:gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:padding="5dp">
 
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/watch"/>
+            android:id="@+id/dev_logo"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="15dp"
+            android:padding="5dp"
+            android:src="@drawable/dev_info_logo"/>
         <TextView
+            android:id="@+id/dev_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="实时参数"
+            android:text="Name"
             android:textColor="@color/Black"
-            android:layout_marginLeft="5dp"/>
+            android:layout_alignTop="@id/dev_logo"
+            android:layout_toRightOf="@id/dev_logo"/>
+        <TextView
+            android:id="@+id/dev_mac_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:textColor="@color/black"
+            android:layout_alignBottom="@id/dev_logo"
+            android:layout_toRightOf="@id/dev_logo"/>
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/dev_area_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/dev_logo"
+            android:layout_alignBottom="@id/dev_logo"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="@color/blue"
+            android:visibility="gone"
+            android:text="Area"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_below="@id/dev_logo"/>
+
+        <LinearLayout
+            android:id="@+id/line_ccid"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_below="@id/dev_logo">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/alarm_id"/>
+
+            <TextView
+                android:id="@+id/dev_ccid_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="CCID"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_address"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_below="@id/line_ccid">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/alarm_address"/>
+
+            <TextView
+                android:id="@+id/dev_address_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Location"/>
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -77,7 +153,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -90,761 +165,1062 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="电压"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(V)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
-
-                        <TextView
-                            android:id="@+id/yuzhi_gy"
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="阈值:--A"
-                            android:textColor="@color/white"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:padding="5dp">
-
-                        <ImageButton
-                            android:id="@+id/dy_his"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/search_w" />
-
-                        <TextView
-                            android:id="@+id/dy_a"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="--"
-                            android:textColor="@color/Black"
-                            android:textSize="32sp"
-                            android:textStyle="bold|italic" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="电流"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(A)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
-
-                        <TextView
-                            android:id="@+id/yuzhi_dl"
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="阈值:--A"
-                            android:textColor="@color/white"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:padding="5dp">
-
-                        <ImageButton
-                            android:id="@+id/dl_his"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/search_w" />
-
-                        <TextView
-                            android:id="@+id/dl_a"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="--"
-                            android:textColor="@color/Black"
-                            android:textSize="32sp"
-                            android:textStyle="bold|italic" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="漏电流"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(mA)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
-
-                        <TextView
-                            android:id="@+id/yuzhi_ldl"
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="阈值:--A"
-                            android:textColor="@color/white"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:padding="5dp">
-
-                        <ImageButton
-                            android:id="@+id/ldl_his"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/search_w" />
-
-                        <TextView
-                            android:id="@+id/ldl_a"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="--"
-                            android:textColor="@color/Black"
-                            android:textSize="32sp"
-                            android:textStyle="bold|italic" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/line_wendu"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="火线温度"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(℃)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
-
-                        <TextView
-                            android:id="@+id/yuzhi_wd"
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="阈值:--A"
-                            android:textColor="@color/white"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:padding="5dp">
-
-                        <ImageButton
-                            android:id="@+id/wd_his"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/search_w" />
-
-                        <TextView
-                            android:id="@+id/wd_a"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="--"
-                            android:textColor="@color/Black"
-                            android:textSize="32sp"
-                            android:textStyle="bold|italic" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/line_wendu_n"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="零线温度"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(℃)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
-
-                        <TextView
-                            android:id="@+id/yuzhi_wd_n"
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="阈值:--A"
-                            android:textColor="@color/white"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:padding="5dp">
-
-                        <ImageButton
-                            android:id="@+id/wd_his_n"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/search_w" />
-
-                        <TextView
-                            android:id="@+id/wd_n"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="--"
-                            android:textColor="@color/Black"
-                            android:textSize="32sp"
-                            android:textStyle="bold|italic" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="剩余电量"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(kWh)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
-                    </LinearLayout>
-
-
-
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_dy_logo"/>
                     <TextView
-                        android:id="@+id/sydl_a"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:text="--"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/Black"
-                        android:textSize="32sp"
-                        android:textStyle="bold|italic" />
-
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="电压"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="总用电量"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(kWh)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
-                    </LinearLayout>
-
-
-                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:padding="5dp">
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                        <ImageButton
-                            android:id="@+id/dianliang_his"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/search_w" />
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
 
-                        <TextView
-                            android:id="@+id/dianliang_a"
-                            android:layout_width="150dp"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="--"
-                            android:textColor="@color/Black"
-                            android:textSize="32sp"
-                            android:textStyle="bold|italic" />
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="电压(V)"
+                                android:textColor="@color/Black"/>
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/yuzhi_dy_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="阈值:--A"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:textColor="@color/Black"/>
+                        </LinearLayout>
 
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/dy_his"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/dy_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/dy_his"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="透支电量"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(kWh)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
-                    </LinearLayout>
-
-
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_dl_logo"/>
                     <TextView
-                        android:id="@+id/tzdl_a"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:text="--"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/Black"
-                        android:textSize="32sp"
-                        android:textStyle="bold|italic" />
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="电流"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="电流(A)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+                            <TextView
+                                android:id="@+id/yuzhi_dl_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="阈值:--A"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:textColor="@color/Black"/>
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/dl_his"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/dl_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/dl_his"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_ldl_logo"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Black"
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="漏电流"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="漏电流(mA)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+                            <TextView
+                                android:id="@+id/yuzhi_ldl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="阈值:--mA"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:textColor="@color/Black"/>
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/ldl_his"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/ldl_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/ldl_his"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_price"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_wd_logo"/>
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Black"
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="温度"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
                         android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical"
-                        android:padding="5dp">
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="电费"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
 
-                        <TextView
-                            android:layout_width="75dp"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(元)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="火线温度(℃)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+                            <TextView
+                                android:id="@+id/yuzhi_wd"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="阈值:--A"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:textColor="@color/Black"/>
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/wd_his"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/wd_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/wd_his"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
                     </LinearLayout>
 
-
-                    <TextView
-                        android:id="@+id/price_value"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:text="--"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="零线温度(℃)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+                            <TextView
+                                android:id="@+id/yuzhi_wd_n"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="阈值:--A"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:textColor="@color/Black"/>
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/wd_his_n"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/wd_n"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/wd_his_n"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_dianliang_logo"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/Black"
-                        android:textSize="32sp"
-                        android:textStyle="bold|italic" />
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="电量"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="剩余电量(kWh)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/sydl_his_a"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/sydl_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/sydl_his_a"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="(kWh)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/dianliang_his"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/dianliang_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/dianliang_his"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp"  />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="透支电量(kWh)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/tzdl_his"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/tzdl_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/tzdl_his"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_dl_logo"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Black"
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="电费"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="电费(元)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/price_value_his"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/price_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/price_value_his"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_gl"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="有功功率"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(W)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
-                    </LinearLayout>
-
-
-
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_gl_logo"/>
                     <TextView
-                        android:id="@+id/gl_a"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:text="--"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/Black"
-                        android:textSize="32sp"
-                        android:textStyle="bold|italic" />
-
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="功率"/>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_glys"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="功率因数"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text=""
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
-                    </LinearLayout>
-
-
-
-                    <TextView
-                        android:id="@+id/glys_a"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:text="--"
-                        android:textColor="@color/Black"
-                        android:textSize="32sp"
-                        android:textStyle="bold|italic" />
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="有功功率(W)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/gl_his_a"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/gl_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/gl_his_a"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/line_pl"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_glys_logo"/>
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Black"
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="功率因数"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
                         android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical"
-                        android:padding="5dp">
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="频率"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
 
-                        <TextView
-                            android:layout_width="75dp"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:text="单位(Hz)"
-                            android:textColor="@color/white"
-                            android:textSize="8sp" />
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="功率因数"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/glys_his_a"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/glys_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/glys_his_a"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_pl_logo"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Black"
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="频率"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="频率(Hz)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+                            <ImageButton
+                                android:id="@+id/pl_his"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/right" />
+                            <TextView
+                                android:id="@+id/pl_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/pl_his"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
                     </LinearLayout>
 
-
-
-                    <TextView
-                        android:id="@+id/pl_a"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:text="--"
-                        android:textColor="@color/Black"
-                        android:textSize="32sp"
-                        android:textStyle="bold|italic" />
-
                 </LinearLayout>
+
 
             </LinearLayout>
-
-            <include layout="@layout/progress_bar" />
+            <include layout="@layout/progress_bar"/>
         </RelativeLayout>
     </ScrollView>
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:layout_alignParentBottom="true">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/message_banner">
-
+    <LinearLayout
+        android:id="@+id/setting_dev_img"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
         <ImageView
-            android:id="@+id/setting_dev_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/setting_eletc" />
-
-        <ImageView
-            android:id="@+id/share_dev_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/share_electr" />
-
-        <ImageView
-            android:id="@+id/timer_img"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/timer_electr" />
+            android:padding="5dp"
+            android:src="@drawable/setting_eletc"/>
 
-    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="参数设置"
+            android:textColor="@color/Black"
+            android:drawablePadding="2dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/alarm_history_img"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            android:src="@drawable/setting_alarm_history"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="告警记录"
+            android:textColor="@color/Black"
+            android:drawablePadding="2dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/timer_img"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            android:src="@drawable/timer_electr"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="定时任务"
+            android:textColor="@color/Black"
+            android:drawablePadding="2dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/price_img"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            android:src="@drawable/info_dy_logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="费用"
+            android:textColor="@color/Black"
+            android:drawablePadding="2dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>
 </RelativeLayout>

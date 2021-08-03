@@ -5,58 +5,60 @@
     android:layout_margin="5dp"
     android:elevation="4dp"
     android:id="@+id/item_lin"
-    android:orientation="horizontal"
-    android:background="@drawable/login_btn_bg">
+    android:orientation="vertical"
+    android:background="@drawable/login_account_and_psw_shape">
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="time"
+        android:layout_margin="10dp"
+        android:textColor="@color/Black"/>
 
     <RelativeLayout
         android:id="@+id/category_group_rela"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
         android:orientation="vertical"
         android:padding="10dp"
         android:elevation="4dp">
 
         <TextView
-            android:id="@+id/time_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="时间:"
-            android:textSize="16sp"
-            android:textColor="@color/white"/>
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/time_tv"
-            android:textSize="16sp"
-            android:textColor="@color/white"/>
-
-        <TextView
             android:id="@+id/cycle_tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:text="重复:"
             android:layout_below="@id/time_tv"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:drawableLeft="@drawable/task_refresh"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/Black"/>
         <TextView
             android:id="@+id/cycle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/time_tv"
             android:layout_toRightOf="@id/cycle_tv"
+            android:layout_alignTop="@id/cycle_tv"
+            android:layout_alignBottom="@id/cycle_tv"
+            android:gravity="center_vertical"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/state_tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:text="操作:"
-            android:layout_below="@id/cycle"
+            android:layout_below="@id/cycle_tv"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:drawableLeft="@drawable/task_setting"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/Black"/>
         <TextView
             android:id="@+id/state"
             android:layout_width="wrap_content"
@@ -64,16 +66,22 @@
             android:layout_below="@id/cycle"
             android:layout_toRightOf="@id/state_tv"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:layout_alignTop="@id/state_tv"
+            android:layout_alignBottom="@id/state_tv"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/lastdealtime_tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:text="状态:"
             android:layout_below="@id/state_tv"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:drawableLeft="@drawable/task_time"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/Black"/>
 
         <TextView
             android:id="@+id/lastdealtime"
@@ -82,25 +90,26 @@
             android:layout_below="@id/state_tv"
             android:layout_toRightOf="@id/lastdealtime_tv"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:layout_alignTop="@id/lastdealtime_tv"
+            android:layout_alignBottom="@id/lastdealtime_tv"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"/>
 
     </RelativeLayout>
     <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="@color/white"/>
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryTemp"/>
     <RelativeLayout
         android:id="@+id/power_button"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1">
         <TextView
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
             android:layout_centerInParent="true"
-            android:text="取消"
-            android:textSize="18sp"
-            android:textColor="@color/white"
+            android:background="@drawable/delete_task_btn"
             android:layout_margin="10dp"/>
 
 

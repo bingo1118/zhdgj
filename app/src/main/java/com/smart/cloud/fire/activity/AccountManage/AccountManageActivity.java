@@ -86,9 +86,9 @@ public class AccountManageActivity extends BaseActivity {
         ButterKnife.bind(this);
         mContext = this;
         mAccount=(AccountEntity) getIntent().getSerializableExtra("account");
-        userid_tv.setText("账号:"+mAccount.getUserId());
-        name_tv.setText("名称:"+mAccount.getUserName());
-        grade_tv.setText("等级:"+mAccount.getGrade()+"级");
+        userid_tv.setText(mAccount.getUserId());
+        name_tv.setText(mAccount.getUserName());
+        grade_tv.setText(mAccount.getGrade()+"级");
         list = new ArrayList<>();
         mAdapter = new AccountListAdapter(mContext, list);
         recyclerView.setAdapter(mAdapter);

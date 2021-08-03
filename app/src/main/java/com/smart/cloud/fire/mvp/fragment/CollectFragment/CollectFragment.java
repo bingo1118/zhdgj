@@ -190,8 +190,6 @@ public class CollectFragment extends MvpFragment<CollectFragmentPresenter> imple
         if (privilege == 1) {
             typeLin.setVisibility(View.GONE);
         }
-        addFire.setVisibility(View.VISIBLE);
-        addFire.setImageResource(R.drawable.search);
         startTime.setOnFocusChangeListener(this);
         endTime.setOnFocusChangeListener(this);
         startTime.setInputType(InputType.TYPE_NULL);

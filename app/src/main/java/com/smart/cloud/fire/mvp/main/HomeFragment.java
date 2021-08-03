@@ -29,9 +29,6 @@ import fire.cloud.smart.com.smartcloudfire.R;
  */
 public class HomeFragment extends Fragment{
 
-    @Bind(R.id.more_item)
-    ImageView more_item;
-
     @Bind(R.id.add_dev)
     ImageView add_dev;
     @Bind(R.id.electr)
@@ -51,7 +48,7 @@ public class HomeFragment extends Fragment{
         return view;
     }
 
-    @OnClick({R.id.add_dev,R.id.electr,R.id.map,R.id.more_item,R.id.alarm_msg})
+    @OnClick({R.id.add_dev,R.id.electr,R.id.map,R.id.alarm_msg})
     public void onClick(View v){
         Intent intent;
         switch (v.getId()){
@@ -75,12 +72,7 @@ public class HomeFragment extends Fragment{
                 intent=new Intent(getActivity(), AlarmHistoryActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.more_item:
-//                DrawerLayout drawerLayout= (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
-//                drawerLayout.openDrawer(GravityCompat.START);
-                intent=new Intent(getActivity(), MyZoomActivity.class);
-                startActivity(intent);
-                break;
+
         }
     }
 }

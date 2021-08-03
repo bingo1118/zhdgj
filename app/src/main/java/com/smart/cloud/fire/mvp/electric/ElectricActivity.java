@@ -228,7 +228,7 @@ public class ElectricActivity extends MvpActivity<ElectricPresenter> implements 
         // View当前PopupMenu显示的相对View的位置
         PopupMenu popupMenu = new PopupMenu(this, view);
         // menu布局
-        popupMenu.getMenuInflater().inflate(R.menu.menu_electr, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.menu_electr_2, popupMenu.getMenu());
         // menu的item点击事件
         if(devType!=52&&devType!=53&&devType!=75&&devType!=77){
             MenuItem item=popupMenu.getMenu().findItem(R.id.yuzhi_set);

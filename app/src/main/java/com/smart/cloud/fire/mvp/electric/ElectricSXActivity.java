@@ -185,13 +185,24 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
     ImageButton dianliang_his;
 
     @Bind(R.id.setting_dev_img)
-    ImageView setting_dev_img;
-    @Bind(R.id.share_dev_img)
-    ImageView share_dev_img;
+    LinearLayout setting_dev_img;
+    @Bind(R.id.alarm_history_img)
+    LinearLayout alarm_history_img;
     @Bind(R.id.timer_img)
-    ImageView timer_img;
+    LinearLayout timer_img;
+    @Bind(R.id.price_img)
+    LinearLayout price_img;
 
-
+    @Bind(R.id.dev_name_tv)
+    TextView dev_name_tv;
+    @Bind(R.id.dev_mac_tv)
+    TextView dev_mac_tv;
+    @Bind(R.id.dev_area_tv)
+    TextView dev_area_tv;
+    @Bind(R.id.dev_ccid_tv)
+    TextView dev_ccid_tv;
+    @Bind(R.id.dev_address_tv)
+    TextView dev_address_tv;
 
     int devType=1;
 
@@ -217,7 +228,10 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
         repeatMac = data.getRepeater();
         ButterKnife.bind(this);
         refreshListView();
-        title_tv.setText(data.getName());
+        dev_name_tv.setText(data.getName());
+        dev_mac_tv.setText(data.getMac());
+        dev_area_tv.setText(data.getAreaName());
+        dev_address_tv.setText("地址:"+data.getAddress());
         more.setVisibility(View.VISIBLE);
         more.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,28 +251,22 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
                 auto_time();
             }
         });
-        share_dev_img.setOnClickListener(new View.OnClickListener() {
+        alarm_history_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.share_dev,(ViewGroup) findViewById(R.id.rela));
-                final AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(layout);
-                final AlertDialog dialog =builder.create();
-                final EditText userid_edit=(EditText)layout.findViewById(R.id.userid_edit);
-
-                Button commit=(Button)(Button)layout.findViewById(R.id.commit);
-                commit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String userid=userid_edit.getText().toString();
-                        if(userid.length()==0){
-                            T.showShort(mContext,"输入不可为空");
-                        }else{
-                            electricPresenter.shareDev(userid,electricMac,mContext,dialog);
-                        }
-                    }
-                });
-                dialog.show();
+                Intent intent=new Intent(mContext, OneDeviceAlarmHistoryActivity.class);
+                intent.putExtra("mac",electricMac);
+                startActivity(intent);
+            }
+        });
+        price_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mModel.getPayMode().equals("0")){
+                    addBattery();
+                }else{
+                    T.showShort(mContext,"仅预付费模式支持");
+                }
             }
         });
         electricPresenter.getOneElectricDXInfo(userID,privilege+"",electricMac,devType,false);
@@ -274,22 +282,40 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
         // menu布局
         popupMenu.getMenuInflater().inflate(R.menu.menu_electr, popupMenu.getMenu());
         // menu的item点击事件
-        if(devType!=52&&devType!=53&&devType!=75&&devType!=77){
-            MenuItem item=popupMenu.getMenu().findItem(R.id.yuzhi_set);
-            item.setVisible(false);
-        }
+
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Intent intent;
                 switch (item.getItemId()) {
-                    case R.id.devive_alarm_hostory:
+                    case R.id.share_dev:
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.share_dev,(ViewGroup) findViewById(R.id.rela));
+                        final AlertDialog.Builder builder=new AlertDialog.Builder(mContext).setView(layout);
+                        final AlertDialog dialog =builder.create();
+                        final EditText userid_edit=(EditText)layout.findViewById(R.id.userid_edit);
+
+                        Button commit=(Button)(Button)layout.findViewById(R.id.commit);
+                        commit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String userid=userid_edit.getText().toString();
+                                if(userid.length()==0){
+                                    T.showShort(mContext,"输入不可为空");
+                                }else{
+                                    electricPresenter.shareDev(userid,electricMac,mContext,dialog);
+                                }
+                            }
+                        });
+                        dialog.show();
+                        break;
+                    case R.id.alarm_history_img:
                         intent=new Intent(mContext, OneDeviceAlarmHistoryActivity.class);
                         intent.putExtra("mac",electricMac);
                         startActivity(intent);
                         break;
                     case R.id.devive_info:
-                        AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
+                        AlertDialog.Builder builder1=new AlertDialog.Builder(mContext);
                         View v=LayoutInflater.from(mContext).inflate(R.layout.device_info,null);
                         TextView dev_id=v.findViewById(R.id.dev_id);
                         TextView dev_ccid=v.findViewById(R.id.dev_ccid);
@@ -302,8 +328,8 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
                         dev_address.setText("地址:"+electricData.getAddress());
                         dev_place.setText("分组:"+electricData.getPlaceType());
                         dev_ccid.setText("CCID:"+ccid);
-                        builder.setView(v);
-                        builder.show();
+                        builder1.setView(v);
+                        builder1.show();
                         break;
                     case R.id.move:
                         getPlaces();
@@ -584,6 +610,7 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
 
     private void setDataToView(ElectricDXDetailEntity entity) {
         ccid=entity.getCcid();
+        dev_ccid_tv.setText("CCID:"+ccid);
 
         dy_a.setText(Float.parseFloat(entity.getVoltage())+"");
         dy_b.setText(Float.parseFloat(entity.getVoltageB())+"");

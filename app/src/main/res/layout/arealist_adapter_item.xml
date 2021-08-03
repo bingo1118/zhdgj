@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
-    android:background="@color/white"
+    android:layout_height="65dp"
+    android:background="@drawable/login_account_and_psw_shape"
     android:paddingLeft="10dp"
-    android:layout_marginBottom="1dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:gravity="center_vertical"
+    android:orientation="horizontal"
     android:id="@+id/rela">
 
     <RadioButton
@@ -16,12 +19,19 @@
         android:layout_centerVertical="true"
         android:visibility="gone"/>
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/area_logo"/>
+
     <TextView
         android:id="@+id/name_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/rb"
+        android:textColor="@color/Black"
+        android:textSize="14sp"
+        android:layout_marginLeft="5dp"
         android:text="name" />
 
     <ImageView
@@ -34,4 +44,4 @@
         android:src="@drawable/more_menu"/>
 
 
-</RelativeLayout>
+</LinearLayout>

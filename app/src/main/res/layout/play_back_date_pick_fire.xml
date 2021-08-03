@@ -5,8 +5,7 @@
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
         android:orientation="vertical"
-	    android:visibility="gone"
-		android:layout_marginBottom="50dp">
+	android:visibility="gone">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -53,7 +52,8 @@
 				android:layout_height="match_parent"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
-				android:layout_marginBottom="5dp" />
+				android:layout_marginBottom="5dp"
+				android:background="@drawable/login_edit_back"/>
 			<com.smart.cloud.fire.view.XCDropDownListViewFire
 				android:id="@+id/shang_pu_type_choice"
 				android:layout_width="0dp"
@@ -61,7 +61,8 @@
 				android:layout_height="match_parent"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
-				android:layout_marginBottom="5dp" />
+				android:layout_marginBottom="5dp"
+				android:background="@drawable/login_edit_back"/>
 		</LinearLayout>
         
         <LinearLayout
@@ -73,7 +74,7 @@
 				android:layout_width="0dp"
 				android:layout_height="40dp"
 				android:layout_weight="1"
-				android:background="@drawable/edit_view_bg"
+				android:background="@drawable/login_edit_back"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
 				>
@@ -116,7 +117,7 @@
 				android:layout_width="0dp"
 				android:layout_height="40dp"
 				android:layout_weight="1"
-				android:background="@drawable/edit_view_bg"
+				android:background="@drawable/login_edit_back"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
 				>

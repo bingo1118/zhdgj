@@ -1,9 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content"
+	android:layout_width="260dp"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
 	android:layout_gravity="center"
-	android:background="@drawable/modify_dialog"
+	android:background="@drawable/login_account_and_psw_shape"
 	>
 	<RelativeLayout
 		android:id="@+id/dialog_title"
@@ -23,27 +23,19 @@
 			android:textStyle="bold"
 			/>
 	</RelativeLayout>
-	<ImageView
-		android:id="@+id/separator"
-		android:layout_width="match_parent"
-		android:src="@drawable/list_item_line"
-		android:layout_height="wrap_content"
 
-		android:scaleType="center"
-		/>
 	<RelativeLayout
 		android:id="@+id/dialog_content"
 		android:layout_width="match_parent"
-		android:layout_height="100dp"
-		>
-		<WebView
+		android:layout_height="wrap_content"
+		android:padding="10dp">
+		<TextView
 			android:id="@+id/content_text"
-			android:background="@drawable/modify_dialog"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
 			android:layout_centerInParent="true"
 			android:layout_margin="5dp"
-			/>
+			android:textColor="@color/blue"/>
 	</RelativeLayout>
 
 	<LinearLayout

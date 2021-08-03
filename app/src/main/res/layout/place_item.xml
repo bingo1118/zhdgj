@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="75dp"
     android:layout_margin="10dp"
-    android:background="@drawable/place_item_shape">
-    <TextView
-        android:id="@+id/textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="123"
-        android:textSize="18sp"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/nfc_devinfo_shape">
+
     <ImageView
         android:id="@+id/more_iv"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/tab_more"
+        android:background="@drawable/home_team"
         android:layout_gravity="center"
+        android:layout_margin="15dp"/>
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="123"
+        android:textSize="16sp"
+        android:layout_centerInParent="true"
+        android:textColor="@color/Black"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/right"
         android:layout_margin="5dp"/>
-</RelativeLayout>
+
+
+</LinearLayout>

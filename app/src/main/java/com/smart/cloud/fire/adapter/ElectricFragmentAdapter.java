@@ -131,7 +131,7 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                     return false;
                 }
             });
-            ((ItemViewHolder) holder).mac_tv.setText("设备ID:"+normalSmoke.getMac());//@@
+            ((ItemViewHolder) holder).mac_tv.setText(normalSmoke.getMac());//@@
 //            ((ItemViewHolder) holder).repeater_tv.setText(normalSmoke.getRepeater());
 //            ((ItemViewHolder) holder).type_tv.setText(normalSmoke.getPlaceType());
 //            ((ItemViewHolder) holder).area_tv.setText(normalSmoke.getAreaName());
@@ -155,7 +155,7 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
             });
             final int state = normalSmoke.getNetState();
             final int privilege = MyApp.app.getPrivilege();
-            ((ItemViewHolder) holder).dev_name.setText("名称:"+normalSmoke.getName());
+            ((ItemViewHolder) holder).dev_name.setText(normalSmoke.getName());
 
             if (state == 0) {//设备不在线。。
                 ((ItemViewHolder) holder).state_text.setText("离线");

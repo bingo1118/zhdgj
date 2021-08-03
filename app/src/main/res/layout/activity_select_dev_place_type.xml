@@ -4,19 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#f5f6f6">
+    android:background="@color/back">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/titlebar_heigh"
         android:gravity="center"
         android:textSize="20sp"
-        android:text="选择分组"/>
+        android:text="选择分组"
+        android:textColor="@color/Black"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/login_account_and_psw_shape"
         android:padding="10dp"
         android:orientation="vertical">
         <android.support.v7.widget.RecyclerView

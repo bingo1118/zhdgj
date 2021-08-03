@@ -85,7 +85,7 @@ public class SelectDevPlaceTypeActivity extends Activity {
                                 }
                             }
                             adapter=new SelectDevPlaceTypeAdapter(mContext,placeTypeList);
-                            GridLayoutManager layoutManager = new GridLayoutManager(mContext,2);
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
                             place_items.setLayoutManager(layoutManager);
                             //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
                             place_items.setHasFixedSize(true);

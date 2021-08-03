@@ -106,16 +106,11 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             ((ItemViewHolder) holder).alarmTimeTv.setText(mNormalAlarmMessage.getAlarmTime());
             ((ItemViewHolder) holder).smokeMacTv.setText(mNormalAlarmMessage.getName());
             ((ItemViewHolder) holder).repeaterAddressTv.setText("报警位置:"+mNormalAlarmMessage.getAddress());
-            ((ItemViewHolder) holder).repeaterNameTv.setText(mNormalAlarmMessage.getPlaceType());
-            ((ItemViewHolder) holder).repeaterMacTv.setText(mNormalAlarmMessage.getAreaName());
-            ((ItemViewHolder) holder).userSmokeMarkPrincipal.setText(mNormalAlarmMessage.getPrincipal1());
-            ((ItemViewHolder) holder).userSmokeMarkPhoneTv.setText(mNormalAlarmMessage.getPrincipal1Phone());
-            ((ItemViewHolder) holder).userSmokeMarkPrincipalTwo.setText(mNormalAlarmMessage.getPrincipal2());
-            ((ItemViewHolder) holder).userSmokeMarkPhoneTvTwo.setText(mNormalAlarmMessage.getPrincipal2Phone());
+            ((ItemViewHolder) holder).repeaterMacTv.setText("区域:"+mNormalAlarmMessage.getAreaName());
             ((ItemViewHolder) holder).mac_tv.setText("ID:"+mNormalAlarmMessage.getMac());
             if (ifDeal == 0) {
                 ((ItemViewHolder) holder).dealAlarmActionTv.setText("");
-                ((ItemViewHolder) holder).dealAlarmActionTv.setBackgroundResource(R.drawable.querenbaojing);
+                ((ItemViewHolder) holder).dealAlarmActionTv.setBackgroundResource(R.drawable.alarm_deal);
             } else {
                 ((ItemViewHolder) holder).dealAlarmActionTv.setText("已处理");
                 ((ItemViewHolder) holder).dealAlarmActionTv.setBackground(null);
@@ -329,18 +324,8 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     collectFragmentPresenter.dealAlarm(userId, mNormalAlarmMessage.getMac(), privilege,messageModelList.indexOf(mNormalAlarmMessage));//@@5.19添加index位置参数
                 }
             });
-            RxView.clicks(((ItemViewHolder) holder).userSmokeMarkPhoneTv).throttleFirst(2, TimeUnit.SECONDS).subscribe(new Action1<Void>() {
-                @Override
-                public void call(Void aVoid) {
-                    collectFragmentPresenter.telPhoneAction(mContext, mNormalAlarmMessage.getPrincipal1Phone());
-                }
-            });
-            RxView.clicks(((ItemViewHolder) holder).userSmokeMarkPhoneTvTwo).throttleFirst(2, TimeUnit.SECONDS).subscribe(new Action1<Void>() {
-                @Override
-                public void call(Void aVoid) {
-                    collectFragmentPresenter.telPhoneAction(mContext, mNormalAlarmMessage.getPrincipal2Phone());
-                }
-            });
+
+
 
             holder.itemView.setTag(position);
         } else if (holder instanceof FootViewHolder) {
@@ -399,18 +384,8 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         ImageView alarmMarkImage;
         @Bind(R.id.repeater_address_tv)
         TextView repeaterAddressTv;
-        @Bind(R.id.repeater_name_tv)
-        TextView repeaterNameTv;
-        @Bind(R.id.repeater_mac_tv)
+        @Bind(R.id.repeater_mac)
         TextView repeaterMacTv;
-        @Bind(R.id.user_smoke_mark_principal)
-        TextView userSmokeMarkPrincipal;
-        @Bind(R.id.user_smoke_mark_phone_tv)
-        TextView userSmokeMarkPhoneTv;
-        @Bind(R.id.user_smoke_mark_principal_two)
-        TextView userSmokeMarkPrincipalTwo;
-        @Bind(R.id.user_smoke_mark_phone_tv_two)
-        TextView userSmokeMarkPhoneTvTwo;
         @Bind(R.id.deal_alarm_action_tv)
         TextView dealAlarmActionTv;
         @Bind(R.id.action_now_tv)

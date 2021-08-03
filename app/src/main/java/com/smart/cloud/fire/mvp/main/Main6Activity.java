@@ -242,7 +242,7 @@ public class Main6Activity extends AppCompatActivity {
                 View view = LayoutInflater.from(mContext).inflate(
                         R.layout.dialog_update, null);
                 TextView title = (TextView) view.findViewById(R.id.title_text);
-                WebView content = (WebView) view
+                TextView content = (TextView) view
                         .findViewById(R.id.content_text);
                 TextView button2 = (TextView) view
                         .findViewById(R.id.button2_text);
@@ -253,12 +253,10 @@ public class Main6Activity extends AppCompatActivity {
                 title.setText("更新消息");
                 content.setBackgroundColor(getResources().getColor(R.color.update_message)); // 设置背景色
                 content.getBackground().setAlpha(255); // 设置填充透明度 范围：0-255
-                content.loadDataWithBaseURL(null, "已是最新版本！", "text/html", "utf-8",
-                        null);
+                content.setText( "已是最新版本！");
                 minddle_image.setVisibility(View.GONE);
                 cancel_rela_dialog.setVisibility(View.GONE);
                 button2.setText("确定");
-                button2.setTextColor(Color.BLACK);
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 dialog_update = builder.create();
                 dialog_update.show();

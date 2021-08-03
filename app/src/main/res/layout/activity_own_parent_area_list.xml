@@ -2,48 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_back"
+    android:background="@color/back"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/colorPrimary">
+        android:layout_height="45dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="一级区域"
-            android:textColor="@color/white"
+            android:textColor="@color/Black"
             android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/add_user_btn"
-            android:layout_width="35dp"
+            android:layout_width="45dp"
             android:layout_height="35dp"
             android:layout_margin="5dp"
-            android:padding="5dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/home_add_white"/>
+            android:src="@drawable/add_blue"/>
 
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white"
-        android:padding="5dp"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@drawable/blue_redius_shape"
+        android:gravity="center"
+        android:layout_margin="10dp"
         android:layout_marginBottom="3dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/maneger_logo"/>
 
         <TextView
             android:id="@+id/userid_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:textColor="@color/Black"
-            android:text="账号:"/>
+            android:padding="5dp"
+            android:text="Account"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

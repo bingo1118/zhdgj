@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/back"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/title_rela"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/colorPrimaryDark">
+        android:layout_height="45dp">
 
         <TextView
             android:id="@+id/title_tv"
@@ -16,24 +16,24 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="所有设备"
-            android:textColor="#ffffff"
+            android:textColor="@color/Black"
             android:layout_centerInParent="true"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/add_dev_fire"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/erweima"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:src="@drawable/add_blue"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp"/>
 
         <ImageView
             android:id="@+id/add_fire"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/search"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:src="@drawable/search_white"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"/>
@@ -62,8 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_include"
-        android:layout_centerHorizontal="true"
-        android:background="#f5f6f6">
+        android:layout_centerHorizontal="true">
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipere_fresh_layout"
             android:layout_width="match_parent"

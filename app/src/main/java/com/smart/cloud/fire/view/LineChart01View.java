@@ -130,7 +130,7 @@ public class LineChart01View extends DemoView {
 
 			//边框设置
 			chart.showRoundBorder();
-			chart.getBorder().setBorderLineColor(Color.WHITE);
+			chart.getBorder().setBorderLineColor(Color.BLACK);
 
 			chart.disableScale();//禁止缩放
 
@@ -218,15 +218,15 @@ public class LineChart01View extends DemoView {
 			chart.getCategoryAxis().getTickMarksPaint();
 			chart.getCategoryAxis().setTickLabelMargin(10);
 
-			chart.getPlotTitle().getTitlePaint().setColor(Color.WHITE);//设置标题颜色
-			chart.setBackgroundColor(Color.parseColor("#77FFFFFF"));
-			chart.getAxisTitle().getLowerTitlePaint().setColor(Color.WHITE);
-			chart.getDataAxis().getAxisPaint().setColor(Color.WHITE);
-			chart.getDataAxis().getTickLabelPaint().setColor(Color.WHITE);
-			chart.getDataAxis().getTickMarksPaint().setColor(Color.WHITE);
-			chart.getCategoryAxis().getAxisPaint().setColor(Color.WHITE);
-			chart.getCategoryAxis().getTickLabelPaint().setColor(Color.WHITE);
-			chart.getCategoryAxis().getTickMarksPaint().setColor(Color.WHITE);
+			chart.getPlotTitle().getTitlePaint().setColor(Color.BLACK);//设置标题颜色
+			chart.setBackgroundColor(Color.parseColor("#77000000"));
+			chart.getAxisTitle().getLowerTitlePaint().setColor(Color.BLACK);
+			chart.getDataAxis().getAxisPaint().setColor(Color.BLACK);
+			chart.getDataAxis().getTickLabelPaint().setColor(Color.BLACK);
+			chart.getDataAxis().getTickMarksPaint().setColor(Color.BLACK);
+			chart.getCategoryAxis().getAxisPaint().setColor(Color.BLACK);
+			chart.getCategoryAxis().getTickLabelPaint().setColor(Color.BLACK);
+			chart.getCategoryAxis().getTickMarksPaint().setColor(Color.BLACK);
 
 
 			chart.getPlotArea().extWidth(100.f);

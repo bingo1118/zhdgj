@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/message_banner"
+    android:background="@color/back"
     tools:context="com.smart.cloud.fire.mvp.LineChart.ElectricChartActivity">
     <RelativeLayout
         android:id="@+id/title_rela"
@@ -15,31 +15,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textColor="#ffffff"
+            android:textColor="@color/Black"
             android:layout_centerInParent="true"
             android:textSize="18sp" />
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/white"/>
 
     <RadioGroup
         android:id="@+id/rg_data"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal" >
 
         <RadioButton
             android:id="@+id/rb_all"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:button="@null"
             android:padding="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/Black"
             android:background="@drawable/top_checkedtextview_selector"
             android:text="全部" />
 
@@ -50,23 +46,18 @@
 
         <RadioButton
             android:id="@+id/rb_days"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:button="@null"
             android:padding="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/Black"
             android:background="@drawable/top_checkedtextview_selector"
             android:text="七日" />
     </RadioGroup>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/white"/>
 
-
+    
 
     <FrameLayout
         android:id="@+id/fragment_content"

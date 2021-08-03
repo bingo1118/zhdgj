@@ -70,18 +70,6 @@ public class DevByPlaceIdActivity extends MvpActivity<ElectricDevPresenter> impl
     SwipeRefreshLayout swipereFreshLayout;
     @Bind(R.id.mProgressBar)
     ProgressBar mProgressBar;
-    @Bind(R.id.area_condition)
-    AreaChooceListView areaCondition;//区域下拉选择。。
-    @Bind(R.id.shop_type_condition)
-    XCDropDownListViewMapSearch shopTypeCondition;//商铺类型下拉选择。。
-    @Bind(R.id.add_dev_fire)
-    ImageView add_dev_fire;
-    @Bind(R.id.add_fire)
-    ImageView add_fire;
-    @Bind(R.id.lin1)
-    LinearLayout lin1;//搜素界面。。
-    @Bind(R.id.search_fire)
-    ImageView searchFire;//搜索按钮。。
     @Bind(R.id.title_tv)
     TextView title_tv;
     @Bind(R.id.quick_change_all_tv)
@@ -236,144 +224,6 @@ public class DevByPlaceIdActivity extends MvpActivity<ElectricDevPresenter> impl
         return electricDevPresenter;
     }
 
-    @OnClick({R.id.add_fire,R.id.add_dev_fire,R.id.area_condition,R.id.shop_type_condition,R.id.search_fire})
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.add_fire://显示查询条件按钮。。
-                if (visibility) {
-                    visibility = false;
-                    lin1.setVisibility(View.GONE);
-                    if (areaCondition.ifShow()) {
-                        areaCondition.closePopWindow();
-                    }
-                    if (shopTypeCondition.ifShow()) {
-                        shopTypeCondition.closePopWindow();
-                    }
-                } else {
-                    visibility = true;
-                    areaCondition.setEditText("");
-                    shopTypeCondition.setEditText("");
-                    areaCondition.setEditTextHint("区域");
-                    shopTypeCondition.setEditTextHint("类型");
-                    lin1.setVisibility(View.VISIBLE);
-                }
-                break;
-            case R.id.area_condition://地区类型下拉列表。。
-                if (areaCondition.ifShow()) {
-                    areaCondition.closePopWindow();
-                } else {
-                    RequestQueue mQueue = Volley.newRequestQueue(mContext);
-                    String url= ConstantValues.SERVER_IP_NEW+"/getAreaInfo?userId="+userID+"&privilege="+privilege;
-                    StringRequest stringRequest = new StringRequest(url,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    try {
-                                        JSONObject jsonObject=new JSONObject(response);
-                                        if(jsonObject.getInt("errorCode")==0){
-                                            parent = new ArrayList<>();
-                                            map = new HashMap<>();
-                                            JSONArray jsonArrayParent=jsonObject.getJSONArray("areas");
-                                            for(int i=0;i<jsonArrayParent.length();i++){
-                                                JSONObject tempParent= jsonArrayParent.getJSONObject(i);
-                                                Area tempArea=new Area();
-                                                tempArea.setAreaId(tempParent.getString("areaId"));
-                                                tempArea.setAreaName(tempParent.getString("areaName"));
-                                                tempArea.setIsParent(1);
-                                                parent.add(tempArea);
-                                                List<Area> child = new ArrayList<>();
-                                                JSONArray jsonArrayChild=tempParent.getJSONArray("areas");
-                                                for(int j=0;j<jsonArrayChild.length();j++){
-                                                    JSONObject tempChild= jsonArrayChild.getJSONObject(j);
-                                                    Area tempAreaChild=new Area();
-                                                    tempAreaChild.setAreaId(tempChild.getString("areaId"));
-                                                    tempAreaChild.setAreaName(tempChild.getString("areaName"));
-                                                    tempAreaChild.setIsParent(0);
-                                                    child.add(tempAreaChild);
-                                                }
-                                                map.put(tempParent.getString("areaName"),child);
-                                            }
-                                        }
-                                        areaCondition.setItemsData2(parent,map,electricDevPresenter );
-                                        areaCondition.showPopWindow();
-                                        areaCondition.setClickable(true);
-                                        areaCondition.closeLoading();
-//                                        mvpPresenter.getPlaceTypeId(userID, privilege + "", 2);
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e("error","error");
-                        }
-                    });
-                    mQueue.add(stringRequest);
-                    areaCondition.setClickable(false);
-                    areaCondition.showLoading();
-                }
-                break;
-            case R.id.shop_type_condition://商铺类型下拉列表。。
-                if (shopTypeCondition.ifShow()) {
-                    shopTypeCondition.closePopWindow();
-                } else {
-                    mvpPresenter.getPlaceTypeId(userID, privilege + "", 1);
-                    shopTypeCondition.setClickable(false);
-                    shopTypeCondition.showLoading();
-                }
-                break;
-            case R.id.search_fire://查询按钮
-                if (!Utils.isNetworkAvailable(this)) {
-                    return;
-                }
-                if (shopTypeCondition.ifShow()) {
-                    shopTypeCondition.closePopWindow();
-                }
-                if (areaCondition.ifShow()) {
-                    areaCondition.closePopWindow();
-                }
-                if ((mShopType != null && mShopType.getPlaceTypeId() != null) || (mArea != null && mArea.getAreaId() != null)) {
-                    lin1.setVisibility(View.GONE);
-                    searchFire.setVisibility(View.GONE);
-                    add_fire.setVisibility(View.VISIBLE);
-                    areaCondition.searchClose();
-                    shopTypeCondition.searchClose();
-                    visibility = false;
-                    if (mArea != null && mArea.getAreaId() != null) {
-                        if(mArea.getIsParent()==1){
-                            parentId= mArea.getAreaId();//@@9.1
-                            areaId="";
-                        }else{
-                            areaId = mArea.getAreaId();
-                            parentId="";
-                        }
-                    } else {
-                        areaId = "";
-                        parentId="";
-                    }
-                    if (mShopType != null && mShopType.getPlaceTypeId() != null) {
-                        shopTypeId = mShopType.getPlaceTypeId();
-                    } else {
-                        shopTypeId = "";
-                    }
-
-                    mvpPresenter.getNeedElectricInfo(userID, privilege + "",parentId, areaId,"", shopTypeId,"3",this);
-                    mvpPresenter.getSmokeSummary(userID,privilege+"",parentId,areaId,shopTypeId,"3",this);
-                    mShopType = null;
-                    mArea = null;
-                } else {
-                    lin1.setVisibility(View.GONE);
-                    return;
-                }
-                break;
-            case R.id.add_dev_fire:
-                Intent intent=new Intent(mContext, AddDevActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
-
     private void refreshListView() {
         //设置刷新时动画的颜色，可以设置4个
         swipereFreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
@@ -498,29 +348,12 @@ public class DevByPlaceIdActivity extends MvpActivity<ElectricDevPresenter> impl
 
     @Override
     public void getAreaType(ArrayList<?> shopTypes, int type) {
-        if (type == 1) {
-            shopTypeCondition.setItemsData((ArrayList<Object>) shopTypes, electricDevPresenter);
-            shopTypeCondition.showPopWindow();
-            shopTypeCondition.setClickable(true);
-            shopTypeCondition.closeLoading();
-        } else {
-            areaCondition.setItemsData((ArrayList<Object>) shopTypes, electricDevPresenter);
-            areaCondition.showPopWindow();
-            areaCondition.setClickable(true);
-            areaCondition.closeLoading();
-        }
+
     }
 
     @Override
     public void getAreaTypeFail(String msg, int type) {
         T.showShort(mContext, msg);
-        if (type == 1) {
-            shopTypeCondition.setClickable(true);
-            shopTypeCondition.closeLoading();
-        } else {
-            areaCondition.setClickable(true);
-            areaCondition.closeLoading();
-        }
     }
 
     @Override
@@ -530,40 +363,15 @@ public class DevByPlaceIdActivity extends MvpActivity<ElectricDevPresenter> impl
     @Override
     public void getChoiceArea(Area area) {
         mArea = area;
-        if (mArea != null && mArea.getAreaId() != null) {
-            add_fire.setVisibility(View.GONE);
-            searchFire.setVisibility(View.VISIBLE);
-        }
-        if (mArea.getAreaId() == null && mShopType == null) {
-            add_fire.setVisibility(View.VISIBLE);
-            searchFire.setVisibility(View.GONE);
-        } else if (mArea.getAreaId() == null && mShopType != null && mShopType.getPlaceTypeId() == null) {
-            add_fire.setVisibility(View.VISIBLE);
-            searchFire.setVisibility(View.GONE);
-        }
     }
 
     @Override
     public void getChoiceShop(ShopType shopType) {
         mShopType = shopType;
-        if (mShopType != null && mShopType.getPlaceTypeId() != null) {
-            add_fire.setVisibility(View.GONE);
-            searchFire.setVisibility(View.VISIBLE);
-        }
-        if (mShopType.getPlaceTypeId() == null && mArea == null) {
-            add_fire.setVisibility(View.VISIBLE);
-            searchFire.setVisibility(View.GONE);
-        } else if (mShopType.getPlaceTypeId() == null && mArea != null && mArea.getAreaId() == null) {
-            add_fire.setVisibility(View.VISIBLE);
-            searchFire.setVisibility(View.GONE);
-        }
     }
 
     @Override
     public void getSmokeSummary(SmokeSummary smokeSummary) {
-//        totalNum.setText(smokeSummary.getAllSmokeNumber()+"");
-//        onlineNum.setText(smokeSummary.getOnlineSmokeNumber()+"");
-//        offlineNum.setText(smokeSummary.getLossSmokeNumber()+"");
     }
 
     @Override
