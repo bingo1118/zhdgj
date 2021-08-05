@@ -1,13 +1,17 @@
 package com.smart.cloud.fire.mvp.electric;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PopupMenu;
@@ -56,6 +60,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -225,6 +230,7 @@ public class ElectricBigActivity extends MvpActivity<ElectricPresenter> implemen
         dev_address_tv.setText("地址:"+data.getAddress());
         more.setVisibility(View.VISIBLE);
         more.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 showPopupMenu(v);
@@ -276,6 +282,8 @@ public class ElectricBigActivity extends MvpActivity<ElectricPresenter> implemen
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @SuppressLint("RestrictedApi")
     private void showPopupMenu(View view) {
         // View当前PopupMenu显示的相对View的位置
         PopupMenu popupMenu = new PopupMenu(this, view);
@@ -361,6 +369,15 @@ public class ElectricBigActivity extends MvpActivity<ElectricPresenter> implemen
             public void onDismiss(PopupMenu menu) {
             }
         });
+
+        try {
+            Field field = popupMenu.getClass().getDeclaredField("mPopup");
+            field.setAccessible(true);
+            MenuPopupHelper mHelper = (MenuPopupHelper) field.get(popupMenu);
+            mHelper.setForceShowIcon(true);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
 
         popupMenu.show();
     }

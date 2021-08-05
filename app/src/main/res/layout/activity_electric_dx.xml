@@ -307,7 +307,7 @@
                                 android:layout_gravity="center_horizontal"/>
 
                             <TextView
-                                android:id="@+id/yuzhi_dl_a"
+                                android:id="@+id/yuzhi_dl"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="阈值:--A"
@@ -695,7 +695,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:text="(kWh)"
+                                android:text="总用电量(kWh)"
                                 android:gravity="center"
                                 android:textColor="@color/Black"
                                 android:layout_gravity="center_horizontal"/>

@@ -1020,7 +1020,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="12sp"
-                                    android:text="剩余电量(kWh)"
+                                    android:text="组合有功总电能(kWh)"
                                     android:gravity="center"
                                     android:textColor="@color/Black"
                                     android:layout_gravity="center_horizontal"/>
@@ -1076,7 +1076,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="12sp"
-                                    android:text="(kWh)"
+                                    android:text="正向有功总电能(kWh)"
                                     android:gravity="center"
                                     android:textColor="@color/Black"
                                     android:layout_gravity="center_horizontal"/>
@@ -1132,7 +1132,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="12sp"
-                                    android:text="透支电量(kWh)"
+                                    android:text="反向有功总电能(kWh)"
                                     android:gravity="center"
                                     android:textColor="@color/Black"
                                     android:layout_gravity="center_horizontal"/>

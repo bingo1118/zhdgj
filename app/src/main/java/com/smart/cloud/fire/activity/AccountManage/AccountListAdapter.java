@@ -1,10 +1,14 @@
 package com.smart.cloud.fire.activity.AccountManage;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,7 +19,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
+import android.support.v7.widget.PopupMenu;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -37,6 +41,7 @@ import com.smart.cloud.fire.utils.VolleyHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -133,6 +138,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
             ((ItemViewHolder) holder).more_iv.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void onClick(View v) {
                     showPopupMenu(v, normalSmoke);
@@ -237,6 +243,8 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         notifyDataSetChanged();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @SuppressLint("RestrictedApi")
     private void showPopupMenu(final View view, final AccountEntity entity) {
         // View当前PopupMenu显示的相对View的位置
         PopupMenu popupMenu = new PopupMenu(mContext, view);
@@ -278,6 +286,16 @@ public class AccountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             public void onDismiss(PopupMenu menu) {
             }
         });
+
+        try {
+            Field field = popupMenu.getClass().getDeclaredField("mPopup");
+            field.setAccessible(true);
+            MenuPopupHelper mHelper = (MenuPopupHelper) field.get(popupMenu);
+            mHelper.setForceShowIcon(true);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
         popupMenu.show();
     }
 

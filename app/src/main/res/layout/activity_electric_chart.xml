@@ -57,7 +57,7 @@
     </RadioGroup>
 
 
-    
+
 
     <FrameLayout
         android:id="@+id/fragment_content"

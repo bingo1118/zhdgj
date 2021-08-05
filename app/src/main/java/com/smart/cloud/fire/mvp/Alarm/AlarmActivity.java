@@ -76,8 +76,6 @@ public class AlarmActivity extends MvpActivity<AlarmPresenter> implements AlarmV
     TextView smokeMarkPrincipal;
     @Bind(R.id.smoke_mark_phone_tv)
     TextView smokeMarkPhoneTv;
-    @Bind(R.id.alarm_do_it_btn)
-    Button alarmDoItBtn;
     @Bind(R.id.lin_principal)
     LinearLayout lin_principa1;
     @Bind(R.id.lin_principa2)
@@ -148,7 +146,6 @@ public class AlarmActivity extends MvpActivity<AlarmPresenter> implements AlarmV
             alarmLeadToBtn.setVisibility(View.GONE);
             lin_principa1.setVisibility(View.GONE);
             lin_principa2.setVisibility(View.GONE);
-            alarmDoItBtn.setVisibility(View.GONE);
             smokeMarkPrincipal.setVisibility(View.GONE);
             alarmSmokeMarkPrincipal.setVisibility(View.GONE);
             alarmSmokeMarkPhoneTv.setVisibility(View.GONE);
@@ -194,11 +191,7 @@ public class AlarmActivity extends MvpActivity<AlarmPresenter> implements AlarmV
 //            });
         }else{
             cameraBean = mPushAlarmMsg.getCamera();
-            if(cameraBean!=null&&cameraBean.getCameraId()!=null&&cameraBean.getCameraPwd()!=null){
-                alarmDoItBtn.setVisibility(View.VISIBLE);
-            }else{
-                alarmDoItBtn.setVisibility(View.GONE);
-            }
+
             smokeMarkPrincipal.setText(mPushAlarmMsg.getPrincipal2());
             alarmSmokeMarkPrincipal.setText(mPushAlarmMsg.getPrincipal1());
             alarmSmokeMarkPhoneTv.setText(mPushAlarmMsg.getPrincipal1Phone());
@@ -253,7 +246,7 @@ public class AlarmActivity extends MvpActivity<AlarmPresenter> implements AlarmV
 
     private boolean musicOpenOrClose = true;
 
-    @OnClick({R.id.phone_lin_one, R.id.alarm_phone_lin_one, R.id.alarm_tc_image, R.id.alarm_music_image, R.id.alarm_do_it_btn,R.id.stop_alarm})
+    @OnClick({R.id.phone_lin_one, R.id.alarm_phone_lin_one, R.id.alarm_tc_image, R.id.alarm_music_image,R.id.stop_alarm})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.phone_lin_one:
@@ -282,15 +275,7 @@ public class AlarmActivity extends MvpActivity<AlarmPresenter> implements AlarmV
                     musicOpenOrClose = true;
                 }
                 break;
-            case R.id.alarm_do_it_btn:
-                final Contact contact = new Contact();
-                contact.contactPassword = cameraBean.getCameraPwd();
-                contact.contactId = cameraBean.getCameraId();
-                Intent i = new Intent(mContext, ApMonitorActivity.class);
-                i.putExtra("contact", contact);
-                startActivity(i);
-                finish();
-                break;
+
             case R.id.stop_alarm:
                 RequestQueue mQueue = Volley.newRequestQueue(mContext);
                 String url= ConstantValues.SERVER_IP_NEW+"StopAlarm?mac="+mPushAlarmMsg.getMac();

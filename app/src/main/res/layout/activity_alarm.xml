@@ -4,38 +4,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="#ffffff"
+    android:background="@drawable/alarm_back"
     >
 
     <RelativeLayout
         android:id="@+id/alarm_fk_center"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
         <com.smart.cloud.fire.view.MyImageView
             android:id="@+id/alarm_fk_img"
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:background="@drawable/allarm_bg_selector"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:scaleType="center"
+            android:layout_marginTop="15dp"
             android:layout_centerInParent="true"
-            />
+            android:background="@drawable/alarm_light"/>
         <ImageView
             android:id="@+id/alarm_music_image"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="200dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="25dp"
             android:src="@drawable/bj_yl"/>
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/alarm_dao_hang_color"
-        >
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:gravity="center">
         <ImageView
             android:id="@+id/alarm_tc_image"
             android:layout_width="30dp"
@@ -43,37 +43,25 @@
             android:layout_marginLeft="10dp"
             android:src="@drawable/baojing_tc_selector"
             android:layout_centerVertical="true"
+            android:visibility="gone"
             />
         <Button
-            android:id="@+id/alarm_do_it_btn"
+            android:id="@+id/stop_alarm"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:layout_marginTop="20dp"
             android:textColor="#ffffff"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/alarm_lead_to_btn"
             android:layout_marginRight="20dp"
-            android:background="@drawable/login_button_selector"
-            android:text="查看视频" />
+            android:background="@drawable/alarm_upload" />
         <Button
             android:id="@+id/alarm_lead_to_btn"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:background="@drawable/daohang_ed_bg"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_centerVertical="true"
-            android:textColor="@color/login_btn"
-            android:text="@string/lead_to_btn" />
-    </RelativeLayout>
+            android:background="@drawable/alarm_daohang"/>
+    </LinearLayout>
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:paddingRight="5dp"
-        android:src="@drawable/baojing_tb"/>
+
 
     <TextView
         android:id="@+id/alarm_type"
@@ -107,7 +95,7 @@
         android:layout_marginRight="30dp"
         android:textSize="14sp"
         android:gravity="center"
-        android:textColor="#000000" />
+        android:textColor="@color/hj_color_text" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -194,14 +182,5 @@
                 android:text="12548454848"/>
         </LinearLayout>
     </LinearLayout>
-    <Button
-        android:id="@+id/stop_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:textColor="#fff"
-        android:padding="10dp"
-        android:background="@color/login_btn"
-        android:visibility="gone"
-        android:text="确认报警"/>
+
 </LinearLayout>

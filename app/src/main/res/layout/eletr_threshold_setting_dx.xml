@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rela">
+    android:id="@+id/rela"
+    android:background="@color/back">
 
     <TextView
         android:id="@+id/title_text"
@@ -11,9 +12,8 @@
         android:layout_height="wrap_content"
         android:text="参数设置"
         android:padding="10dp"
-        android:background="@color/colorAccent"
         android:textSize="20sp"
-        android:textColor="#fff"
+        android:textColor="@color/Black"
         android:gravity="center"/>
     <ScrollView
         android:layout_width="match_parent"
@@ -23,296 +23,348 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <Switch
-                android:id="@+id/high_value_enable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="30dp"
-                android:text="超电压使能"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/login_account_and_psw_shape">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="手动自动模式::"/>
+                <CheckBox
+                    android:id="@+id/auto_mode_value"
+                    android:layout_width="126dp"
+                    android:layout_height="35dp"
+                    android:button="@drawable/thumb2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/login_account_and_psw_shape">
                 <TextView
                     android:id="@+id/high_value_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:textColor="#000"
-                    android:text="电压上限(V):"
-                    android:gravity="center"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="过压设置(V):"/>
                 <EditText
                     android:id="@+id/high_value"
                     android:layout_width="0dp"
                     android:layout_weight="1.2"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:background="@drawable/edit_view_black"/>
+                    android:gravity="right"
+                    android:background="@null"/>
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="(220-280V)"/>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/right"/>
             </LinearLayout>
-            <Switch
-                android:id="@+id/low_value_enable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="30dp"
-                android:text="低电压使能"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/login_account_and_psw_shape">
                 <TextView
-                    android:id="@+id/low_value_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:gravity="center"
-                    android:textColor="#000"
-                    android:text="电压下限(V):"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="过压保护:"/>
+                <CheckBox
+                    android:id="@+id/high_value_enable"
+                    android:layout_width="126dp"
+                    android:layout_height="35dp"
+                    android:button="@drawable/thumb"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/login_account_and_psw_shape">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="欠压设置(V):"/>
                 <EditText
                     android:id="@+id/low_value"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1.2"
-                    android:padding="3dp"
-                    android:background="@drawable/edit_view_black"/>
-                <TextView
-                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="(130-220V)"/>
+                    android:padding="3dp"
+                    android:gravity="right"
+                    android:background="@null"/>
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/right"/>
             </LinearLayout>
 
-            <Switch
-                android:id="@+id/overcurrentvalue_enable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="30dp"
-                android:text="超负载使能"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/login_account_and_psw_shape">
                 <TextView
-                    android:id="@+id/overcurrent_value_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:gravity="center"
-                    android:textColor="#000"
-                    android:layout_below="@id/low_value_name"
-                    android:text="最大电流(A):"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="欠压保护:"/>
+                <CheckBox
+                    android:id="@+id/low_value_enable"
+                    android:layout_width="126dp"
+                    android:layout_height="35dp"
+                    android:button="@drawable/thumb"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/login_account_and_psw_shape">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="过流设置(A):"/>
                 <EditText
                     android:id="@+id/overcurrentvalue"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1.2"
-                    android:padding="3dp"
-                    android:background="@drawable/edit_view_black"/>
-                <TextView
-                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="(1-100A)"/>
+                    android:padding="3dp"
+                    android:gravity="right"
+                    android:background="@null"/>
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/right"/>
             </LinearLayout>
-            <Switch
-                android:id="@+id/Leakage_value_enable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="30dp"
-                android:text="漏电流使能"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/login_account_and_psw_shape">
                 <TextView
-                    android:id="@+id/leakage_value_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:gravity="center"
-                    android:textColor="#000"
-                    android:text="漏电阈值(mA):"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="过流保护:"/>
+                <CheckBox
+                    android:id="@+id/overcurrentvalue_enable"
+                    android:layout_width="126dp"
+                    android:layout_height="35dp"
+                    android:button="@drawable/thumb"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/login_account_and_psw_shape">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="漏电设置(mA):"/>
                 <EditText
                     android:id="@+id/Leakage_value"
                     android:layout_width="0dp"
+                    android:layout_weight="1.2"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:layout_weight="1.2"
-                    android:background="@drawable/edit_view_black"/>
+                    android:gravity="right"
+                    android:background="@null"/>
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="(5-1000mA)"/>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/right"/>
             </LinearLayout>
-            <Switch
-                android:id="@+id/temp_value_enable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="30dp"
-                android:text="超温度使能"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/login_account_and_psw_shape">
                 <TextView
-                    android:id="@+id/temp_value_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:gravity="center"
-                    android:textColor="#000"
-                    android:text="温度上限(℃):"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="漏电保护:"/>
+                <CheckBox
+                    android:id="@+id/Leakage_value_enable"
+                    android:layout_width="126dp"
+                    android:layout_height="35dp"
+                    android:button="@drawable/thumb"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/login_account_and_psw_shape">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="温度设置(℃):"/>
                 <EditText
                     android:id="@+id/temp_value"
                     android:layout_width="0dp"
+                    android:layout_weight="1.2"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:layout_weight="1.2"
-                    android:background="@drawable/edit_view_black"/>
+                    android:gravity="right"
+                    android:background="@null"/>
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="(20-120℃)"/>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/right"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/login_account_and_psw_shape">
                 <TextView
-                    android:id="@+id/action_delay_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:gravity="center"
-                    android:textColor="#000"
-                    android:text="动作时延(s):"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="超温保护:"/>
+                <CheckBox
+                    android:id="@+id/temp_value_enable"
+                    android:layout_width="126dp"
+                    android:layout_height="35dp"
+                    android:button="@drawable/thumb"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/login_account_and_psw_shape">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:text="过流延时跳闸(s):"/>
                 <EditText
                     android:id="@+id/action_delay_value"
                     android:layout_width="0dp"
+                    android:layout_weight="1.2"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:layout_weight="1.2"
-                    android:background="@drawable/edit_view_black"/>
+                    android:gravity="right"
+                    android:background="@null"/>
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="(1-120s)"/>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/right"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/login_account_and_psw_shape">
                 <TextView
-                    android:id="@+id/open_sum_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:gravity="center"
-                    android:textColor="#000"
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
                     android:text="重合闸次数:"/>
                 <EditText
                     android:id="@+id/open_sum_value"
                     android:layout_width="0dp"
+                    android:layout_weight="1.2"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:layout_weight="1.2"
-                    android:background="@drawable/edit_view_black"/>
+                    android:gravity="right"
+                    android:background="@null"/>
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/right"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/login_account_and_psw_shape">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text=""/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp">
-                <TextView
-                    android:id="@+id/auto_mode_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:gravity="center"
-                    android:textColor="#000"
-                    android:text="手动自动模式:"/>
-                <RadioGroup
-                    android:id="@+id/auto_mode_value"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2.2"
-                    android:orientation="vertical">
-                    <RadioButton
-                        android:id="@+id/shoudong"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="手动模式"/>
-                    <RadioButton
-                        android:id="@+id/zidong"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="自动模式"/>
-                </RadioGroup>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp">
-                <TextView
-                    android:id="@+id/pay_mode_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:gravity="center"
-                    android:textColor="#000"
-                    android:text="付费模式:"/>
-                <RadioGroup
+                    android:textColor="@color/Black"
+                    android:text="后付费模式:"/>
+                <CheckBox
                     android:id="@+id/pay_mode_value"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2.2"
-                    android:orientation="vertical">
-                    <RadioButton
-                        android:id="@+id/xian"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="先付费模式"/>
-                    <RadioButton
-                        android:id="@+id/hou"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="后付费模式"/>
-                </RadioGroup>
+                    android:layout_width="126dp"
+                    android:layout_height="35dp"
+                    android:button="@drawable/thumb"/>
 
             </LinearLayout>
 
@@ -320,28 +372,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/login_account_and_psw_shape">
                 <TextView
-                    android:id="@+id/price_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:gravity="center"
-                    android:textColor="#000"
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
                     android:text="电价(元):"/>
                 <EditText
                     android:id="@+id/price_value"
                     android:layout_width="0dp"
+                    android:layout_weight="1.2"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:layout_weight="1.2"
-                    android:background="@drawable/edit_view_black"/>
+                    android:gravity="right"
+                    android:background="@null"/>
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"/>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/right"/>
             </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

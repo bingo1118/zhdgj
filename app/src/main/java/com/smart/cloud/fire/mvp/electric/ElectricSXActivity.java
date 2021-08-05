@@ -1,12 +1,16 @@
 package com.smart.cloud.fire.mvp.electric;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PopupMenu;
@@ -16,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -55,6 +60,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -234,6 +240,7 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
         dev_address_tv.setText("地址:"+data.getAddress());
         more.setVisibility(View.VISIBLE);
         more.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 showPopupMenu(v);
@@ -276,6 +283,8 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
         electricPresenter.getOneElectricDXyuzhi(electricMac);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @SuppressLint("RestrictedApi")
     private void showPopupMenu(View view) {
         // View当前PopupMenu显示的相对View的位置
         PopupMenu popupMenu = new PopupMenu(this, view);
@@ -363,6 +372,15 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
             }
         });
 
+        try {
+            Field field = popupMenu.getClass().getDeclaredField("mPopup");
+            field.setAccessible(true);
+            MenuPopupHelper mHelper = (MenuPopupHelper) field.get(popupMenu);
+            mHelper.setForceShowIcon(true);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
         popupMenu.show();
     }
 
@@ -391,15 +409,15 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
         final EditText temp_value=(EditText)layout.findViewById(R.id.temp_value);
         temp_value.setText(mModel.getThreshold37());
 
-        final Switch high_value_enable=(Switch) layout.findViewById(R.id.high_value_enable);
+        final CheckBox high_value_enable=(CheckBox) layout.findViewById(R.id.high_value_enable);
         high_value_enable.setChecked(mModel.getThreshold33enable().equals("1"));
-        final Switch low_value_enable=(Switch) layout.findViewById(R.id.low_value_enable);
+        final CheckBox low_value_enable=(CheckBox) layout.findViewById(R.id.low_value_enable);
         low_value_enable.setChecked(mModel.getThreshold34enable().equals("1"));
-        final Switch overcurrentvalue_enable=(Switch) layout.findViewById(R.id.overcurrentvalue_enable);
+        final CheckBox overcurrentvalue_enable=(CheckBox) layout.findViewById(R.id.overcurrentvalue_enable);
         overcurrentvalue_enable.setChecked(mModel.getThreshold35enable().equals("1"));
-        final Switch Leakage_value_enable=(Switch) layout.findViewById(R.id.Leakage_value_enable);
+        final CheckBox Leakage_value_enable=(CheckBox) layout.findViewById(R.id.Leakage_value_enable);
         Leakage_value_enable.setChecked(mModel.getThreshold36enable().equals("1"));
-        final Switch temp_value_name=(Switch) layout.findViewById(R.id.temp_value_enable);
+        final CheckBox temp_value_name=(CheckBox) layout.findViewById(R.id.temp_value_enable);
         temp_value_name.setChecked(mModel.getThreshold37enable().equals("1"));
 
         final EditText action_delay_value=(EditText)layout.findViewById(R.id.action_delay_value);
@@ -408,21 +426,18 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
         open_sum_value.setText(mModel.getOpenSum());
         final EditText price_value=(EditText)layout.findViewById(R.id.price_value);
 
-        final RadioGroup auto_mode_value=(RadioGroup)layout.findViewById(R.id.auto_mode_value);
-        final RadioButton shoudong=(RadioButton)layout.findViewById(R.id.shoudong);
-        final RadioButton zidong=(RadioButton)layout.findViewById(R.id.zidong);
+        final CheckBox auto_mode_value=(CheckBox)layout.findViewById(R.id.auto_mode_value);
         if(mModel.getAutoMode().equals("0")){
-            shoudong.setChecked(true);
+            auto_mode_value.setChecked(false);
         }else{
-            zidong.setChecked(true);
+            auto_mode_value.setChecked(true);
         }
 
-        final RadioButton xian=(RadioButton)layout.findViewById(R.id.xian);
-        final RadioButton hou=(RadioButton)layout.findViewById(R.id.hou);
+        final CheckBox pay_mode_value=(CheckBox)layout.findViewById(R.id.pay_mode_value);
         if(mModel.getPayMode().equals("0")){
-            xian.setChecked(true);
+            pay_mode_value.setChecked(false);
         }else{
-            hou.setChecked(true);
+            pay_mode_value.setChecked(true);
         }
 
         Button commit=(Button)(Button)layout.findViewById(R.id.commit);
@@ -474,8 +489,8 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
                                 +"&threshold47enable="+(temp_value_name.isChecked()?"1":"0")
                                 +"&actionDelay="+action_delay_value.getText().toString()
                                 +"&openSum="+open_sum_value.getText().toString()
-                                +"&autoMode="+(zidong.isChecked()?"1":"0")
-                                +"&payMode="+(hou.isChecked()?"1":"0")
+                                +"&autoMode="+(auto_mode_value.isChecked()?"1":"0")
+                                +"&payMode="+(pay_mode_value.isChecked()?"1":"0")
                                 +"&price="+price_value.getText().toString()
                                 +"&mac="+electricMac+"&userId="+userID;
                     }else{

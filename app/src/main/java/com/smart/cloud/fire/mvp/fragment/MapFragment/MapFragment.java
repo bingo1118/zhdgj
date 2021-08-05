@@ -129,7 +129,7 @@ public class MapFragment extends MvpFragment<MapFragmentPresenter> implements Ma
             add_fire.setVisibility(View.VISIBLE);
             add_fire.setImageResource(R.drawable.search);
         }
-        areaCondition.seteditTextColor("#ffffffff");//@@9.12
+        areaCondition.seteditTextColor("#000000");//@@9.12
         areaCondition.setEditText("区域");//@@9.12
         areaCondition.setclear_choice(null,false);//@@9.12
         areaCondition.setActivity(getActivity());//@@12.21
@@ -494,31 +494,6 @@ public class MapFragment extends MvpFragment<MapFragmentPresenter> implements Ma
                 }
                 break;
             case R.id.search_fire:
-                if (shopTypeCondition.ifShow()) {
-                    shopTypeCondition.closePopWindow();
-                }
-                if (areaCondition.ifShow()) {
-                    areaCondition.closePopWindow();
-                }
-                if ((mShopType != null && mShopType.getPlaceTypeId() != null) || (mArea != null && mArea.getAreaId() != null)) {
-                    lin_search.setVisibility(View.GONE);
-                    search_fire.setVisibility(View.GONE);
-                    add_fire.setVisibility(View.VISIBLE);
-                    areaCondition.searchClose();
-                    shopTypeCondition.searchClose();
-                    visibility = false;
-                    if (mArea != null && mArea.getAreaId() != null) {
-                        areaId = mArea.getAreaId();
-                    } else {
-                        areaId = "";
-                    }
-                    if (mShopType != null && mShopType.getPlaceTypeId() != null) {
-                        shopTypeId = mShopType.getPlaceTypeId();
-                    } else {
-                        shopTypeId = "";
-                    }
-                }
-                break;
             case R.id.add_fire:
                 if (visibility) {
                     visibility = false;

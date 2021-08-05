@@ -3,17 +3,21 @@
 
     <item
         android:id="@+id/reset"
-        android:title="编辑信息"/>
+        android:title="编辑信息"
+        android:icon="@drawable/account_edit"/>
 
     <item
         android:id="@+id/info"
-        android:title="查看详情"/>
+        android:title="查看详情"
+        android:icon="@drawable/account_info"/>
 
     <item
         android:id="@+id/area"
-        android:title="区域设置"/>
+        android:title="区域设置"
+        android:icon="@drawable/account_area"/>
 
     <item
         android:id="@+id/delete"
-        android:title="删除账号"/>
+        android:title="删除账号"
+        android:icon="@drawable/account_delete"/>
 </menu>
