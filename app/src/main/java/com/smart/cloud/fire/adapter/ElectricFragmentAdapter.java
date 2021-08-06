@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -160,9 +161,11 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
             if (state == 0) {//设备不在线。。
                 ((ItemViewHolder) holder).state_text.setText("离线");
                 ((ItemViewHolder) holder).alarm_state_text.setVisibility(View.GONE);
+                ((ItemViewHolder) holder).state_iv.setImageResource(R.drawable.state_offline);
             } else {//设备在线。。
                 ((ItemViewHolder) holder).state_text.setText("在线");
                 ((ItemViewHolder) holder).alarm_state_text.setVisibility(View.VISIBLE);
+                ((ItemViewHolder) holder).state_iv.setImageResource(R.drawable.state_online);
             }
             final int alarmState = normalSmoke.getAlarmState();
             if (alarmState == 2) {//设备报警
@@ -275,6 +278,8 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
         LinearLayout category_group_lin;
         @Bind(R.id.power_button)
         ImageView power_button;//@@切换电源按钮
+        @Bind(R.id.state_iv)
+        ImageView state_iv;
 
         public ItemViewHolder(View view) {
             super(view);
@@ -329,16 +334,21 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     public void  changepower(final int eleState, final Electric normalSmoke){
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        if(eleState==1){
-            builder.setMessage("是否执行分闸命令？");
-        }else{
-            builder.setMessage("是否执行合闸命令？");
-        }
-        builder.setTitle("提示");
-        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 
+        View dialogView = LayoutInflater.from(mContext)
+                .inflate(R.layout.dialog_cut,null);
+        TextView msg_tv = (TextView)dialogView.findViewById(R.id.msg_tv) ;
+        if(eleState==1){
+            msg_tv.setText("是否执行分闸命令？");
+        }else{
+            msg_tv.setText("是否执行合闸命令？");
+        }
+        builder.setView(dialogView);
+        final Dialog dialog=builder.create();
+        Button commit_btn = (Button) dialogView.findViewById(R.id.commit_btn);
+        commit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View view) {
                 String userID = SharedPreferencesManager.getInstance().getData(mContext,
                         SharedPreferencesManager.SP_FILE_GWELL,
                         SharedPreferencesManager.KEY_RECENTNAME);
@@ -393,9 +403,21 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                         url=ConstantValues.SERVER_IP_NEW+"ackControl?smokeMac="+normalSmoke.getMac()+"&eleState=1&userId="+userID;
                     }
                 }
-                final ProgressDialog dialog1 = new ProgressDialog(mContext);
-                dialog1.setTitle("提示");
-                dialog1.setMessage("设置中，请稍候");
+                final AlertDialog.Builder builder1 = new AlertDialog.Builder(mContext);
+                View dialogView = LayoutInflater.from(mContext)
+                        .inflate(R.layout.dialog_cut_wait,null);
+                TextView cut_tv = (TextView)dialogView.findViewById(R.id.cut_tv);
+                ImageView cut_iv = (ImageView)dialogView.findViewById(R.id.cut_iv);
+                if(eleState==1){
+                    cut_tv.setText("分闸进行中");
+                    cut_iv.setBackgroundResource(R.drawable.cut_off);
+                }else{
+                    cut_tv.setText("合闸进行中");
+                    cut_iv.setBackgroundResource(R.drawable.cut_on);
+                }
+                builder1.setView(dialogView);
+                final Dialog dialog1=builder1.create();
+
                 dialog1.setCanceledOnTouchOutside(false);
                 dialog1.show();
 //                Toast.makeText(mContext,"设置中，请稍候",Toast.LENGTH_SHORT).show();
@@ -443,13 +465,15 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
             }
         });
 
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+        Button cancel_btn = (Button) dialogView.findViewById(R.id.cancel_btn);
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View view) {
                 dialog.dismiss();
             }
         });
-        builder.create().show();
+
+        dialog.show();
     }
 
     private void showNormalDialog(final String mac, final int deviceType, final int position){

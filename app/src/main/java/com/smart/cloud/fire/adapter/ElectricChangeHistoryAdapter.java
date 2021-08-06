@@ -12,6 +12,7 @@ import com.smart.cloud.fire.global.ElectricValue;
 import com.smart.cloud.fire.mvp.electricChangeHistory.ElectricChangeHistoryPresenter;
 import com.smart.cloud.fire.mvp.electricChangeHistory.HistoryBean;
 import com.smart.cloud.fire.utils.T;
+import com.smart.cloud.fire.view.SingleLineZoomTextView;
 
 import java.util.List;
 
@@ -109,7 +110,7 @@ public class ElectricChangeHistoryAdapter extends RecyclerView.Adapter<RecyclerV
             }else{
                 ((ItemViewHolder) holder).electric_state.setText("分闸");
             }
-            ((ItemViewHolder) holder).electric_time.setText("时间:"+electric.getChangetime());
+            ((ItemViewHolder) holder).electric_time.setText(electric.getChangetime());
             ((ItemViewHolder) holder).electric_username.setText(electric.getUserName());
             holder.itemView.setTag(position);
         } else if (holder instanceof ShopSmokeAdapter.FootViewHolder) {
@@ -159,15 +160,15 @@ public class ElectricChangeHistoryAdapter extends RecyclerView.Adapter<RecyclerV
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.electric_mac)
-        TextView electric_mac;
+        SingleLineZoomTextView electric_mac;
         @Bind(R.id.electric_userid)
-        TextView electric_userid;
+        SingleLineZoomTextView electric_userid;
         @Bind(R.id.electric_state)
-        TextView electric_state;
+        SingleLineZoomTextView electric_state;
         @Bind(R.id.electric_time)
         TextView electric_time;
         @Bind(R.id.electric_username)
-        TextView electric_username;
+        SingleLineZoomTextView electric_username;
         @Bind(R.id.electric_lin)
         LinearLayout electricLin;
         @Bind(R.id.tv_image)

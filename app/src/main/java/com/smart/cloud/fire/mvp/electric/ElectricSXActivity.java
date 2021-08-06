@@ -1006,15 +1006,17 @@ public class ElectricSXActivity extends MvpActivity<ElectricPresenter> implement
                                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spinner.setAdapter(adapter);
 
+                                Button commit=(Button) dialogView.findViewById(R.id.commit_btn);
+                                commit.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        movePlace(electricMac,placeTypeListTemp.get(spinner.getSelectedItemPosition()).getPlaceTypeId()+"",placeTypeListTemp.get(spinner.getSelectedItemPosition()).getPlaceTypeName()+"");
+                                    }
+                                });
+
                                 customizeDialog.setTitle("移动分组至:");
                                 customizeDialog.setView(dialogView);
-                                customizeDialog.setPositiveButton("确定",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                movePlace(electricMac,placeTypeListTemp.get(spinner.getSelectedItemPosition()).getPlaceTypeId()+"",placeTypeListTemp.get(spinner.getSelectedItemPosition()).getPlaceTypeName()+"");
-                                            }
-                                        });
+
                                 customizeDialog.show();
                             }
                         } catch (JSONException e) {

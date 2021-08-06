@@ -2,20 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/back"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/title_rela"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/colorAccent">
+        android:layout_height="45dp">
         <TextView
             android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="电源切换历史记录"
-            android:textColor="#ffffff"
+            android:text="分合闸记录"
+            android:textColor="@color/Black"
             android:layout_centerInParent="true"
             android:textSize="18sp"
             />
@@ -26,31 +25,36 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="8dp"
+        android:padding="10dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="设备MAC"/>
+            android:text="设备ID"
+            android:textColor="@color/blue"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="输入输出状态"/>
+            android:text="操作人"
+            android:textColor="@color/blue"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="线路状态"/>
+            android:text="账号"
+            android:textColor="@color/blue"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="保护器状态"/>
+            android:text="操作类型"
+            android:textColor="@color/blue"/>
     </LinearLayout>
 
     <RelativeLayout

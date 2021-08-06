@@ -51,38 +51,56 @@
                 android:singleLine="true"
                 android:text="102314"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="5dp">
-
-            <TextView
+            android:gravity="right">
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/state_text"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:text="在线"
-                android:textSize="14sp"/>
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:padding="6dp"
+                android:background="@drawable/dev_state_back_shape">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/alarm_state_text"
-                android:layout_alignParentRight="true"
-                android:layout_above="@id/state_text"
-                android:text="正常"
-                android:textSize="14sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/state_text"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="在线"
+                    android:textColor="@color/green"
+                    android:textSize="12sp"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/alarm_state_text"
+                    android:layout_alignParentRight="true"
+                    android:layout_above="@id/state_text"
+                    android:text="正常"
+                    android:textColor="@color/green"
+                    android:textSize="12sp"/>
 
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/state_iv"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:padding="5dp"
+                android:src="@drawable/state_online"/>
 
         </LinearLayout>
+
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/smssdk_line_light_gray"
+        android:layout_height="0.5dp"
+        android:background="@color/colorPrimaryTemp"
         android:layout_margin="5dp"/>
 
     <RelativeLayout
@@ -95,6 +113,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_centerVertical="true"
+            android:layout_margin="5dp"
             android:src="@drawable/dev_maneger_logo" />
 
         <ImageView

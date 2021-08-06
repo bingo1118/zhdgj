@@ -105,6 +105,7 @@
     <color name="hint_color_text">#899399</color>
     <color name="ddy_color_text">#e48d26</color>
     <color name="hj_color_text">#e9393d</color>
-    <color name="green">#00B81F</color>
+    <color name="green">#FF00B81F</color>
     <color name="red">#FF6363</color>
+    <color name="green_temp">#1F00B81F</color>
 </resources>
