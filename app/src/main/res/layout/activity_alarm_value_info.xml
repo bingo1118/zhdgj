@@ -1,59 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/gray_back">
 
-    <RelativeLayout
-        android:id="@+id/title_rela"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="报警详情"
+        android:textStyle="bold"
+        android:padding="15dp"
+        android:gravity="center"
+        android:textColor="@color/Black"
+        android:textSize="18sp" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_white_radius"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp">
 
+        <ImageView
+            android:id="@+id/dev_logo"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="15dp"
+            android:padding="5dp"
+            android:src="@drawable/dev_info_logo"/>
         <TextView
             android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="智慧用电保护装置"
-            android:textStyle="bold"
+            android:text="Name"
             android:textColor="@color/Black"
-            android:textSize="22sp" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/title_line"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/corner_white_radius"
-        android:layout_below="@id/title_rela"
-        android:gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:padding="5dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/watch"/>
+            android:layout_alignTop="@id/dev_logo"
+            android:layout_toRightOf="@id/dev_logo"/>
         <TextView
             android:id="@+id/time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="实时参数"
-            android:textColor="@color/Black"
-            android:layout_marginLeft="5dp"/>
+            android:text="ID"
+            android:textColor="@color/black"
+            android:layout_alignBottom="@id/dev_logo"
+            android:layout_toRightOf="@id/dev_logo"/>
 
-    </LinearLayout>
+    </RelativeLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_line"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp">
@@ -68,557 +70,672 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_dy_logo"/>
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="电压A"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(V)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_weight="1.5">
-
-                        <TextView
-                            android:id="@+id/dy_a"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
-                    </RelativeLayout>
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Black"
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="电压"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="电压B"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(V)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_weight="1.5">
-
-                        <TextView
-                            android:id="@+id/dy_b"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="电压C"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(V)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-
-                    </LinearLayout>
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_weight="1.5">
-
-                        <TextView
-                            android:id="@+id/dy_c"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="电流A"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(A)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-
-                    </LinearLayout>
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_weight="1.5">
-
-                        <TextView
-                            android:id="@+id/dl_a"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="电流B"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(A)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-
-                    </LinearLayout>
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_weight="1.5">
-
-                        <TextView
-                            android:id="@+id/dl_b"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="电流C"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(A)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-
-                    </LinearLayout>
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_weight="1.5">
-
-                        <TextView
-                            android:id="@+id/dl_c"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="漏电流"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(mA)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-
-                    </LinearLayout>
-                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/device_item_bg_right"
-                        android:padding="5dp">
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
 
-                        <TextView
-                            android:id="@+id/ldl_a"
-                            android:layout_width="150dp"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="电压A(V)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"/>
 
-                    </RelativeLayout>
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/dy_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="电压B(V)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/dy_b"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp"  />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="电压C(V)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/dy_c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_dl_logo"/>
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="温度A"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(℃)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-
-                    </LinearLayout>
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_weight="1.5">
-
-                        <TextView
-                            android:id="@+id/wd_a"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
-                    </RelativeLayout>
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Black"
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="电流"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
                         android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="温度B"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(℃)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="电流A(A)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/dl_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
                     </LinearLayout>
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_weight="1.5">
 
-                        <TextView
-                            android:id="@+id/wd_b"
-                            android:layout_width="150dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
-                    </RelativeLayout>
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="电流B(A)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/dl_b"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp"  />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="电流C(A)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/dl_c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_ldl_logo"/>
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="温度C"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(℃)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-
-                    </LinearLayout>
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_weight="1.5">
-
-                        <TextView
-                            android:id="@+id/wd_c"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
-                    </RelativeLayout>
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Black"
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="漏电流"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
                         android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_left"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="温度N"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
-                        <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:gravity="center"
-                            android:text="单位(℃)"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"/>
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="漏电流(mA)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/ldl_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/ldl_his"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
                     </LinearLayout>
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/device_item_bg_right"
-                        android:layout_weight="1.5">
 
-                        <TextView
-                            android:id="@+id/wd_n"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/Black"
-                            android:text="--"
-                            android:textStyle="bold|italic"
-                            android:textSize="32sp" />
-                    </RelativeLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/info_wd_logo"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Black"
+                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
+                        android:text="温度"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/corner_white_radius">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="温度A(℃)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/wd_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="温度B(℃)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/wd_b"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp"  />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="温度C(℃)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/wd_c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_white_radius"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:src="@drawable/electr_info_point"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="温度N(℃)"
+                                android:gravity="center"
+                                android:textColor="@color/Black"
+                                android:layout_gravity="center_horizontal"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/device_item_bg_right"
+                            android:layout_weight="1.5">
+
+                            <TextView
+                                android:id="@+id/wd_n"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/Black"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textStyle="bold|italic"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
             <include layout="@layout/progress_bar"/>
         </RelativeLayout>
     </ScrollView>
-</RelativeLayout>
+</LinearLayout>

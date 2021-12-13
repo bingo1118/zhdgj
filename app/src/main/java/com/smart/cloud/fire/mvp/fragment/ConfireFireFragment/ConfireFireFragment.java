@@ -416,6 +416,13 @@ public class ConfireFireFragment extends MvpFragment<ConfireFireFragmentPresente
                         if(scanResult.contains("-")){
                             scanResult=scanResult.substring(scanResult.lastIndexOf("=")+1);
                         }//@@12.26三江nb-iot烟感
+                        if(scanResult.contains("GS524N")){
+                            try {
+                                scanResult="N"+new JSONObject(scanResult).getString("i")+"S";
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                         addFireMac.setText(scanResult);
                         clearText();
                         mvpPresenter.getOneSmoke(userID, privilege + "", scanResult);//@@5.5如果添加过该烟感则显示出原来的信息

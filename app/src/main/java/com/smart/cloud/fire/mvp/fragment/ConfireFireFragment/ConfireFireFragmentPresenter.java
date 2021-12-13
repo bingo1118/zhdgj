@@ -110,6 +110,7 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                 smokeMac = smokeMac.replace("H","");
                 smokeMac = smokeMac.replace("I","");
                 smokeMac = smokeMac.replace("Q","");
+                smokeMac = smokeMac.replace("S","");
                 break;
             case "L"://@@5.13红外
                 smokeMac = smokeMac.replace("L","");
@@ -405,6 +406,8 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                         deviceType="36";//@@嘉德移动烟感
                     }else if((smokeMac.charAt(smokeMac.length()-1)+"").equals("Q")){
                         deviceType="75";//
+                    }else if((smokeMac.charAt(smokeMac.length()-1)+"").equals("S")){
+                        deviceType="86";//
                     }else{
                         deviceType="41";
                     }
@@ -416,6 +419,7 @@ public class ConfireFireFragmentPresenter extends BasePresenter<ConfireFireFragm
                     smokeMac = smokeMac.replace("I","");
                     smokeMac = smokeMac.replace("Q","");
                     smokeMac = smokeMac.replace("L","");
+                    smokeMac = smokeMac.replace("S","");
                     break;
                 case "H":
                     smokeMac = smokeMac.replace("H","");//空气探测器

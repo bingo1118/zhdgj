@@ -118,6 +118,7 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             ((ItemViewHolder) holder).alarm_family_tv.setVisibility(View.GONE);
             int devType= mNormalAlarmMessage.getDeviceType();
             switch (devType){
+                case 86:
                 case 41:
                 case 31:
                 case 21:
@@ -297,7 +298,7 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             ((ItemViewHolder) holder).alarm_value_line.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(!mNormalAlarmMessage.getAlarmDetailID().equals("0")){
+                    if(mNormalAlarmMessage.getDeviceType()!=86&&!mNormalAlarmMessage.getAlarmDetailID().equals("0")){
                         Intent intent=new Intent(mContext, AlarmValueInfoActivity.class);
                         intent.putExtra("data",mNormalAlarmMessage);
                         mContext.startActivity(intent);

@@ -199,8 +199,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -261,8 +261,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -323,8 +323,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -412,8 +412,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -476,8 +476,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -540,8 +540,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -631,8 +631,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -723,8 +723,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -787,8 +787,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -851,8 +851,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -915,8 +915,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -1007,8 +1007,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -1063,8 +1063,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -1119,8 +1119,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -1203,8 +1203,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -1259,8 +1259,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -1315,8 +1315,8 @@
 
                             <ImageView
                                 android:layout_width="5dp"
-                                android:layout_height="15dp"
-                                android:background="@drawable/electr_info_point"/>
+                                android:layout_height="5dp"
+                                android:src="@drawable/electr_info_point"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"

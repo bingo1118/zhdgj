@@ -25,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.smart.cloud.fire.activity.Info.DeviceInfoActivity;
 import com.smart.cloud.fire.global.ConstantValues;
 import com.smart.cloud.fire.global.Electric;
 import com.smart.cloud.fire.global.MyApp;
@@ -117,14 +118,25 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
         if (holder instanceof ItemViewHolder) {
 
             final Electric normalSmoke = listNormalSmoke.get(position);
-            ((ItemViewHolder) holder).category_group_lin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(mOnItemClickListener!=null){
-                        mOnItemClickListener.onItemClick(v,normalSmoke);
+
+            if(normalSmoke.getDeviceType()==86){
+                ((ItemViewHolder) holder).type_image_im.setImageResource(R.drawable.dev_info_logo2);
+                ((ItemViewHolder) holder).power_button.setVisibility(View.GONE);
+                ((ItemViewHolder) holder).category_group_lin.setOnClickListener(null);
+            }else{
+                ((ItemViewHolder) holder).type_image_im.setImageResource(R.drawable.dev_info_logo);
+                ((ItemViewHolder) holder).power_button.setVisibility(View.VISIBLE);
+                ((ItemViewHolder) holder).category_group_lin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(mOnItemClickListener!=null){
+                            mOnItemClickListener.onItemClick(v,normalSmoke);
+                        }
                     }
-                }
-            });
+                });
+            }
+
+
             ((ItemViewHolder) holder).category_group_lin.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -141,16 +153,19 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                 public void onClick(View v) {
 //                    String phoneOne = normalSmoke.getPrincipal1Phone();
 //                    mShopInfoFragmentPresenter.telPhoneAction(mContext,phoneOne);
-                if(normalSmoke.getPrincipal1().length()>0||normalSmoke.getPrincipal2().length()>0){
-                    Intent intent=new Intent(mContext, CallManagerDialogActivity.class);
-                    intent.putExtra("people1",normalSmoke.getPrincipal1());
-                    intent.putExtra("people2",normalSmoke.getPrincipal2());
-                    intent.putExtra("phone1",normalSmoke.getPrincipal1Phone());
-                    intent.putExtra("phone2",normalSmoke.getPrincipal2Phone());
+//                if(normalSmoke.getPrincipal1().length()>0||normalSmoke.getPrincipal2().length()>0){
+//                    Intent intent=new Intent(mContext, CallManagerDialogActivity.class);
+//                    intent.putExtra("people1",normalSmoke.getPrincipal1());
+//                    intent.putExtra("people2",normalSmoke.getPrincipal2());
+//                    intent.putExtra("phone1",normalSmoke.getPrincipal1Phone());
+//                    intent.putExtra("phone2",normalSmoke.getPrincipal2Phone());
+//                    mContext.startActivity(intent);
+//                }else{
+//                    T.showShort(mContext,"无联系人信息");
+//                }
+                    Intent intent=new Intent(mContext, DeviceInfoActivity.class);
+                    intent.putExtra("info",normalSmoke);
                     mContext.startActivity(intent);
-                }else{
-                    T.showShort(mContext,"无联系人信息");
-                }
 
                 }
             });
@@ -272,6 +287,8 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
         TextView alarm_state_text;
         @Bind(R.id.manager_img)
         ImageView manager_img;
+        @Bind(R.id.type_image_im)
+        ImageView type_image_im;
         @Bind(R.id.dev_name)
         TextView dev_name;
         @Bind(R.id.category_group_lin)
@@ -438,7 +455,15 @@ public class ElectricFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                                                 break;
                                         }
                                         notifyDataSetChanged();
-                                        Toast.makeText(mContext,jsonObject.getString("error"),Toast.LENGTH_SHORT).show();
+                                        final AlertDialog.Builder builder2 = new AlertDialog.Builder(mContext);
+                                        View dialogView = LayoutInflater.from(mContext)
+                                                .inflate(R.layout.dialog_cut_ok,null);
+                                        builder2.setView(dialogView);
+                                        final Dialog dialog2=builder2.create();
+
+                                        dialog2.setCanceledOnTouchOutside(true);
+                                        dialog2.show();
+//                                        Toast.makeText(mContext,jsonObject.getString("error"),Toast.LENGTH_SHORT).show();
                                     }else{
                                         Toast.makeText(mContext,jsonObject.getString("error"),Toast.LENGTH_SHORT).show();
                                     }

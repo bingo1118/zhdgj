@@ -60,7 +60,7 @@ public class AutoTimeSettingActivity extends Activity{
     @Bind(R.id.mProgressBar)
     ProgressBar mProgressBar;//加载进度。。
     @Bind(R.id.swich)
-    Switch swich;
+    CheckBox swich;
     @Bind(R.id.swich_cycle)
     Switch swich_cycle;
     @Bind(R.id.week1)
@@ -134,7 +134,7 @@ public class AutoTimeSettingActivity extends Activity{
         timer_cycle_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId==R.id.everyday){
+                if(checkedId==R.id.everyday_rb){
                     cycle_line.setVisibility(View.GONE);
                 }else{
                     cycle_line.setVisibility(View.VISIBLE);

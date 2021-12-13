@@ -115,6 +115,7 @@ public class DemoIntentService extends GTIntentService {
                 case 57://onet烟感
                 case 69://恒星水位
                 case 70://恒星水压
+                case 86:
                 case 111://@@小主机，终端
                 case 119://联动烟感
                 case 124://@@外接水位
@@ -166,6 +167,7 @@ public class DemoIntentService extends GTIntentService {
                             }
                             break;
                         case 119:
+                        case 86:
                         case 41:
                         case 57:
                         case 56:

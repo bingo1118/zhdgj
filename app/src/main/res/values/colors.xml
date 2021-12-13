@@ -23,7 +23,9 @@
     
     <!-- 透明色 -->
     <color name="fuxk_settle_black_mark">#1A000000</color>
-    
+
+    <color name="info_back">#1abbbbbb</color>
+
     <!-- 分割线 -->
     <color name="fuxk_base_divide_line_color">#dcdcdc</color>
 
